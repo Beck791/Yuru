@@ -62,7 +62,7 @@
                 <li><a href="<c:url value='/CampSite/Index' />">露營營地</a><i class="ion-ios-circle-filled color"></i></li>
                 <li><a href="<c:url value='/Product/Index' />">露營商城</a></li>
                 <li><a href="<c:url value='/Car/Index' />">露營車租借</a></li>
-				<li><a href="<c:url value='/Forum/forumIndex' />">露營論壇</a></li>
+				<li><a href="<c:url value='/Forum/Index' />">露營論壇</a></li>
 				<li><a href="<c:url value='/Blog/Index' />">BLOG</a></li>
 <!--            <li class="box-label">會員系統</li> -->
 <!-- 			<li><a class="glyphicon glyphicon-user" href="about.html">會員中心</a></li> -->

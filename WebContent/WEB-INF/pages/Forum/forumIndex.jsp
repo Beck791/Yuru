@@ -13,7 +13,7 @@
    	<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
     <!-- Bootstrap -->
 <!--     <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
+<!--     <link href="../ionicons/css/ionicons.min.css" rel="stylesheet"> -->
     <!-- main css -->
     <link href="../css/style.css" rel="stylesheet">
     <!-- modernizr -->
@@ -45,13 +45,13 @@
                 <div>
                     <nav class="categories text-center">
                         <ul class="portfolio_filter" style="list-style-type:none;font-size:50px">
-                       	  	<li ><a href="/YURUcamp/Forum/campDiscussion" >露營休閒討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營帳篷討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營寢具討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營爐具桌椅討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營料理討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營地點討論區</a></li>
-                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營車討論區</a></li>
+                       	  	<li ><a href="<c:url value='/Forum/forumIndex' />" >露營休閒討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營帳篷討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營寢具討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營爐具桌椅討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營料理討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營地點討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營車討論區</a></li>
                         </ul>
                     </nav>
                 </div>

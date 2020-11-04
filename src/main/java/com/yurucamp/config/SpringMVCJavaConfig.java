@@ -30,6 +30,7 @@ import org.springframework.web.servlet.view.BeanNameViewResolver;
           com.yurucamp.config.view.mallSystemViewJavaConfig.class,
           com.yurucamp.config.view.backstageViewJavaConfig.class,
           com.yurucamp.config.view.memberViewJavaConfig.class,
+          com.yurucamp.config.view.forumViewJavaConfig.class,
 		  com.yurucamp.config.view.GeneralViewJavaConfig.class})
 public class SpringMVCJavaConfig implements WebMvcConfigurer {
 	@Autowired
