@@ -11,7 +11,21 @@ public class backstageViewJavaConfig {
 	@Bean
 	public View backstageViewPage() { // 呼叫此方法名稱及導向設定之jsp
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/CampSite/campSiteIndex.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/Backstage/index.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	
+	@Bean
+	public View backstageMemberViewPage() { // 呼叫此方法名稱及導向設定之jsp
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Backstage/member.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	
+	@Bean
+	public View backstageForumViewPage() { // 呼叫此方法名稱及導向設定之jsp
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Backstage/forum.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 
