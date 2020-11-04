@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 								"com.yurucamp.car", 
 								"com.yurucamp.forum",
 								"com.yurucamp.mallSystem",
+								"com.yurucamp.backstage",
 								"com.yurucamp.member"})
 //SpringJavaConfig設定與資料庫有關的操作
 public class SpringJavaConfig {

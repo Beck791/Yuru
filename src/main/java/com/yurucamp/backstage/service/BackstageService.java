@@ -16,7 +16,7 @@ public class BackstageService {
 	BackstageDao backstageDao;
     
     
-    @Transactional
+
 	public List<Test> getAllProducts() {
 		return backstageDao.getAllProducts();
 	}

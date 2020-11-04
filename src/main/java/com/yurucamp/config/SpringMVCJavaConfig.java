@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.BeanNameViewResolver;
 								"com.yurucamp.car.controller", 
 								"com.yurucamp.forum.controller",
 								"com.yurucamp.mallSystem.controller",
+								"com.yurucamp.backstage.controller",
 								"com.yurucamp.member.controller" })
 
 //SpringMVCJavaConfig設定與MVC有關的操作
