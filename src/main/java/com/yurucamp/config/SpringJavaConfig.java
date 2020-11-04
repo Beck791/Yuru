@@ -29,7 +29,7 @@ public class SpringJavaConfig {
 	@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
-		factory.setJndiName("java:comp/env/jdbc/Yurucamp");
+		factory.setJndiName("java:comp/env/jdbc/YuruCamp");
 		factory.setProxyInterface(DataSource.class);
 
 		try {

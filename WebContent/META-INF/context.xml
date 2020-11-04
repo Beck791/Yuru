@@ -2,11 +2,11 @@
 <Context> 
   
        <Resource
-    	name="jdbc/Yurucamp"
+    	name="jdbc/YuruCamp"
     	type="javax.sql.DataSource"
     	auth="Container" username="sa"
     	password="sa123456"
     	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    	url="jdbc:sqlserver://localhost:1433;databaseName=Yurucamp" />   	
+    	url="jdbc:sqlserver://localhost:1433;databaseName=YuruCamp" />   	
     	
 </Context>
