@@ -3,48 +3,52 @@ package com.yurucamp.mallSystem.model.service.imp;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yurucamp.mallSystem.model.ProductBean;
+import com.yurucamp.mallSystem.model.dao.ProductDao;
 import com.yurucamp.mallSystem.model.service.ProductService;
 
 @Service
 public class PorductServiceImp implements ProductService{
 
+	
+	@Autowired
+	ProductDao productDao;
+	
 	@Override
 	public void insert(ProductBean productBean) throws SQLException {
-		// TODO Auto-generated method stub
+		 productDao.insert(productBean);
 		
 	}
 
 	@Override
 	public void update(ProductBean productBean) throws SQLException {
-		// TODO Auto-generated method stub
+		productDao.update(productBean);
 		
 	}
 
 	@Override
-	public void deleteOne(int productId) throws SQLException {
-		// TODO Auto-generated method stub
+	public void deleteOne(int id) throws SQLException {
+		productDao.deleteOne(id);
 		
 	}
 
 	@Override
 	public List<ProductBean> queryAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.queryAll();
 	}
 
 	@Override
-	public ProductBean queryOne(int i) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductBean queryOne(int id) throws SQLException {
+		return productDao.queryOne(id);
 	}
 
 	@Override
 	public ProductBean querylast() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.querylast();
 	}
+
 
 }

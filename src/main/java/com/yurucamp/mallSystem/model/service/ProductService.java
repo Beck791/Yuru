@@ -11,11 +11,11 @@ public interface ProductService {
 
 	public void update(ProductBean productBean) throws SQLException;
 
-	public void deleteOne(int productId) throws SQLException;
+	public void deleteOne(int id) throws SQLException;
 
 	public List<ProductBean> queryAll() throws SQLException;
 
-	public ProductBean queryOne(int i) throws SQLException;
+	public ProductBean queryOne(int id) throws SQLException;
 	
 	public ProductBean querylast() throws SQLException;
 	
