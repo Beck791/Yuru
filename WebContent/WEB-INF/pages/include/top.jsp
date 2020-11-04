@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,16 +53,17 @@
         <!-- end box-header -->
 
         <!-- nav -->
+        
         <nav>
             <ul class="box-primary-nav">
                 <li class="box-label">About Yuru.Camp</li>
 <!--            <li><a href="index.html">Intro</a> <i class="ion-ios-circle-filled color"></i></li> -->
 <!--            <li><a href="about.html">會員</a></li> -->
-                <li><a href="/YURUcamp/CampSite/Index">露營營地</a><i class="ion-ios-circle-filled color"></i></li>
-                <li><a href="/YURUcamp/Product/Index">露營商城</a></li>
-                <li><a href="/YURUcamp/Car/Index">露營車租借</a></li>
-				<li><a href="/YURUcamp/Forum/forumIndex">露營論壇</a></li>
-				<li><a href="/YURUcamp/Blog/Index">BLOG</a></li>
+                <li><a href="<c:url value='/CampSite/Index' />">露營營地</a><i class="ion-ios-circle-filled color"></i></li>
+                <li><a href="<c:url value='/Product/Index' />">露營商城</a></li>
+                <li><a href="<c:url value='/Car/Index' />">露營車租借</a></li>
+				<li><a href="<c:url value='/Forum/forumIndex' />">露營論壇</a></li>
+				<li><a href="<c:url value='/Blog/Index' />">BLOG</a></li>
 <!--            <li class="box-label">會員系統</li> -->
 <!-- 			<li><a class="glyphicon glyphicon-user" href="about.html">會員中心</a></li> -->
                 <li class="box-social"><a href="https://www.facebook.com/YURUCAMPFAVORITE"><i class="ion-social-facebook"></i></a></li>

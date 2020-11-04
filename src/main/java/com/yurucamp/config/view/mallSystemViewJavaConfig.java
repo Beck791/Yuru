@@ -14,4 +14,11 @@ public class mallSystemViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/mallSystem.jsp"); //此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
+	
+	@Bean
+	public View CampViewPage() { //呼叫此方法名稱及導向設定之jsp
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/campSiteIndex.jsp"); //此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
 }

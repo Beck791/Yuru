@@ -11,27 +11,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "campInfo")
+@Table(name = "CampDetail")
 public class CampDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "detail")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer detail;
-
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "closed")
+	@Column(name = "campInfoId")
+	private Integer campInfoId;
 
+	@Column(name = "closed")
 	private String closed;
 
 	@Column(name = "image")
 	private Blob image;
 
 	@Column(name = "power")
-
 	private String power;
 
 	@Column(name = "signal")
@@ -43,36 +41,32 @@ public class CampDetail implements Serializable {
 	@Column(name = "parking")
 	private String parking;
 
+	@Column(name = "types")
+	private String types;
+	
 	@Column(name = "waterHeater")
 	private String waterHeater;
 
-	@Column(name = "types")
-	private String types;
-
+	@Column(name = "hashTag")
+	private String hashTag;
+	
 	public CampDetail() {
 	}
 
-	public CampDetail(Integer detail, Integer id, String closed, Blob image, String power, String signal,
-			String equipment, String parking, String waterHeater, String types) {
+	public CampDetail(Integer id, Integer campInfoId, String closed, Blob image, String power, String signal,
+			String equipment, String parking, String types, String waterHeater, String hashTag) {
 		super();
-		this.detail = detail;
 		this.id = id;
+		this.campInfoId = campInfoId;
 		this.closed = closed;
 		this.image = image;
 		this.power = power;
 		this.signal = signal;
 		this.equipment = equipment;
 		this.parking = parking;
-		this.waterHeater = waterHeater;
 		this.types = types;
-	}
-
-	public Integer getDetail() {
-		return detail;
-	}
-
-	public void setDetail(Integer detail) {
-		this.detail = detail;
+		this.waterHeater = waterHeater;
+		this.hashTag = hashTag;
 	}
 
 	public Integer getId() {
@@ -81,6 +75,14 @@ public class CampDetail implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getCampInfoId() {
+		return campInfoId;
+	}
+
+	public void setCampInfoId(Integer campInfoId) {
+		this.campInfoId = campInfoId;
 	}
 
 	public String getClosed() {
@@ -131,14 +133,6 @@ public class CampDetail implements Serializable {
 		this.parking = parking;
 	}
 
-	public String getWaterHeater() {
-		return waterHeater;
-	}
-
-	public void setWaterHeater(String waterHeater) {
-		this.waterHeater = waterHeater;
-	}
-
 	public String getTypes() {
 		return types;
 	}
@@ -147,4 +141,21 @@ public class CampDetail implements Serializable {
 		this.types = types;
 	}
 
+	public String getWaterHeater() {
+		return waterHeater;
+	}
+
+	public void setWaterHeater(String waterHeater) {
+		this.waterHeater = waterHeater;
+	}
+
+	public String getHashTag() {
+		return hashTag;
+	}
+
+	public void setHashTag(String hashTag) {
+		this.hashTag = hashTag;
+	}
+
+	
 }
