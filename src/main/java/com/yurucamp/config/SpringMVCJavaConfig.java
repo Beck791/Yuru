@@ -25,7 +25,11 @@ import org.springframework.web.servlet.view.BeanNameViewResolver;
 
 //SpringMVCJavaConfig設定與MVC有關的操作
 //註冊ViewJavaConfig
-@Import({ com.yurucamp.config.view.mallSystemViewJavaConfig.class,
+@Import({ com.yurucamp.config.view.campViewJavaConfig.class,
+          com.yurucamp.config.view.carViewJavaConfig.class,
+          com.yurucamp.config.view.mallSystemViewJavaConfig.class,
+          com.yurucamp.config.view.backstageViewJavaConfig.class,
+          com.yurucamp.config.view.memberViewJavaConfig.class,
 		  com.yurucamp.config.view.GeneralViewJavaConfig.class})
 public class SpringMVCJavaConfig implements WebMvcConfigurer {
 	@Autowired

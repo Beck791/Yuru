@@ -11,10 +11,10 @@ public class AjaxController {
 
 //	@Autowired
 //	UserService userService;  
-	  
-	  @GetMapping(value="/all", produces="application/json")
-	  public String getUserJson(Model model){
-	    return "";
-	  }
+
+	@GetMapping(value = "/all", produces = "application/json")
+	public String getUserJson(Model model) {
+		return "";
+	}
 
 }

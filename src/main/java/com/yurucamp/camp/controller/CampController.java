@@ -10,7 +10,8 @@ public class CampController {
 
 	@GetMapping("/Index")
 	public String campIndex() {
-		return "CampSite/campSiteIndex";
+//		return "CampSite/campSiteIndex";
+		return "CampViewPage";
 	}
 
 }

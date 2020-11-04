@@ -17,14 +17,18 @@ public class BackstageController {
 	@Autowired
 	BackstageService backstageService;
 	
+//	@Autowired
+//	backstageViewJavaConfig backstageViewJavaConfig;
+	
 	@GetMapping("/index")
 	public String backstageIndex() {
-		return "Backstage/index";
+//		return "Backstage/index";
+		return "backstageViewPage";
 	}
 	
 	@GetMapping("/member")
 	public String backstageMemberIndex() {
-		return "Backstage/member";
+		return "backstageMemberViewPage";
 	}
 	
 	@GetMapping("/camp")
@@ -39,7 +43,7 @@ public class BackstageController {
 		for(Test s:products) {
 			System.out.println("test"+s.getName());
 		}
-		return "Backstage/forum";
+		return "backstageForumViewPage";
 	}
 	
 	
