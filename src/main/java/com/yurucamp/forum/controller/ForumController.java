@@ -25,7 +25,7 @@ public class ForumController {
 		return "memberCreatPage";
 	}
 	
-	@GetMapping("/Forum/creatArticle")
+	@GetMapping("/Forum/readArticle")
 	public String memberRead() {
 //		return "Forum/memberCreat";
 		return "memberReadPage";
