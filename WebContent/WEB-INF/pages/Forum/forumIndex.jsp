@@ -5,41 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${guestReadPage}</title>
- <meta charset="utf-8">
+<title>${forumIndex}</title>
+ 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    
-  <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
-
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   	<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
-
     <!-- main css -->
     <link href="../css/style.css" rel="stylesheet">
-
-
     <!-- modernizr -->
-    <script src="../js/modernizr.js"></script>
-
+    <script src="../js/modernizr.js"></script> 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
-
+    <![endif]-->  	
 </head>
 <body>
-
-
-<jsp:include page="/WEB-INF/views/Index/top.jsp" />
-
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
  <!-- top bar -->
     <div class="top-bar">
         <h1>露營論壇</h1>
@@ -47,15 +34,30 @@
     </div>
     <!-- end top bar -->
 
+
+
     <!-- main container -->
-    
-     <!-- end main container -->
-				
-
-
-
-
-
+    <div class="main-container portfolio-inner clearfix">
+        <!-- portfolio div -->
+        <div class="portfolio-div">
+            <div class="portfolio">
+                <!-- portfolio_filter -->
+                <div>
+                    <nav class="categories text-center">
+                        <ul class="portfolio_filter" style="list-style-type:none;font-size:50px">
+                       	  	<li ><a href="/YURUcamp/Forum/campDiscussion" >露營休閒討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營帳篷討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營寢具討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營爐具桌椅討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營料理討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營地點討論區</a></li>
+                            <li ><a href="/YURUcamp/Forum/campDiscussion" >露營車討論區</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                </div>
+   </div>
+    </div>
 <!-- footer -->
     <footer>
         <div class="container-fluid">
@@ -67,9 +69,6 @@
     <!-- back to top -->
     <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
     <!-- end back to top -->
-
-
-
 
     <!-- jQuery -->
     <script src="../js/jquery-2.1.1.js"></script>
@@ -84,22 +83,8 @@
     <script src="../js/custom.js"></script>
     
     <!-- google analytics  -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-76796224-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
+
 </body>
+
 </html>

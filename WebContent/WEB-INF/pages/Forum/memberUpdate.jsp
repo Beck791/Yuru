@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${memberArticleList}</title>
+<title>${memberUpdate}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,8 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/Index/top.jsp" />
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+
 <!-- top bar -->
 	<div class="top-bar">
 		<h1>露營論壇</h1>

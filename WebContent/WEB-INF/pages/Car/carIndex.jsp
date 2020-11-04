@@ -81,7 +81,7 @@
 <body>
 
 
-<jsp:include page="/WEB-INF/views/Index/top.jsp" />
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
  <!-- top bar -->
     <div class="top-bar">

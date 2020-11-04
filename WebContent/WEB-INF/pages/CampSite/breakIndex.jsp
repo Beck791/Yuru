@@ -25,7 +25,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/Index/top.jsp" />
+	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 	<!-- Preloader -->
 	<div id="preloader">
 		<div class="pre-container">

@@ -5,25 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${forumIndex}</title>
+<title>${campDiscussion}</title>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    
-   <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
-
+   	<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
-
     <!-- main css -->
     <link href="../css/style.css" rel="stylesheet">
-
-
     <!-- modernizr -->
     <script src="../js/modernizr.js"></script>
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,14 +26,11 @@
     <![endif]-->
 
 
-
-
 </head>
 <body>
 
 
-<jsp:include page="/WEB-INF/views/Index/top.jsp" />
-
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
  <!-- top bar -->
     <div class="top-bar">
         <h1>露營論壇</h1>
@@ -66,6 +57,15 @@
                     </nav>
                 </div>
                 <!-- portfolio_filter -->
+                <div>
+                 <nav>
+                <ul class="portfolio_filter">
+                            <li><a href="/YURUcamp/Forum/memberCreat" class="active" >新增文章</a></li>
+                 </ul>
+                 </nav>
+                </div>
+
+
 
                 <!-- portfolio_container -->
 				<div class="no-padding portfolio_container clearfix">
@@ -81,11 +81,14 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </a>
                         
                         
                     </div>
                     <!-- end single work -->
+
+
 
                       <!-- single work -->
                     <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
@@ -104,6 +107,9 @@
                         
                     </div>
                     <!-- end single work -->
+                    
+                    
+                    
                       <!-- single work -->
                     <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
                         <a href="#0" class="portfolio_item">
@@ -117,95 +123,13 @@
                                 </div>
                             </div>
                         </a>
-                        
-                        
+
                     </div>
                     <!-- end single work -->
-                      <!-- single work -->
-                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
-                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
-                            <div class="portfolio_item_hover">
-                                <div class="portfolio-border clearfix">
-                                    <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                    <!-- end single work -->
-                      <!-- single work -->
-                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
-                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
-                            <div class="portfolio_item_hover">
-                                <div class="portfolio-border clearfix">
-                                    <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                    <!-- end single work -->
-                      <!-- single work -->
-                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
-                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
-                            <div class="portfolio_item_hover">
-                                <div class="portfolio-border clearfix">
-                                    <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                    <!-- end single work -->
-                      <!-- single work -->
-                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
-                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
-                            <div class="portfolio_item_hover">
-                                <div class="portfolio-border clearfix">
-                                    <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                    <!-- end single work -->
-                      <!-- single work -->
-                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
-                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
-                            <div class="portfolio_item_hover">
-                                <div class="portfolio-border clearfix">
-                                    <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                    <!-- end single work -->
+                    
+                    
+                    
+                    
                       <!-- single work -->
                     <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
                         <a href="#0" class="portfolio_item">
@@ -226,38 +150,110 @@
                     
                     
                     
+                      <!-- single work -->
+                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
+                        <a href="#0" class="portfolio_item">
+                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                            <div class="portfolio_item_hover">
+                                <div class="portfolio-border clearfix">
+                                    <div class="item_info">
+                                        <form action=""><span>$.{.}.</span></form>
+                                        <em>$.{.}.</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        
+                    </div>
+                    <!-- end single work -->
+                    
+                    
+                      <!-- single work -->
+                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
+                        <a href="#0" class="portfolio_item">
+                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                            <div class="portfolio_item_hover">
+                                <div class="portfolio-border clearfix">
+                                    <div class="item_info">
+                                        <form action=""><span>$.{.}.</span></form>
+                                        <em>$.{.}.</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        
+                    </div>
+                    <!-- end single work -->
                     
                     
                     
+                      <!-- single work -->
+                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
+                        <a href="#0" class="portfolio_item">
+                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                            <div class="portfolio_item_hover">
+                                <div class="portfolio-border clearfix">
+                                    <div class="item_info">
+                                        <form action=""><span>$.{.}.</span></form>
+                                        <em>$.{.}.</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        
+                    </div>
+                    <!-- end single work -->
                     
                     
                     
+                      <!-- single work -->
+                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
+                        <a href="#0" class="portfolio_item">
+                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                            <div class="portfolio_item_hover">
+                                <div class="portfolio-border clearfix">
+                                    <div class="item_info">
+                                        <form action=""><span>$.{.}.</span></form>
+                                        <em>$.{.}.</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>                                                
+                    </div>
+                    <!-- end single work -->
                     
                     
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                      <!-- single work -->
+                    <div class="col-md-4 col-sm-10 "  style="background-color:#dbcf83">
+                        <a href="#0" class="portfolio_item">
+                            <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                            <div class="portfolio_item_hover">
+                                <div class="portfolio-border clearfix">
+                                    <div class="item_info">
+                                        <form action=""><span>$.{.}.</span></form>
+                                        <em>$.{.}.</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- end single work -->
+
 
                 </div>
                 <!-- end portfolio_container -->
             </div>
             <!-- portfolio -->
+            
+            
         </div>
         <!-- end portfolio div -->
     </div>
     <!-- end main container -->
-				
-
-
-
-
 
 <!-- footer -->
     <footer>
@@ -270,9 +266,6 @@
     <!-- back to top -->
     <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
     <!-- end back to top -->
-
-
-
 
     <!-- jQuery -->
     <script src="../js/jquery-2.1.1.js"></script>

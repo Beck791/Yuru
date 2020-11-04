@@ -29,7 +29,8 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/Index/top.jsp" />
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+
 <!-- top bar -->
 	<div class="top-bar">
 		<h1>露營論壇</h1>
