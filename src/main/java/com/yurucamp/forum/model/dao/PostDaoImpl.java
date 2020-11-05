@@ -18,8 +18,29 @@ public class PostDaoImpl implements PostDao {
 	}
 	
 	@Override
-	public PostBean insertpoTitle(PostBean poTitle) {
+	public PostBean insertPoTitle(PostBean poTitle) {
 		sessionFactory.getCurrentSession().save(poTitle);
+		
+		return poTitle;
+	}
+	
+	@Override
+	public PostBean insertPoContent(PostBean poContent) {
+		sessionFactory.getCurrentSession().save(poContent);
+		return poContent;
+	}
+
+	
+	@Override
+	public PostBean updatePoTitle(PostBean poTitle) {
+		
+		
+		return poTitle;
+	}
+	@Override
+	public PostBean deleteOnePoTitle(PostBean poTitle) {
+		
+		
 		return poTitle;
 	}
 	
