@@ -9,23 +9,23 @@ import com.yurucamp.forum.model.PostBean;
 
 @Repository
 public class PostDaoImpl implements PostDao {
-//	@Autowired
-//	private SessionFactory sessionFactory;
-//	
-//	@Autowired
-//	public PostDaoImpl(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
-//	
+
+	private SessionFactory sessionFactory;
+	
+	@Autowired
+	public PostDaoImpl(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	@Override
 	public PostBean insertPoTitle(PostBean poTitle) {
-		
-		
+		sessionFactory.getCurrentSession().save(poTitle);
 		return poTitle;
 	}
 	
 	@Override
 	public PostBean insertPoContent(PostBean poContent) {
+		sessionFactory.getCurrentSession().save(poContent);
 		
 		return poContent;
 	}
@@ -39,9 +39,12 @@ public class PostDaoImpl implements PostDao {
 	}
 	
 	@Override
-	public PostBean updatePoContent(PostBean poContent) {
+	public PostBean updatePoContent(PostBean Po) {
+		PostBean post = sessionFactory.getCurrentSession().get(PostBean.class,Po.getPoId());
+		post.setPoContent(Po.getPoContent());
+		post.setPoUpDateTime(Po.getPoUpDateTime());
+		return post;
 		
-		return poContent;
 	}
 	
 	@Override
