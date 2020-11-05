@@ -12,7 +12,7 @@
 
 
 		<!-- Member Area -->
-
+		<mapping class="com.yurucamp.member.model.MemberBean"/>
 		<!-- MallSystem Area -->
 		<mapping class="com.yurucamp.mallSystem.model.BrandBean" />
 		<mapping class="com.yurucamp.mallSystem.model.Comment" />

@@ -13,6 +13,8 @@
 <!-- //匯入bootstrap javascript -->
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
+
 </head>
 <body>
 
@@ -87,17 +89,17 @@
       </div>
       <div class="modal-body">
            <div class="input-contact" style="width:60%">
-           	<input type="text" name="Account" >
+           	<input type="text" name="Account" id="Account" >
             	<span>Account</span>
                  </div>
              <div class="input-contact" style="width:60%">
-            <input type="text" name="Password" >
+            <input type="text" name="Password" id="Password" >
             	<span>Password</span>
       </div>
       <div class="modal-footer">
       	<a href='#' class="mr-auto" data-dismiss="modal" data-toggle="modal" data-target="#registerModal" style="float:left;color:black;">註冊一個新帳號</a> 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" style="background-color:#dbcf83;border-color:#dbcf83;color:black;">登入</button>
+        <button type="button" class="btn btn-primary" id="signIn" style="background-color:#dbcf83;border-color:#dbcf83;color:black;">登入</button>
       </div>
     </div>
   </div>
@@ -131,6 +133,23 @@
 	$("#icon").click(function(){
 		$("#menu").click();
 	});
+	
+	$("#signIn").click(function(){
+		var data = new Object();
+		data.Account = $("#Account").val();
+		data.Password = $("#Password").val();
+		console.log(data);
+		$.ajax({
+			url : "/yurucamp/Member/SignIn",
+			method: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(result) {
+			console.log("result"+result.code);
+			bootbox.alert("登入成功!");
+		 });
+		
+	})
 	
 </script>
 
