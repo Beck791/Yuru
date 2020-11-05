@@ -12,4 +12,8 @@ public interface PostDao {
 
 	PostBean insertPoContent(PostBean poContent);
 
+	PostBean updatePoContent(PostBean poContent);
+
+	PostBean deletePoContent(PostBean poContent);
+
 }

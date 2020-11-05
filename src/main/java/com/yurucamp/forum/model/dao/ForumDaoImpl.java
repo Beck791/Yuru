@@ -1,8 +1,6 @@
 package com.yurucamp.forum.model.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.forum.model.ForumBean;
@@ -11,14 +9,14 @@ import com.yurucamp.forum.model.ForumBean;
 public class ForumDaoImpl implements ForumDao {
 
 	
-	
-	private SessionFactory sessionFactory;
-	
-	@Autowired
-	public ForumDaoImpl(@Qualifier("SessionFactory") SessionFactory sessionFactory)  {
-	this.sessionFactory = sessionFactory;
-		
-	}
+//	@Autowired
+//	private SessionFactory sessionFactory;
+//	
+//	@Autowired
+//	public ForumDaoImpl(@Qualifier("SessionFactory") SessionFactory sessionFactory)  {
+//	this.sessionFactory = sessionFactory;
+//		
+//	}
 	
 	
 
