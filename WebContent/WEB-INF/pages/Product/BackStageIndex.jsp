@@ -17,7 +17,8 @@
 <body style="background-color:#fdf5e6">
 <div align="center">
 <h1 class="bg-dark text-white">露營商品管理</h1>
-
+<br><br>
+    <a href="<c:url value='/Product/Index' />" class="btn btn-primary">露營商城</a><br><br>
 	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br>
     <a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">查詢全部資料</a><br><br>
 	<a href="<c:url value='/Product/InsertProduct'/>" class="btn btn-primary">新增資料</a><br><br>
