@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "CampOrder")
+@Component
 public class CampOrder implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

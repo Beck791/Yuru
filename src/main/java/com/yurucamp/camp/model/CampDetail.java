@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "CampDetail")
+@Component
 public class CampDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 

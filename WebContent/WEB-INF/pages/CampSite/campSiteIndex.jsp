@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
-<link rel="icon" href="../img/fav.png" type="image/x-icon">
+<link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
@@ -31,7 +31,7 @@
 
 	<!-- top bar -->
 	<div class="top-bar">
-		<h1>portfolio</h1>
+		<h1>campsite</h1>
 		<p>
 			<a href="#">Home</a> / Portfolio
 		</p>
@@ -62,8 +62,8 @@
 				<div class="no-padding portfolio_container clearfix">
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6  fashion logo">
-						<a href="../single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/01.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='/CampSite/Index/Insert' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/01.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">

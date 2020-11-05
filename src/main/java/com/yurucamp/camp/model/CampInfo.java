@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "CampInfo")
+@Component
 public class CampInfo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +31,6 @@ public class CampInfo implements Serializable{
 	}
 
 	public CampInfo(Integer id, String name, String address, Integer altitude, String owner, String ownerPhone) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;

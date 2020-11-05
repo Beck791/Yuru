@@ -1,7 +1,6 @@
 package com.yurucamp.camp.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "CampSide")
+@Component
 public class CampSide implements Serializable {
 	private static final long serialVersionUID = 1L;
 

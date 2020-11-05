@@ -3,6 +3,7 @@ package com.yurucamp.camp.model.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.camp.model.CampInfo;
@@ -11,24 +12,24 @@ import com.yurucamp.camp.model.CampInfo;
 public class CampDao {
 
 	@Autowired
-	SessionFactory factory;
-	
+	SessionFactory sessionFactory;
+
 	public CampDao() {
 	}
 
-	public int saveCamp(CampInfo campInfo) {
-		int n = 0;
-		Session session = factory.getCurrentSession();
+	@Autowired
+	public CampDao(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	public CampInfo saveCamp(CampInfo campInfo) {
+		Session session = sessionFactory.getCurrentSession();
 		session.save(campInfo);
-		n++;
-		return n;
+		return campInfo;
 	}
-	
+
 	public void queryCamp(Integer id) {
-		int n = 0;
-		Session session = factory.getCurrentSession();
-		
-		n++;
+
 	}
-	
+
 }
