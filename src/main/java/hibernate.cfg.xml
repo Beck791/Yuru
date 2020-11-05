@@ -14,16 +14,21 @@
 		<!-- Member Area -->
 
 		<!-- MallSystem Area -->
-
+		<mapping class="com.yurucamp.mallSystem.model.BrandBean" />
+		<mapping class="com.yurucamp.mallSystem.model.Comment" />
+		<mapping class="com.yurucamp.mallSystem.model.OrderBean" />
+		<mapping class="com.yurucamp.mallSystem.model.OrderDetailBean" />
+		<mapping class="com.yurucamp.mallSystem.model.ProductBean" />
+		<mapping class="com.yurucamp.mallSystem.model.TrackProductBean" />
 		<!-- Forum Area -->
 
 		<!-- Camp Area -->
-		
+
 		<!-- Car Area -->
-		
-		
+
+
 		<!-- backstage Area -->
-	<mapping class="com.yurucamp.backstage.model.Test"/>
+		<mapping class="com.yurucamp.backstage.model.Test" />
 
 	</session-factory>
 </hibernate-configuration>

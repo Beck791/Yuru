@@ -18,7 +18,7 @@
 <body style="background-color:#fdf5e6">
 <div align="center">
 <h2 class="bg-dark text-white">所有產品資料</h2>
-<a href="<c:url value='/product/Product.jsp'/>" >回首頁</a>
+<a href="<c:url value='/Product/Index'/>" >回首頁</a>
 	<form method="get" action="/MidtermMvc/DeleteProduct">
        輸入刪除的產品編號 : <input type="text" id="idName" name="productId" autofocus placeholder="請輸入四位數字" maxlength="4" required="required" onblur="checkName()" />
 	<input type="submit"  value="確定" class="btn btn-primary" />	<p>
@@ -29,21 +29,25 @@
 <table class="table table-dark table-striped" border="1">
 <tr style="background-color:#7A0099">
 <th><th>ProductId<th>Product<th>Brand<th>Price<th>ProductNo<th>Stock<th>Category<th>BrandId
-<c:forEach var="product" items="${pdbs}">
+<c:forEach var="product" items="${productBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 <form method="post" id="form1"  action="">
-<input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${product.productId}')" />	
-<input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${product.productId}')" />	
+<input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${product.Id}')" />	
+<input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${product.Id}')" />	
 </td>
-<td>${product.productId}</td>
-<td>${product.product}</td>	
-<td>${product.brand}</td>
+<td>${product.Id}</td>
+<td>${product.name}</td>	
+<td>${product.brandId}</td>
 <td>${product.price}</td>
-<td>${product.productNo}</td>
+<td>${product.image}</td>
+<td>${product.webTraffic}</td>
+<td>${product.description}</td>
+<td>${product.statusId}</td>
 <td>${product.stock}</td>
 <td>${product.category}</td>
-<td>${product.brandId}</td></tr>
+<td>${product.createtime}</td>
+<td>${product.updatetime}</td></tr>
 </form>
 
 </c:forEach>
