@@ -1,9 +1,18 @@
 package com.yurucamp.forum.model.dao;
 
-public class ForumDao {
+import com.yurucamp.forum.model.ForumBean;
 
-	public ForumDao() {
-		// TODO Auto-generated constructor stub
-	}
+public interface ForumDao {
 
+	ForumBean insertForum();
+
+	ForumBean updateOneForum();
+
+	ForumBean deleteOneForum();
+
+	ForumBean queryOneForum();
+
+	ForumBean queryAllForum();
+	
+	
 }
