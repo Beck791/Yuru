@@ -23,11 +23,8 @@ public class PostDaoImpl implements PostDao {
 		return poTitle;
 	}
 	
-//	
-//	@Override
-//	public poTitle insertArticleTitle(poTitle title) {
-//		return poTitle;
-//	}
+	
+	
 	
 	
 	
