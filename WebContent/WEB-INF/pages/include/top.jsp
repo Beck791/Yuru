@@ -134,6 +134,7 @@
 		$("#menu").click();
 	});
 	
+	
 	$("#signIn").click(function(){
 		var data = new Object();
 		data.Account = $("#Account").val();
@@ -142,17 +143,13 @@
 		$.ajax({
 			url : "/yurucamp/Member/SignIn",
 			method: 'POST',
-			dataType: 'html',
+			dataType: 'json',
 			data: data
 		}).done(function(result) {
-			console.log("result"+result.code);
-			bootbox.alert("登入成功!");
-		 });
-		
+			bootbox.alert(result.msg);
+		 })
 	})
-	
 </script>
-
 
 </body>
 </html>
