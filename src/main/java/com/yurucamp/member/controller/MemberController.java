@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yurucamp.member.model.MemberBean;
 import com.yurucamp.member.model.dao.MemberDao;
@@ -26,25 +26,22 @@ public class MemberController {
 	MemberDao memberDao;
 	
 	@PostMapping("/SignIn")
-	public ModelAndView  MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
+	@ResponseBody
+	public Map<String, String>  MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
 		Map<String, String> rtnMap = new HashMap<String, String>();
-		rtnMap.put("code", "00");
 		List<MemberBean> memberUser = memberDao.queryUserId(Account,Password);
 		HttpSession session = request.getSession();
 		
-		System.out.println("memberUser"+memberUser);
 		if(memberUser.isEmpty()) {
-			System.out.println("查詢資料失敗!");
+			rtnMap.put("msg", "查無此帳號!");
 		}else {
 			for(MemberBean s:memberUser) {
 				session.setAttribute("memberId",s.getMemberId());
 				session.setAttribute("memberRolse",s.getRoles());
 			}
+			rtnMap.put("msg", "登入成功!");
 		}
-		
-		return new ModelAndView("MemberViewPage","result" , rtnMap);
+		return rtnMap;
 	}
-	
-	
 	
 }
