@@ -28,30 +28,23 @@
 		
 <table class="table table-dark table-striped" border="1">
 <tr style="background-color:#7A0099">
-<th><th>產品ID<th>產品名稱<th>價格<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>新增日期<th>修改日期
-<c:forEach var="productBean" items="${productBeans}">
+<th><th>廠牌ID<th>廠牌名稱<th>新增日期<th>修改日期
+<c:forEach var="brandBean" items="${brandBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 <form method="post" id="form1"  action="">
-<input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${productBean.id}')" />	
-<input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${productBean.id}')" />	
+<input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${brandBean.id}')" />	
+<input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${brandBean.id}')" />	
 </td>
-<td>${productBean.id}</td>
-<td>${productBean.name}</td>	
-<td>${productBean.price}</td>
-<td>${productBean.image}</td>
-<td>${productBean.webTraffic}</td>
-<td>${productBean.description}</td>
-<%-- <td>${productBean.statusId}</td> --%>
-<td>${productBean.stock}</td>
-<td>${productBean.category}</td>
-<td>${productBean.createtime}</td>
-<td>${productBean.updatetime}</td></tr>
+<td>${brandBean.id}</td>
+<td>${brandBean.name}</td>	
+<td>${brandBean.createtime}</td>
+<td>${brandBean.updatetime}</td></tr>
 </form>
 
 </c:forEach>
 </table>
-<h3>共${productBeans.size()}筆員工資料</h3>
+<h3>共${brandBeans.size()}筆廠牌資料</h3>
 </div>
 <script>
 

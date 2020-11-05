@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,6 @@
 	</form>
 	<hr>
 	<h2 class="bg-dark text-white">新增產品資料</h2>
-	<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
 	<table class="btn btn-secondary">
 	<tr><td>產品編號<td><input type="text" disabled value="${pdb.productId}">
 	<tr><td>產品<td><input type="text" disabled value="${pdb.product}">

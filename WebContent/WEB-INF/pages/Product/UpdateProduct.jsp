@@ -13,16 +13,12 @@
 <div align="center">
 <h2 class="bg-dark text-white">更新資料</h2>
 <a href="<c:url value="/product/Product.jsp"/>">回首頁</a><br><br>
-<!--  <a href="/MidtermMvc/GetAllProduct">繼續修改其它資料</a><br><br> -->
-<!-- <a href="/MidtermMvc/GetAllProduct">查詢全部資料</a><br><br> -->
-<!-- <form method="post" action="/MidtermMvc/UpdateProduct">		 -->
-<%-- <%String s =(String)request.getAttribute("num");%> --%>
-<%-- ${num}，${sessionScope.userphone} --%>
+
 <form method="post" action="/MidtermMvc/UpdateProduct">
-<%-- <c:forEach items="${pdb}" var="product">  --%>
+
 <table><th class="bg-dark text-white">欲更新商品資料<th class="bg-dark text-white">更新後商品資料<tr><td>
 <table align="left" class="table table-dark table-striped">
-<%-- 	<tr><td>輸入產品編號 :<td><input type="text" name="productId" readonly="readonly" value="${product.productId}" /> --%>
+
 	<jsp:useBean id="pdbs" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
 	<tr><td>輸入產品編號 :<td><input type="text" name="productId" readonly="readonly" value="${pdbs.productId}" />
 	<tr><td>輸入產品 :<td><input type="text" name="product" value="${pdbs.product}" />
@@ -33,7 +29,7 @@
 	<tr><td>輸入種類 :<td><input type="text" name="category" value="${pdbs.category}" />
 	<tr><td>輸入廠商代碼 :<td><input type="text" name="brandId" value="${pdbs.brandId}"/>
 </table>
-<%-- </c:forEach> --%>
+
 
 	<td>		
 	<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
@@ -49,7 +45,7 @@
 	</table>
 <!-- </form> -->
 </table>
-<%-- <h3>共${pdbs.size()}筆員工資料</h3> --%>
+
 			<input type="submit" value="新增" class="btn btn-primary" />
 			<input type="reset" value="取消" class="btn btn-primary" />
 </form><br>

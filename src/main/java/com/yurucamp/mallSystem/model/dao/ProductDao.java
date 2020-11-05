@@ -2,7 +2,6 @@ package com.yurucamp.mallSystem.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import com.yurucamp.mallSystem.model.ProductBean;
 

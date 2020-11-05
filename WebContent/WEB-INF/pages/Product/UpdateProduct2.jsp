@@ -12,8 +12,7 @@
 <div align="center">
 <h2>產品資料</h2>
 <a href="<c:url value="/product/Product.jsp"/>">回首頁</a>
-<!-- <a href="/MidtermMvc/GetAllProduct">查詢全部資料</a><br><br> -->
-<!-- <form method="post" action="/MidtermMvc/UpdateProduct">		 -->
+
 
 <form method="post" action="/MidtermMvc/UpdateProduct">
 <table>

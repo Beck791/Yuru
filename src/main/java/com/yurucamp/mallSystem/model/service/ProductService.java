@@ -3,10 +3,8 @@ package com.yurucamp.mallSystem.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.yurucamp.mallSystem.model.ProductBean;
-@Service
+
 public interface ProductService {
 
 	public void insert(ProductBean productBean) throws SQLException;

@@ -54,18 +54,25 @@ public class ProductDaoImp implements ProductDao {
 		bean.setCategory(productBean.getCategory());
 		bean.setCreatetime(productBean.getCreatetime());
 		bean.setUpdatetime(productBean.getUpdatetime());
+//		Session session = factory.getCurrentSession();
+//		String hql = "UPDATE BookBean b SET b.stock = :stock WHERE bookId = :id";
+//		
+//		session.createQuery(hql).setParameter("stock", newQuantity)
+//								.setParameter("id", productId)
+//								.executeUpdate();
 
 	}
 
 	@Override
-	public void deleteOne(int Id) throws SQLException {
-		ProductBean productBean = sessionFactory.getCurrentSession().get(ProductBean.class, Id);
+	public void deleteOne(int id) throws SQLException {
+		ProductBean productBean = sessionFactory.getCurrentSession().get(ProductBean.class, id);
 		sessionFactory.getCurrentSession().delete(productBean);
 	}
 
 	@Override
 	public List<ProductBean> queryAll() throws SQLException {
-		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from Product", ProductBean.class);
+//		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("FROM ProductBean b order by b.id desc").setMaxResults(1);
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("FROM ProductBean", ProductBean.class);
 		List<ProductBean> list = query.list();
 		return list;
 	}

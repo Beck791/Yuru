@@ -10,8 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 @Entity
-@Table(name="product")
+@Table(name="Product")
 public class ProductBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -42,7 +46,7 @@ public class ProductBean implements Serializable {
 	private Integer statusId;
 	
 	@Column(name = "stock")
-	private Integer  stock;
+	private Integer stock;
 	
 	@Column(name = "category")
 	private String category;

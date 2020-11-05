@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "Brand")
 public class BrandBean implements Serializable {
@@ -20,20 +23,14 @@ public class BrandBean implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "productId")
-	private Integer productId;
-
-	@Column(name = "quantity")
-	private Integer quantity;
-
-	@Column(name = "price")
-	private Integer price;
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "createTime")
-	private Date createTime;
+	private Date createtime;
 
 	@Column(name = "updateTime")
-	private Date updateTime;
+	private Date updatetime;
 
 	public Integer getId() {
 		return id;
@@ -43,44 +40,28 @@ public class BrandBean implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	public Date getCreatetime() {
+		return createtime;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public Date setCreatetime(Date createtime) {
+		return this.createtime = createtime;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public Date getUpdatetime() {
+		return updatetime;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public Date setUpdatetime(Date updatetime) {
+		return this.updatetime = updatetime;
 	}
 
 }

@@ -12,7 +12,7 @@
     font-family: 'Noto Sans TC', sans-serif;
 }
 </style>
-<title>Insert title here</title>
+<title>露營商品管理</title>
 </head>
 <body style="background-color:#fdf5e6">
 <div align="center">
@@ -20,7 +20,9 @@
 
 	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br>
     <a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">查詢全部資料</a><br><br>
-	<a href="<c:url value='/Product/InsertProduct.jsp'/>" class="btn btn-primary">新增資料</a><br><br>
+	<a href="<c:url value='/Product/InsertProduct'/>" class="btn btn-primary">新增資料</a><br><br>
+	<a href="<c:url value='/Product/GetAllBrand'/>" class="btn btn-primary">查詢廠牌資料</a><br><br>
+	<a href="<c:url value='/Product/InsertBrand'/>" class="btn btn-primary">新增廠牌資料</a><br><br>
 
 </div>
 </body>
