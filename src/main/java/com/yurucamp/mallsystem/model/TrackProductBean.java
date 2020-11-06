@@ -1,6 +1,7 @@
-package com.yurucamp.mallSystem.model;
+package com.yurucamp.mallsystem.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,25 +12,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
 @Table(name = "TrackProduct")
 public class TrackProductBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "memberId")
 	private Integer memberId;
-	
+
 	@Column(name = "productId")
 	private Integer productId;
-	
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createtime")
-	private Date createtime;
+	private Timestamp createtime;
 
 	public Integer getId() {
 		return id;
@@ -55,14 +60,12 @@ public class TrackProductBean implements Serializable {
 		this.productId = productId;
 	}
 
-	public Date getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
 
-	public void setCreatetime(Date createtime) {
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-	
-	
-	
+
 }

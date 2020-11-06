@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.yurucamp.mallSystem.model.ProductBean" %>
+    pageEncoding="UTF-8" import="java.util.*,com.yurucamp.mallsystem.model.ProductBean" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%! @SuppressWarnings("unchecked") %>
+<%!@SuppressWarnings("unchecked")%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 <table><th class="bg-dark text-white">欲更新商品資料<th class="bg-dark text-white">更新後商品資料<tr><td>
 <table align="left" class="table table-dark table-striped">
 
-	<jsp:useBean id="pdbs" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
+	<jsp:useBean id="pdbs" scope="request" class="com.yurucamp.mallsystem.model.ProductBean"/>
 	<tr><td>輸入產品編號 :<td><input type="text" name="productId" readonly="readonly" value="${pdbs.productId}" />
 	<tr><td>輸入產品 :<td><input type="text" name="product" value="${pdbs.product}" />
 	<tr><td>輸入品牌 :<td><input type="text" name="brand" value="${pdbs.brand}" />
@@ -32,7 +32,7 @@
 
 
 	<td>		
-	<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
+	<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallsystem.model.ProductBean"/>
 	<table align="left" class="table table-dark table-striped">
 	<tr><td>產品編號<td><input type="text" disabled value="${pdb.productId}">
 	<tr><td>產品<td><input type="text" disabled value="${pdb.product}">

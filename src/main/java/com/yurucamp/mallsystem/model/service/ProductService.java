@@ -1,9 +1,9 @@
-package com.yurucamp.mallSystem.model.service;
+package com.yurucamp.mallsystem.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.yurucamp.mallSystem.model.ProductBean;
+import com.yurucamp.mallsystem.model.ProductBean;
 
 public interface ProductService {
 

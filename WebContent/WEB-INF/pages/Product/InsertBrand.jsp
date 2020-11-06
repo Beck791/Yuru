@@ -17,8 +17,8 @@
 	<form method="post" action="<c:url value='/Product/InsertBrandinfo'/>">
 	<table class="btn btn-secondary">
 		<tr><td>輸入品牌 :<td><input type="text" name="name" />
-		<tr><td>輸入建立時間 :<td><input type="text" name="createtime" />
-		<tr><td>輸入修改時間 :<td><input type="text" name="updatetime" />
+<!-- 		<tr><td>輸入建立時間 :<td><input type="text" name="createtime" /> -->
+<!-- 		<tr><td>輸入修改時間 :<td><input type="text" name="updatetime" /> -->
 	</table>
 	<br><br>
 			<input type="submit" value="新增" class="btn btn-primary" />
@@ -29,8 +29,8 @@
 	<table class="btn btn-secondary">
 	<tr><td>廠牌編號<td><input type="text" disabled value="${brandBean.id}">
 	<tr><td>廠牌名稱<td><input type="text" disabled value="${brandBean.name}">
-	<tr><td>建立時間<td><input type="text" disabled value="${createtime}">
-	<tr><td>修改時間<td><input type="text" disabled value="${updatetime}">
+	<tr><td>建立時間<td><input type="text" disabled value="${brandBean.createtime}">
+	<tr><td>修改時間<td><input type="text" disabled value="${brandBean.updatetime}">
 	</table>
 	</div>
 </body>

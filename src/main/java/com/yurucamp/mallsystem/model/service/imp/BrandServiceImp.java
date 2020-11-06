@@ -1,4 +1,4 @@
-package com.yurucamp.mallSystem.model.service.imp;
+package com.yurucamp.mallsystem.model.service.imp;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yurucamp.mallSystem.model.BrandBean;
-import com.yurucamp.mallSystem.model.dao.BrandDao;
-import com.yurucamp.mallSystem.model.service.BrandService;
+import com.yurucamp.mallsystem.model.BrandBean;
+import com.yurucamp.mallsystem.model.dao.BrandDao;
+import com.yurucamp.mallsystem.model.service.BrandService;
 
 @Service
 public class BrandServiceImp implements BrandService {

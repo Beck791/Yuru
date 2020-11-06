@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = { "com.yurucamp.camp",
 								"com.yurucamp.car", 
 								"com.yurucamp.forum",
-								"com.yurucamp.mallSystem",
+								"com.yurucamp.mallsystem",
 								"com.yurucamp.backstage",
 								"com.yurucamp.member"})
 //SpringJavaConfig設定與資料庫有關的操作

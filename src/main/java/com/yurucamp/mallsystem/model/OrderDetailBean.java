@@ -1,7 +1,7 @@
-package com.yurucamp.mallSystem.model;
+package com.yurucamp.mallsystem.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,32 +11,37 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
-@Table(name="OrderDetail")
-public class OrderDetailBean implements Serializable{
+@Table(name = "OrderDetail")
+public class OrderDetailBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "productId")
 	private Integer productId;
-		
+
 	@Column(name = "quantity")
 	private Integer quantity;
-	
+
 	@Column(name = "price")
 	private Integer price;
-	
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createtime")
-	private Date createtime;
-	
+	private Timestamp createtime;
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "updateTime")
-	private Date updateTime;
+	private Timestamp updateTime;
 
 	public Integer getId() {
 		return id;
@@ -70,23 +75,20 @@ public class OrderDetailBean implements Serializable{
 		this.price = price;
 	}
 
-	public Date getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
 
-	public void setCreatetime(Date createtime) {
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
 
-	public Date getUpdateTime() {
+	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
-	
-	
+
 }

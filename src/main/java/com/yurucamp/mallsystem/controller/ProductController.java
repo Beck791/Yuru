@@ -1,6 +1,7 @@
-package com.yurucamp.mallSystem.controller;
+package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.yurucamp.mallSystem.model.BrandBean;
-import com.yurucamp.mallSystem.model.ProductBean;
-import com.yurucamp.mallSystem.model.service.BrandService;
-import com.yurucamp.mallSystem.model.service.ProductService;
+import com.yurucamp.mallsystem.model.BrandBean;
+import com.yurucamp.mallsystem.model.ProductBean;
+import com.yurucamp.mallsystem.model.service.BrandService;
+import com.yurucamp.mallsystem.model.service.ProductService;
 
 @Controller
 public class ProductController {
@@ -84,23 +85,23 @@ public class ProductController {
 			@RequestParam("name") String name,
 	 Model model) throws SQLException {
 		BrandBean brandBean =  new BrandBean();
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+//		Date date = new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 //		Date datetimenow = sdf.parse(date);
 //		date = sdf.parse(str);
 		brandBean.setName(name);
-		String timenowcreate = sdf.format(brandBean.setCreatetime(date));	
-		String timenowupdate = sdf.format(brandBean.setUpdatetime(date));	
+		brandBean.setCreatetime(new Timestamp(System.currentTimeMillis()));	
+//		String timenowupdate = sdf.format(brandBean.setUpdatetime(date));	
 //		brandBean.setCreatetime(date);
 //		brandBean.setUpdatetime(date);
 		brandService.insert(brandBean);
 		
 //		brandService.querylast();
 		model.addAttribute("brandBean",brandBean);
-		model.addAttribute("createtime",timenowcreate);
-		model.addAttribute("updatetime",timenowupdate);
-	
-		System.out.println(sdf.format(brandBean.setCreatetime(date)));
+//		model.addAttribute("createtime",brandBean);
+//		model.addAttribute("updatetime",timenowupdate);
+//	
+//		System.out.println(brandBean.setCreatetime(new Timestamp(System.currentTimeMillis())));
 		return "mallSystemInsertBrand";	
 	}
 	

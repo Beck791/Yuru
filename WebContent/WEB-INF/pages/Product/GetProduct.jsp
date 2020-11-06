@@ -26,7 +26,7 @@
 
 <hr>
 
-<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallSystem.model.ProductBean"/>
+<%-- <jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallsystem.model.ProductBean"/> --%>
 <table class="btn btn-dark">
 <tr><td>產品編號<td><input type="text" disabled value="${pdb.productId}">
 <tr><td>產品<td><input type="text" disabled value="${pdb.product}">

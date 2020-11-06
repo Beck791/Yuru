@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.BeanNameViewResolver;
 @ComponentScan(basePackages = { "com.yurucamp.camp.controller",
 								"com.yurucamp.car.controller", 
 								"com.yurucamp.forum.controller",
-								"com.yurucamp.mallSystem.controller",
+								"com.yurucamp.mallsystem.controller",
 								"com.yurucamp.backstage.controller",
 								"com.yurucamp.member.controller" })
 

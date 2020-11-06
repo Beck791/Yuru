@@ -1,7 +1,7 @@
-package com.yurucamp.mallSystem.model;
+package com.yurucamp.mallsystem.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
@@ -26,11 +28,13 @@ public class BrandBean implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createTime")
-	private Date createtime;
-
+	private Timestamp createtime;
+	
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "updateTime")
-	private Date updatetime;
+	private Timestamp updatetime;
 
 	public Integer getId() {
 		return id;
@@ -48,20 +52,22 @@ public class BrandBean implements Serializable {
 		this.name = name;
 	}
 
-	public Date getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
 
-	public Date setCreatetime(Date createtime) {
-		return this.createtime = createtime;
+	public void setCreatetime(Timestamp createtime) {
+		this.createtime = createtime;
 	}
 
-	public Date getUpdatetime() {
+	public Timestamp getUpdatetime() {
 		return updatetime;
 	}
 
-	public Date setUpdatetime(Date updatetime) {
-		return this.updatetime = updatetime;
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
 	}
+
+
 
 }
