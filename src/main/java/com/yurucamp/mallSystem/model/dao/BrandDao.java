@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.yurucamp.mallSystem.model.BrandBean;
-import com.yurucamp.mallSystem.model.ProductBean;
 
 public interface BrandDao {
 
