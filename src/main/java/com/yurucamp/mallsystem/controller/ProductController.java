@@ -58,8 +58,7 @@ public class ProductController {
 								@RequestParam("statusId") Integer statusId,
 								@RequestParam("stock") Integer stock,
 								@RequestParam("category") String category,
-								@RequestParam("createtime") Date createtime,
-								@RequestParam("updatetime") Date updatetime,Model model) throws SQLException {
+								@RequestParam("createtime") Date createtime,Model model) throws SQLException {
 		
 
 		List<ProductBean> list = productService.queryAll();
@@ -69,7 +68,7 @@ public class ProductController {
 
 	@RequestMapping(value= "/Product/GetAllBrand" , method =RequestMethod.GET )
 	public String GetAllBrand(Model model) throws SQLException {
-		List<BrandBean> list = brandService.queryAll();
+		List<BrandBean> list = brandService.querypage();
 		model.addAttribute("brandBeans", list);
 		return "mallSystemGetAllBrand";	
 	}
@@ -85,19 +84,12 @@ public class ProductController {
 			@RequestParam("name") String name,
 	 Model model) throws SQLException {
 		BrandBean brandBean =  new BrandBean();
-//		Date date = new Date();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-//		Date datetimenow = sdf.parse(date);
-//		date = sdf.parse(str);
 		brandBean.setName(name);
 		brandBean.setCreatetime(new Timestamp(System.currentTimeMillis()));	
-//		String timenowupdate = sdf.format(brandBean.setUpdatetime(date));	
-//		brandBean.setCreatetime(date);
-//		brandBean.setUpdatetime(date);
 		brandService.insert(brandBean);
+		brandService.querypage();
 		
-//		brandService.querylast();
-		model.addAttribute("brandBean",brandBean);
+//		model.addAttribute("brandBean",brandBean);
 //		model.addAttribute("createtime",brandBean);
 //		model.addAttribute("updatetime",timenowupdate);
 //	

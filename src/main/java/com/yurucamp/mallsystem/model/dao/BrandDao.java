@@ -18,4 +18,6 @@ public interface BrandDao {
 	public BrandBean queryOne(int id) throws SQLException;
 	
 	public BrandBean querylast() throws SQLException;
+
+	public List<BrandBean> querypage() throws SQLException;
 }

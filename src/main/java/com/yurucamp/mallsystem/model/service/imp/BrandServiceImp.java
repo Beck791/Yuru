@@ -49,4 +49,10 @@ public class BrandServiceImp implements BrandService {
 		return brandDao.querylast();
 	}
 
+	@Override
+	public List<BrandBean> querypage() throws SQLException {	    
+		return  brandDao.querypage();
+		
+	}
+
 }

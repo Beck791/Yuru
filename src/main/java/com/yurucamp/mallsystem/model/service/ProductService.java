@@ -19,4 +19,6 @@ public interface ProductService {
 	
 	public ProductBean querylast() throws SQLException;
 	
+
+	
 }

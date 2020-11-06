@@ -33,5 +33,13 @@
 	<tr><td>修改時間<td><input type="text" disabled value="${brandBean.updatetime}">
 	</table>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
