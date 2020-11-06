@@ -19,29 +19,37 @@ public class CampController {
 
 	@Autowired
 	CampService service;
-	
+
 	@GetMapping("/CampSite/Index")
 	public String campIndex() {
 //		return "CampSite/campSiteIndex";
 		return "CampViewPage";
 	}
-	
-	@GetMapping("/CampSite/Index/Insert")
-	public String campIndexInsert() {
-		return "InsertCamp";
-	}
 
-	@RequestMapping(value="/CampSite/Insert", method = RequestMethod.POST)
-	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model) throws SQLException {
-		System.out.println(ci.getName());
+	@RequestMapping(value = "/CampSite/Insert", method = RequestMethod.POST)
+	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
+			throws SQLException {
 		service.saveCamp(ci);
 		return "CampViewPage";
 	}
-	
-	@RequestMapping(value="/CampSite/PureInsert", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/CampSite/PureInsert", method = RequestMethod.GET)
 	public String PureInsert(Model model) {
 		CampInfo ci = new CampInfo();
 		model.addAttribute("campInfo", ci);
 		return "PureInsert";
+	}
+
+	@RequestMapping(value = "/CampSite/QueryOne", method = RequestMethod.GET)
+	public String QueryOne(Model model) {
+		CampInfo ci = new CampInfo();
+		model.addAttribute("campInfo", ci);
+		return "PureInsert";
+	}
+
+	@RequestMapping(value = "/CampSite/DeleteOne", method = RequestMethod.GET)
+	public String DeleteOne(Model model) throws SQLException {
+		service.deleteCamp();
+		return "CampViewPage";
 	}
 }

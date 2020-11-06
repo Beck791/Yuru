@@ -34,7 +34,7 @@
         <header class="box-header">
        
             <div class="box-logo">
-                <a href="/YURUcamp"><img src="<%= request.getContextPath()%>/img/yuruLogo.png" width="160" alt="Logo"></a>    
+                <a href="/yurucamp"><img src="<%= request.getContextPath()%>/img/yuruLogo.png" width="160" alt="Logo"></a>    
 	    	</div>
 	    
             <!-- box-nav -->

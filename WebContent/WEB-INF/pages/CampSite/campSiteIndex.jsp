@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>Camp Index</title>
 <link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -67,7 +67,7 @@
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
-										<span>Mockups in seconds</span> <em>Fashion / Logo</em>
+										<span>Mockups in seconds</span> <em>新增資料</em>
 									</div>
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
-										<span>Floating mockups</span> <em>Ads / Graphics</em>
+										<span>Floating mockups</span> <em>查詢單筆資料</em>
 									</div>
 								</div>
 							</div>
@@ -97,7 +97,7 @@
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
-										<span>Photorealistic smartwatch</span> <em>Photography</em>
+										<span>Photorealistic smartwatch</span> <em>查詢所有資料</em>
 									</div>
 								</div>
 							</div>
@@ -107,12 +107,12 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 fashion ads">
-						<a href="single-project.html" class="portfolio_item"> <img
+						<a href="<c:url value='/CampSite/DeleteOne' />" class="portfolio_item"> <img
 							src="../img/portfolio/04.jpg" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
-										<span>Held by hands</span> <em>Fashion / Ads</em>
+										<span>Held by hands</span> <em>刪除單筆資料</em>
 									</div>
 								</div>
 							</div>
