@@ -12,7 +12,7 @@
 <body style="background-color:#fdf5e6">
 <div align="center">
 <h2 class="bg-dark text-white">更新資料</h2>
-<a href="<c:url value="/product/Product.jsp"/>">回首頁</a><br><br>
+<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 
 <form method="post" action="/MidtermMvc/UpdateProduct">
 

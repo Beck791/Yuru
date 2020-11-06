@@ -29,7 +29,7 @@ public class ProductBean implements Serializable {
 	private String name;
 
 	@Column(name = "brandId")
-	private String brandId;
+	private Integer brandId;
 
 	@Column(name = "price")
 	private Integer price;
@@ -76,11 +76,11 @@ public class ProductBean implements Serializable {
 		this.name = name;
 	}
 
-	public String getBrandId() {
+	public Integer getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(String brandId) {
+	public void setBrandId(Integer brandId) {
 		this.brandId = brandId;
 	}
 

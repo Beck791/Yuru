@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <div align="center">
 	<h2 class="bg-dark text-white">輸入新增資料</h2>
 
-	<a href="/Product/Index">回首頁</a><br><br>
+	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a>
 	
 	<form method="post" action="<c:url value='/Product/InsertBrandinfo'/>">
 	<table class="btn btn-secondary">
@@ -30,10 +31,11 @@
 	<tr><td>廠牌編號<td><input type="text" disabled value="${brandBean.id}">
 	<tr><td>廠牌名稱<td><input type="text" disabled value="${brandBean.name}">
 	<tr><td>建立時間<td><input type="text" disabled value="${brandBean.createtime}">
+<%-- 	<tr><td>建立時間<td><input type="text" <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" disabled value="${brandBean.createtime}"/> > --%>
 	<tr><td>修改時間<td><input type="text" disabled value="${brandBean.updatetime}">
 	</table>
 	</div>
-	
+	<Formatted>
 	
 	
 	

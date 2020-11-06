@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.mallsystem.model.BrandBean;
@@ -34,39 +33,46 @@ public class BrandDaoImp implements BrandDao {
 		BrandBean bean = sessionFactory.getCurrentSession().get(BrandBean.class, brandBean.getId());
 		bean.setId(brandBean.getId());
 		bean.setName(brandBean.getName());
-		bean.setCreatetime(brandBean.getCreatetime());
 		bean.setUpdatetime(brandBean.getUpdatetime());
 
 	}
 
 	@Override
-	public void deleteOne(int id) throws SQLException {
-		BrandBean brandBean = sessionFactory.getCurrentSession().get(BrandBean.class, id);
+	public void deleteOne(Integer id) throws SQLException {
+//		sessionFactory.getCurrentSession().delete(BrandBean.class);	
+//		sessionFactory.getCurrentSession().createQuery("delete BrandBean where id=:id").setParameter("id", id).executeUpdate();
+//		sessionFactory.getCurrentSession().delete(id);
+//		query.executeUpdate();
+//		bean.set
+//		BrandBean bean = (BrandBean) sessionFactory.getCurrentSession().createQuery("FROM BrandBean b where b.id=:id");
+//		sessionFactory.getCurrentSession().delete(id);
+//		sessionFactory.openSession().delete(id);
+//		sessionFactory.close();
+//		BrandBean brandBean = sessionFactory.getCurrentSession().get(BrandBean.class, id);
+//		sessionFactory.getCurrentSession().delete(brandBean);
+		BrandBean brandBean = new BrandBean();
+		brandBean.setId(id);
 		sessionFactory.getCurrentSession().delete(brandBean);
-
+//		Session session = sessionFactory.getCurrentSession();
+		System.out.println(id);
+		System.out.println("I'm dao~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	}
 
 	@Override
 	public List<BrandBean> queryAll() throws SQLException {
-//		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("FROM BrandBean b order by b.id desc").setMaxResults(1);
 		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("FROM BrandBean", BrandBean.class);
 		List<BrandBean> list = query.list();
 		return list;
 	}
 
 	@Override
-	public BrandBean queryOne(int id) throws SQLException {
+	public BrandBean queryOne(Integer id) throws SQLException {
 		BrandBean brandBean = sessionFactory.getCurrentSession().get(BrandBean.class, id);
 		return brandBean;
 	}
 
 	@Override
 	public List<BrandBean> querypage() throws SQLException {
-//		String hql = "FROM BrandBean";
-//		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-//		query.setFirstResult(1);
-//		query.setMaxResults(10);
-//		List results = query.list();
 		String hql = "FROM BrandBean Order by id desc";
 		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery(hql,BrandBean.class);
 		query.setFirstResult(0);
@@ -84,6 +90,7 @@ public class BrandDaoImp implements BrandDao {
 		List<BrandBean> result = query.list();
 		return (BrandBean) result;
 	}
+
 
 	/**
 	* 使用hql語句進行分頁查詢

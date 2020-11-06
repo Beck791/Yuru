@@ -13,7 +13,7 @@
 	<h2 class="bg-dark text-white">輸入新增資料</h2>
 
 <%-- 	<a href="<c:url value="/product/Product.jsp"/>">回首頁</a><br> --%>
-	<a href="/MidtermMvc/product/Product.jsp">回首頁</a><br><br>
+	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
 	<form method="post" action="/MidtermMvc/InsertProduct">
 	<table class="btn btn-secondary">

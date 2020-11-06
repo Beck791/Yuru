@@ -49,6 +49,13 @@ public class mallSystemViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Product/InsertBrand.jsp"); 
 		return view;
 	}
+	
+	@Bean
+	public View mallSystemUpdateBrand() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/UpdateBrand.jsp"); 
+		return view;
+	}
 
 	
 	

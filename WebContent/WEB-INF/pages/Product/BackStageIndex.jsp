@@ -4,19 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Box personal portfolio Template</title>
+<link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
+<!-- Bootstrap -->
+<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<!-- main css -->
+<link href="<c:url value='/css/style.css' />" rel="stylesheet">
+<!-- modernizr -->
+<script src="<c:url value='/js/modernizr.js' />"></script>
 <style>
-* {
-    font-family: 'Noto Sans TC', sans-serif;
-}
+
 </style>
-<title>露營商品管理</title>
+
 </head>
 <body style="background-color:#fdf5e6">
-<div align="center">
-<h1 class="bg-dark text-white">露營商品管理</h1>
+<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+
+<div align="center" margin=100px>
+<!-- <h1>&nbsp;</h1> -->
+<!-- <h1>&nbsp;</h1> -->
+<h1>露營商品管理</h1>
 <br><br>
     <a href="<c:url value='/Product/Index' />" class="btn btn-primary">露營商城</a><br><br>
 	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br>
@@ -26,5 +38,16 @@
 	<a href="<c:url value='/Product/InsertBrand'/>" class="btn btn-primary">新增廠牌資料</a><br><br>
 
 </div>
+<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
+	<!--  plugins -->
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
+
+
+	<!--  custom script -->
+	<script src="<c:url value='/js/custom.js' />"></script>
 </body>
+
 </html>

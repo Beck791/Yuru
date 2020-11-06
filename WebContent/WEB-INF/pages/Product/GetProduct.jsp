@@ -13,7 +13,7 @@
 <div align="center">
 <h2 class="bg-dark text-white">產品資料</h2>
 <!-- 	<a href="/MidtermMvc/product/Product.jsp">回首頁</a><br> -->
-	<a href="<c:url value="/product/Product.jsp"/>">回首頁</a><br>
+	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a>
 <!-- 	<input type ="button" onclick="history.back()" value="回上一頁"></input> -->
 	<form method="post" action="/MidtermMvc/GetProduct">
 		輸入產品編號 : <input type="text" id="idName" name="productId" maxlength="4" autofocus placeholder="請輸入四位數字" required="required" onblur="checkName()"/><br><br>

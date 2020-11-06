@@ -27,8 +27,8 @@ public class BrandBean implements Serializable {
 
 	@Column(name = "name")
 	private String name;
-
-	@JsonFormat (pattern = "yyyy-MM-dd HH:mm")
+	
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createTime")
 	private Timestamp createtime;
 	
@@ -51,7 +51,8 @@ public class BrandBean implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	
 	public Timestamp getCreatetime() {
 		return createtime;
 	}

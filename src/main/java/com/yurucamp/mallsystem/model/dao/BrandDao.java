@@ -11,13 +11,13 @@ public interface BrandDao {
 
 	public void update(BrandBean brandBean) throws SQLException;
 
-	public void deleteOne(int id) throws SQLException;
-
 	public List<BrandBean> queryAll() throws SQLException;
 
-	public BrandBean queryOne(int id) throws SQLException;
+	public BrandBean queryOne(Integer id) throws SQLException;
 	
 	public BrandBean querylast() throws SQLException;
 
 	public List<BrandBean> querypage() throws SQLException;
+
+	public void deleteOne(Integer id) throws SQLException;
 }

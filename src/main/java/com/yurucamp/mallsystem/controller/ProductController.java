@@ -23,7 +23,7 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	BrandService brandService;
 
@@ -32,7 +32,7 @@ public class ProductController {
 	public String ProductIndex() {
 		return "mallSystemIndex";
 	}
-	
+
 	// 後臺首頁
 	@RequestMapping(value = "/Product/BackStageIndex", method = RequestMethod.GET)
 	public String ProductBackStageIndex() {
@@ -49,54 +49,73 @@ public class ProductController {
 
 	// 後臺新增商品
 	@RequestMapping(value = "/Product/InsertProduct", method = RequestMethod.POST)
-	public String InsertProduct(@RequestParam("name") String name,
-								@RequestParam("brandId") String brandId,
-								@RequestParam("price") Integer price,
-								@RequestParam("image") String image,
-								@RequestParam("webTraffic") Integer webTraffic,
-								@RequestParam("description") String description,
-								@RequestParam("statusId") Integer statusId,
-								@RequestParam("stock") Integer stock,
-								@RequestParam("category") String category,
-								@RequestParam("createtime") Date createtime,Model model) throws SQLException {
-		
+	public String InsertProduct(@RequestParam("name") String name, @RequestParam("brandId") String brandId,
+			@RequestParam("price") Integer price, @RequestParam("image") String image,
+			@RequestParam("webTraffic") Integer webTraffic, @RequestParam("description") String description,
+			@RequestParam("statusId") Integer statusId, @RequestParam("stock") Integer stock,
+			@RequestParam("category") String category, @RequestParam("createtime") Date createtime, Model model)
+			throws SQLException {
 
 		List<ProductBean> list = productService.queryAll();
 		model.addAttribute("productBeans", list);
-		return "mallSystemInsertProduct"; 
+		return "mallSystemInsertProduct";
 	}
 
-	@RequestMapping(value= "/Product/GetAllBrand" , method =RequestMethod.GET )
+	@RequestMapping(value = "/Product/GetAllBrand", method = RequestMethod.GET)
 	public String GetAllBrand(Model model) throws SQLException {
-		List<BrandBean> list = brandService.querypage();
+//		List<BrandBean> list = brandService.querypage();
+		List<BrandBean> list = brandService.queryAll();
 		model.addAttribute("brandBeans", list);
-		return "mallSystemGetAllBrand";	
+		return "mallSystemGetAllBrand";
 	}
-	
-	
-	@RequestMapping(value= "/Product/InsertBrand" , method =RequestMethod.GET )
+
+	@RequestMapping(value = "/Product/InsertBrand", method = RequestMethod.GET)
 	public String InsertBrand() {
 		return "mallSystemInsertBrand";
 	}
-	
-	@RequestMapping(value= "/Product/InsertBrandinfo" , method =RequestMethod.POST )
-	public String InsertBrandinfo(
-			@RequestParam("name") String name,
-	 Model model) throws SQLException {
-		BrandBean brandBean =  new BrandBean();
+
+	@RequestMapping(value = "/Product/InsertBrandinfo", method = RequestMethod.POST)
+	public String InsertBrandinfo(@RequestParam("name") String name, Model model) throws SQLException {
+		BrandBean brandBean = new BrandBean();
 		brandBean.setName(name);
-		brandBean.setCreatetime(new Timestamp(System.currentTimeMillis()));	
+		brandBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		brandService.insert(brandBean);
-		brandService.querypage();
-		
+		List<BrandBean> list = brandService.querypage();
+		model.addAttribute("brandBeans", list);
 //		model.addAttribute("brandBean",brandBean);
 //		model.addAttribute("createtime",brandBean);
 //		model.addAttribute("updatetime",timenowupdate);
 //	
 //		System.out.println(brandBean.setCreatetime(new Timestamp(System.currentTimeMillis())));
-		return "mallSystemInsertBrand";	
+		return "mallSystemInsertBrand";
 	}
-	
-	
-	
+
+	@RequestMapping(value = "/Product/UpdateBrand", method = RequestMethod.GET)
+	public String UpdateBrand(@RequestParam("id") String name, Model model) {
+		return "mallSystemUpdateBrand";
+	}
+
+	@RequestMapping(value = "/Product/UpdaeBrand", method = RequestMethod.GET)
+	public String UpdateBrand(@RequestParam("id") Integer id, @RequestParam("name") String name,
+			@RequestParam("updatetime") Timestamp updatetime, Model model) {
+		BrandBean brandBean = new BrandBean();
+		try {
+			brandService.update(brandBean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("brandBean", brandBean);
+
+		return "mallSystemUpdateBrand";
+	}
+
+	@RequestMapping(value = "/Product/DeleteBrand", method = RequestMethod.POST)
+	public String DeleteBrand(@RequestParam("id") Integer id, Model model)
+			throws SQLException {
+		brandService.deleteOne(id);
+		List<BrandBean> list = brandService.queryAll();
+		model.addAttribute("brandBeans", list);
+		return "mallSystemGetAllBrand";
+	}
+
 }
