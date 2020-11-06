@@ -62,7 +62,7 @@
 				<div class="no-padding portfolio_container clearfix">
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6  fashion logo">
-						<a href="<c:url value='/CampSite/Index/Insert' />" class="portfolio_item"> <img
+						<a href="<c:url value='/CampSite/PureInsert' />" class="portfolio_item"> <img
 							src="<c:url value='/img/portfolio/01.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">

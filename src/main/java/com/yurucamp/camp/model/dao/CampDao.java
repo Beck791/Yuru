@@ -1,6 +1,7 @@
 package com.yurucamp.camp.model.dao;
 
-import org.hibernate.Session;
+import java.sql.SQLException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,8 +12,7 @@ import com.yurucamp.camp.model.CampInfo;
 @Repository
 public class CampDao {
 
-	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	public CampDao() {
 	}
@@ -22,9 +22,8 @@ public class CampDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public CampInfo saveCamp(CampInfo campInfo) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(campInfo);
+	public CampInfo saveCamp(CampInfo campInfo) throws SQLException {
+		sessionFactory.getCurrentSession().save(campInfo);
 		return campInfo;
 	}
 

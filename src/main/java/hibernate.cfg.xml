@@ -23,7 +23,10 @@
 		<!-- Forum Area -->
 
 		<!-- Camp Area -->
-
+		<mapping class="com.yurucamp.camp.model.CampInfo" />
+		<mapping class="com.yurucamp.camp.model.CampDetail" />
+		<mapping class="com.yurucamp.camp.model.CampOrder" />
+		<mapping class="com.yurucamp.camp.model.CampSide" />
 		<!-- Car Area -->
 
 
