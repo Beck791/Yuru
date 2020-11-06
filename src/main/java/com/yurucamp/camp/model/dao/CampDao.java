@@ -26,7 +26,7 @@ public class CampDao {
 	}
 
 	public CampInfo saveCamp(CampInfo campInfo) throws SQLException {
-		sessionFactory.getCurrentSession().save(campInfo);
+		sessionFactory.getCurrentSession().saveOrUpdate(campInfo);
 		return campInfo;
 	}
 

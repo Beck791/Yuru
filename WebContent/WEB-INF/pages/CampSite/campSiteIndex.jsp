@@ -1,40 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Camp Index</title>
-<link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
-<!-- Bootstrap -->
-<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
-<!-- main css -->
-<link href="<c:url value='/css/style.css' />" rel="stylesheet">
-<!-- modernizr -->
-<script src="<c:url value='/js/modernizr.js' />"></script>
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
+	<!-- Bootstrap -->
+	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+	<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+	<!-- main css -->
+	<link href="<c:url value='/css/style.css' />" rel="stylesheet">
+	<!-- modernizr -->
+	<script src="<c:url value='/js/modernizr.js' />"></script>
+	<title>Camp Index</title>
 </head>
 <body>
-
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
-
+	
 	<!-- top bar -->
 	<div class="top-bar">
 		<h1>campsite</h1>
-		<p>
-			<a href="#">Home</a> / Portfolio
-		</p>
+		<p><a href="#">Home</a> / Portfolio</p>
 	</div>
 	<!-- end top bar -->
 
@@ -77,12 +66,12 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 ads graphics">
-						<a href="../single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/03.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='/CampSite/QueryOne' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/03.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
-										<span>Floating mockups</span> <em>查詢單筆資料</em>
+										<span>Floating mockups</span> <em>修改單筆資料</em>
 									</div>
 								</div>
 							</div>
@@ -92,8 +81,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-12 photography">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='/CampSite/QueryAllCamp' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/02.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -108,7 +97,7 @@
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 fashion ads">
 						<a href="<c:url value='/CampSite/DeleteOne' />" class="portfolio_item"> <img
-							src="../img/portfolio/04.jpg" alt="image" class="img-responsive" />
+							src="<c:url value='/img/portfolio/04.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -122,8 +111,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 graphics ads">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/05.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='#' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/05.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -137,8 +126,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-12 photography">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/010.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='#' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/010.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -152,8 +141,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 graphics ads">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/06.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='#' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/06.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -167,8 +156,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 graphics ads">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/07.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='#' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/07.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">
@@ -182,8 +171,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 graphics ads">
-						<a href="single-project.html" class="portfolio_item"> <img
-							src="../img/portfolio/08.jpg" alt="image" class="img-responsive" />
+						<a href="<c:url value='#' />" class="portfolio_item"> <img
+							src="<c:url value='/img/portfolio/08.jpg' />" alt="image" class="img-responsive" />
 							<div class="portfolio_item_hover">
 								<div class="portfolio-border clearfix">
 									<div class="item_info">

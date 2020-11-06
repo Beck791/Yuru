@@ -9,23 +9,30 @@ import org.springframework.web.servlet.view.InternalResourceView;
 public class campViewJavaConfig {
 
 	@Bean
-	public View CampViewPage() { // 呼叫此方法名稱及導向設定之jsp
+	public View CampSiteIndex() { // 回首頁
 		InternalResourceView view = new InternalResourceView();
 		view.setUrl("/WEB-INF/pages/CampSite/campSiteIndex.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 
 	@Bean
-	public View InsertCamp() { // 呼叫此方法名稱及導向設定之jsp
+	public View InsertCamp() { // 新增
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/CampSite/InsertCamp.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/CampSite/InsertCamp.jsp");
 		return view;
 	}
 	
 	@Bean
-	public View PureInsert() { // 呼叫此方法名稱及導向設定之jsp
+	public View QueryOneCamp() { // 查詢單一營地
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/CampSite/InsertCamp.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/CampSite/UpdateCamp.jsp");
+		return view;
+	}
+	
+	@Bean
+	public View QueryAllCamp() { // 查詢全部
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/UpdateCamp.jsp");
 		return view;
 	}
 }

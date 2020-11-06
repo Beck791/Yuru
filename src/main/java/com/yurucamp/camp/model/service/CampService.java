@@ -32,4 +32,5 @@ public class CampService {
 	public void deleteCamp() throws SQLException {
 		campDao.deleteCamp();
 	}
+	
 }

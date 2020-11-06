@@ -1,6 +1,7 @@
 package com.yurucamp.camp.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,33 +24,44 @@ public class CampController {
 	@GetMapping("/CampSite/Index")
 	public String campIndex() {
 //		return "CampSite/campSiteIndex";
-		return "CampViewPage";
+		return "CampSiteIndex";
 	}
 
 	@RequestMapping(value = "/CampSite/Insert", method = RequestMethod.POST)
 	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
 			throws SQLException {
 		service.saveCamp(ci);
-		return "CampViewPage";
+		System.out.println("Already Save Object.id = " + ci.getName());
+		return "QueryOneCamp";
 	}
 
 	@RequestMapping(value = "/CampSite/PureInsert", method = RequestMethod.GET)
 	public String PureInsert(Model model) {
 		CampInfo ci = new CampInfo();
 		model.addAttribute("campInfo", ci);
-		return "PureInsert";
+		return "InsertCamp";
 	}
 
 	@RequestMapping(value = "/CampSite/QueryOne", method = RequestMethod.GET)
-	public String QueryOne(Model model) {
+	public String QueryOne(Model model) throws SQLException {
 		CampInfo ci = new CampInfo();
+		int id = 2;
+		ci = service.queryCamp(id);
 		model.addAttribute("campInfo", ci);
-		return "PureInsert";
+		return "QueryOneCamp";
 	}
 
 	@RequestMapping(value = "/CampSite/DeleteOne", method = RequestMethod.GET)
 	public String DeleteOne(Model model) throws SQLException {
 		service.deleteCamp();
-		return "CampViewPage";
+		return "CampSiteIndex";
 	}
+
+	@RequestMapping(value = "/CampSite/QueryAllCamp", method = RequestMethod.GET)
+	public String QueryAllCamp(Model model) throws SQLException {
+		List<CampInfo> list = service.queryAllCamp();
+		model.addAttribute("campInfo", list);
+		return "QueryAllCamp";
+	}
+
 }
