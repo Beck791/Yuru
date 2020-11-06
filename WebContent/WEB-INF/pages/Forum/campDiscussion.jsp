@@ -60,7 +60,7 @@
                 <div>
                  <nav>
                 <ul class="portfolio_filter">
-                            <li><a href="/YURUcamp/Forum/memberCreat" class="active" >新增文章</a></li>
+                            <li><a href="/yurucamp/Forum/creatArticle" class="active" >新增文章</a></li>
                  </ul>
                  </nav>
                 </div>

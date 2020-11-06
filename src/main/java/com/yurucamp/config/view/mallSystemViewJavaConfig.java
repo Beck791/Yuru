@@ -11,7 +11,14 @@ public class mallSystemViewJavaConfig {
 	@Bean
 	public View mallSystemViewPage() { // 呼叫此方法名稱及導向設定之jsp
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/Product/Index.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/Product/BackStageIndex.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	
+	@Bean
+	public View mallSystemIndex() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/MallSystemIndex.jsp"); 
 		return view;
 	}
 	

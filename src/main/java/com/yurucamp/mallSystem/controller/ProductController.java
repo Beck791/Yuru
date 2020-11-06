@@ -26,12 +26,17 @@ public class ProductController {
 	@Autowired
 	BrandService brandService;
 
-	// 後臺首頁
+	// 商城首頁
 	@RequestMapping(value = "/Product/Index", method = RequestMethod.GET)
-	public String ProductIndext() {
+	public String ProductIndex() {
+		return "mallSystemIndex";
+	}
+	
+	// 後臺首頁
+	@RequestMapping(value = "/Product/BackStageIndex", method = RequestMethod.GET)
+	public String ProductBackStageIndex() {
 		return "mallSystemViewPage";
 	}
-
 
 	// 後臺商品列表
 	@RequestMapping(value = "/Product/GetAllProduct", method = RequestMethod.GET)

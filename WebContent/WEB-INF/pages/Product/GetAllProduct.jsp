@@ -18,7 +18,7 @@
 <body style="background-color:#fdf5e6">
 <div align="center">
 <h2 class="bg-dark text-white">所有產品資料</h2>
-<a href="<c:url value='/Product/Index'/>" >回首頁</a>
+<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a>
 	<form method="get" action="/MidtermMvc/DeleteProduct">
        輸入刪除的產品編號 : <input type="text" id="idName" name="productId" autofocus placeholder="請輸入四位數字" maxlength="4" required="required" onblur="checkName()" />
 	<input type="submit"  value="確定" class="btn btn-primary" />	<p>
@@ -81,12 +81,11 @@ function update(productId){
 	}
 function del(productId){
 	if(confirm("真的要刪除嗎!!!!!?")){
-		if(confirm("真的不後悔嗎!!?")){
 	for(var i=0;++i;)
 	document.forms[i].action="<c:url value='DeleteProduct?productId="+productId+"'/>" ;
 	document.forms[i].method="POST";
 	document.forms[i].submit();
-	}}}
+	}}
 
 </script>
 </body>
