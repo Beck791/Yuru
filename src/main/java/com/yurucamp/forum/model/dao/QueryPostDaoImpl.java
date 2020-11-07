@@ -29,14 +29,15 @@ public class QueryPostDaoImpl implements QueryPostDao  {
 		
 		
 	}
-
-	@Override
-	public PostBean queryOneArticleTitle(PostBean title) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override	
+	public List<PostBean> queryAllArticleByPoTitle() {
+		Query<PostBean> query = sessionFactory.getCurrentSession()
+				.createQuery("from PostBean", PostBean.class);				
+		List<PostBean> list = query.list();
+		return list;
+		
 	}
-	
-	
+
 	
 	@Override	
 	public List<PostBean> queryArticleByPoTitle(PostBean po) {
@@ -57,15 +58,7 @@ public class QueryPostDaoImpl implements QueryPostDao  {
 	}
 	
 	
-	@Override	
-	public List<PostBean> queryAllArticleByPoTitle() {
-		Query<PostBean> query = sessionFactory.getCurrentSession()
-				.createQuery("from PostBean", PostBean.class);				
-		List<PostBean> list = query.list();
-		return list;
-		
-	}
-
+	
 	
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yurucamp.forum.model.PostBean;
 
+
 @Repository
 public class PostDaoImpl implements PostDao {
 
@@ -17,48 +18,59 @@ public class PostDaoImpl implements PostDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	
+//	@Override   // 
+//	public PostBean insertPoTitle(PostBean poTitle) {
+//		List<PostBean> query = sessionFactory.getCurrentSession()
+//		.createQuery("FROM Post WHERE forumId=?1 AND poTitle=?2",PostBean.class)
+//		.setParameter(1, poTitle.getForumId())
+//		.setParameter(2, poTitle.getPoId())
+//		.list();
+//		
+//		if (query.size() > 0) {
+//			return null;}
+//		sessionFactory.getCurrentSession().save(poTitle);
+//		
+//		return poTitle;
+//	}
+	
 	@Override
-	public PostBean insertPoTitle(PostBean poTitle) {
-		sessionFactory.getCurrentSession().save(poTitle);
-		return poTitle;
+	public PostBean insertPost(PostBean po) {
+		sessionFactory.getCurrentSession().save(po);
+		return po;
 	}
 	
-	@Override
-	public PostBean insertPoContent(PostBean poContent) {
-		sessionFactory.getCurrentSession().save(poContent);
-		
-		return poContent;
-	}
-	
 	
 	@Override
-	public PostBean updatePoTitle(PostBean poTitle) {
+	public PostBean updatePost(PostBean po) {
+		PostBean  post = sessionFactory.getCurrentSession()
+				.get(PostBean.class,po.getPoId());
 		
-		
-		return poTitle;
-	}
-	
-	@Override
-	public PostBean updatePoContent(PostBean Po) {
-		PostBean post = sessionFactory.getCurrentSession().get(PostBean.class,Po.getPoId());
-		post.setPoContent(Po.getPoContent());
-		post.setPoUpDateTime(Po.getPoUpDateTime());
+		post.setPoTitle(po.getPoTitle());
+		post.setPoUpDateTime(po.getPoUpDateTime());
+		post.setPoContent(po.getPoContent());
+		post.setPoUpDateTime(po.getPoUpDateTime());
+		post.setLikeNumber(po.getLikeNumber());
+		post.setReContentNumber(po.getReContentNumber());
+		post.setClickNumber(po.getClickNumber());
 		return post;
-		
 	}
+	
+
 	
 	@Override
-	public PostBean deleteOnePoTitle(PostBean poTitle) {
-		
-		
-		return poTitle;
+	public boolean deleteOnePost(PostBean po) {
+		PostBean delete = sessionFactory.getCurrentSession()
+				.get(PostBean.class, po.getPoId());
+		if (delete != null) {
+			sessionFactory.getCurrentSession()
+			.delete(delete);
+			return true;
+		}
+		return false;
 	}
-	
-	@Override
-	public PostBean deletePoContent(PostBean poContent) {
-		
-		return poContent;
-	}
+
+
 	
 	
 	
@@ -77,5 +89,11 @@ public class PostDaoImpl implements PostDao {
 	
 	
 	
+	
+	
+	
+	
+
+
 	
 }

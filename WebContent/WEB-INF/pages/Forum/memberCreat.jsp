@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,10 +54,10 @@
         </div>
 
         <div class="panel-body">
-            <form action="/topic/add" method="post" id="replyForm">
+            <form action="<c:url value='/Forum/insert'/>" method="post" id="replyForm">
                 <div class="form-group">
-                    <label for="title">主题标题</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空" required="required">
+                    <label for="title">主題標題</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="請輸入主題標題" required="required">
                 </div>
                 <div class="form-group">
                     <label for="content">正文</label>
@@ -70,7 +74,7 @@
                         </select>
                     </div>
                 </div><br/>
-                <input type="submit" class="btn btn-default btn-sm" value="发布主题">
+                <input type="submit" class="btn btn-default btn-sm" value="發布主題">
 
             </form>
         </div>
@@ -82,48 +86,6 @@
 </div>
 
 
-    <div class="panel panel-default" id="sidebar2" style="width: 20%;margin:1% 2% 1% 0%;float: right">
-        <div class="panel-heading" style="background-color: white;text-align: center">
-            发帖提示
-        </div>
-        <ul class="list-group" style="width: 100%">
-            <li class="list-group-item">
-                <h5>主题标题</h5>
-                <p>
-                    请在标题中描述内容要点。如果一件事情在标题的长度内就已经可以说清楚，那就没有必要写正文了。
-                </p>
-            </li>
-
-            <li class="list-group-item">
-                <h5>正文</h5>
-                <p>
-                    请清楚地表达所要说明的内容。
-                </p>
-            </li>
-        </ul>
-    </div>
-
-
-    <div class="panel panel-default" id="sidebar1" style="width: 20%;margin:1% 2% 1% 0%;float: right">
-    <div class="panel-heading" style="background-color: white;text-align: center">
-        社区指导原则
-    </div>
-    <ul class="list-group" style="width: 100%">
-        <li class="list-group-item">
-            <h5>尊重原创</h5>
-            <p>
-                请不要发布任何盗版下载链接，包括软件、音乐、电影等等。Genesis是创意工作者的社区，我们尊重原创。
-            </p>
-        </li>
-
-        <li class="list-group-item">
-            <h5>友好互助</h5>
-            <p>
-                保持对陌生人的友善。用知识去帮助别人。
-            </p>
-        </li>
-    </ul>
-</div>
 
 
 

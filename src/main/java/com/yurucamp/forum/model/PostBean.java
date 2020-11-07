@@ -18,6 +18,7 @@ public class PostBean {
 	
 	private Integer poId;
 	private String memberId;
+	private String forumId;
 	private String poTitle;
 	private Date poCreatTime;
 	private Date poUpDateTime;
@@ -30,7 +31,7 @@ public class PostBean {
 	
 	
 	
-	@Id @Column(name="poId")
+	@Id @Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getPoId() {
 		return poId;
@@ -46,7 +47,13 @@ public class PostBean {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	
+	@Column(name="forumId")
+	public String getForumId() {
+		return forumId;
+	}
+	public void setForumId(String forumId) {
+		this.forumId = forumId;
+	}
 	@Column(name="poTitle")
 	public String getPoTitle() {
 		return poTitle;

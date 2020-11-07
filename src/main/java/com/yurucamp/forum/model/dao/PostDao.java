@@ -4,16 +4,12 @@ import com.yurucamp.forum.model.PostBean;
 
 public interface PostDao {
 
-	PostBean insertPoTitle(PostBean poTitle);
+	PostBean insertPost(PostBean po);
 
-	PostBean updatePoTitle(PostBean poTitle);
+	PostBean updatePost(PostBean po);
 
-	PostBean deleteOnePoTitle(PostBean poTitle);
+	boolean deleteOnePost(PostBean po);
 
-	PostBean insertPoContent(PostBean poContent);
-
-	PostBean updatePoContent(PostBean poContent);
-
-	PostBean deletePoContent(PostBean poContent);
+	
 
 }
