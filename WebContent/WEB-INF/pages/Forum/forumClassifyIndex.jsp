@@ -5,19 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${forumIndex}</title>
+<title>${forumClassifyIndex}</title>
  	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-   	<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
+   	<link rel="icon" href="${pageContext.request.contextPath}/img/yuruIcon.png" type="image/x-icon">
+   	 <link href="${pageContext.request.contextPath}/css/forum.css" rel="stylesheet">
     <!-- Bootstrap -->
-<!--     <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
-<!--     <link href="../ionicons/css/ionicons.min.css" rel="stylesheet"> -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/ionicons/css/ionicons.min.css" rel="stylesheet">
     <!-- main css -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <!-- modernizr -->
-    <script src="../js/modernizr.js"></script> 
+    <script src="${pageContext.request.contextPath}/js/modernizr.js"></script> 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,27 +38,23 @@
 
 
     <!-- main container -->
-    <div class="main-container portfolio-inner clearfix">
-        <!-- portfolio div -->
-        <div class="portfolio-div">
-            <div class="portfolio">
-                <!-- portfolio_filter -->
+    <div class="">
+       
+                <!-- Classify_enter -->
                 <div>
-                    <nav class=" ">
-                        <ul class="" style="list-style-type:none;font-size:50px">
-                       	  	<li ><a href="<c:url value='/Forum/forumIndex' />" >露營休閒討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營帳篷討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營寢具討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營爐具桌椅討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營料理討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營地點討論區</a></li>
-                            <li ><a href="<c:url value='/Forum/forumIndex' />" >露營車討論區</a></li>
+                    <nav class="">
+                        <ul class="classify-enter" >
+                       	  	<li ><a href="<c:url value='/Forum/forumIndex' />"  >露營休閒討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營帳篷討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營寢具討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營爐具桌椅討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營料理討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營地點討論區</a></li>
+                            <li ><a href="<c:url value='/Forum/forumIndex' />"  >露營車討論區</a></li>
                         </ul>
                     </nav>
                 </div>
-                </div>
-   </div>
-    </div>
+  </div>
 <!-- footer -->
     <footer>
         <div class="container-fluid">
