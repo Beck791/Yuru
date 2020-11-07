@@ -4,15 +4,17 @@ import com.yurucamp.forum.model.ForumBean;
 
 public interface ForumDao {
 
-	ForumBean insertForum();
 
-	ForumBean updateOneForum();
 
-	ForumBean deleteOneForum();
+//	ForumBean insertForum(ForumBean forum);
+//
+//	ForumBean updateOneForum(ForumBean forum);
+//
+//	boolean deleteOneForum(ForumBean forum);
+//
+//	ForumBean queryOneForum(ForumBean forum);
 
-	ForumBean queryOneForum();
-
-	ForumBean queryAllForum();
+	
 	
 	
 }

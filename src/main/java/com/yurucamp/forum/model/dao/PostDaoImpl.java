@@ -36,7 +36,7 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public PostBean insertPost(PostBean po) {
-		sessionFactory.getCurrentSession().save(po);
+		sessionFactory.getCurrentSession().saveOrUpdate(po);
 		return po;
 	}
 	

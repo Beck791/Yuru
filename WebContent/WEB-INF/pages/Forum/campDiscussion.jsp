@@ -59,8 +59,8 @@
                 <!-- portfolio_filter -->
                 <div>
                  <nav>
-                <ul class="portfolio_filter">
-                            <li><a href="/yurucamp/Forum/creatArticle" class="active" >新增文章</a></li>
+                <ul class="">
+                            <li><a href="<c:url value='/Forum/pureInsert' />" class="" >新增文章</a></li>
                  </ul>
                  </nav>
                 </div>
@@ -280,22 +280,6 @@
     <script src="../js/custom.js"></script>
     
     <!-- google analytics  -->
-<!--     <script> -->
-//         (function (i, s, o, g, r, a, m) {
-//             i['GoogleAnalyticsObject'] = r;
-//             i[r] = i[r] || function () {
-//                 (i[r].q = i[r].q || []).push(arguments)
-//             }, i[r].l = 1 * new Date();
-//             a = s.createElement(o),
-//                 m = s.getElementsByTagName(o)[0];
-//             a.async = 1;
-//             a.src = g;
-//             m.parentNode.insertBefore(a, m)
-//         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-//         ga('create', 'UA-76796224-1', 'auto');
-//         ga('send', 'pageview');
-<!--     </script> -->
 
 </body>
 

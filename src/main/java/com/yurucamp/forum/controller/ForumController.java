@@ -24,32 +24,32 @@ public class ForumController {
 	PostService service;
 
 	@GetMapping("/Forum/Index")
-	public String forumIndex() {
+	public String ToClassifyPage() {
 //		return "Forum/forumIndex";
-		return "forumIndexPage";
+		return "ClassifyPage";
 	}
 
 	@GetMapping("/Forum/forumIndex")
-	public String campDiscussion() {
+	public String ToCampDiscussionPage(Model model) {
+		
 //		return "Forum/memberCreat";
 		return "campDiscussionPage";
 	}
 
-	@GetMapping("/Forum/creatArticle")
-	public String memberCreat() {
+
+	
+	@RequestMapping(value ="/Forum/pureInsert", method = RequestMethod.GET)
+	public String PureInsert(Model model) {
+		PostBean po = new PostBean();
+		String a = "aaa";
+		model.addAttribute("XXX",a);
+		model.addAttribute("PostBean",po);
 //		return "Forum/memberCreat";
 		return "memberCreatPage";
 	}
-	@RequestMapping(value ="/Forum/pureinsert", method = RequestMethod.GET)
-	public String PureInsert(Model model) {
-		PostBean po = new PostBean();
-		model.addAttribute("PostBean",po);
-//		return "Forum/memberCreat";
-		return "campDiscussionPage";
-	}
 	
 	@RequestMapping(value ="/Forum/insert", method = RequestMethod.POST)
-	public String insert(@ModelAttribute("PostBean")PostBean po,BindingResult result, Model model) 
+	public String Insert(@ModelAttribute("PostBean")PostBean po,BindingResult result, Model model) 
 		throws SQLException {
 		service.insertPost(po);
 		
@@ -61,7 +61,7 @@ public class ForumController {
 	
 	
 	@GetMapping("/Forum/readArticle")
-	public String memberRead() {
+	public String MemberRead() {
 //		return "Forum/memberCreat";
 		return "memberReadPage";
 	}

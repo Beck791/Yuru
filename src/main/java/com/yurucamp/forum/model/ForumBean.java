@@ -14,36 +14,36 @@ public class ForumBean {
 	
 //	論壇
 	
-	private	Integer id;
-	private	String name;
-	private	String image;
+	private	Integer forumId;
+	private	String forumName;
+	private	String forumImage;
 	
 	
 	
-	
+
 	@Id @Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer getId() {
-		return id;
+	public Integer getForumId() {
+		return forumId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setForumId(Integer forumId) {
+		this.forumId = forumId;
 	}
 	
 	@Column(name="name")
-	public String getName() {
-		return name;
+	public String getForumName() {
+		return forumName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setForumName(String forumName) {
+		this.forumName = forumName;
 	}
 	
 	@Column(name="image")
-	public String getimage() {
-		return image;
+	public String getForumImage() {
+		return forumImage;
 	}
-	public void setimage(String image) {
-		this.image = image;
+	public void setForumImage(String forumImage) {
+		this.forumImage = forumImage;
 	}
 	
 	

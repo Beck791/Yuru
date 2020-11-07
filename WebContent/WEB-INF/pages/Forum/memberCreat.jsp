@@ -50,33 +50,35 @@
 <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
     <div class="panel panel-default" id="main" style="">
         <div class="panel-heading" style="background-color: white">
-            <a href="/">Genesis</a> › 创作新主题
+            <a href="<c:url value='/Forum/forumIndex' />">${XXX }</a> › 新主題
         </div>
 
         <div class="panel-body">
-            <form action="<c:url value='/Forum/insert'/>" method="post" id="replyForm">
+           
+            <form:form action="Insert" method="Post" modelAttribute="PostBean">
                 <div class="form-group">
-                    <label for="title">主題標題</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="請輸入主題標題" required="required">
+                
+                    <form:label class="t1" for="potitle" path="poTitle">主題標題</form:label>
+                    <form:input type="text" class="form-control" id="poTitle" path="poTitle" name="poTitle" placeholder="請輸入主題標題" required="required"/>
                 </div>
-                <div class="form-group">
-                    <label for="content">正文</label>
-                    <textarea class="form-control" rows="10" id="content" name="content"></textarea>
-                </div>
+                <div class="">
+                    <form:label class="t1" for="content" path="poContent">正文</form:label>
+                    <form:textarea class="form-control" path="poContent" rows="10" id="poContent" name="poContent" placeholder="請輸入正文" />               
+                     </div>
 
                 <div class="form-group">
-                    <label for="tab">板块</label><br/>
+                    <label for="tab">討論區分類</label><br/>
                     <div class="col-sm-10" style="width: 40%">
                         <select class="form-control" id="tab" name="tab">
-                            <c:forEach items="${tabs}" var="tab">
-                            <option value="${tab.id}">${tab.tabName}</option>
+                            <c:forEach items="${forumId}" var="tab">
+                            <option value="${Forum.id}">${id.}</option>
                             </c:forEach>
                         </select>
                     </div>
                 </div><br/>
-                <input type="submit" class="btn btn-default btn-sm" value="發布主題">
+                <input type="submit" class="" value="發布主題">
 
-            </form>
+             </form:form>
         </div>
 
     </div>
