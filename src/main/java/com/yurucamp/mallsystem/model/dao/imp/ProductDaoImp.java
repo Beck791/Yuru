@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
@@ -65,11 +64,16 @@ public class ProductDaoImp implements ProductDao {
 	
 	@Override
 	public Integer queryId(String status) throws SQLException {
-		String hql = "from itemstatus where name=:name";
-		List<ItemStatus> list= sessionFactory.getCurrentSession().createQuery(hql,ItemStatus.class).setParameter("name", status).getResultList();
-		ItemStatus itemStatus =list.get(0);
+		String hql = "from ItemStatus where name=:name";
+		ItemStatus itemStatus= (ItemStatus) sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", status).getSingleResult();
 		Integer id = itemStatus.getId();
 		return id ;			
+	}
+	
+	@Override
+	public ItemStatus queryOneStatus(Integer id) throws SQLException {
+		ItemStatus itemStatus = sessionFactory.getCurrentSession().get(ItemStatus.class, id);
+		return itemStatus;	
 	}
 	
 }

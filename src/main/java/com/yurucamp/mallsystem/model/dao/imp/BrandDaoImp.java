@@ -3,7 +3,6 @@ package com.yurucamp.mallsystem.model.dao.imp;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +66,8 @@ public class BrandDaoImp implements BrandDao {
 	public Integer queryId(String brandname) throws SQLException {
 		String hql = "from BrandBean where name=:name";
 		System.out.println(hql);
-		List<BrandBean> results= sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", brandname).getResultList();
-		BrandBean brandBean = results.get(0);
+		BrandBean brandBean= (BrandBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", brandname).getSingleResult();
 		Integer id = brandBean.getId();
-		System.out.println(brandBean);
-		System.out.println(id);
 		return id ;			
 	}
 

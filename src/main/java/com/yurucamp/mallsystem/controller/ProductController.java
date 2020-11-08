@@ -40,7 +40,7 @@ public class ProductController {
 	// 後臺商品列表
 	@RequestMapping(value = "/Product/GetAllProduct", method = RequestMethod.GET)
 	public String GetAllProduct(Model model) throws SQLException {
-		List<ProductBean> list = productService.queryAll();
+		List<ProductBean> list = productService.queryAll();	
 		model.addAttribute("productBeans", list);
 		return "mallSystemGetAllProduct";
 	}
@@ -77,7 +77,6 @@ public class ProductController {
 	// 後臺查詢所有商品
 	@RequestMapping(value = "/Product/GetAllBrand", method = RequestMethod.GET)
 	public String GetAllBrand(Model model) throws SQLException {
-//		List<BrandBean> list = brandService.querypage();
 		List<BrandBean> list = brandService.queryAll();
 		model.addAttribute("brandBeans", list);
 		return "mallSystemGetAllBrand";
@@ -89,18 +88,13 @@ public class ProductController {
 	}
 	// 後臺新增廠牌
 	@RequestMapping(value = "/Product/InsertBrandinfo", method = RequestMethod.POST)
-	public String InsertBrandinfo(@RequestParam("name") String name, Model model) throws SQLException {
+	public String InsertBrandinfo(@RequestParam("name") String name, Model model) throws SQLException  {
 		BrandBean brandBean = new BrandBean();
 		brandBean.setName(name);
 		brandBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		brandService.insert(brandBean);
 		List<BrandBean> list = brandService.querypage();
 		model.addAttribute("brandBeans", list);
-//		model.addAttribute("brandBean",brandBean);
-//		model.addAttribute("createtime",brandBean);
-//		model.addAttribute("updatetime",timenowupdate);
-//	
-//		System.out.println(brandBean.setCreatetime(new Timestamp(System.currentTimeMillis())));
 		return "mallSystemInsertBrand";
 	}
 	

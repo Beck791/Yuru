@@ -29,7 +29,7 @@
 		
 <table class="table table-dark table-striped" border="1">
 <tr style="background-color:#7A0099">
-<th><th>產品ID<th>產品名稱<th>價格<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>新增日期<th>修改日期
+<th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
 <c:forEach var="productBean" items="${productBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
@@ -40,12 +40,14 @@
 <td>${productBean.id}</td>
 <td>${productBean.name}</td>	
 <td>${productBean.price}</td>
+<td>${productBean.brand}</td>
 <td>${productBean.image}</td>
 <td>${productBean.webTraffic}</td>
 <td>${productBean.description}</td>
 <%-- <td>${productBean.statusId}</td> --%>
 <td>${productBean.stock}</td>
 <td>${productBean.category}</td>
+<td>${productBean.status}</td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
 </form>

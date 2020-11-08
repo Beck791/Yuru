@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -60,6 +61,13 @@ public class ProductBean implements Serializable {
 	@Column(name = "updatetime")
 	private Timestamp updatetime;
 
+	@Transient
+	private String brand;
+	
+	@Transient
+	private String status;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -156,4 +164,22 @@ public class ProductBean implements Serializable {
 		this.updatetime = updatetime;
 	}
 
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
+	
 }

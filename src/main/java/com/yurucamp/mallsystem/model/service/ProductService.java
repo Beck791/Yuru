@@ -3,6 +3,7 @@ package com.yurucamp.mallsystem.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 
 public interface ProductService {
@@ -21,4 +22,5 @@ public interface ProductService {
 	
 	public Integer queryId(String status) throws SQLException;
 	
+	public ItemStatus queryOneStatus(Integer id) throws SQLException;
 }
