@@ -14,10 +14,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
- <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
+<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
+
+
 <script src="/js/jquery-3.2.1.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <!-- main css -->
@@ -33,9 +35,9 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
-<!-- top bar -->
+	<!-- top bar -->
 	<div class="top-bar">
 		<h1>露營論壇</h1>
 		<p>
@@ -47,46 +49,82 @@
 
 
 	<!-- main container -->
-<div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
-    <div class="panel panel-default" id="main" style="">
-        <div class="panel-heading" style="background-color: white">
-            <a href="<c:url value='/Forum/forumIndex' />">${XXX }</a> › 新主題
-        </div>
+	<div style="width: 70%; margin: 1% 1% 1% 2%; float: left;">
+		<div class="panel panel-default" id="main" style="">
+			<div class="panel-heading" style="background-color: white">
+				<a href="<c:url value='/Forum/forumIndex' />">${ForumBean}</a> › 新主題
+			</div>
 
-        <div class="panel-body">
-           
-            <form:form action="Insert" method="Post" modelAttribute="PostBean">
-                <div class="form-group">
-                
-                    <form:label class="t1" for="potitle" path="poTitle">主題標題</form:label>
-                    <form:input type="text" class="form-control" id="poTitle" path="poTitle" name="poTitle" placeholder="請輸入主題標題" required="required"/>
-                </div>
-                <div class="">
-                    <form:label class="t1" for="content" path="poContent">正文</form:label>
-                    <form:textarea class="form-control" path="poContent" rows="10" id="poContent" name="poContent" placeholder="請輸入正文" />               
-                     </div>
+			<div class="panel-body">
+				<div class=" panel-warning">
+				<form:form action="insert" method="Post" modelAttribute="PostBean">
+					<div class="form-group">
 
-                <div class="form-group">
-                    <label for="tab">討論區分類</label><br/>
-                    <div class="col-sm-10" style="width: 40%">
-                        <select class="form-control" id="tab" name="tab">
-                            <c:forEach items="${forumId}" var="tab">
-                            <option value="${Forum.id}">${id.}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div><br/>
-                <input type="submit" class="" value="發布主題">
+						<form:label class="t1" for="poId" path="poId">文章編號</form:label>
+						<form:input type="text" class="form-control" id="poId" path="poId"
+							name="poId" placeholder="文章編號" value="${PostBean.poId}" />
+					</div>
+					<div class="form-group">
 
-             </form:form>
-        </div>
+						<form:label class="t1" for="potitle" path="poTitle">主題標題</form:label>
+						<form:input type="text" class="form-control" id="poTitle"
+							path="poTitle" name="poTitle" placeholder="請輸入主題標題"
+							value="${PostBean.poTitle}" />
+					</div>
+					<div class="">
+						<form:label class="t1" for="content" path="poContent">正文</form:label>
+						<form:textarea class="form-control" path="poContent" rows="10" cols="10"
+							id="poContent" name="poContent" placeholder="請輸入正文"
+							value="${PostBean.poContent}" />
+					</div>
 
-    </div>
+					<div class="form-group">
+						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label>
+						<br />
+						<form:input type="text" class="form-control" id="forumId"
+							path="forumId" name="forumId" placeholder="討論區代號"
+							value="${PostBean.forumId}" />
+					</div>
+
+					<!--                     <div class="col-sm-10" style="width: 40%"> -->
+					<!--                       <div class="form-group"> -->
+					<!--                         <select class="form-control" id="tab" name="tab"> -->
+					<%--                             <c:forEach items="${forumId}" var="tab"> --%>
+					<%--                             <option value="${Forum.id}">${forumId}</option> --%>
+					<%--                             </c:forEach> --%>
+					<!--                         </select> -->
+					<!-- 			</div> -->
+					<!-- 		</div> -->
+					<br />
+					<input type="submit" class="btn btn-primary" value="發布主題">
+
+				</form:form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
 
 
-
+<div style="width: 25%; margin: 1% 2% 1% 0%; float: right;">
+<div class="panel panel-default" id="main" style="">
+	<div>
+	<h1>廣告區</h1>
+	<span>
+	(*^&%%$#^&*()(*&^%))
+	344567865435678
+	546788654356789
+	jkjhgfdgrtyhytjghg
+	dgfhfghffjhj
+	1111111111111111111111111111111111
+	</span>
+	</div>
+	<img alt="" src="">
+		
 </div>
-
+	
+</div>
 
 
 

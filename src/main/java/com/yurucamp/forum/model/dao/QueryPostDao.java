@@ -6,7 +6,7 @@ import com.yurucamp.forum.model.PostBean;
 
 public interface QueryPostDao {
 
-	PostBean queryOneArticle(PostBean po);
+	PostBean queryOneArticle(Integer poId);
 
 	List<PostBean> queryAllArticleByPoTitle();
 

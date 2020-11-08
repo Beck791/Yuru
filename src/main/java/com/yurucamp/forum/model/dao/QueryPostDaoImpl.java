@@ -1,5 +1,6 @@
 package com.yurucamp.forum.model.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -23,9 +24,9 @@ public class QueryPostDaoImpl implements QueryPostDao  {
 	}
 	
 	@Override
-	public PostBean queryOneArticle(PostBean po) {
-		po = sessionFactory.getCurrentSession().get(PostBean.class, po.getPoId());
-		return po;
+	public PostBean queryOneArticle(Integer poId){
+		PostBean PostBean = sessionFactory.getCurrentSession().get(PostBean.class, poId);
+		return PostBean;
 		
 		
 	}

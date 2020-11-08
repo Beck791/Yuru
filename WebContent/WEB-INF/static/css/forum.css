@@ -2,11 +2,16 @@
 
 /* <!--forumClassify --> */
 
-classify-enter{
-	background-color:#dbcf83;
-	color : #fff;
+.classify-enter a{
+/* 	border-style:outset; */
+	border-width: 15px;
+	background-color:#FFF;
+	color : #dbcf83;
 	list-style-type:none;
-	font-size:50px;
+	font-size:30px;
+ 	text-align:center; 
+ 	font-family: Microsoft JhengHei;
+	list-style-type:none;
 	
 	
 }

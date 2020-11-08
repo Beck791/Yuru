@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,7 +41,7 @@ public class ForumController {
 	public String PureInsert(Model model) {
 		PostBean po = new PostBean();
 		String a = "aaa";
-		model.addAttribute("XXX",a);
+		model.addAttribute("ForumBean",a);
 		model.addAttribute("PostBean",po);
 //		return "Forum/memberCreat";
 		return "memberCreatPage";
@@ -60,9 +59,13 @@ public class ForumController {
 	
 	
 	
-	@GetMapping("/Forum/readArticle")
-	public String MemberRead() {
-//		return "Forum/memberCreat";
+	@RequestMapping(value ="/Forum/readArticle", method = RequestMethod.GET )
+	public String Read(Model model) throws SQLException{
+		PostBean po = new PostBean();
+		int id =1;
+		po = service.read(id);
+		model.addAttribute("PostBean", po);
+	
 		return "memberReadPage";
 	}
 
