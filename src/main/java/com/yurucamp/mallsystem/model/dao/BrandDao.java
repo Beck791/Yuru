@@ -20,4 +20,6 @@ public interface BrandDao {
 	public List<BrandBean> querypage() throws SQLException;
 
 	public void deleteOne(Integer id) throws SQLException;
+
+	public Integer queryId(String brandname) throws SQLException;
 }

@@ -19,6 +19,6 @@ public interface ProductService {
 	
 	public ProductBean querylast() throws SQLException;
 	
-
+	public Integer queryId(String status) throws SQLException;
 	
 }

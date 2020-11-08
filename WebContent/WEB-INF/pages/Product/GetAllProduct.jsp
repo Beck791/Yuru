@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.yurucamp.mallsystem.model.ProductBean" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%! @SuppressWarnings("unchecked") %>
 <!DOCTYPE html>
 <html>
@@ -45,8 +46,8 @@
 <%-- <td>${productBean.statusId}</td> --%>
 <td>${productBean.stock}</td>
 <td>${productBean.category}</td>
-<td>${productBean.createtime}</td>
-<td>${productBean.updatetime}</td></tr>
+<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
+<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
 </form>
 
 </c:forEach>

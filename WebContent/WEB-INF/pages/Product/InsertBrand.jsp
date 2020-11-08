@@ -27,13 +27,21 @@
 	</form>
 	<hr>
 	<h2 class="bg-dark text-white">新增廠牌資料</h2>
-	<table class="btn btn-secondary">
-	<tr><td>廠牌編號<td><input type="text" disabled value="${brandBean.id}">
-	<tr><td>廠牌名稱<td><input type="text" disabled value="${brandBean.name}">
-	<tr><td>建立時間<td><input type="text" disabled value="${brandBean.createtime}">
-<%-- 	<tr><td>建立時間<td><input type="text" <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" disabled value="${brandBean.createtime}"/> > --%>
-	<tr><td>修改時間<td><input type="text" disabled value="${brandBean.updatetime}">
+	<table class="table table-dark table-striped" border="1">
+<!-- 	<table class="table table-dark table-striped" border="1"> -->
+	<tr style="background-color:#7A0099">
+	<th><th >廠牌ID<th>廠牌名稱<th>新增日期<th>修改日期
+	<c:forEach var="brandBean" items="${brandBeans}">
+	<tr><td>
+	</td>
+	<td>${brandBean.id}</td>
+	<td>${brandBean.name}</td>	
+	<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${brandBean.createtime}"/></td>
+	<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${brandBean.updatetime}"/></td>
+	</form>
+	</c:forEach>
 	</table>
+
 	</div>
 	<Formatted>
 	

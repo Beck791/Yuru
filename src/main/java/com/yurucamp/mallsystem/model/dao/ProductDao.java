@@ -19,4 +19,6 @@ public interface ProductDao {
 	public ProductBean queryOne(int id) throws SQLException;
 	
 	public ProductBean querylast() throws SQLException;
+
+	public Integer queryId(String status) throws SQLException;
 }

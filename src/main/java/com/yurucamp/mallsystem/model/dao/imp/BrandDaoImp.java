@@ -31,31 +31,13 @@ public class BrandDaoImp implements BrandDao {
 	@Override
 	public void update(BrandBean brandBean) throws SQLException {
 		BrandBean bean = sessionFactory.getCurrentSession().get(BrandBean.class, brandBean.getId());
-		bean.setId(brandBean.getId());
-		bean.setName(brandBean.getName());
-		bean.setUpdatetime(brandBean.getUpdatetime());
-
+		sessionFactory.getCurrentSession().update(bean);
 	}
 
 	@Override
 	public void deleteOne(Integer id) throws SQLException {
-//		sessionFactory.getCurrentSession().delete(BrandBean.class);	
-//		sessionFactory.getCurrentSession().createQuery("delete BrandBean where id=:id").setParameter("id", id).executeUpdate();
-//		sessionFactory.getCurrentSession().delete(id);
-//		query.executeUpdate();
-//		bean.set
-//		BrandBean bean = (BrandBean) sessionFactory.getCurrentSession().createQuery("FROM BrandBean b where b.id=:id");
-//		sessionFactory.getCurrentSession().delete(id);
-//		sessionFactory.openSession().delete(id);
-//		sessionFactory.close();
-//		BrandBean brandBean = sessionFactory.getCurrentSession().get(BrandBean.class, id);
-//		sessionFactory.getCurrentSession().delete(brandBean);
-		BrandBean brandBean = new BrandBean();
-		brandBean.setId(id);
+		BrandBean brandBean = sessionFactory.getCurrentSession().get(BrandBean.class, id);
 		sessionFactory.getCurrentSession().delete(brandBean);
-//		Session session = sessionFactory.getCurrentSession();
-		System.out.println(id);
-		System.out.println("I'm dao~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	}
 
 	@Override
@@ -80,15 +62,28 @@ public class BrandDaoImp implements BrandDao {
 		List<BrandBean> results = query.list();
 		return results;
 	}
+	
+	@Override
+	public Integer queryId(String brandname) throws SQLException {
+		String hql = "from BrandBean where name=:name";
+		System.out.println(hql);
+		List<BrandBean> results= sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", brandname).getResultList();
+		BrandBean brandBean = results.get(0);
+		Integer id = brandBean.getId();
+		System.out.println(brandBean);
+		System.out.println(id);
+		return id ;			
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public BrandBean querylast() throws SQLException {
-		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("FROM BrandBean b order by b.id desc")
-				.setMaxResults(1);
+//		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("FROM BrandBean b order by b.id desc")
+//				.setMaxResults(1);
 //		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("SELECT TOP (1) * FROM BrandBean ORDER BY id DESC",BrandBean.class);
-		List<BrandBean> result = query.list();
-		return (BrandBean) result;
+//		List<BrandBean> result = query.list();
+//		return (BrandBean) result;
+		return null;
 	}
 
 

@@ -58,4 +58,10 @@ public class BrandServiceImp implements BrandService {
 		
 	}
 
+	@Override
+	public Integer queryId(String brandname) throws SQLException {
+		
+		return brandDao.queryId(brandname);
+	}
+
 }

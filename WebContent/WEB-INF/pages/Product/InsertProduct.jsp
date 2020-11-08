@@ -15,15 +15,16 @@
 <%-- 	<a href="<c:url value="/product/Product.jsp"/>">回首頁</a><br> --%>
 	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
-	<form method="post" action="/MidtermMvc/InsertProduct">
+	<form method="post" action="<c:url value='/Product/InsertProductinfo' />">
 	<table class="btn btn-secondary">
-		<tr><td>輸入產品 :<td><input type="text" name="product" />
-		<tr><td>輸入品牌 :<td><input type="text" name="brand" />
-		<tr><td>輸入價格 :<td><input type="text" name="price" />
-		<tr><td>輸入廠商產品編號 :<td><input type="text" name="productNo" />
-		<tr><td>輸入數量 :<td><input type="text" name="stock" />
-		<tr><td>輸入種類 :<td><input type="text" name="category" />
-		<tr><td>輸入廠商代碼 :<td><input type="text" name="brandId" />
+		<tr><td>輸入產品 :<td><input type="text" name="name" />
+		<tr><td>輸入品牌 :<td><input type="text" value="犀牛" name="brand" />
+		<tr><td>輸入價格 :<td><input type="text" value="888" name="price" />
+		<tr><td>上傳圖片 :<td><input type="text" value="image網址" name="image" />
+		<tr><td>輸入產品內容 :<td><input type="text" value="產品內容" name="description" />
+		<tr><td>輸入產品狀態:<td><input type="text" value="上架中" name="status" />
+		<tr><td>輸入庫存數量 :<td><input type="text" value="50" name="stock" />
+		<tr><td>輸入種類 :<td><input type="text" value="帳篷" name="category" />
 	</table>
 	<br><br>
 			<input type="submit" value="新增" class="btn btn-primary" />
