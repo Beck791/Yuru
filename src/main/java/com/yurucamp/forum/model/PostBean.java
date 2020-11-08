@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Component @Table(name="Post")
+@Entity @Component @Table(name="PostArticle")
 public class PostBean {
 	
 //	發文文章	

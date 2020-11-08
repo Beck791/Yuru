@@ -58,12 +58,12 @@
 			<div class="panel-body">
 				<div class=" panel-warning">
 				<form:form action="insert" method="Post" modelAttribute="PostBean">
-					<div class="form-group">
+<!-- 					<div class="form-group"> -->
 
-						<form:label class="t1" for="poId" path="poId">文章編號</form:label>
-						<form:input type="text" class="form-control" id="poId" path="poId"
-							name="poId" placeholder="文章編號" value="${PostBean.poId}" />
-					</div>
+<%-- 						<form:label class="t1" for="poId" path="poId">文章編號</form:label> --%>
+<%-- 						<form:input type="text" class="form-control" id="poId" path="poId" --%>
+<%-- 							name="poId" placeholder="文章編號" value="${PostBean.poId}" /> --%>
+<!-- 					</div> -->
 					<div class="form-group">
 
 						<form:label class="t1" for="potitle" path="poTitle">主題標題</form:label>
@@ -78,13 +78,13 @@
 							value="${PostBean.poContent}" />
 					</div>
 
-					<div class="form-group">
-						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label>
-						<br />
-						<form:input type="text" class="form-control" id="forumId"
-							path="forumId" name="forumId" placeholder="討論區代號"
-							value="${PostBean.forumId}" />
-					</div>
+<!-- 					<div class="form-group"> -->
+<%-- 						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label> --%>
+<!-- 						<br /> -->
+<%-- 						<form:input type="text" class="form-control" id="forumId" --%>
+<%-- 							path="forumId" name="forumId" placeholder="討論區代號" --%>
+<%-- 							value="${PostBean.forumId}" /> --%>
+<!-- 					</div> -->
 
 					<!--                     <div class="col-sm-10" style="width: 40%"> -->
 					<!--                       <div class="form-group"> -->

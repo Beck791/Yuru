@@ -40,22 +40,22 @@ public class PostDaoImpl implements PostDao {
 		return po;
 	}
 	
-	
-	@Override
-	public PostBean updatePost(PostBean po) {
-		PostBean  post = sessionFactory.getCurrentSession()
-				.get(PostBean.class,po.getPoId());
-		
-		post.setPoTitle(po.getPoTitle());
-		post.setPoUpDateTime(po.getPoUpDateTime());
-		post.setPoContent(po.getPoContent());
-		post.setPoUpDateTime(po.getPoUpDateTime());
-		post.setLikeNumber(po.getLikeNumber());
-		post.setReContentNumber(po.getReContentNumber());
-		post.setClickNumber(po.getClickNumber());
-		return post;
-	}
-	
+//	
+//	@Override
+//	public PostBean updatePost(PostBean po) {
+//		PostBean  post = sessionFactory.getCurrentSession()
+//				.get(PostBean.class,po.getPoId());
+//		
+//		post.setPoTitle(po.getPoTitle());
+//		post.setPoUpDateTime(po.getPoUpDateTime());
+//		post.setPoContent(po.getPoContent());
+//		post.setPoUpDateTime(po.getPoUpDateTime());
+//		post.setLikeNumber(po.getLikeNumber());
+//		post.setReContentNumber(po.getReContentNumber());
+//		post.setClickNumber(po.getClickNumber());
+//		return post;
+//	}
+//	
 
 	
 	@Override
