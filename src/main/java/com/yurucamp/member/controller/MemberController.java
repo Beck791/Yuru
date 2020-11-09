@@ -25,9 +25,6 @@ public class MemberController {
 	@Autowired
 	MemberDao memberDao;
 	
-	
-	
-	
 	@PostMapping("/SignIn")
 	@ResponseBody
 	public Map<String, String>  MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
@@ -40,7 +37,7 @@ public class MemberController {
 		}else {
 			for(MemberBean s:memberUser) {
 				session.setAttribute("memberId",s.getMemberId());
-				session.setAttribute("memberRolse",s.getRoles().toString().trim());
+				session.setAttribute("memberRolse",s.getRoles());
 			}
 			rtnMap.put("msg", "登入成功!");
 		}

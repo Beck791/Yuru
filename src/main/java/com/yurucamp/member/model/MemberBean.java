@@ -10,9 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
-@Table(name="member")
+@Table(name="Member")
 public class MemberBean  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -174,5 +176,5 @@ public class MemberBean  implements Serializable{
 	public void setImage(Blob image) {
 		this.image = image;
 	}
-	
+
 }
