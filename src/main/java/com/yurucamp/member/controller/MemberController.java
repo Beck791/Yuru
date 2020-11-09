@@ -25,6 +25,9 @@ public class MemberController {
 	@Autowired
 	MemberDao memberDao;
 	
+	
+	
+	
 	@PostMapping("/SignIn")
 	@ResponseBody
 	public Map<String, String>  MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
