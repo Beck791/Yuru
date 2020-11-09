@@ -1,25 +1,19 @@
 package com.yurucamp.backstage.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.yurucamp.backstage.dao.BackstageDao;
 import com.yurucamp.backstage.model.Test;
+import com.yurucamp.member.model.MemberBean;
 
 @Service
-public class BackstageService {
-	
-	@Autowired
-	BackstageDao backstageDao;
-    
-    
+public interface BackstageService {
 
-	public List<Test> getAllProducts() {
-		return backstageDao.getAllProducts();
-	}
+	public List<Test> getAllProducts() throws SQLException ;
     
+	public List<MemberBean> getMember(String Account) throws SQLException ;
+	
 	
 }
