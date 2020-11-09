@@ -32,7 +32,7 @@
 		<mapping class="com.yurucamp.camp.model.CampOrder" />
 		<mapping class="com.yurucamp.camp.model.CampSide" />
 		<!-- Car Area -->
-
+		<mapping class="com.yurucamp.car.model.CarBean" />
 
 		<!-- backstage Area -->
 		<mapping class="com.yurucamp.backstage.model.Test" />
