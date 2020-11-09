@@ -42,7 +42,15 @@
 <!--        <a class="glyphicon glyphicon-user" href="#0"> -->
 <!--        	<span class="box-menu-text">member</span><span class="box-menu-icon"></span> -->
 <!--        </a> -->
-
+			
+			
+			<c:if test="${sessionScope.memberRolse eq 'admin'}">
+				<a class="box-primary-nav-trigger"  href="<c:url value='/Backstage/index' />" style="float:right;margin-right:80px;">
+					<i class="fas fa-poll" style='font-size:24px'></i>
+				</a>
+			</c:if>
+			
+			
             <a class="box-primary-nav-trigger" style="float:right;margin-right:35px;">
 				<span class="box-menu-text"><i class='fas fa-user-circle' data-toggle="modal" data-target="#loginModal" id="icon" style='font-size:24px'></i></span>
 			</a>            

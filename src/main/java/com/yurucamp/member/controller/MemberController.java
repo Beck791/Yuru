@@ -37,7 +37,7 @@ public class MemberController {
 		}else {
 			for(MemberBean s:memberUser) {
 				session.setAttribute("memberId",s.getMemberId());
-				session.setAttribute("memberRolse",s.getRoles());
+				session.setAttribute("memberRolse",s.getRoles().toString().trim());
 			}
 			rtnMap.put("msg", "登入成功!");
 		}
