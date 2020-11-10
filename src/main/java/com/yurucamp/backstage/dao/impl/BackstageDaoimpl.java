@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.backstage.dao.BackstageDao;
+import com.yurucamp.backstage.model.CalendarBean;
 import com.yurucamp.backstage.model.Test;
 import com.yurucamp.member.model.MemberBean;
 
@@ -38,6 +39,18 @@ public class BackstageDaoimpl implements BackstageDao{
 		List<MemberBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("mid", Account)
+									   .getResultList();
+		return list;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<CalendarBean> getCalendarQuery(String attribute) {
+		String hql = "FROM CalendarBean m WHERE m.memberId = :mid ";
+		Session session = null;
+		List<CalendarBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("mid", attribute)
 									   .getResultList();
 		return list;
 	}

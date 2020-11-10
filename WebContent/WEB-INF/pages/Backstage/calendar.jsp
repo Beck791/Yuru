@@ -82,7 +82,7 @@
 					);
 				}
 			});
-			calendar.fullCalendar('unselect');
+			$( "#example" ).fullCalendar('unselect');
 		},
 		
 		eventClick: function(calEvent, jsEvent, view) {
@@ -135,36 +135,19 @@
 			//$(this).css('border-color', 'red');
 
 		},
-  		events: [ // 事件
-  			{ // 事件
-  				title: "約會",
-  				start: "2020-11-01"
-  			},
-  			{ // 事件(包含開始時間)
-  				title: "中餐",
-  				start: "2020-11-12T12:00:00"
-  			},
-  			{ // 事件(包含跨日開始時間、結束時間)
-  				title: "音樂節",
-  				start: "2020-11-07",
-  				end: "2020-11-10"
-  			},
-  			{ // 事件(包含開始時間、結束時間)
-  				title: "會議",
-  				start: "2020-10-12T10:30:00",
-  				end: "2020-11-12T12:30:00"
-  			},
-  			{ // 事件(設定連結)
-  				title: "Click for Google",
-  				url: "http://google.com/",
-  				start: "2020-11-28"
-  			}
-  		]
+		events: function(start, end, timezone, callback) {
+	        $.ajax({
+	            url: '/yurucamp/Backstage/calendarQuery',
+	            type: 'POST',
+	            dataType: 'json',
+	            success: function(doc) {
+	                console.log(doc);
+	                callback(doc);
+	            }
+	        });
+	    }
   	});
   </script>
-
-
-
 
 </body>
 </html>
