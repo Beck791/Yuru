@@ -2,30 +2,46 @@ package com.yurucamp.camp.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "CampInfo")
+@Table(name = "campInfo")
 @Component
-public class CampInfo implements Serializable{
+public class CampInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "address")
 	private String address;
+
+	@Column(name = "altitude")
 	private Integer altitude;
+
+	@Column(name = "owner")
 	private String owner;
+
+	@Column(name = "ownerPhone")
 	private String ownerPhone;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "campInfo", cascade = CascadeType.ALL)
+	private CampDetail campDetail;
 
 	public CampInfo() {
 	}
@@ -85,6 +101,14 @@ public class CampInfo implements Serializable{
 
 	public void setOwnerPhone(String ownerPhone) {
 		this.ownerPhone = ownerPhone;
+	}
+
+	public CampDetail getCampDetail() {
+		return campDetail;
+	}
+
+	public void setCampDetail(CampDetail campDetail) {
+		this.campDetail = campDetail;
 	}
 
 }
