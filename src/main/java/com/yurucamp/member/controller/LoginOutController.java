@@ -27,6 +27,7 @@ public class LoginOutController  extends HttpServlet {
 		
 			session.removeAttribute("memberId");
 			session.removeAttribute("memberRolse");
+			session.removeAttribute("memberPaid");
 		return "indexPage";
 	}
 

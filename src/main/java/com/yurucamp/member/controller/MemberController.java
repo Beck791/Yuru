@@ -22,7 +22,7 @@ import com.yurucamp.member.model.dao.MemberDao;
 
 @Controller
 @RequestMapping("/Member")
-@SessionAttributes({"memberId","memberRolse"})
+@SessionAttributes({"memberId","memberRolse,memberPaid"})
 public class MemberController {
 	
 	@Autowired
@@ -42,7 +42,9 @@ public class MemberController {
 				System.out.println("memberId"+s.getMemberId());
 				session.setAttribute("memberId",s.getMemberId());
 				System.out.println("memberRolse"+s.getRoles());
-                session.setAttribute("memberRolse",s.getRoles().toString().trim()); 
+                session.setAttribute("memberRolse",s.getRoles().toString().trim());
+				System.out.println("memberPaid"+s.getPaid());
+                session.setAttribute("memberPaid",s.getPaid().toString().trim()); 
                 
 //                request.getRequestDispatcher("/MemberCenterController").forward(request, response); 
 			}         

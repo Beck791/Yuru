@@ -87,6 +87,7 @@
 			<div  style="float: right; margin-right: 130px;; margin-top: -120px">
 		${sessionScope.memberId}
 		${sessionScope.memberRolse}
+		${sessionScope.memberPaid}
 			</div>
 
 		</header>
