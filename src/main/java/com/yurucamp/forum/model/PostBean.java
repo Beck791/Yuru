@@ -1,5 +1,6 @@
 package com.yurucamp.forum.model;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,31 +9,55 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.jmx.snmp.Timestamp;
 
 @Entity @Component @Table(name="PostArticle")
 public class PostBean {
 	
 //	發文文章	
-	
+	@Id @Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer poId;
+	@Column(name="memberId")
 	private String memberId;
+	@Column(name="forumId")
 	private String forumId;
+	@Column(name="poTitle")
 	private String poTitle;
-	private Date poCreatTime;
-	private Date poUpDateTime;
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(name="poCreatTime")
+	private Timestamp poCreatTime;
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(name="poUpDateTime")
+	private Timestamp poUpDateTime;
+	
+	
+	@Column(name="poContent")
 	private String poContent;
+	@Column(name="poImage")
 	private String poImage;
-
+	
+	@Column(name="likeNumber")
 	private	Integer likeNumber;
+	@Column(name="reContentNumber")
 	private	Integer reContentNumber;
+	@Column(name="clickNumber")
 	private	Integer clickNumber;
 	
 	
 	
-	@Id @Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Transient
+	private String forumName;
+	
+	@Transient
+	private String name;
+	
+	
+	
 	public Integer getPoId() {
 		return poId;
 	}
@@ -40,21 +65,21 @@ public class PostBean {
 		this.poId = poId;
 	}
 	
-	@Column(name="memberId")
+	
 	public String getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	@Column(name="forumId")
+
 	public String getForumId() {
 		return forumId;
 	}
 	public void setForumId(String forumId) {
 		this.forumId = forumId;
 	}
-	@Column(name="poTitle")
+	
 	public String getPoTitle() {
 		return poTitle;
 	}
@@ -63,25 +88,24 @@ public class PostBean {
 	}
 	
 	
-	@Column(name="poCreatTime")
-	public Date getPoCreatTime() {
+	
+	public Timestamp getPoCreatTime() {
 		return poCreatTime;
 	}
-	public void setPoCreatTime(Date poCreatTime) {
+	public void setPoCreatTime(Timestamp poCreatTime) {
 		this.poCreatTime = poCreatTime;
 	}
 	
 	
-	@Column(name="poUpDateTime")
-	public Date getPoUpDateTime() {
+
+	public Timestamp getPoUpDateTime() {
 		return poUpDateTime;
 	}
-	public void setPoUpDateTime(Date poUpDateTime) {
+	public void setPoUpDateTime(Timestamp poUpDateTime) {
 		this.poUpDateTime = poUpDateTime;
 	}
 	
 	
-	@Column(name="poContent")
 	public String getPoContent() {
 		return poContent;
 	}
@@ -90,7 +114,7 @@ public class PostBean {
 	}
 	
 	
-	@Column(name="poImage")
+	
 	public String getPoImage() {
 		return poImage;
 	}
@@ -99,7 +123,7 @@ public class PostBean {
 	}
 	
 	
-	@Column(name="likeNumber")
+	
 	public Integer getLikeNumber() {
 		return likeNumber;
 	}
@@ -108,7 +132,7 @@ public class PostBean {
 	}
 	
 	
-	@Column(name="reContentNumber")
+	
 	public Integer getReContentNumber() {
 		return reContentNumber;
 	}
@@ -117,12 +141,28 @@ public class PostBean {
 	}
 	
 	
-	@Column(name="clickNumber")
+	
 	public Integer getClickNumber() {
 		return clickNumber;
 	}
 	public void setClickNumber(Integer clickNumber) {
 		this.clickNumber = clickNumber;
+	}
+	
+	
+	
+	
+	public String getForumName() {
+		return forumName;
+	}
+	public void setForumName(String forumName) {
+		this.forumName = forumName;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

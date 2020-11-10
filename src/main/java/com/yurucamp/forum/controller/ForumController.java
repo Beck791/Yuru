@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.sun.jmx.snmp.Timestamp;
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.service.PostService;
 
@@ -50,6 +50,10 @@ public class ForumController {
 	@RequestMapping(value ="/Forum/insert", method = RequestMethod.POST)
 	public String Insert(@ModelAttribute("PostBean")PostBean po,BindingResult result, Model model) 
 		throws SQLException {
+//		PostBean PostBean = new PostBean();
+//		if (poCreatTime.length() == 0 || poCreatTime == null)
+		po.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
+//	} else {
 		service.insertPost(po);
 		
 		System.out.println("Already Save Object.id = " + po.getPoId());

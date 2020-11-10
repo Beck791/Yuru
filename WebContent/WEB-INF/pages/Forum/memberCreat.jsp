@@ -32,7 +32,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+ <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
@@ -73,11 +73,15 @@
 					</div>
 					<div class="">
 						<form:label class="t1" for="content" path="poContent">正文</form:label>
+						<textarea name="contentforckeditor" rows="" cols=""></textarea>
+						<form:textarea class="" path="poContent" rows="10" cols="10"
+							id="poContent" name="contentforckeditor"  
+							value="${PostBean.poContent}" />
 						<form:textarea class="form-control" path="poContent" rows="10" cols="10"
-							id="poContent" name="poContent" placeholder="請輸入正文"
+							id="poContent" name="contentforckeditor"  placeholder="請輸入正文"
 							value="${PostBean.poContent}" />
 					</div>
-
+<textarea name="contentforckeditor" rows="" cols=""></textarea>
 <!-- 					<div class="form-group"> -->
 <%-- 						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label> --%>
 <!-- 						<br /> -->
@@ -129,7 +133,10 @@
 
 
 
-
+<script src="ckeditor/ckeditor.js" ></script>
+<script >
+CKEDITOR.replace('contentforckeditor');
+</script>
 
 
 
