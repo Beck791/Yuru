@@ -36,6 +36,7 @@
                                 </ul>
                             </li>
                             <li><a href="/yurucamp/Backstage/forum" class="sf-notepad">論壇系統</a></li>
+                            <li><a href="/yurucamp/Backstage/calendar" class="sf-calendar">日歷</a></li>
                         </ul>
                     </div>
                 </div>

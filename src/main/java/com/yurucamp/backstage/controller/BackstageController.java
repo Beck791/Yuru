@@ -56,6 +56,12 @@ public class BackstageController {
 		return "backstageForumViewPage";
 	}
 	
+	@GetMapping("/calendar")
+	public String backstageCalendarIndex() throws SQLException {
+		
+		return "backstageCalendarViewPage";
+	}
+	
 	@PostMapping("/memberSearc")
 	@ResponseBody
 	public String backstageMemberSearc(Model model,String Account) throws SQLException {
