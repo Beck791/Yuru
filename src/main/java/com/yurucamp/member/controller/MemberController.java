@@ -39,7 +39,9 @@ public class MemberController {
 			rtnMap.put("msg", "查無此帳號!"); 
 		}else {
 			for(MemberBean s:memberUser) {
+				System.out.println("memberId"+s.getMemberId());
 				session.setAttribute("memberId",s.getMemberId());
+				System.out.println("memberRolse"+s.getRoles());
                 session.setAttribute("memberRolse",s.getRoles().toString().trim()); 
                 
 //                request.getRequestDispatcher("/MemberCenterController").forward(request, response); 

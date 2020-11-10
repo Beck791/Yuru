@@ -56,7 +56,7 @@
 						style="float: right; margin-right: 195px; margin-top: -90px">
 						<a href="<c:url value='/Member/MemberCenter' />">會員中心</a>
 					</button>
-					<button type="button" class="btn btn-light" 
+					<button type="button" class="btn btn-light out2"
 						style="float: right; margin-right: 130px; margin-top: -90px">
 						<a href="<c:url value='/Member/LoginOut' />">登出</a>
 					</button>
@@ -66,9 +66,9 @@
 						style="float: right; margin-right: 195px; margin-top: -90px">
 						<a href="<c:url value='/Member/MemberCenter' />">會員中心</a>
 					</button>
-					<button type="button" class="btn btn-light" id="out"
+					<button type="button" class="btn btn-light out2"
 						style="float: right; margin-right: 130px; margin-top: -90px">
-						<a href="<c:url value='/Member/LoginOut' />">登出</a>
+						<a href="<c:url value='/Member/LoginOut' />">登出</a>					
 					</button>
 				</c:when>
 				<c:otherwise>
@@ -83,8 +83,20 @@
 			<a class="box-primary-nav-trigger" id="menu" href="#0"> <span
 				class="box-menu-text">Menu</span><span class="box-menu-icon"></span>
 			</a>
+			
+			<div  style="float: right; margin-right: 130px;; margin-top: -120px">
+		${sessionScope.memberId}
+		${sessionScope.memberRolse}
+			</div>
 
 		</header>
+		
+		
+<%-- 		${sessionScope.memberRolse} --%>
+<%-- 		${sessionScope.memberId} --%>
+<%-- 		${memberRolse} --%>
+<%-- 		${memberId} --%>
+		
 
 		<!-- end box-header -->
 
@@ -125,19 +137,21 @@
 				<div class="modal-header" style="background-color: #dbcf83;">
 					<h5 class="modal-title" id="exampleModalLabel"
 						style="font-size: large; font-weight: bolder;">會員登入</h5>
-					<div id="ermsg" style="color:red;font-weight:bold;"></div>
+					<div id="ermsg" style="color: red; font-weight: bold;"></div>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="input-contact" style="width: 60%">
-						<input type="text" name="Account" id="Account" autocomplete="off"> <span>Account</span>
-					</div>
-					<div class="input-contact" style="width: 60%">
-						<input type="text" name="Password" id="Password" autocomplete="off"> <span>Password</span>
-					</div>
+					<div style="width: 60%">
+						帳號:
+						<input type="text" name="Account" id="Account" autocomplete="off">
+					</div><br>
+					<div style="width: 60%">
+						密碼:
+						<input type="Password" name="Password" id="Password" autocomplete="off"> 
+					</div><br>
 					<div class="modal-footer">
 						<a href='#' class="mr-auto" data-dismiss="modal"
 							data-toggle="modal" data-target="#registerModal"
@@ -146,6 +160,13 @@
 							data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-primary" id="signIn"
 							style="background-color: #dbcf83; border-color: #dbcf83; color: black;">登入</button>
+					</div>
+					<hr>
+					<div>
+						<button type="button" class="btn btn-secondary" id="m1">一般會員</button>
+						<button type="button" class="btn btn-secondary" id="m2">付費會員</button>
+						<button type="button" class="btn btn-secondary" id="m3">管理者</button>
+						<button type="button" class="btn btn-secondary" id="m4">版主</button>
 					</div>
 				</div>
 			</div>
@@ -210,11 +231,33 @@
 					window.location.reload()
 				}else{
 					$("#ermsg").html("帳號或密碼錯誤，請重新輸入!")
-				}
-			
+				}			
 			})
-
 		})
+		
+		$("#m1").click(function(){
+			$("#ermsg").html("");
+			$("#Account").val("M001");
+			$("#Password").val("M001");
+		});
+		
+		$("#m2").click(function(){
+			$("#ermsg").html("");
+			$("#Account").val("M002");
+			$("#Password").val("M002");
+		});
+		
+		$("#m3").click(function(){
+			$("#ermsg").html("");
+			$("#Account").val("M003");
+			$("#Password").val("M003");
+		});
+		
+		$("#m4").click(function(){
+			$("#ermsg").html("");
+			$("#Account").val("M004");
+			$("#Password").val("M004");
+		});
 	</script>
 
 </body>

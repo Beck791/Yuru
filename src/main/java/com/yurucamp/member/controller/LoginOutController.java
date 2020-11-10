@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+//@SessionAttributes({"memberId","memberRolse"})
 public class LoginOutController  extends HttpServlet {
 
 
@@ -21,15 +24,10 @@ public class LoginOutController  extends HttpServlet {
 	public String ddd(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);//防止建立Session
-		if(session == null){
-//			response.sendRedirect("/WEB-INF/pages/Index/index.jsp");
-//			return "YuruPage";
-			 
-		}
 		
-		session.removeAttribute("memberId");
-//		response.sendRedirect("/WEB-INF/pages/Index/index.jsp");
-		return "YuruPage";
+			session.removeAttribute("memberId");
+			session.removeAttribute("memberRolse");
+		return "indexPage";
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
