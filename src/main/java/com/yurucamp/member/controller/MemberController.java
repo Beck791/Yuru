@@ -11,15 +11,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yurucamp.member.model.MemberBean;
 import com.yurucamp.member.model.dao.MemberDao;
 
 @Controller
 @RequestMapping("/Member")
+@SessionAttributes({"memberId","memberRolse"})
 public class MemberController {
 	
 	@Autowired
@@ -32,16 +35,19 @@ public class MemberController {
 		List<MemberBean> memberUser = memberDao.queryUserId(Account,Password);
 		HttpSession session = request.getSession();
 		
-		if(memberUser.isEmpty()) {
-			rtnMap.put("msg", "查無此帳號!");
+		if(memberUser.isEmpty()) { 
+			rtnMap.put("msg", "查無此帳號!"); 
 		}else {
 			for(MemberBean s:memberUser) {
 				session.setAttribute("memberId",s.getMemberId());
-                session.setAttribute("memberRolse",s.getRoles().toString().trim());
-			}
+                session.setAttribute("memberRolse",s.getRoles().toString().trim()); 
+                
+//                request.getRequestDispatcher("/MemberCenterController").forward(request, response); 
+			}         
 			rtnMap.put("msg", "登入成功!");
 		}
-		return rtnMap;
+		return rtnMap;  
 	}
+	
 	
 }

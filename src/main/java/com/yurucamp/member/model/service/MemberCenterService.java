@@ -17,7 +17,7 @@ public class MemberCenterService {
 
 	public MemberBean queryMem(String memberId) throws SQLException {
 		System.out.println("ServicememberId="+memberId);
-		return memberCenterDao.queryMem(memberId);
+		return memberCenterDao.queryMem(memberId); 
 	}
 
 }
