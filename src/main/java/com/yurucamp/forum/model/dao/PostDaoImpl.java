@@ -1,5 +1,7 @@
 package com.yurucamp.forum.model.dao;
 
+import java.sql.SQLException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,9 +37,9 @@ public class PostDaoImpl implements PostDao {
 //	}
 	
 	@Override
-	public PostBean insertPost(PostBean po) {
-		sessionFactory.getCurrentSession().saveOrUpdate(po);
-		return po;
+	public void  insertPost(PostBean postBean) throws SQLException {
+		sessionFactory.getCurrentSession().saveOrUpdate(postBean);
+		
 	}
 	
 //	
@@ -59,7 +61,7 @@ public class PostDaoImpl implements PostDao {
 
 	
 	@Override
-	public boolean deleteOnePost(PostBean po) {
+	public boolean deleteOne(PostBean po) {
 		PostBean delete = sessionFactory.getCurrentSession()
 				.get(PostBean.class, po.getPoId());
 		if (delete != null) {
@@ -69,6 +71,16 @@ public class PostDaoImpl implements PostDao {
 		}
 		return false;
 	}
+
+
+	@Override
+	public PostBean queryOne(Integer id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 
 
 	

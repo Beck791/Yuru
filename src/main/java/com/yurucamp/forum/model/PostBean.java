@@ -1,7 +1,9 @@
 package com.yurucamp.forum.model;
 
 
-import java.util.Date;
+
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +15,6 @@ import javax.persistence.Transient;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.jmx.snmp.Timestamp;
-
 @Entity @Component @Table(name="PostArticle")
 public class PostBean {
 	

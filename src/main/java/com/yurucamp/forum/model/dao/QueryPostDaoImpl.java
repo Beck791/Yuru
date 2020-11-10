@@ -1,6 +1,5 @@
 package com.yurucamp.forum.model.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -14,21 +13,16 @@ import com.yurucamp.forum.model.PostBean;
 @Repository
 public class QueryPostDaoImpl implements QueryPostDao  {
 	
-	
 	private SessionFactory sessionFactory;
-	
-	
+
 	@Autowired
 	public QueryPostDaoImpl(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
 	@Override
 	public PostBean queryOneArticle(Integer poId){
 		PostBean PostBean = sessionFactory.getCurrentSession().get(PostBean.class, poId);
 		return PostBean;
-		
-		
 	}
 	@Override	
 	public List<PostBean> queryAllArticleByPoTitle() {
@@ -36,10 +30,7 @@ public class QueryPostDaoImpl implements QueryPostDao  {
 				.createQuery("from PostBean", PostBean.class);				
 		List<PostBean> list = query.list();
 		return list;
-		
 	}
-
-	
 	@Override	
 	public List<PostBean> queryArticleByPoTitle(PostBean po) {
 		Query<PostBean> query = sessionFactory.getCurrentSession()
@@ -55,14 +46,5 @@ public class QueryPostDaoImpl implements QueryPostDao  {
 				.setParameter(1, po.getMemberId());
 		List<PostBean> list = query.list();
 		return list;
-		
 	}
-	
-	
-	
-	
-	
-	
-
-	
 }

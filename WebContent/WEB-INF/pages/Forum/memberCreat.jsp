@@ -57,31 +57,18 @@
 
 			<div class="panel-body">
 				<div class=" panel-warning">
-				<form:form action="insert" method="Post" modelAttribute="PostBean">
-<!-- 					<div class="form-group"> -->
-
-<%-- 						<form:label class="t1" for="poId" path="poId">文章編號</form:label> --%>
-<%-- 						<form:input type="text" class="form-control" id="poId" path="poId" --%>
-<%-- 							name="poId" placeholder="文章編號" value="${PostBean.poId}" /> --%>
-<!-- 					</div> -->
+				<form method="Post" action="<c:url value='/Forum/insert'/>"  >
 					<div class="form-group">
-
-						<form:label class="t1" for="potitle" path="poTitle">主題標題</form:label>
-						<form:input type="text" class="form-control" id="poTitle"
+						<label class="t1" for="potitle" path="poTitle">主題標題</label>
+						<input type="text" class="form-control" id="poTitle"
 							path="poTitle" name="poTitle" placeholder="請輸入主題標題"
-							value="${PostBean.poTitle}" />
+							/>
 					</div>
 					<div class="">
-						<form:label class="t1" for="content" path="poContent">正文</form:label>
-						<textarea name="contentforckeditor" rows="" cols=""></textarea>
-						<form:textarea class="" path="poContent" rows="10" cols="10"
-							id="poContent" name="contentforckeditor"  
-							value="${PostBean.poContent}" />
-						<form:textarea class="form-control" path="poContent" rows="10" cols="10"
-							id="poContent" name="contentforckeditor"  placeholder="請輸入正文"
-							value="${PostBean.poContent}" />
+						<label class="t1" for="content" path="poContent">正文</label>
+						<textarea name="contentforckeditor" rows="10" cols="10" placeholder="請輸入正文"></textarea>
+						
 					</div>
-<textarea name="contentforckeditor" rows="" cols=""></textarea>
 <!-- 					<div class="form-group"> -->
 <%-- 						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label> --%>
 <!-- 						<br /> -->
@@ -102,7 +89,7 @@
 					<br />
 					<input type="submit" class="btn btn-primary" value="發布主題">
 
-				</form:form>
+				</form>
 				</div>
 				
 			</div>
