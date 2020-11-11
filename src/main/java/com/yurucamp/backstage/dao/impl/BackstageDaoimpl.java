@@ -54,6 +54,16 @@ public class BackstageDaoimpl implements BackstageDao{
 									   .getResultList();
 		return list;
 	}
+
+	@Override
+	public void CalendarInsert(String memberId, String start, String end, String title) {
+		CalendarBean calendarBean = new CalendarBean();
+		calendarBean.setMemberId(memberId);
+		calendarBean.setTitle(title);
+		calendarBean.setStart(start);
+		calendarBean.setEnd(end);
+		factory.getCurrentSession().save(calendarBean);
+	}
 	
 	
 }

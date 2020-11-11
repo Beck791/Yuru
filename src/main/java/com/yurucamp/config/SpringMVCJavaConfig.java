@@ -42,6 +42,7 @@ public class SpringMVCJavaConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/static/js/");
 		registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/static/img/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/static/fonts/");
+		registry.addResourceHandler("/ionicons/**").addResourceLocations("/WEB-INF/static/ionicons/");
 	}
 
 	// 集中管理View Java Config，只要呼叫方法名稱即能導向路徑

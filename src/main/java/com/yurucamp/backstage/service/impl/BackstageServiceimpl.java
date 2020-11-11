@@ -33,6 +33,11 @@ public class BackstageServiceimpl implements BackstageService {
 		// TODO Auto-generated method stub
 		return backstageDao.getCalendarQuery(attribute);
 	}
+
+	@Override
+	public void CalendarInsert(String memberId, String start, String end, String title) {
+		backstageDao.CalendarInsert(memberId,start,end,title);
+	}
     
 	
 }

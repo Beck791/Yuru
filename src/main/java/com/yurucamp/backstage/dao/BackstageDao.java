@@ -13,4 +13,7 @@ public interface BackstageDao {
 	List<MemberBean> getMember(String Account) throws SQLException;
 
 	List<CalendarBean> getCalendarQuery(String attribute);
+
+	void CalendarInsert(String memberId, String start, String end, String title);
+
 }

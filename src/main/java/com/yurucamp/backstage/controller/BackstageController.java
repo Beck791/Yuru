@@ -1,7 +1,9 @@
 package com.yurucamp.backstage.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -81,6 +83,17 @@ public class BackstageController {
 		String json = JSONArray.toJSONString(calendarQuery);
 		
 		return json;
+	}
+	
+	@PostMapping("/calendarInsert")
+	@ResponseBody
+	public Map<String, String> backstageCalendarInset(HttpServletRequest request,String start,String end,String title) throws SQLException {
+		Map<String, String> rtnMap = new HashMap<String, String>();
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		backstageService.CalendarInsert(memberId,start,end,title);
+		rtnMap.put("msg", "新增成功");
+		return rtnMap;
 	}
 	
 	

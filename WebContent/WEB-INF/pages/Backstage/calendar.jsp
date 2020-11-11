@@ -65,74 +65,86 @@
   		defaultDate: date, // 起始日期
   		weekends: true, // 顯示星期六跟星期日
   		editable: true,  // 啟動拖曳調整日期
+  		eventDrop: function(event, delta, revertFunc) {
+			
+  			console.log(event);
+  		    alert(event.title + " was dropped on " + event.start.format());
+
+  		    if (!confirm("Are you sure about this change?")) {
+  		      revertFunc();
+  		    }
+
+  		  },
 		selectable: true,
 		selectHelper: true,
 		select: function(start, end, allDay) {
-			bootbox.prompt("start"+start+"end"+end, function(title) {
-				if (title !== null) {
-					$( "#example" ).fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay,
-							className: 'label-info'
-						},
-						true // make the event "stick"
-					);
-				}
-			});
-			$( "#example" ).fullCalendar('unselect');
+			  bootbox.prompt("新增行事曆:", function(title) {
+				  if (title !== null) {
+				  var data = new Object();
+					data.start = start.format();
+					data.end = end.format();
+					data.title = title;
+					console.log(data);
+					  $.ajax({
+				            url: '/yurucamp/Backstage/calendarInsert',
+				            type: 'POST',
+				            dataType: 'json',
+				            data : data,
+				            success: function(result) {
+				            	bootbox.alert(result.msg);
+				            	window.location.reload();
+				            }
+				        });
+				  }
+			  });
+// 			$( "#example" ).fullCalendar('unselect');
 		},
-		
 		eventClick: function(calEvent, jsEvent, view) {
 			//display a modal
-			var modal = 
-			'<div class="modal fade">\
-			  <div class="modal-dialog">\
-			   <div class="modal-content">\
-				 <div class="modal-body">\
-				   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
-				   <form class="no-margin">\
-					  <label>Change event name &nbsp;</label>\
-					  <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-					 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
-				   </form>\
-				 </div>\
-				 <div class="modal-footer">\
-					<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
-					<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
-				 </div>\
-			  </div>\
-			 </div>\
-			</div>';
-		
-		
-			var modal = $(modal).appendTo('body');
-			modal.find('form').on('submit', function(ev){
-				ev.preventDefault();
-
-				calEvent.title = $(this).find("input[type=text]").val();
-				$( "#example" ).fullCalendar('updateEvent', calEvent);
-				modal.modal("hide");
-			});
-			modal.find('button[data-action=delete]').on('click', function() {
-				$( "#example" ).fullCalendar('removeEvents' , function(ev){
-					return (ev._id == calEvent._id);
-				})
-				modal.modal("hide");
+// 			console.log(calEvent.id);
+// 			console.log(calEvent.start.format());
+// 			console.log(calEvent.title);
+// 			console.log(calEvent.end.format());
+			
+			bootbox.confirm({
+				title: "Destroy planet?",
+			    message:  '<input class="middle" id="titleText" autocomplete="off" type="text" value="' + calEvent.title + '" /> '
+			    + '<button type="submit" id="Save" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>',
+			    buttons: {
+			        confirm: {
+			            label: 'Yes',
+			            className: 'btn-success'
+			        },
+			        cancel: {
+			            label: 'No',
+			            className: 'btn-danger'
+			        }
+			    },
+			    callback: function (result) {
+			    	if(result){
+			    		   $.ajax({
+			   	            url: '/yurucamp/Backstage/calendarQuery',
+			   	            type: 'POST',
+			   	            dataType: 'json',
+			   	            success: function(doc) {
+			   	                console.log(doc);
+			   	            }
+			   	        });
+			    		
+			    		console.log('yes');
+			    	}else{
+			    		console.log('no');
+			    	}
+			        console.log('This was logged in the callback: ' + result);
+			    }
 			});
 			
-			modal.modal('show').on('hidden', function(){
-				modal.remove();
-			});
-
-			//console.log(calEvent.id);
-			//console.log(jsEvent);
-			//console.log(view);
-
-			// change the border color just for fun
-			//$(this).css('border-color', 'red');
+			
+			$("#Save").on('click',function(){
+				console.log($("#titleText").val());
+				bootbox.hideAll();
+			})
+		
 
 		},
 		events: function(start, end, timezone, callback) {

@@ -17,6 +17,8 @@ public interface BackstageService {
 	public List<MemberBean> getMember(String Account) throws SQLException ;
 
 	public List<CalendarBean> getCalendarQuery(String attribute);
+
+	public void CalendarInsert(String memberId, String start, String end, String title);
 	
 	
 }
