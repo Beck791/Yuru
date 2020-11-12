@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yurucamp.backstage.dao.BackstageDao;
 import com.yurucamp.backstage.model.CalendarBean;
@@ -37,6 +38,18 @@ public class BackstageServiceimpl implements BackstageService {
 	@Override
 	public void CalendarInsert(String memberId, String start, String end, String title) {
 		backstageDao.CalendarInsert(memberId,start,end,title);
+	}
+
+	@Override
+	@Transactional
+	public void CalendarDelete(Integer id) {
+		backstageDao.CalendarDelete(id);
+	}
+
+	@Override
+	@Transactional
+	public void CalendarUpdate(Integer id,String start, String end, String title) {
+		backstageDao.CalendarUpdate(id,start,end,title);
 	}
     
 	

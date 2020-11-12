@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.yurucamp.backstage.dao.BackstageDao;
 import com.yurucamp.backstage.model.CalendarBean;
 import com.yurucamp.backstage.model.Test;
+import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.member.model.MemberBean;
 
 @Repository
@@ -63,6 +64,24 @@ public class BackstageDaoimpl implements BackstageDao{
 		calendarBean.setStart(start);
 		calendarBean.setEnd(end);
 		factory.getCurrentSession().save(calendarBean);
+	}
+
+	@Override
+	public void CalendarDelete(Integer id) {
+		CalendarBean calendarBean = factory.getCurrentSession().get(CalendarBean.class, id);
+		factory.getCurrentSession().delete(calendarBean);
+	}
+
+	@Override
+	public void CalendarUpdate(Integer id,String start, String end, String title) {
+		CalendarBean calendarBean = factory.getCurrentSession().get(CalendarBean.class, id);
+		if(title != null) {
+			calendarBean.setTitle(title);	
+		}else {
+			calendarBean.setStart(start);	
+			calendarBean.setEnd(end);
+		}
+		factory.getCurrentSession().update(calendarBean);
 	}
 	
 	

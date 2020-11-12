@@ -28,27 +28,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.css" rel="stylesheet"  />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.print.css" rel="stylesheet" media="print">
-
-
-
 </head>
 <body class="cm-no-transition cm-1-navbar">
 <jsp:include page="/WEB-INF/pages/Backstage/top.jsp" />     
  <div id="global">
 	 <div class="container-fluid">
 	 	<div class="container">
-	 	
-	 	 <div id="example"></div>
- 
-	 	
-	 	
+	 	 	<div id="example"></div>
 	 	</div>
 	</div>
 </div>
-
-
 <script>
-	
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
@@ -66,14 +56,19 @@
   		weekends: true, // 顯示星期六跟星期日
   		editable: true,  // 啟動拖曳調整日期
   		eventDrop: function(event, delta, revertFunc) {
-			
-  			console.log(event);
-  		    alert(event.title + " was dropped on " + event.start.format());
-
-  		    if (!confirm("Are you sure about this change?")) {
-  		      revertFunc();
-  		    }
-
+  		    var data = new Object();
+  		    data.id = event.id;
+			data.start = event.start.format();
+			data.end = event.end.format();
+  		   $.ajax({
+  	            url: '/yurucamp/Backstage/calendarUpdate',
+  	            type: 'POST',
+  	            dataType: 'json',
+  	     	    data : data,
+  	            success: function(result) {
+//  	            	bootbox.alert(result.msg);
+  	            }
+  	        });
   		  },
 		selectable: true,
 		selectHelper: true,
@@ -84,7 +79,6 @@
 					data.start = start.format();
 					data.end = end.format();
 					data.title = title;
-					console.log(data);
 					  $.ajax({
 				            url: '/yurucamp/Backstage/calendarInsert',
 				            type: 'POST',
@@ -100,52 +94,55 @@
 // 			$( "#example" ).fullCalendar('unselect');
 		},
 		eventClick: function(calEvent, jsEvent, view) {
-			//display a modal
-// 			console.log(calEvent.id);
-// 			console.log(calEvent.start.format());
-// 			console.log(calEvent.title);
-// 			console.log(calEvent.end.format());
+		    var data = new Object();
+			data.id = calEvent.id;
 			
 			bootbox.confirm({
 				title: "Destroy planet?",
 			    message:  '<input class="middle" id="titleText" autocomplete="off" type="text" value="' + calEvent.title + '" /> '
-			    + '<button type="submit" id="Save" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>',
+			    + '<button type="submit" id="Save" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> 更新</button>',
 			    buttons: {
 			        confirm: {
-			            label: 'Yes',
-			            className: 'btn-success'
+			            label: '刪除',
+			            className: 'btn-danger'
 			        },
 			        cancel: {
-			            label: 'No',
-			            className: 'btn-danger'
+			            label: '取消',
+			            className: 'btn-default'
 			        }
 			    },
 			    callback: function (result) {
 			    	if(result){
 			    		   $.ajax({
-			   	            url: '/yurucamp/Backstage/calendarQuery',
+			   	            url: '/yurucamp/Backstage/calendarDelete',
 			   	            type: 'POST',
 			   	            dataType: 'json',
-			   	            success: function(doc) {
-			   	                console.log(doc);
+			   	     	    data : data,
+			   	            success: function(result) {
+// 			   	            	bootbox.alert(result.msg);
+				            	window.location.reload();
 			   	            }
 			   	        });
-			    		
-			    		console.log('yes');
-			    	}else{
-			    		console.log('no');
 			    	}
-			        console.log('This was logged in the callback: ' + result);
+// 			        console.log('This was logged in the callback: ' + result);
 			    }
 			});
 			
-			
 			$("#Save").on('click',function(){
-				console.log($("#titleText").val());
-				bootbox.hideAll();
+				data.start = calEvent.start.format();
+				data.end = calEvent.end.format();
+				data.title = $("#titleText").val();
+				   $.ajax({
+		   	            url: '/yurucamp/Backstage/calendarUpdate',
+		   	            type: 'POST',
+		   	            dataType: 'json',
+		   	     	    data : data,
+		   	            success: function(result) {
+			            	window.location.reload();
+		   	            }
+		   	        });
+				
 			})
-		
-
 		},
 		events: function(start, end, timezone, callback) {
 	        $.ajax({
@@ -153,7 +150,7 @@
 	            type: 'POST',
 	            dataType: 'json',
 	            success: function(doc) {
-	                console.log(doc);
+// 	                console.log(doc);
 	                callback(doc);
 	            }
 	        });

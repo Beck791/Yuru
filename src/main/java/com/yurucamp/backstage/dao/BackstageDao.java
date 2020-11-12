@@ -16,4 +16,8 @@ public interface BackstageDao {
 
 	void CalendarInsert(String memberId, String start, String end, String title);
 
+	void CalendarDelete(Integer id);
+
+	void CalendarUpdate(Integer id,String start, String end, String title);
+
 }

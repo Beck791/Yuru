@@ -97,5 +97,29 @@ public class BackstageController {
 	}
 	
 	
+	@PostMapping("/calendarDelete")
+	@ResponseBody
+	public Map<String, String> backstageCalendarDelete(Integer id) throws SQLException {
+		Map<String, String> rtnMap = new HashMap<String, String>();
+		backstageService.CalendarDelete(id);
+		rtnMap.put("msg", "刪除成功");
+		return rtnMap;
+	}
+	
+	@PostMapping("/calendarUpdate")
+	@ResponseBody
+	public Map<String, String> backstageCalendarUpdate(Integer id,String start,String end,String title) throws SQLException {
+		System.out.println("id"+id);
+		System.out.println("start"+start);
+		System.out.println("end"+end);
+		System.out.println("title"+title);
+		backstageService.CalendarUpdate(id,start,end,title);
+		Map<String, String> rtnMap = new HashMap<String, String>();
+//		backstageService.CalendarDelete(id);
+		rtnMap.put("msg", "更新成功");
+		return rtnMap;
+	}
+	
+	
 	
 }
