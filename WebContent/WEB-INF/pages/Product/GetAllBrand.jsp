@@ -38,7 +38,7 @@
 <c:forEach var="brandBean" items="${brandBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
-<form method="post" id="form1"  action="">
+<form method="post" id="form1" >
 <input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${brandBean.id}')" />	
 <input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${brandBean.id}')" />	
 </td>

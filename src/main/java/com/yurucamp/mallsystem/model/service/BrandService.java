@@ -3,24 +3,59 @@ package com.yurucamp.mallsystem.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.yurucamp.mallsystem.model.BrandBean;
+import com.yurucamp.mallsystem.model.dao.BrandDao;
+import com.yurucamp.mallsystem.model.service.BrandService;
 
-public interface BrandService {
-	
-	public void insert(BrandBean brandBean) throws SQLException;
+@Service
+@Transactional
+public class BrandService  {
 
-	public void update(BrandBean brandBean) throws SQLException;
+	@Autowired
+	BrandDao brandDao;
 
-	public List<BrandBean> queryAll() throws SQLException;
+	public void insert(BrandBean brandBean) throws SQLException {
+		brandDao.insert(brandBean);
 
-	public BrandBean queryOne(Integer id) throws SQLException;
+	}
+
 	
-	public BrandBean querylast() throws SQLException;
+	public void update(BrandBean brandBean) throws SQLException {
+		brandDao.update(brandBean);
+
+	}
 	
-	public List<BrandBean> querypage() throws SQLException;
 	
-	public void deleteOne(Integer id) throws SQLException;
+	public List<BrandBean> queryAll() throws SQLException {
+		return brandDao.queryAll();
+	}
+
 	
-	public Integer queryId(String brandname) throws SQLException;
+	public BrandBean queryOne(Integer id) throws SQLException {
+		return brandDao.queryOne(id);
+	}
+
 	
+	public List<BrandBean> querypage() throws SQLException {	    
+		return  brandDao.querypage();
+		
+	}
+
+	
+	public void deleteOne(Integer id) throws SQLException {
+		      brandDao.deleteOne(id);
+		
+	}
+
+	
+	public Integer queryId(String brandname) throws SQLException {
+		
+		return brandDao.queryId(brandname);
+	}
+
 }

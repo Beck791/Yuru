@@ -1,6 +1,7 @@
 package com.yurucamp.mallsystem.model.dao.imp;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -14,7 +15,8 @@ import com.yurucamp.mallsystem.model.dao.BrandDao;
 
 @Repository
 public class BrandDaoImp implements BrandDao {
-
+	
+	
 	private SessionFactory sessionFactory;
 
 	@Autowired
@@ -30,6 +32,8 @@ public class BrandDaoImp implements BrandDao {
 	@Override
 	public void update(BrandBean brandBean) throws SQLException {
 		BrandBean bean = sessionFactory.getCurrentSession().get(BrandBean.class, brandBean.getId());
+		bean.setName(brandBean.getName());
+		bean.setUpdatetime(new Timestamp(System.currentTimeMillis()));	
 		sessionFactory.getCurrentSession().update(bean);
 	}
 
@@ -70,18 +74,6 @@ public class BrandDaoImp implements BrandDao {
 		Integer id = brandBean.getId();
 		return id ;			
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public BrandBean querylast() throws SQLException {
-//		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("FROM BrandBean b order by b.id desc")
-//				.setMaxResults(1);
-//		Query<BrandBean> query = sessionFactory.getCurrentSession().createQuery("SELECT TOP (1) * FROM BrandBean ORDER BY id DESC",BrandBean.class);
-//		List<BrandBean> result = query.list();
-//		return (BrandBean) result;
-		return null;
-	}
-
 
 	/**
 	* 使用hql語句進行分頁查詢

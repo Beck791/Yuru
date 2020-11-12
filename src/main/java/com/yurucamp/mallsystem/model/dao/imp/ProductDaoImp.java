@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
@@ -30,13 +31,6 @@ public class ProductDaoImp implements ProductDao {
 		return product;
 	}
 
-	@Override
-	public ProductBean querylast() throws SQLException {
-		return null;
-//		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("SELECT TOP (1) * FROM Product ORDER BY productId DESC",ProductBean.class);
-//		List<ProductBean> result = query.list();
-//		return (ProductBean) result;
-	}
 
 	@Override
 	public void insert(ProductBean productBean) throws SQLException {
@@ -45,7 +39,7 @@ public class ProductDaoImp implements ProductDao {
 
 	@Override
 	public void update(ProductBean productBean) throws SQLException {
-		ProductBean bean = sessionFactory.getCurrentSession().get(ProductBean.class, productBean.getId());			
+		ProductBean bean = sessionFactory.getCurrentSession().get(ProductBean.class, productBean.getId());
 		sessionFactory.getCurrentSession().update(bean);
 	}
 
@@ -74,6 +68,16 @@ public class ProductDaoImp implements ProductDao {
 	public ItemStatus queryOneStatus(Integer id) throws SQLException {
 		ItemStatus itemStatus = sessionFactory.getCurrentSession().get(ItemStatus.class, id);
 		return itemStatus;	
+	}
+
+	@Override
+	public List<ProductBean> querypage() throws SQLException {
+		String hql = "FROM ProductBean Order by id desc";
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
+		query.setFirstResult(0);
+		query.setMaxResults(5);
+		List<ProductBean> results = query.list();
+		return results;
 	}
 	
 }

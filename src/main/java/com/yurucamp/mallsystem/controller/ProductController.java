@@ -7,38 +7,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.service.BrandService;
-import com.yurucamp.mallsystem.model.service.ProductService;
+import com.yurucamp.mallsystem.model.service.PorductService;
 
 @Controller
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	PorductService productService;
 
 	@Autowired
 	BrandService brandService;
 
 	// 商城首頁
-	@RequestMapping(value = "/Product/Index", method = RequestMethod.GET)
+	@GetMapping(value = "/Product/Index")
 	public String ProductIndex() {
 		return "mallSystemIndex";
 	}
 
 	// 後臺首頁
-	@RequestMapping(value = "/Product/BackStageIndex", method = RequestMethod.GET)
+	@GetMapping(value = "/Product/BackStageIndex")
 	public String ProductBackStageIndex() {
 		return "mallSystemViewPage";
 	}
 
 	// 後臺商品列表
-	@RequestMapping(value = "/Product/GetAllProduct", method = RequestMethod.GET)
+	@GetMapping(value = "/Product/GetAllProduct")
 	public String GetAllProduct(Model model) throws SQLException {
 		List<ProductBean> list = productService.queryAll();	
 		model.addAttribute("productBeans", list);
@@ -51,7 +56,8 @@ public class ProductController {
 		return "mallSystemInsertProduct";
 	}	
 	// 後臺新增商品資料
-	@RequestMapping(value = "/Product/InsertProductinfo", method = RequestMethod.POST)
+	@PostMapping(value = "/Product/InsertProductinfo")
+	@ResponseBody
 	public String InsertProduct(@RequestParam("name") String name,
 								@RequestParam("brand") String brandname,
 								@RequestParam("price") Integer price,
@@ -71,23 +77,24 @@ public class ProductController {
 		productBean.setCategory(category);
 		productBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		productService.insert(productBean);
-		
+		List<ProductBean> list = productService.querypage();
+		model.addAttribute("productBeans", list);
 		return "mallSystemInsertProduct";
 	}
 	// 後臺查詢所有商品
-	@RequestMapping(value = "/Product/GetAllBrand", method = RequestMethod.GET)
+	@GetMapping(value = "/Product/GetAllBrand")
 	public String GetAllBrand(Model model) throws SQLException {
 		List<BrandBean> list = brandService.queryAll();
 		model.addAttribute("brandBeans", list);
 		return "mallSystemGetAllBrand";
 	}
 	// 後臺新增廠牌頁面
-	@RequestMapping(value = "/Product/InsertBrand", method = RequestMethod.GET)
+	@GetMapping(value = "/Product/InsertBrand")
 	public String InsertBrand() {
 		return "mallSystemInsertBrand";
 	}
 	// 後臺新增廠牌
-	@RequestMapping(value = "/Product/InsertBrandinfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/Product/InsertBrandinfo",method = RequestMethod.POST)
 	public String InsertBrandinfo(@RequestParam("name") String name, Model model) throws SQLException  {
 		BrandBean brandBean = new BrandBean();
 		brandBean.setName(name);
@@ -99,7 +106,7 @@ public class ProductController {
 	}
 	
 	// 後臺修改廠牌頁面
-	@RequestMapping(value = "/Product/UpdateBrand", method = RequestMethod.POST)
+	@RequestMapping(value = "/Product/UpdateBrand",method = RequestMethod.POST)
 	public String UpdateBrand(@RequestParam("id") Integer id, Model model) throws SQLException {
 		BrandBean brandBean = new BrandBean();
 		brandBean = brandService.queryOne(id);
@@ -109,14 +116,14 @@ public class ProductController {
 	}
 	
 	// 後臺修改廠牌
-	@RequestMapping(value = "/Product/UpdateBrandinfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/Product/UpdateBrandinfo",method = RequestMethod.POST)
 	public String UpdateBrand(@RequestParam("id") Integer id, @RequestParam("name") String name,Model model) throws SQLException {
 		BrandBean brandBean = new BrandBean();		
 		brandBean.setId(id);
 		brandBean.setName(name);
-		brandBean.setUpdatetime(new Timestamp(System.currentTimeMillis()));
 		brandService.update(brandBean);
 		brandBean = brandService.queryOne(id);
+
 		
 		model.addAttribute("brandBeaninfo", brandBean);
 
@@ -124,7 +131,7 @@ public class ProductController {
 	}
 	
 	// 後臺刪除廠牌
-	@RequestMapping(value = "/Product/DeleteBrand", method = RequestMethod.POST)
+	@RequestMapping(value = "/Product/DeleteBrand",method = RequestMethod.POST)
 	public String DeleteBrand(@RequestParam("id") Integer id, Model model)
 			throws SQLException {
 		brandService.deleteOne(id);

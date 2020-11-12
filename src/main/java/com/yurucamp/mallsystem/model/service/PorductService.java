@@ -1,7 +1,6 @@
-package com.yurucamp.mallsystem.model.service.imp;
+package com.yurucamp.mallsystem.model.service;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,11 +13,11 @@ import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.BrandDao;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
-import com.yurucamp.mallsystem.model.service.ProductService;
+
 
 @Service
 @Transactional
-public class PorductServiceImp implements ProductService{
+public class PorductService {
 
 	
 	@Autowired
@@ -28,23 +27,23 @@ public class PorductServiceImp implements ProductService{
 	BrandDao brandDao;
 	
 	
-	@Override
+
 	public void insert(ProductBean productBean) throws SQLException {
 		productDao.insert(productBean);	
 	}
 
-	@Override
+
 	public void update(ProductBean productBean) throws SQLException {
 		productDao.update(productBean);
 	}
 
-	@Override
+
 	public void deleteOne(int id) throws SQLException {
 		productDao.deleteOne(id);
 		
 	}
 
-	@Override
+
 	public List<ProductBean> queryAll() throws SQLException {
 		
 		List<ProductBean> list = productDao.queryAll();
@@ -60,26 +59,23 @@ public class PorductServiceImp implements ProductService{
 		return list;
 	}
 
-	@Override
+
 	public ProductBean queryOne(int id) throws SQLException {
 		return productDao.queryOne(id);
 	}
 
-	@Override
-	public ProductBean querylast() throws SQLException {
-		return productDao.querylast();
-	}
-
-	@Override
 	public Integer queryId(String status) throws SQLException {
 		return productDao.queryId(status);
 	}
 
-	@Override
+
 	public ItemStatus queryOneStatus(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public List<ProductBean> querypage() throws SQLException{
+		return productDao.querypage();
+	}
 
 }
