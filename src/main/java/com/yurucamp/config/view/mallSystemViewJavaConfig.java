@@ -37,6 +37,13 @@ public class mallSystemViewJavaConfig {
 	}
 	
 	@Bean
+	public View mallSystemUpdateProduct() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/UpdateProduct.jsp"); 
+		return view;
+	}
+	
+	@Bean
 	public View mallSystemGetAllBrand() { 
 		InternalResourceView view = new InternalResourceView();
 		view.setUrl("/WEB-INF/pages/Product/GetAllBrand.jsp"); 

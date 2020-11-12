@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,18 +37,30 @@
 	</form>
 	
 	<hr>
-	<h2 class="bg-dark text-white">新增產品資料</h2>
-	<table class="btn btn-secondary">
-	<tr><td>產品編號<td><input type="text" disabled value="${pdb.productId}">
-	<tr><td>產品<td><input type="text" disabled value="${pdb.product}">
-	<tr><td>品牌<td><input type="text" disabled value="${pdb.brand}">
-	<tr><td>價格<td><input type="text" disabled value="${pdb.price}">
-	<tr><td>廠商產品編號<td><input type="text" disabled value="${pdb.productNo}">
-	<tr><td>數量<td><input type="text" disabled value="${pdb.stock}">
-	<tr><td>種類<td><input type="text" disabled value="${pdb.category}">
-	<tr><td>廠商代碼<td><input type="text" disabled value="${pdb.brandId}">
-	</table>
-	
+	<table class="table table-dark table-striped" border="1">
+<tr style="background-color:#7A0099">
+<th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
+<c:forEach var="productBean" items="${productBeans}">
+<tr><td>
+<!-- <input type="submit" value="修改" name="update"/>	 -->
+
+</td>
+<td>${productBean.id}</td>
+<td>${productBean.name}</td>	
+<td>${productBean.price}</td>
+<td>${productBean.brand}</td>
+<td>${productBean.image}</td>
+<td>${productBean.webTraffic}</td>
+<td>${productBean.description}</td>
+<td>${productBean.stock}</td>
+<td>${productBean.category}</td>
+<td>${productBean.status}</td>
+<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
+<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
+
+
+</c:forEach>
+</table>
 	</div>
 	<script>
 	</script>

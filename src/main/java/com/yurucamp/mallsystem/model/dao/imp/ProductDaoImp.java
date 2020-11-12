@@ -1,6 +1,7 @@
 package com.yurucamp.mallsystem.model.dao.imp;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -40,6 +41,10 @@ public class ProductDaoImp implements ProductDao {
 	@Override
 	public void update(ProductBean productBean) throws SQLException {
 		ProductBean bean = sessionFactory.getCurrentSession().get(ProductBean.class, productBean.getId());
+		bean.setPrice(productBean.getPrice());
+		bean.setStock(productBean.getStock());
+		bean.setDescription(productBean.getDescription());
+		bean.setUpdatetime(new Timestamp(System.currentTimeMillis()));	
 		sessionFactory.getCurrentSession().update(bean);
 	}
 

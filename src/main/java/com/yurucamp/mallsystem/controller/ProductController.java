@@ -57,7 +57,6 @@ public class ProductController {
 	}	
 	// 後臺新增商品資料
 	@PostMapping(value = "/Product/InsertProductinfo")
-	@ResponseBody
 	public String InsertProduct(@RequestParam("name") String name,
 								@RequestParam("brand") String brandname,
 								@RequestParam("price") Integer price,
@@ -81,7 +80,47 @@ public class ProductController {
 		model.addAttribute("productBeans", list);
 		return "mallSystemInsertProduct";
 	}
-	// 後臺查詢所有商品
+	
+	// 後臺刪除商品
+	@PostMapping(value = "/Product/DeleteProduct")
+	public String DeleteProduct(@RequestParam("id") Integer id, Model model) throws SQLException {
+		productService.deleteOne(id);
+		List<ProductBean> list = productService.queryAll();
+		model.addAttribute("productBeans", list);
+		return "mallSystemGetAllProduct";
+	}
+	
+	// 後臺修改商品頁面
+	@PostMapping(value = "/Product/UpdateProduct")
+	public String UpdateProduct(@RequestParam("id") Integer id,Model model) throws SQLException {
+		ProductBean productBean = new ProductBean();
+		productBean = productService.queryOne(id);
+		model.addAttribute("productBean", productBean);
+		return "mallSystemUpdateProduct";
+	}
+	
+	
+	// 後臺修改商品內容
+	@PostMapping("/Product/UpdateProductinfo")
+	public String UpdateProducinfo(@RequestParam("id") Integer id, 
+								   @RequestParam("price") Integer price, 
+								   @RequestParam("stock") Integer stock,
+								   @RequestParam("description") String description ,Model model) throws SQLException {
+		ProductBean productBean = new ProductBean();	
+		productBean.setId(id);
+		productBean.setPrice(price);
+		productBean.setStock(stock);
+		productBean.setDescription(description);
+		productService.update(productBean);
+		productBean = productService.queryOne(id);
+
+		
+		model.addAttribute("productBeaninfo", productBean);
+
+		return "mallSystemUpdateProduct";
+	}
+	
+	// 後臺查詢所有廠牌
 	@GetMapping(value = "/Product/GetAllBrand")
 	public String GetAllBrand(Model model) throws SQLException {
 		List<BrandBean> list = brandService.queryAll();
@@ -105,6 +144,16 @@ public class ProductController {
 		return "mallSystemInsertBrand";
 	}
 	
+	// 後臺刪除廠牌
+	@RequestMapping(value = "/Product/DeleteBrand",method = RequestMethod.POST)
+	public String DeleteBrand(@RequestParam("id") Integer id, Model model)
+			throws SQLException {
+		brandService.deleteOne(id);
+		List<BrandBean> list = brandService.queryAll();
+		model.addAttribute("brandBeans", list);
+		return "mallSystemGetAllBrand";
+	}
+	
 	// 後臺修改廠牌頁面
 	@RequestMapping(value = "/Product/UpdateBrand",method = RequestMethod.POST)
 	public String UpdateBrand(@RequestParam("id") Integer id, Model model) throws SQLException {
@@ -114,6 +163,8 @@ public class ProductController {
 		
 		return "mallSystemUpdateBrand";
 	}
+	
+	
 	
 	// 後臺修改廠牌
 	@RequestMapping(value = "/Product/UpdateBrandinfo",method = RequestMethod.POST)
@@ -128,16 +179,6 @@ public class ProductController {
 		model.addAttribute("brandBeaninfo", brandBean);
 
 		return "mallSystemUpdateBrand";
-	}
-	
-	// 後臺刪除廠牌
-	@RequestMapping(value = "/Product/DeleteBrand",method = RequestMethod.POST)
-	public String DeleteBrand(@RequestParam("id") Integer id, Model model)
-			throws SQLException {
-		brandService.deleteOne(id);
-		List<BrandBean> list = brandService.queryAll();
-		model.addAttribute("brandBeans", list);
-		return "mallSystemGetAllBrand";
 	}
 
 }

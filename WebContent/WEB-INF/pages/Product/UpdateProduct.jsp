@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.yurucamp.mallsystem.model.ProductBean" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%!@SuppressWarnings("unchecked")%>
 <!DOCTYPE html>
 <html>
@@ -14,34 +15,41 @@
 <h2 class="bg-dark text-white">更新資料</h2>
 <a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 
-<form method="post" action="/MidtermMvc/UpdateProduct">
+<form method="post" action="<c:url value='/Product/UpdateProductinfo'/>">
 
 <table><th class="bg-dark text-white">欲更新商品資料<th class="bg-dark text-white">更新後商品資料<tr><td>
 <table align="left" class="table table-dark table-striped">
 
-	<jsp:useBean id="pdbs" scope="request" class="com.yurucamp.mallsystem.model.ProductBean"/>
-	<tr><td>輸入產品編號 :<td><input type="text" name="productId" readonly="readonly" value="${pdbs.productId}" />
-	<tr><td>輸入產品 :<td><input type="text" name="product" value="${pdbs.product}" />
-	<tr><td>輸入品牌 :<td><input type="text" name="brand" value="${pdbs.brand}" />
-	<tr><td>輸入價格 :<td><input type="text" name="price" value="${pdbs.price}" />
-	<tr><td>輸入廠商產品編號 :<td><input type="text" name="productNo" value="${pdbs.productNo}" />
-	<tr><td>輸入數量 :<td><input type="text" name="stock" value="${pdbs.stock}" />
-	<tr><td>輸入種類 :<td><input type="text" name="category" value="${pdbs.category}" />
-	<tr><td>輸入廠商代碼 :<td><input type="text" name="brandId" value="${pdbs.brandId}"/>
-</table>
+	<tr><td>產品編號 :<td><input type="text" name="id" readonly="readonly" value="${productBean.id}" />
+	<tr><td>產品 :<td><input type="text" name="name" readonly="readonly" value="${productBean.name}" />
+	<tr><td>更新→價錢 :<td><input type="text" name="price" value="${productBean.price}" />
+	<tr><td>品牌 :<td><input type="text" name="brand" readonly="readonly" value="${productBean.brand}" />
+	<tr><td>圖片 :<td><input type="text" name="image" readonly="readonly" value="${productBean.image}" />
+	<tr><td>瀏覽次數 :<td><input type="text" name="webTraffic"  readonly="readonly" value="${productBean.webTraffic}" />
+	<tr><td>更新→商品陳述 :<td><input type="text" name="description" value="${productBean.description}" />
+	<tr><td>更新→庫存:<td><input type="text" name="stock" value="${productBean.stock}"/>
+	<tr><td>種類 :<td><input type="text" name="category"  readonly="readonly" value="${productBean.category}"/>
+	<tr><td>狀態 :<td><input type="text" name="status" readonly="readonly" value="${productBean.status}"/>
+	<tr><td>建立日期 :<td><input type="text" name="createtime" value="<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/>"/>
+	<tr><td>修改日期 :<td><input type="text" name="updatetime" value="<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/>"/>
+	
+</table>		
 
-
-	<td>		
-	<jsp:useBean id="pdb" scope="request" class="com.yurucamp.mallsystem.model.ProductBean"/>
+	<td>
 	<table align="left" class="table table-dark table-striped">
-	<tr><td>產品編號<td><input type="text" disabled value="${pdb.productId}">
-	<tr><td>產品<td><input type="text" disabled value="${pdb.product}">
-	<tr><td>品牌<td><input type="text" disabled value="${pdb.brand}">
-	<tr><td>價格<td><input type="text" disabled value="${pdb.price}">
-	<tr><td>廠商產品編號<td><input type="text" disabled value="${pdb.productNo}">
-	<tr><td>數量<td><input type="text" disabled value="${pdb.stock}">
-	<tr><td>種類<td><input type="text" disabled value="${pdb.category}">
-	<tr><td>廠商代碼<td><input type="text" disabled value="${pdb.brandId}">
+	<tr><td>產品編號 :<td><input type="text" disabled value="${productBeaninfo.id}" />
+	<tr><td>產品 :<td><input type="text" disabled value="${productBeaninfo.name}" />
+	<tr><td>價錢 :<td><input type="text" disabled value="${productBeaninfo.price}" />
+	<tr><td>品牌 :<td><input type="text" disabled value="${productBeaninfo.brand}" />
+	<tr><td>圖片 :<td><input type="text" disabled value="${productBeaninfo.image}" />
+	<tr><td>瀏覽次數 :<td><input type="text" disabled value="${productBeaninfo.webTraffic}" />
+	<tr><td>商品陳述 :<td><input type="text" disabled value="${productBeaninfo.description}" />
+	<tr><td>數量:<td><input type="text" disabled value="${productBeaninfo.stock}"/>
+	<tr><td>種類 :<td><input type="text" disabled value="${productBeaninfo.category}"/>
+	<tr><td>狀態 :<td><input type="text" disabled value="${productBeaninfo.status}"/>
+	<tr><td>建立日期 :<td><input type="text" disabled value="<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBeaninfo.createtime}"/>"/>
+	<tr><td>修改日期 :<td><input type="text" disabled value="<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBeaninfo.updatetime}"/>"/>
+	
 	</table>
 <!-- </form> -->
 </table>
@@ -49,7 +57,7 @@
 			<input type="submit" value="新增" class="btn btn-primary" />
 			<input type="reset" value="取消" class="btn btn-primary" />
 </form><br>
-<button onclick="location.href='/MidtermMvc/GetAllProduct'" class="btn btn-primary">繼續更改其它資料</button><br>
+<a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">繼續更改其它資料</a>
 </div>
 </body>
 </html>

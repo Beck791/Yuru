@@ -61,6 +61,15 @@ public class PorductService {
 
 
 	public ProductBean queryOne(int id) throws SQLException {
+		
+		ProductBean productBean =productDao.queryOne(id);
+		
+		BrandBean brandBean = brandDao.queryOne(productBean.getBrandId());
+		productBean.setBrand(brandBean.getName());
+		
+		ItemStatus itemStatus = productDao.queryOneStatus(productBean.getStatusId());
+		productBean.setStatus(itemStatus.getName());;
+		
 		return productDao.queryOne(id);
 	}
 
@@ -75,7 +84,18 @@ public class PorductService {
 	}
 	
 	public List<ProductBean> querypage() throws SQLException{
-		return productDao.querypage();
+		
+		List<ProductBean> list = productDao.querypage();
+		for (ProductBean productBean : list) {
+		
+			BrandBean brandBean = brandDao.queryOne(productBean.getBrandId());
+			productBean.setBrand(brandBean.getName());
+			
+			ItemStatus itemStatus = productDao.queryOneStatus(productBean.getStatusId());
+			productBean.setStatus(itemStatus.getName());;
+		}
+			
+		return list;
 	}
 
 }
