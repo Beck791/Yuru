@@ -28,27 +28,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.css" rel="stylesheet"  />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.print.css" rel="stylesheet" media="print">
-
-
-
 </head>
 <body class="cm-no-transition cm-1-navbar">
 <jsp:include page="/WEB-INF/pages/Backstage/top.jsp" />     
  <div id="global">
 	 <div class="container-fluid">
 	 	<div class="container">
-	 	
-	 	 <div id="example"></div>
- 
-	 	
-	 	
+	 	 	<div id="example"></div>
 	 	</div>
 	</div>
 </div>
-
-
 <script>
-	
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
@@ -65,106 +55,108 @@
   		defaultDate: date, // 起始日期
   		weekends: true, // 顯示星期六跟星期日
   		editable: true,  // 啟動拖曳調整日期
+  		eventDrop: function(event, delta, revertFunc) {
+  		    var data = new Object();
+  		    data.id = event.id;
+			data.start = event.start.format();
+			data.end = event.end.format();
+  		   $.ajax({
+  	            url: '/yurucamp/Backstage/calendarUpdate',
+  	            type: 'POST',
+  	            dataType: 'json',
+  	     	    data : data,
+  	            success: function(result) {
+//  	            	bootbox.alert(result.msg);
+  	            }
+  	        });
+  		  },
 		selectable: true,
 		selectHelper: true,
 		select: function(start, end, allDay) {
-			bootbox.prompt("start"+start+"end"+end, function(title) {
-				if (title !== null) {
-					$( "#example" ).fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay,
-							className: 'label-info'
-						},
-						true // make the event "stick"
-					);
-				}
-			});
-			calendar.fullCalendar('unselect');
+			  bootbox.prompt("新增行事曆:", function(title) {
+				  if (title !== null) {
+				  var data = new Object();
+					data.start = start.format();
+					data.end = end.format();
+					data.title = title;
+					  $.ajax({
+				            url: '/yurucamp/Backstage/calendarInsert',
+				            type: 'POST',
+				            dataType: 'json',
+				            data : data,
+				            success: function(result) {
+				            	bootbox.alert(result.msg);
+				            	window.location.reload();
+				            }
+				        });
+				  }
+			  });
+// 			$( "#example" ).fullCalendar('unselect');
 		},
-		
 		eventClick: function(calEvent, jsEvent, view) {
-			//display a modal
-			var modal = 
-			'<div class="modal fade">\
-			  <div class="modal-dialog">\
-			   <div class="modal-content">\
-				 <div class="modal-body">\
-				   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
-				   <form class="no-margin">\
-					  <label>Change event name &nbsp;</label>\
-					  <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-					 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
-				   </form>\
-				 </div>\
-				 <div class="modal-footer">\
-					<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
-					<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
-				 </div>\
-			  </div>\
-			 </div>\
-			</div>';
-		
-		
-			var modal = $(modal).appendTo('body');
-			modal.find('form').on('submit', function(ev){
-				ev.preventDefault();
-
-				calEvent.title = $(this).find("input[type=text]").val();
-				$( "#example" ).fullCalendar('updateEvent', calEvent);
-				modal.modal("hide");
-			});
-			modal.find('button[data-action=delete]').on('click', function() {
-				$( "#example" ).fullCalendar('removeEvents' , function(ev){
-					return (ev._id == calEvent._id);
-				})
-				modal.modal("hide");
+		    var data = new Object();
+			data.id = calEvent.id;
+			
+			bootbox.confirm({
+				title: "Destroy planet?",
+			    message:  '<input class="middle" id="titleText" autocomplete="off" type="text" value="' + calEvent.title + '" /> '
+			    + '<button type="submit" id="Save" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> 更新</button>',
+			    buttons: {
+			        confirm: {
+			            label: '刪除',
+			            className: 'btn-danger'
+			        },
+			        cancel: {
+			            label: '取消',
+			            className: 'btn-default'
+			        }
+			    },
+			    callback: function (result) {
+			    	if(result){
+			    		   $.ajax({
+			   	            url: '/yurucamp/Backstage/calendarDelete',
+			   	            type: 'POST',
+			   	            dataType: 'json',
+			   	     	    data : data,
+			   	            success: function(result) {
+// 			   	            	bootbox.alert(result.msg);
+				            	window.location.reload();
+			   	            }
+			   	        });
+			    	}
+// 			        console.log('This was logged in the callback: ' + result);
+			    }
 			});
 			
-			modal.modal('show').on('hidden', function(){
-				modal.remove();
-			});
-
-			//console.log(calEvent.id);
-			//console.log(jsEvent);
-			//console.log(view);
-
-			// change the border color just for fun
-			//$(this).css('border-color', 'red');
-
+			$("#Save").on('click',function(){
+				data.start = calEvent.start.format();
+				data.end = calEvent.end.format();
+				data.title = $("#titleText").val();
+				   $.ajax({
+		   	            url: '/yurucamp/Backstage/calendarUpdate',
+		   	            type: 'POST',
+		   	            dataType: 'json',
+		   	     	    data : data,
+		   	            success: function(result) {
+			            	window.location.reload();
+		   	            }
+		   	        });
+				
+			})
 		},
-  		events: [ // 事件
-  			{ // 事件
-  				title: "約會",
-  				start: "2020-11-01"
-  			},
-  			{ // 事件(包含開始時間)
-  				title: "中餐",
-  				start: "2020-11-12T12:00:00"
-  			},
-  			{ // 事件(包含跨日開始時間、結束時間)
-  				title: "音樂節",
-  				start: "2020-11-07",
-  				end: "2020-11-10"
-  			},
-  			{ // 事件(包含開始時間、結束時間)
-  				title: "會議",
-  				start: "2020-10-12T10:30:00",
-  				end: "2020-11-12T12:30:00"
-  			},
-  			{ // 事件(設定連結)
-  				title: "Click for Google",
-  				url: "http://google.com/",
-  				start: "2020-11-28"
-  			}
-  		]
+		events: function(start, end, timezone, callback) {
+	        $.ajax({
+	            url: '/yurucamp/Backstage/calendarQuery',
+	            type: 'POST',
+	            dataType: 'json',
+	            success: function(doc) {
+// 	                console.log(doc);
+	                callback(doc);
+	            }
+	        });
+	    }
   	});
   </script>
-
-
-
 
 </body>
 </html>

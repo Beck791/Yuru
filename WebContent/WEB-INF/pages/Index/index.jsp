@@ -12,16 +12,13 @@
     <title>Yurucamp_index</title>
     <link rel="icon" href="img/yuruIcon.png" type="image/x-icon">
 	
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
-	
-    <!-- main css -->
-    <link href="<c:url value="/css/style.css" />" rel="stylesheet">
-
-
-    <!-- modernizr -->
-    <script src="js/modernizr.js"></script>
+	<!-- Bootstrap -->
+	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+	<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+	<!-- main css -->
+	<link href="<c:url value='/css/style.css' />" rel="stylesheet">
+	<!-- modernizr -->
+	<script src="<c:url value='/js/modernizr.js' />"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -240,17 +237,17 @@
 
 
 
-    <!-- jQuery -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <!--  plugins -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/animated-headline.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
+	<!-- jQuery -->
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
+	<!--  plugins -->
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
 
 
-    <!--  custom script -->
-    <script src="js/custom.js"></script>
+	<!--  custom script -->
+	<script src="<c:url value='/js/custom.js' />"></script>
     
     <!-- google analytics  -->
     <script>

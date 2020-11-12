@@ -36,6 +36,7 @@
 
 		<!-- backstage Area -->
 		<mapping class="com.yurucamp.backstage.model.Test" />
+		<mapping class="com.yurucamp.backstage.model.CalendarBean" />
 
 	</session-factory>
 </hibernate-configuration>

@@ -1,5 +1,5 @@
 package com.yurucamp.member.model.filter;
 
-public class MemberFilter {
-
+public class MemberFilter  {
+	
 }

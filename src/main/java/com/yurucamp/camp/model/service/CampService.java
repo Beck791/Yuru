@@ -18,7 +18,7 @@ public class CampService {
 	private CampDao campDao;
 
 	public CampInfo saveCamp(CampInfo campInfo) throws SQLException {
-		return campDao.saveCamp(campInfo);
+		return campDao.saveOrUpdate(campInfo);
 	}
 
 	public CampInfo queryCamp(Integer id) throws SQLException {
@@ -29,8 +29,8 @@ public class CampService {
 		return campDao.queryAllCamp();
 	}
 
-	public void deleteCamp() throws SQLException {
-		campDao.deleteCamp();
+	public void deleteCamp(Integer id) throws SQLException {
+		campDao.deleteCamp(id);
 	}
 	
 }

@@ -30,6 +30,7 @@ public class CampController {
 	@RequestMapping(value = "/CampSite/Insert", method = RequestMethod.POST)
 	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
 			throws SQLException {
+		ci.getCampDetail();
 		service.saveCamp(ci);
 		System.out.println("Already Save Object.id = " + ci.getName());
 		return "QueryOneCamp";
@@ -53,7 +54,8 @@ public class CampController {
 
 	@RequestMapping(value = "/CampSite/DeleteOne", method = RequestMethod.GET)
 	public String DeleteOne(Model model) throws SQLException {
-		service.deleteCamp();
+		int id = 1;
+		service.deleteCamp(id);
 		return "CampSiteIndex";
 	}
 

@@ -5,26 +5,30 @@ import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "CampDetail")
+@Table(name = "campDetail")
 @Component
 public class CampDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@GenericGenerator(name = "generator", strategy = "foreign", 
+	parameters = @Parameter(name="property", value = "campInfo"))
 	@Id
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "campInfoId")
-	private Integer campInfoId;
 
 	@Column(name = "closed")
 	private String closed;
@@ -46,21 +50,24 @@ public class CampDetail implements Serializable {
 
 	@Column(name = "types")
 	private String types;
-	
+
 	@Column(name = "waterHeater")
 	private String waterHeater;
 
 	@Column(name = "hashTag")
 	private String hashTag;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	private CampInfo campInfo;
 	
 	public CampDetail() {
 	}
 
-	public CampDetail(Integer id, Integer campInfoId, String closed, Blob image, String power, String signal,
-			String equipment, String parking, String types, String waterHeater, String hashTag) {
+	public CampDetail(Integer id, String closed, Blob image, String power, String signal, String equipment,
+			String parking, String types, String waterHeater, String hashTag) {
 		super();
 		this.id = id;
-		this.campInfoId = campInfoId;
 		this.closed = closed;
 		this.image = image;
 		this.power = power;
@@ -78,14 +85,6 @@ public class CampDetail implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getCampInfoId() {
-		return campInfoId;
-	}
-
-	public void setCampInfoId(Integer campInfoId) {
-		this.campInfoId = campInfoId;
 	}
 
 	public String getClosed() {
@@ -160,5 +159,4 @@ public class CampDetail implements Serializable {
 		this.hashTag = hashTag;
 	}
 
-	
 }

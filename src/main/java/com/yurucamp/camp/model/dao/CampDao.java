@@ -25,7 +25,7 @@ public class CampDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public CampInfo saveCamp(CampInfo campInfo) throws SQLException {
+	public CampInfo saveOrUpdate(CampInfo campInfo) throws SQLException {
 		sessionFactory.getCurrentSession().saveOrUpdate(campInfo);
 		return campInfo;
 	}
@@ -41,11 +41,10 @@ public class CampDao {
 		return list;
 	}
 	
-	public void deleteCamp() throws SQLException {
-		int n = 1;
+	public void deleteCamp(Integer id) throws SQLException {
 		Session session = sessionFactory.getCurrentSession();
 		CampInfo ci = new CampInfo();
-		ci.setId(n);
+		ci.setId(id);
 		session.delete(ci);
 	}
 

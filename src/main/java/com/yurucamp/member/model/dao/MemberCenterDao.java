@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.member.model.MemberBean;
@@ -30,9 +31,8 @@ public class MemberCenterDao {
 		System.out.println(hql);
 		MemberBean memberBean= (MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult();
 //		String memberId = memberBean.getMemberId();
-		return memberBean ;	
+		return memberBean ;	 
 
-	} 
-	
+	}
 
 }

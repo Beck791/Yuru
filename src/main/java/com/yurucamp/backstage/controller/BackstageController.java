@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yurucamp.backstage.model.CalendarBean;
 import com.yurucamp.backstage.model.Test;
 import com.yurucamp.backstage.service.BackstageService;
 import com.yurucamp.member.model.MemberBean;
@@ -67,8 +71,53 @@ public class BackstageController {
 	public String backstageMemberSearc(Model model,String Account) throws SQLException {
 		List<MemberBean> memberData = backstageService.getMember(Account);
 		String json = JSONArray.toJSONString(memberData);
+		System.out.println("json"+json);
+		return json;
+	}
+	
+	@PostMapping("/calendarQuery")
+	@ResponseBody
+	public String backstageCalendarQuery(HttpServletRequest request) throws SQLException {
+		HttpSession session = request.getSession();
+		List<CalendarBean> calendarQuery = backstageService.getCalendarQuery((String) session.getAttribute("memberId"));
+		String json = JSONArray.toJSONString(calendarQuery);
 		
 		return json;
+	}
+	
+	@PostMapping("/calendarInsert")
+	@ResponseBody
+	public Map<String, String> backstageCalendarInset(HttpServletRequest request,String start,String end,String title) throws SQLException {
+		Map<String, String> rtnMap = new HashMap<String, String>();
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		backstageService.CalendarInsert(memberId,start,end,title);
+		rtnMap.put("msg", "新增成功");
+		return rtnMap;
+	}
+	
+	
+	@PostMapping("/calendarDelete")
+	@ResponseBody
+	public Map<String, String> backstageCalendarDelete(Integer id) throws SQLException {
+		Map<String, String> rtnMap = new HashMap<String, String>();
+		backstageService.CalendarDelete(id);
+		rtnMap.put("msg", "刪除成功");
+		return rtnMap;
+	}
+	
+	@PostMapping("/calendarUpdate")
+	@ResponseBody
+	public Map<String, String> backstageCalendarUpdate(Integer id,String start,String end,String title) throws SQLException {
+		System.out.println("id"+id);
+		System.out.println("start"+start);
+		System.out.println("end"+end);
+		System.out.println("title"+title);
+		backstageService.CalendarUpdate(id,start,end,title);
+		Map<String, String> rtnMap = new HashMap<String, String>();
+//		backstageService.CalendarDelete(id);
+		rtnMap.put("msg", "更新成功");
+		return rtnMap;
 	}
 	
 	
