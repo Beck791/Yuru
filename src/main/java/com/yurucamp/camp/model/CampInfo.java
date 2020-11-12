@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,9 @@ public class CampInfo implements Serializable {
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "campInfo", cascade = CascadeType.ALL)
 	private CampDetail campDetail;
+	
+	@Transient
+	private CampDetail campDetail1;
 
 	public CampInfo() {
 	}
