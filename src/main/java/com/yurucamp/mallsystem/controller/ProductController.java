@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.yurucamp.general.moder.service.GeneralService;
 import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.service.BrandService;
@@ -29,6 +31,9 @@ public class ProductController {
 
 	@Autowired
 	BrandService brandService;
+	
+	@Autowired
+	GeneralService generalService ;
 
 	// 商城首頁
 	@GetMapping(value = "/Product/Index")
@@ -60,7 +65,7 @@ public class ProductController {
 	public String InsertProduct(@RequestParam("name") String name,
 								@RequestParam("brand") String brandname,
 								@RequestParam("price") Integer price,
-								@RequestParam("image") String image,
+								@RequestParam("image") MultipartFile image,
 								@RequestParam("description") String description,
 								@RequestParam("status") String status,
 								@RequestParam("stock") Integer stock,
@@ -69,7 +74,7 @@ public class ProductController {
 		productBean.setName(name);
 		productBean.setBrandId(brandService.queryId(brandname));
 		productBean.setPrice(price);
-		productBean.setImage(image);
+		productBean.setImage(generalService.uploadToImgur(image));
 		productBean.setDescription(description);
 		productBean.setStatusId(productService.queryId(status));
 		productBean.setStock(stock);
@@ -119,6 +124,48 @@ public class ProductController {
 
 		return "mallSystemUpdateProduct";
 	}
+	
+	// 後臺上架商品
+//		@PostMapping("/Product/UpdateProductinf")
+		public String PutOnShelfProduct(@RequestParam("id") Integer id, 
+									   @RequestParam("price") Integer price, 
+									   @RequestParam("stock") Integer stock,
+									   @RequestParam("description") String description ,Model model) throws SQLException {
+			ProductBean productBean = new ProductBean();	
+			productBean.setId(id);
+			productBean.setPrice(price);
+			productBean.setStock(stock);
+			productBean.setDescription(description);
+			productService.update(productBean);
+			productBean = productService.queryOne(id);
+
+			
+			model.addAttribute("productBeaninfo", productBean);
+
+			return "mallSystemUpdateProduct";
+		}
+		
+		// 後臺下架商品
+//		@PostMapping("/Product/UpdateProductin")
+		public String OffShelfProduct(@RequestParam("id") Integer id, 
+				@RequestParam("price") Integer price, 
+				@RequestParam("stock") Integer stock,
+				@RequestParam("description") String description ,Model model) throws SQLException {
+			ProductBean productBean = new ProductBean();	
+			productBean.setId(id);
+			productBean.setPrice(price);
+			productBean.setStock(stock);
+			productBean.setDescription(description);
+			productService.update(productBean);
+			productBean = productService.queryOne(id);
+			
+			
+			model.addAttribute("productBeaninfo", productBean);
+			
+			return "mallSystemUpdateProduct";
+		}
+	
+	
 	
 	// 後臺查詢所有廠牌
 	@GetMapping(value = "/Product/GetAllBrand")

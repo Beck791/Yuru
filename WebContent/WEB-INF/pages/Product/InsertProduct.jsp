@@ -19,12 +19,12 @@
 
 	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
-	<form method="post"  id="imgur" action="<c:url value='/Product/InsertProductinfo' />">
+	<form method="post"  id="imgur" enctype="multipart/form-data" action="<c:url value='/Product/InsertProductinfo'/>">
 	 <table class="btn btn-secondary">
 		<tr><td>輸入產品 :<td><input type="text" name="name" />
 		<tr><td>輸入品牌 :<td><input type="text" value="犀牛" name="brand" />
 		<tr><td>輸入價格 :<td><input type="text" value="888" name="price" />
-		<tr><td>上傳圖片 :<td><input type="text" value="888" name="image" >
+		<tr><td>上傳圖片 :<td><input type="file" name="image" >
 		<tr><td>輸入產品內容 :<td><input type="text" value="產品內容" name="description" />
 		<tr><td>輸入產品狀態:<td><input type="text" value="上架中" name="status" />
 		<tr><td>輸入庫存數量 :<td><input type="text" value="50" name="stock" />
@@ -49,7 +49,7 @@
 <td>${productBean.name}</td>	
 <td>${productBean.price}</td>
 <td>${productBean.brand}</td>
-<td>${productBean.image}</td>
+<td><img src="${productBean.image}"></td>
 <td>${productBean.webTraffic}</td>
 <td>${productBean.description}</td>
 <td>${productBean.stock}</td>

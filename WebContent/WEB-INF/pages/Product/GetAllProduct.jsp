@@ -28,13 +28,14 @@
 	 <span class="sp" id="idspName" style="color:red"></span><br>
 	<font color='red' size="-1">${errorMsg.productId}</font>
 	</form>
-		
+<div>	
 <table class="table table-dark table-striped" border="1">
 <tr style="background-color:#7A0099">
 <th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
 <c:forEach var="productBean" items="${productBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
+
 <form method="post" id="form1"  action="">
 <input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${productBean.id}')" />	
 <input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${productBean.id}')" />	
@@ -56,6 +57,7 @@
 </c:forEach>
 </table>
 <h3>共${productBeans.size()}筆員工資料</h3>
+</div>	
 </div>
 <script>
 
