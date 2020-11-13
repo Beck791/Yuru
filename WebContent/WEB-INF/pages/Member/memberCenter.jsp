@@ -58,14 +58,20 @@ img {
 	height: 50px;
 	border: 1px solid red;
 }
+
+.munuinf{
+	width: 50%;
+	margin: 0 auto;
+	margin-top:20px;
+	border:2px solid #DDDDDD;
+	border-radius:20px;
+}
 </style>
 </head>
 
 <body>
 
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
-
-
 
 	<div class="jumbotron jumbotron-fluid"
 		style="width: 90%; margin: 0 auto; margin-top: 110px; height: 200px; background-color: white;">
@@ -87,100 +93,160 @@ img {
 			</tr>
 		</table>
 	</div>
-<br><hr>
+<br>
+<div id="A"></div>
+	<div style="background-color:#AAAAAA">
+	<ul class="nav nav-tabs" style="width: 80%; margin: 0 auto; margin-top: 20px" >
+        <li><a data-toggle="tab" href="#menu1"  style="color:black">個人資料</a></li>
+        <li><a data-toggle="tab" href="#menu2" style="color:black">會員升級</a></li>
+        <li><a data-toggle="tab" href="#menu3" style="color:black">歷史訂單</a></li>
+        <li><a data-toggle="tab" href="#menu4" style="color:black">歷史發文</a></li>
+    </ul>
+    </div>
+        
+    <div class="tab-content"  >
+            <div id="home" class="tab-pane fade in active" style="width: 80%;margin: 0 auto;height:0px;">
+      		<h3></h3>
+      		<p></p>
+    	</div>
+        <div id="menu1" class="tab-pane fade munuinf" >
+			<h3 style="text-align:center">個人資料</h3><br>
+			<table class="table" style="text-align:left">
+			  <tbody>
+			    <tr >
+					<td style="text-align:right;width:250px;">姓名:</td>
+					<td><input type="text" name="name" id="name" path="name" value="${MemberBean.name}"></td>
+			    	<td></td>
+			    </tr>
+			    <tr>
+					<td style="text-align:right;width:200px">密碼:</td>
+					<td><input type="password" name="password" id="password"
+									path="password" value="${MemberBean.password}"></td>
+					<td></td>		    
+			    </tr>
+			    <tr>
+					<td style="text-align:right;width:200px">性別:</td>
+					<td><input type="text" name="gender" id="gender"
+									path="gender" value="${MemberBean.gender}"></td>
+					<td></td>
+			    </tr>
+			    <tr>
+					<td style="text-align:right;width:200px">生日:</td>
+					<td><input type="text" name="birthday" id="birthday"
+						path="birthday" value="${MemberBean.birthday}"></td>
+					<td></td>
+				</tr>
+				<tr >
+					<td style="text-align:right;width:200px">電話:</td>
+					<td><input type="text" name="phone" id="phone" path="phone"
+						value="${MemberBean.phone}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;width:200px">地址:</td>
+					<td><input type="text" name="address" id="address" path="address"
+						value="${MemberBean.address}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;width:200px">mail:</td>
+					<td><input type="text" name="mail" id="mail" path="mail"
+						value="${MemberBean.mail}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;width:200px"></td>
+					<td><br><button type="button" class="btn btn-light">更新資訊</button></td>
+					<td></td>
+				</tr>
+			  </tbody>
+			</table>
+        </div>
+        <div id="menu2" class="tab-pane fade munuinf">
+            <h3>${MemberBean.memberId}</h3>
+            <div>
+            	<input type="radio" name="pay" value="pay" />會員升級 NT$500/年 <br>
+           		<button>確認</button>
+            </div>
+        </div>
+        <div id="menu3" class="tab-pane fade munuinf" >
+            <h3>Menu 3</h3>
+            <p>Some content in menu 3.</p>
+        </div>
+        <div id="menu4" class="tab-pane fade munuinf">
+            <h3>Menu 4</h3>
+            <p>Some content in menu 4.</p>
+        </div>
+    </div>
+    
+<body>
 
-	<table
-		style="width: 90%; margin: 0 auto; margin-top: 30px">
-		<tr>
-			<td style="vertical-align: text-top;">
-				<div style="width: 80%">
-					<ul class="nav flex-column">
-						<li class="active" style="background-color:	#BEBEBE"><a href="#">個人資料</a></li>
-						<li><a href="#">訂單資訊</a></li>
-						<li><a href="#">歷史發文</a></li>
-					</ul>
-				</div>
-			</td>
-			<td style="vertical-align: text-buttom">
-				<div 
-					style="width: 90%;border: 1px solid #D0D0D0; background-color: white; height: 500px; width: 90%;border-style: hidden">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>	
 
-					<form:form  method="Post" action="Insert" modelAttribute="memInfo">
-						<!--action="Controller名字"(Controller自己取的) modelAttribute="隨便名稱"(後端要對應)   -->
-						<table class="table" style="float: right;border-style: hidden" >
+<!--             <h3 style="text-align:center">會員資料</h3> -->
+<!--             <div style="width: 90%;border: 1px solid #D0D0D0;"> -->
+
+<%-- 					<form:form  method="Post" action="Insert" modelAttribute="memInfo"> --%>
+<!-- 						action="Controller名字"(Controller自己取的) modelAttribute="隨便名稱"(後端要對應)   -->
+<!-- 						<table class="table" style="float: right;border:2px solid black" > -->
 <!-- 							<tr style="border-style: hidden"> -->
-<!-- 								<td style="float: right;border-style: hidden">帳號:</td> -->
-<!-- 								<td><input type="text" name="memberId" id="memberId" -->
-<%-- 									path="memberId" value="${MemberBean.memberId}"></td> --%>
+<!-- 								<td style="float: right;">姓名:</td> -->
+<!-- 								<td><input type="text" name="name" id="name" path="name" -->
+<%-- 									value="${MemberBean.name}"></td> --%>
 <!-- 								<td></td> -->
 <!-- 							</tr> -->
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">姓名:</td>
-								<td><input type="text" name="name" id="name" path="name"
-									value="${MemberBean.name}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">密碼:</td>
-								<td><input type="password" name="password" id="password"
-									path="password" value="${MemberBean.password}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">性別:</td>
-								<td><input type="text" name="gender" id="gender"
-									path="gender" value="${MemberBean.gender}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">生日:</td>
-								<td><input type="text" name="birthday" id="birthday"
-									path="birthday" value="${MemberBean.birthday}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">電話:</td>
-								<td><input type="text" name="phone" id="phone" path="phone"
-									value="${MemberBean.phone}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">地址:</td>
-								<td><input type="text" name="address" id="address" path="address"
-									value="${MemberBean.address}"></td>
-								<td></td>
-							</tr>
-							<tr style="border-style: hidden">
-								<td style="float: right;border-style: hidden">mail:</td>
-								<td><input type="text" name="mail" id="mail" path="mail"
-									value="${MemberBean.mail}"></td>
-								<td></td>
-							</tr>
-							
-
-
-		</table>
-		<div >
-		<input type="reset" value="更新資訊">
-		</div>
-		</form:form>
-		</div>
-		</td>
-		</tr>
-	</table>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
+<!-- 							<tr "> -->
+<!-- 								<td style="float: right;border-style: hidden">密碼:</td> -->
+<!-- 								<td><input type="password" name="password" id="password" -->
+<%-- 									path="password" value="${MemberBean.password}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td style="float: right">性別:</td> -->
+<!-- 								<td><input type="text" name="gender" id="gender" -->
+<%-- 									path="gender" value="${MemberBean.gender}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td style="float:right;">生日:</td> -->
+<!-- 								<td><input type="text" name="birthday" id="birthday" -->
+<%-- 									path="birthday" value="${MemberBean.birthday}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr > -->
+<!-- 								<td style="float: right;border-style: hidden">電話:</td> -->
+<!-- 								<td><input type="text" name="phone" id="phone" path="phone" -->
+<%-- 									value="${MemberBean.phone}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td style="float: right;border-style: hidden">地址:</td> -->
+<!-- 								<td><input type="text" name="address" id="address" path="address" -->
+<%-- 									value="${MemberBean.address}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td style="float: right;border-style: hidden">mail:</td> -->
+<!-- 								<td><input type="text" name="mail" id="mail" path="mail" -->
+<%-- 									value="${MemberBean.mail}"></td> --%>
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<!-- 		</table> -->
+<!-- 		<div > -->
+<!-- 		<input type="reset" value="更新資訊"> -->
+<!-- 		</div> -->
+<%-- 		</form:form> --%>
+<!-- 		</div> -->
 
 
 </body>

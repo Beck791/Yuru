@@ -6,19 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>YURU.camp</title>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <!-- //匯入bootstrap -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- //匯入jQuery -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!-- //匯入bootstrap javascript -->
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
-<script
-	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
+<script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
+<!-- //下2:裁切相片 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" rel="stylesheet"></link>
+
+	<style>
+	
+	.mempic{
+ 		display:inline-block; 
+ 		width:200px; 
+		height:200px; 
+/*  	overflow:hidden;  */ 
+ 		-webkit-clip-path:circle(50% at 50% 50%);
+	}
+	
+	#imgshow {
+ 		max-width:300px; 
+ 		max-height:300px;	 
+/*  		-webkit-clip-path:circle(50% at 50% 50%); */
+/* 		border:1px solid pink; 
+/* 		myimg:expression(onload=function(){ */
+/* 		this.style.width=(this.offsetWidth > 250)?"250px":auto */
+/* 		this.style.height=(this.offsetHeight > 250)?auto:"250px"}); */
+	/* 	border-radius:50%; */
+	}
+	
+
+	
+	</style>
 
 </head>
 <body>
@@ -188,9 +212,51 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊<br>註冊
-				</div>
-				<div class="modal-footer">
+					<div style="width:50%;float:left;">
+					<div>
+						帳號:
+						<input type="text" name="Account" id="Account" autocomplete="off">
+					</div><br>
+					<div>
+						密碼:
+						<input type="Password" name="Password" id="Password" autocomplete="off"> 
+					</div><br>
+					<div autocomplete="off">
+						姓名:
+						<input type="text" name="Password" id="Password" autocomplete="off"> 
+					</div><br>
+					<div>
+						性別:&nbsp;&nbsp;
+						<input type="radio" name="sex" value="M" /> 男生
+						<input type="radio" name="sex" value="F" /> 女生
+					</div><br>
+					<div>
+						生日:&nbsp;&nbsp;
+						<input type="date" name="birthday" value="" max="tDate" class='limit-max-date'>
+					</div><br>
+					<div>
+						電話:
+						<input type="text" name="Password" id="Password" autocomplete="off"> 
+					</div><br>
+					<div>
+						地址:
+						<input type="text" name="Password" id="Password" autocomplete="off"> 
+					</div><br>
+					<div>
+						mail:
+						<input type="text" name="Password" id="Password" autocomplete="off"> 
+					</div><br></div>
+					<div style="width:50%;float:left;padding-left:40px;">
+						 照片：<br>
+						<div id="pox">
+						<input id="filed" type="file" accept="image/*"/>
+						</div><br>
+						<div id="box">
+						<span class="mempic" ><img id="imgshow" src="" alt=""/></span>
+						</div>
+	   	  			</div>
+					</div>
+				<div class="modal-footer" style="clear:both">
 					<a href='#' class="mr-auto" data-dismiss="modal"
 						data-toggle="modal" data-target="#loginModal"
 						style="float: left; color: black;">已經有帳號，直接登入</a>
@@ -198,15 +264,12 @@
 						data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-primary"
 						style="background-color: #dbcf83; border-color: #dbcf83; color: black;">註冊</button>
-				</div>
-			</div>
+				</div>			
 		</div>
+	</div>
 	</div>
 
 	<script>
-		// 	$("#out").click(function() {
-		<%-- 	<%session.invalidate();%> --%>
-		// 		});
 
 		$("#icon").click(function(){
 			$("#ermsg").html("");
@@ -226,7 +289,6 @@
 				dataType : 'json',
 				data : data
 			}).done(function(result) {
-// 				bootbox.alert(result.msg);
 				if(result.msg== "登入成功!"){ 
 					$("#loginModal").click();
 					window.location.reload()
@@ -259,6 +321,62 @@
 			$("#Account").val("M004");
 			$("#Password").val("M004");
 		});
+		
+		//在input file內容改變的時候觸發事件
+		$('#filed').change(function(){
+		//獲取input file的files檔案陣列;
+		//$('#filed')獲取的是jQuery物件，.get(0)轉為原生物件;
+		//這邊預設只能選一個，但是存放形式仍然是陣列，所以取第一個元素使用[0];
+		var file = $('#filed').get(0).files[0];
+		//建立用來讀取此檔案的物件
+		var reader = new FileReader();
+		//使用該物件讀取file檔案
+		reader.readAsDataURL(file);
+		//讀取檔案成功後執行的方法函式
+		reader.onload=function(e){
+		//讀取成功後返回的一個引數e，整個的一個進度事件
+		console.log(e);
+		//選擇所要顯示圖片的img，要賦值給img的src就是e中target下result裡面
+		//的base64編碼格式的地址
+		$('#imgshow').get(0).src = e.target.result;
+		}
+		})
+		
+
+		$(document).keydown(function(event){
+		var keyNum = event.which;  //獲取鍵值
+		var Item = $('#imgshow');  //要移動的元素
+		Item.css({position:'relative'}); //設定position
+		switch(keyNum){ //判斷按鍵
+		case 37: Item.animate({left:'-=10px'});break;
+		case 38: Item.animate({top:'-=10px'});break;
+		case 39: Item.animate({left:'+=10px'});break;
+		case 40: Item.animate({top:'+=10px'});break;
+		case 90: Item.animate({width:'+=5px'});break;
+		case 89: Item.animate({width:'-=5px'});break;
+		default:
+		break;
+		}
+
+		});
+ 
+		var input1 = document.querySelector('.limit-max-date');
+		// 今天的日期
+		var tDate  = (function(){
+		     var date = new Date();
+		    var seperator1 = "-";
+		    var month = date.getMonth() + 1; //月
+		    var strDate = date.getDate(); //日
+		    if (month >= 1 && month <= 9) {
+		        month = "0" + month;
+		    }
+		    if (strDate >= 0 && strDate <= 9) {
+		        strDate = "0" + strDate;
+		    }
+		    return date.getFullYear() + seperator1 + month + seperator1 + strDate
+		})()
+		input1.setAttribute('max',tDate)
+		
 	</script>
 
 </body>
