@@ -52,7 +52,7 @@
 	<div style="width: 70%; margin: 1% 1% 1% 2%; float: left;">
 		<div class="panel panel-default" id="main" style="">
 			<div class="panel-heading" style="background-color: white">
-				<a href="<c:url value='/Forum/forumIndex' />">${ForumBean}</a> › 新主題
+				<a href="<c:url value='/Forum/forumIndex' />">${ForumBean.forumName}</a> › 新主題
 			</div>
 
 			<div class="panel-body">
@@ -65,8 +65,8 @@
 							/>
 					</div>
 					<div class="">
-						<label class="t1" for="content" path="poContent">正文</label>
-						<textarea name="contentforckeditor" rows="10" cols="10" placeholder="請輸入正文"></textarea>
+						<label class="t1" for="content" path="poContent">主題內容</label>
+						<textarea name="contentforckeditor" rows="10" cols="10" placeholder="請輸入主題內容"></textarea>
 					</div>
 					
 					
