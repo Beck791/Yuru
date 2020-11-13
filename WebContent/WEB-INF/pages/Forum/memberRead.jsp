@@ -117,11 +117,8 @@
 									</li>
 									<li class="">
 										<div class="">
-											<label for="" class=""> <input
-												type="" id="" class=""
-												data-id="">
-												<div class=""></div> <span
-												class="">收藏</span>
+											<label for="" class=""> <input type="" id="" class="" data-id="">
+												<div class=""></div> <span class="">收藏</span>
 											</label>
 										</div>
 									</li>
@@ -183,92 +180,8 @@
 					</div>
 
 	<!---------------------------------------------------------------------------->
-	<div class="l-articlePage">
-		<div class="l-articlePage__author">
-			<div class="l-author">
-				<div class="l-author">
-					<div class="l-author__info">
-						<div class="c-authorInfo">
-							<div class="c-authorInfo__pic c-authorInfo__picNew ">
-								<div class="c-memberPic c-memberPic--lg c-memberPic--xlNew">
-									<img
-										src="https://static.mobile01.com/avatar/bfd8138ce738600506b2e6a85a2b45ea.jpg"
-										alt="id104140alex">
-								</div>
-							</div>
-							<div class="c-authorInfo__id">
-								<a id="name_79681597" href="/userinfo.php?id=2498886"
-									class="c-link c-link--gn u-ellipsis"> id104140alex </a>
-							</div>
-							<div class="c-authorInfo__score">6676分</div>
-							<div class="c-authorInfo__tag">
-								<a href="#" class="o-hashtag is-notice">2樓</a>
-							</div>
-						</div>
-					</div>
-					<div class="l-author__card">
-						<div class="c-authorCard">
-							<div class="c-authorCard__top">
-								<div class="l-interact">
-									<div class="l-interact__pic">
-										<div class="c-memberPic c-memberPic--lg c-memberPic--lgNew">
-											<img
-												src="https://static.mobile01.com/avatar/bfd8138ce738600506b2e6a85a2b45ea.jpg"
-												alt="id104140alex">
-										</div>
-									</div>
-									<div class="l-interact__desc">
-										<div class="u-gapNextV--sm">
-											<a href="userinfo.php?id=2498886"
-												class="c-link c-link--gn u-ellipsis"> id104140alex </a>
-										</div>
-										<div class="u-gapNextV--sm">
-											<div class="o-fSubMini">個人積分：6676分</div>
-											<div class="o-fSubMini">文章編號：79681597</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="c-authorCard__btnGroup">
-								<div class="c-authorCardBtn">
-									<div class="c-authorCardBtn__item">
-										<a href="#" class="c-btn c-btn--icon c-btn--third"
-											onclick="pm(2498886);return false;"> <i
-											class="c-icon c-icon--btnReplyGy"></i> <span
-											class="o-fSubMini">訊息</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="l-articlePage__publish">
-			<div class="u-gapBottom--max c-articleLimit">
-				<a name="79681597"></a>
-				<article id="article_79681597"
-					class="u-gapBottom--max c-articleLimit">
-					"黃女直接在路口左轉"....一個銅板不會響!!<img class="lazy loaded"
-						data-src="//attach2.mobile01.com/images/emotions/dark/70.gif"
-						title="沒有不敬的意思"
-						src="//attach2.mobile01.com/images/emotions/dark/70.gif"
-						data-was-processed="true">...<b>有時要反省一下,每天路上幾萬人沒出車禍,為什麼有人就是會出車禍??</b>
-				</article>
-			
-								
-							</div>
-						
-				</div>
-			</div>
 	
-
-
-
-
-
-
+				
 
 
 

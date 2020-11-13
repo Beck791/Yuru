@@ -2,6 +2,7 @@ package com.yurucamp.forum.model;
 
 
 
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -11,12 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-
 @Entity @Component @Table(name="PostArticle")
 public class PostBean {
 	
@@ -27,7 +25,7 @@ public class PostBean {
 	@Column(name="memberId")
 	private String memberId;
 	@Column(name="forumId")
-	private String forumId;
+	private Integer forumId;
 	@Column(name="poTitle")
 	private String poTitle;
 	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
@@ -75,10 +73,10 @@ public class PostBean {
 		this.memberId = memberId;
 	}
 
-	public String getForumId() {
+	public Integer getForumId() {
 		return forumId;
 	}
-	public void setForumId(String forumId) {
+	public void setForumId(Integer forumId) {
 		this.forumId = forumId;
 	}
 	

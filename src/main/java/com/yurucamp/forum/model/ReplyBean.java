@@ -8,25 +8,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Component @Table(name="Reply")
+@Entity @Component @Table(name="ReplyArticle")
 public class ReplyBean {
 
 //	回覆文章
-	
+	@Id @Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private	Integer reId;
+	
+	@Column(name="memberId")
 	private String memberId;
+	
+	@Column(name="poId")
+	private Integer poId;
+	
+	@Column(name="reCreatTime")
 	private	Date reCreatTime;
+	
+	@Column(name="reUpDateTime")
 	private	Date reUpDateTime;
+	
+	@Column(name="reContent")
 	private	String reContent;
+	
+	@Column(name="reImage")
 	private	String reImage;
 	
 	
+	@Transient
+	private String name;
 	
-	@Id @Column(name="reId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	
+	
+	
+	
+	
+
 	
 	public Integer getReId() {
 		return reId;
@@ -36,7 +58,7 @@ public class ReplyBean {
 	}
 	
 	
-	@Column(name="memberId")
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -45,7 +67,6 @@ public class ReplyBean {
 	}
 	
 	
-	@Column(name="reCreatTime")
 	public Date getReCreatTime() {
 		return reCreatTime;
 	}
@@ -54,7 +75,6 @@ public class ReplyBean {
 	}
 	
 	
-	@Column(name="reUpDateTime")
 	public Date getReUpDateTime() {
 		return reUpDateTime;
 	}
@@ -62,8 +82,7 @@ public class ReplyBean {
 		this.reUpDateTime = reUpDateTime;
 	}
 	
-	
-	@Column(name="reContent")
+
 	public String getReContent() {
 		return reContent;
 	}
@@ -72,7 +91,6 @@ public class ReplyBean {
 	}
 	
 	
-	@Column(name="reImage")
 	public String getReImage() {
 		return reImage;
 	}
@@ -83,8 +101,20 @@ public class ReplyBean {
 	
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	
+	public Integer getPoId() {
+		return poId;
+	}
+	public void setPoId(Integer poId) {
+		this.poId = poId;
+	}
 	
 	
 }
