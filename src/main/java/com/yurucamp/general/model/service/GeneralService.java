@@ -1,4 +1,4 @@
-package com.yurucamp.general.moder.service;
+package com.yurucamp.general.model.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.yurucamp.general.moder.util.MultipartInputStreamFileResource;
+import com.yurucamp.general.model.util.MultipartInputStreamFileResource;
 
 @Service
 @Transactional

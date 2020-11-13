@@ -57,7 +57,7 @@
 
 			<div class="panel-body">
 				<div class=" panel-warning">
-				<form method="Post" action="<c:url value='/Forum/insert'/>"  >
+				<form method="Post" id="imgur" enctype="multipart/form-data" action="<c:url value='/Forum/insert'/>"  >
 					<div class="form-group">
 						<label class="t1" for="potitle" path="poTitle">主題標題</label>
 						<input type="text" class="form-control" id="poTitle"
@@ -67,8 +67,9 @@
 					<div class="">
 						<label class="t1" for="content" path="poContent">正文</label>
 						<textarea name="contentforckeditor" rows="10" cols="10" placeholder="請輸入正文"></textarea>
-						
 					</div>
+					
+					
 <!-- 					<div class="form-group"> -->
 <%-- 						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label> --%>
 <!-- 						<br /> -->

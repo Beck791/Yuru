@@ -10,16 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
 import com.yurucamp.forum.model.service.ArticleService;
+import com.yurucamp.general.model.service.GeneralService;
 
 @Controller
 public class ForumController {
 	
 	@Autowired
 	ArticleService articleService;
+	@Autowired
+	GeneralService generalService;
 
 	@RequestMapping("/Forum/Index")
 	public String ToClassifyPage() {
@@ -47,9 +51,9 @@ public class ForumController {
 	}
 	
 	@RequestMapping(value ="/Forum/insert", method = RequestMethod.POST)
-	public String Insert(  @RequestParam("poTitle")String poTitle,
+	public String Insert( 			@RequestParam("poTitle")String poTitle,
 									@RequestParam(value="contentforckeditor",required = false)String poContent,
-									@RequestParam(value="poImage",required = false)String poImage,								
+									@RequestParam(value="poImage",required = false)MultipartFile poImage,								
 									Model model) 
 	
 		throws SQLException {
@@ -57,7 +61,7 @@ public class ForumController {
 		PostBean postBean = new PostBean();
 		postBean.setPoTitle(poTitle);
 		postBean.setPoContent(poContent);
-		postBean.setPoImage(poImage);
+		postBean.setPoImage(generalService.uploadToImgur(poImage));
 		postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
 		postBean.setPoUpDateTime(null);
 		articleService.insertPost(postBean);
