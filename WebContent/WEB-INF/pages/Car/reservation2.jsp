@@ -18,6 +18,8 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- step css -->
+<link href="<c:url value='/css/stepstyle.css' />" rel='stylesheet' type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -37,16 +39,10 @@
 }
 
 .top-bar {
-	/*     color: #333; */
-	/*     padding: 150px 0 150px; */
 	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
 	background: linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
-	/*     background-size: cover;
-	/*     background-attachment: fixed; */
-	/*     background-position: center center; */
-	/*     text-align: center; */
 }
 
 h3 {
@@ -102,6 +98,39 @@ h3 {
 	<!-- end top bar -->
 
 	<!-- main container -->
+	
+	<br><br>
+	<div class="container reserve-car">
+    <section class="reserve-step">
+        <div class="reserve-step-group">
+            <ol>
+                <li class="step-success">
+                    <div class="step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">選擇地點、時間 </div>
+<!--                         <a href="javascript:void(0)" class="step-edit edit_reserve_location">重新選擇<i class="svg"></i></a> -->
+                </li>
+                <li class="step-success">
+                    <div class="step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">選擇車型、數量</div>
+                </li>
+                <li class="step-now">
+                    <div class="step-num step-circle">3</div>
+                    <div class="step-name">加購配件</div>
+                </li>
+                <li>
+                    <div class="step-num step-circle" style="background-color: transparent;">4</div>
+                    <div class="step-name">個人資料</div>
+                </li>
+                <li>
+                    <div class="step-num step-circle" style="background-color: transparent;">5</div>
+                    <div class="step-name">付款</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+    </div>
+    <br>
+	
 	<div class="book-appointment">
 		<div class="book-agileinfo-form">
 
@@ -110,7 +139,7 @@ h3 {
 						<p style="font-size:20px;">加購裝備</p>
 						<p>露營組<br>內含露營椅、小木桌、露營燈、小音箱</p>
 						<img alt="" src="../img/car/monster.png">
-						<br> <select id="country1" class="frm-field required sect" name="device">
+						<br> <select id="country1" class="frm-field required sect" name="device" onchange="deviceChange()">
 							<option value="">數量</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -119,13 +148,13 @@ h3 {
 
 						<br><br><p style="font-size:20px;">優惠序號 coupon</p>
 						<p>請輸入您的優惠券號碼</p>
-						<br> <input type="text" placeholder="請輸入" name="discount">
+						<br> <input type="text" placeholder="請輸入" name="discount" id="discount" onblur="couponRedeem();">
 					
 			</form>
 		</div>
 
    <div  class="book-agileinfo-form">
-<%--    	<form class="deviceform"> --%>
+   	<form action="<c:url value='/Car/reservation3'/>" method="GET">
 	<table id="amount-table">
 		<tr>
 			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >您選擇的方案</td>
@@ -158,32 +187,33 @@ h3 {
 		</tr>
 		<tr>
 			<td class="tabletd">租車費用</td>
-			<td colspan="2"></td>
+			<td></td>
+			<td id="price2">${normalPrice}</td>
 		</tr>
 		<tr>
 			<td class="tabletd">加購裝備數量</td>
-			<td>${device}</td>
-			<td></td>
+			<td id="deviceAmount">${device}</td>
+			<td id="devicePrice"></td>
 		</tr>
 		<tr>
 			<td class="tabletd">適用多日優惠</td>
 			<td></td>
-			<td></td>
+			<td id="discount">- ${discountPrice}</td>
 		</tr>
 		<tr>
 			<td class="tabletd">優惠券折抵</td>
-			<td></td>
-			<td></td>
+			<td id="couponName"></td>
+			<td id="discountAmount"></td>
 		</tr>
 		<tr>
 			<td colspan="2" class="tabletd">合計金額</td>
-			<td></td>
+			<td id="totalPrice">${totalPrice}</td>
 		</tr>
 		<tr>
 			<td colspan="3"><input type="submit" value="確定預約"></td>
 		</tr>
 	</table>
-<%-- 	</form> --%>
+	</form>
 
 	<div class="clear"></div>
 		</div>
@@ -200,17 +230,16 @@ h3 {
 		<input type="hidden" id="returnDate" name="returnDate" value="returnDate">
 		<input type="hidden" id="returnTime" name="returnTime" value="returnTime">
 		<input type="hidden" id="device" name="device" value="device">
-		
+		<input type="hidden" id="amount" name="amount" value="amount">
+		<input type="hidden" id="device" name="type" value="type">
+		<input type="hidden" id="discount" name="discount" value="discount">
 <!-- 		<div class='col-lg-offset-2 col-lg-10'> -->
 <!-- 			<input id="btnAdd" type='submit' class='btn btn-primary' value="送出" /> -->
 		</div>
 	</form:form>
-	
-	
+		
 <!-- 	new end -->
 	
-	
-
 	<!-- end main container -->
 
 	<!-- footer -->
@@ -235,6 +264,7 @@ h3 {
 	<script src="../js/menu.js"></script>
 	<script src="../js/animated-headline.js"></script>
 	<script src="../js/isotope.pkgd.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 	<!--  custom script -->
@@ -256,6 +286,41 @@ h3 {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
+		
+		
+	</script>
+	
+
+	<script>
+	
+	function deviceChange(){
+		var country = $('#country1').val();
+		$('#deviceAmount').html(country);
+		if('' != country){
+			var price = parseInt(country) * 1200;
+			$('#devicePrice').html(price);
+		}else{
+			$('#devicePrice').html('');
+		}
+	}
+	
+	function couponRedeem(){
+		var couponUrl = '<c:url value='/Car/Discount' />';
+		$.ajax({type: 'POST',url: couponUrl,data: {couponNumber:$('#discount').val()}, success: function(result){
+		    console.log(result);
+			console.log(result.couponName);
+		    console.log(result.discountAmount);
+		    if('Y' == result.invalidFlag){
+				swal("此優惠序號已過期或為無效序號", "", "warning");
+		    	$('#couponName').html('');
+			    $('#discountAmount').html('');
+		    }else{
+			    $('#couponName').html(result.couponName);
+			    $('#discountAmount').html(- result.discountAmount);
+		    }
+		  }});
+	}
+	
 	</script>
 
 </body>

@@ -28,5 +28,12 @@ public class carViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Car/reservation2.jsp");
 		return view; 
 	}
+	
+	@Bean
+	public View ReservationPage3() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/reservation3.jsp");
+		return view; 
+	}
 
 }
