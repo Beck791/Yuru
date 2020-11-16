@@ -23,21 +23,28 @@
 	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
 <%-- 	<form method="post"  id="imgur" enctype="multipart/form-data" action="<c:url value='/Product/InsertProductinfo'/>"> --%>
-	<form id=formdata>
-	 <table class="btn btn-secondary">
+	<form id="formdata">
+	 <table class="btn btn-secondary" style="text-align:left" >
 		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
-		<tr><td>輸入品牌 :<td><select id="brand" name="brand" required>
+		<tr><td>輸入品牌 :<td ><select id="brandId" name="brandId" required >
 								<option value="">選擇廠牌</option>
-								<option value="犀牛">犀牛</option>
-								<option value="努特">努特</option>
+								<option value="3">犀牛</option>
+								<option value="4">Camp</option>
+								<option value="5">努特</option>
 <!-- 								<option value=""></option> -->
 <!-- 								<option value=""></option> -->
 <!-- 								<option value=""></option> -->
 							</select>
 		<tr><td>輸入價格 :<td><input type="text" id="price" value="888" name="price" />
-		<tr><td>上傳圖片 :<td><input type="file" id="image" name="image" >
+		<tr><td>上傳圖片 :<td><input type="file" id="image" onchange="uploadimg()">
+		<input type="text" name="image" style="display:none">
 		<tr><td>輸入產品內容 :<td><input type="text" id="description" value="產品內容" name="description" />
-		<tr><td>輸入產品狀態:<td><input type="text" id="status" value="上架中" name="status" />
+		<tr><td>輸入產品狀態:<td><select id="statusId" name="statusId" required>
+								<option value="">選擇狀態</option>
+								<option value="1">上架中</option>
+								<option value="2">下架中</option>
+								<option value="3">庫存不足</option>
+							   </select>
 		<tr><td>輸入庫存數量 :<td><input type="text" id="stock" value="50" name="stock" />
 		<tr><td>輸入種類 :<td><input type="text" id="category" value="帳篷" name="category" />
 	</table>
@@ -45,60 +52,140 @@
 			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />
 <!-- 			<input type="reset" value="取消" class="btn btn-primary" /> -->			
 	</form>
-	
+		
 	<hr>
-	<table class="table table-dark table-striped" border="1">
-<tr style="background-color:#7A0099">
-<th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
-<c:forEach var="productBean" items="${productBeans}">
-<tr><td>
+	<table id="result-table"class="table table-dark table-striped" border="1">
+		
+		<tr  style="background-color:#7A0099">
+			<th>產品ID</th>
+			<th>產品名稱</th>
+			<th>價格</th>
+			<th>廠牌</th>
+			<th>圖檔</th>
+			<th>瀏覽次數</th>
+			<th>產品敘述</th>
+			<th>庫存量</th>
+			<th>種類</th>
+			<th>商品狀態</th>
+			<th>新增日期</th>
+			<th>修改日期</th>
+		</tr>
+<%-- <c:forEach var="productBean" items="${productBeans}"> --%>
+<!-- <tr><td> -->
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 
-</td>
-<td>${productBean.id}</td>
-<td>${productBean.name}</td>	
-<td>${productBean.price}</td>
-<td>${productBean.brand}</td>
-<td><img src="${productBean.image}"></td>
-<td>${productBean.webTraffic}</td>
-<td>${productBean.description}</td>
-<td>${productBean.stock}</td>
-<td>${productBean.category}</td>
-<td>${productBean.status}</td>
-<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
-<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
+<!-- </td> -->
+<%-- <td>${productBean.id}</td> --%>
+<%-- <td>${productBean.name}</td>	 --%>
+<%-- <td>${productBean.price}</td> --%>
+<%-- <td>${productBean.brand}</td> --%>
+<%-- <td><img src="${productBean.image}"></td> --%>
+<%-- <td>${productBean.webTraffic}</td> --%>
+<%-- <td>${productBean.description}</td> --%>
+<%-- <td>${productBean.stock}</td> --%>
+<%-- <td>${productBean.category}</td> --%>
+<%-- <td>${productBean.status}</td> --%>
+<%-- <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td> --%>
+<%-- <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr> --%>
 
 
-</c:forEach>
+<%-- </c:forEach> --%>
 </table>
 	</div>
 	<script>
 	
+	function uploadimg(){
+		var formData = new FormData();
+		formData.append('image', $('#image')[0].files[0]);
+		$.ajax({
+		    url: '/yurucamp/Product/upfileimage',
+		    type: 'POST',
+		    data:formData,
+		    processData: false,
+		    contentType: false,
+		    success:function(result){
+		    	console.log(result.url);
+// 		    	$('#imgText').html(result.url);
+		    	$('input[name="image"]').val(result.url);
+		    	console.log($('input[name="image"]').val());
+		    }
+		})
+
+	}
 	function sendForm() {	
-// 		var brand = $('#brand').val();
+		var form = $('#formdata').serialize();
+		console.log(form);
+// 		var formData = new FormData(form);
+// 		formData.append($('#form')[0]);
 // 		var image = $('#image').val();
-// 		var status = $('#status').val();
-// 		var form = $('#formdata');
-        var formData = new FormData($('#formdata'));
-		console.log(formData);
+		
+// 		var dec = decodeURI(form);
+//         var formData = new FormData();
+//         var name =$('#name').val();
+//         var brandId =$('#brandId').val();
+//         var price =$('#price').val();
+//         var imgText =$('#imgText').val();
+//         var description =$('#description').val();
+//         var statusId =$('#statusId').val();
+//         var stock =$('#stock').val();
+//         var category =$('#category').val();
+//         console.log(name);
+//         console.log(imgText);
+//         var formData = new FormData(document.querySelector('form'))
+//         formData.append('productBean', dec);
+//          formData.append("name",name);
+//          formData.append("brandId",brandId);
+//          formData.append("price",price);
+//          formData.append("imgText",imgText);
+//          formData.append("description",description);
+//          formData.append("statusId",statusId);
+//          formData.append("stock",stock);
+//          formData.append("category",category);
+// 		 console.log(formData);
+// 		 console.log(dec);
 // 		var data = JSON.stringify(formData);
 // 		console.log(data);
         $.ajax({
         	      type: 'POST',
-	              dataType: 'json',
                   url : '/yurucamp/Product/InsertProductinfo',
-//                contentType : 'application/json; charset=utf-8',
-			      contentype : false,
-                  data : formData,
+                  data : $("#formdata").serialize(),
                   success : function(data) {
-
-                           alert(data.name);
+								
+                	  			console.log(data);
+                	  
+		                	  	if(data){
+		                	  		
+		                	  		for(let item of data){
+		                	  			console.log(item);
+		                	  			
+		                	  			var resultHtml = "<tr>"
+		                	  				           + "<td>" + item.id + "</td>" 
+		                	  			               + "<td>" + item.name + "</td>"
+		                	  			               + "<td>" + item.price + "</td>"
+		                	  			               + "<td>" + item.brand + "</td>"
+		                	  			               + "<td><img src='" + item.image + "' style='height: 30px;'/></td>"
+		                	  			               + "<td>" + item.webTraffic + "</td>"
+		                	  			               + "<td>" + item.description + "</td>"
+		                	  			               + "<td>" + item.stock + "</td>"
+		                	  			               + "<td>" + item.category + "</td>"
+		                	  			               + "<td>" + item.status + "</td>"
+		                	  			               + "<td>" + item.createtime + "</td>"
+		                	  			               + "<td>" + item.updatetime + "</td>"
+		                	  			               + "</tr>";
+		                	  			
+		                	  			console.log(resultHtml);
+		                	  			
+		                	  			$("#result-table").append(resultHtml);
+		                	  			
+		                	  		}
+		                	  			
+		                	  	}
 
                   }
 
         });
 
-}
+	}
 	</script>
 	
 </body>
