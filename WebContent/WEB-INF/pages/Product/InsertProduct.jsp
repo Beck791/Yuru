@@ -26,7 +26,14 @@
 	<form id=formdata>
 	 <table class="btn btn-secondary">
 		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
-		<tr><td>輸入品牌 :<td><input type="text" id="brand" value="犀牛" name="brand" />
+		<tr><td>輸入品牌 :<td><select id="brand" name="brand" required>
+								<option value="">選擇廠牌</option>
+								<option value="犀牛">犀牛</option>
+								<option value="努特">努特</option>
+<!-- 								<option value=""></option> -->
+<!-- 								<option value=""></option> -->
+<!-- 								<option value=""></option> -->
+							</select>
 		<tr><td>輸入價格 :<td><input type="text" id="price" value="888" name="price" />
 		<tr><td>上傳圖片 :<td><input type="file" id="image" name="image" >
 		<tr><td>輸入產品內容 :<td><input type="text" id="description" value="產品內容" name="description" />
