@@ -35,5 +35,11 @@ public class backstageViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Backstage/calendar.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
+	@Bean
+	public View backstagewebSocketTest() { // 呼叫此方法名稱及導向設定之jsp
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Backstage/webSocket.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
 
 }

@@ -47,7 +47,7 @@ public class BackstageController {
 	
 	@GetMapping("/camp")
 	public String backstageCampIndex() {
-		return "Backstage/camp";
+		return "backstagewebSocketTest";
 	}
 	
 	@GetMapping("/forum")
