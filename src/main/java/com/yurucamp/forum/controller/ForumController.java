@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,13 +72,13 @@ public class ForumController {
 	
 	
 	
-	@RequestMapping(value ="/Forum/readArticle", method = RequestMethod.GET )
+	@GetMapping(value ="/Forum/readArticle" )
 	public String Read(Model model) throws SQLException{
-		int poId=1 ;
+		int poId=2 ;
 		PostBean postBean = articleService.queryPostId(poId);
 		model.addAttribute("PostBean", postBean);
-		List<ReplyBean> replyBean = articleService.queryPoIdAllReply(poId);
-		model.addAttribute("ReplyBean", replyBean);
+//		List<ReplyBean> replyBean = articleService.queryPoIdAllReply(poId);
+//		model.addAttribute("ReplyBean", replyBean);
 		return "memberReadPage";
 	}
 
@@ -90,14 +91,14 @@ public class ForumController {
 //		return "memberReadPage";
 //	}
 //	
-//	@RequestMapping(value = "/Forum/Delete", method = RequestMethod.POST)
-//	public String DeleteBrand(@RequestParam("id") Integer id, Model model)
-//			throws SQLException {
-//		articleService.deleteOne(id);
-//		List<PostBean> list = articleService.queryAll();
-//		model.addAttribute("PostBean", list);
-//		return "memberReadPage";
-//	}
+	@RequestMapping(value = "/Forum/Delete", method = RequestMethod.POST)
+	public String Delete(@RequestParam("id") Integer id, Model model)
+			throws SQLException {
+		articleService.deleteOne(id);
+		List<PostBean> list = articleService.queryAll();
+		model.addAttribute("PostBean", list);
+		return "memberReadPage";
+	}
 
    
 	

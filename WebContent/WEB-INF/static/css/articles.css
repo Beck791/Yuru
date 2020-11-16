@@ -1,0 +1,29 @@
+body {
+	background-color: #f8f8f8;
+}
+
+#container {
+	background-color: #ffffff;
+	width: 80%;
+	height: 100vh;
+	margin: 0 auto;
+	/*border-right: 1px ridge #ababab;*/
+}
+
+.user-column{float:left;width:160px;height:50%;background-color:rgb(241, 254, 226);padding:20px 30px;}
+.user-column img {border-radius:10px;}
+.user-info{margin-top:8px;text-align:center;font-size:12px;}
+.user-info a.user-account{color:#efffea;font-weight:600;text-decoration:none;}
+.user-info p.user-sequence-first{margin:6px 20%;line-height:2em;background-color:#BC1212;color:#fff;border-radius:1em;font-weight:600;}
+.extra-user-info dl{overflow:hidden;zoom:1;margin:3px 0 0;}
+.extra-user-info dl dt{float: left;text-align: left;}
+.extra-user-info dl dd{float:right;text-align:right;}
+
+.article-column{margin-left:180px;padding-top:20px;}
+.article-info{background-color:#effeef;padding-bottom:10px;padding-right:10px;border-bottom:1px solid #ababab;}
+p.article-topic{margin:0;padding-bottom:6px;line-height:1.5;font-size:20px;font-weight:600;}
+.article-act-list{display:inline;padding-right: .5em;}
+.list-divider{border-left:1px solid #ababab;padding-left:.5em;}
+.article-content{}
+.article-bot-info{background-color:#effeef;padding-top:10px;padding-right:10px;border-top:1px solid #ababab;}
+

@@ -40,6 +40,18 @@ public class ArticleService {
 		List<ReplyBean> re = replyDao.queryPoIdAllReply(poId);
 		return re;
 	}
+
+
+	public void deleteOne(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public List<PostBean> queryAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
