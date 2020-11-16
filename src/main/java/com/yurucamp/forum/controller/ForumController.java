@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,13 +73,13 @@ public class ForumController {
 	
 	
 	
-	@GetMapping(value ="/Forum/readArticle" )
-	public String Read(Model model) throws SQLException{
-		int poId=2 ;
+	@GetMapping(value ="/Forum/readArticle/{poId}" )
+	public String Read(@PathVariable("poId") Integer poId, Model model) throws SQLException{
 		PostBean postBean = articleService.queryPostId(poId);
 		model.addAttribute("PostBean", postBean);
-//		List<ReplyBean> replyBean = articleService.queryPoIdAllReply(poId);
-//		model.addAttribute("ReplyBean", replyBean);
+		List<ReplyBean> replyList = articleService.queryPoIdAllReply(poId);
+		model.addAttribute("replyList", replyList);
+		System.out.println("potitle=?"+postBean.getPoTitle());
 		return "memberReadPage";
 	}
 

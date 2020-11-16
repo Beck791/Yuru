@@ -27,7 +27,7 @@ private SessionFactory sessionFactory;
 
 	
 	public List<ReplyBean> queryPoIdAllReply(Integer poId){
-		List<ReplyBean> replyBean = sessionFactory.getCurrentSession().createQuery("from ReplyArticle where poId=:poId", ReplyBean.class).setParameter("poId", poId).getResultList();
+		List<ReplyBean> replyBean = sessionFactory.getCurrentSession().createQuery("from ReplyBean where poId=:poId", ReplyBean.class).setParameter("poId", poId).getResultList();
 		return replyBean;
 	}
 	
@@ -35,7 +35,7 @@ private SessionFactory sessionFactory;
 	public void deleteOne(Integer poId) {
 //		ReplyBean delete = sessionFactory.getCurrentSession()
 //				.get(ReplyBean.class, re.getReId());
-		sessionFactory.getCurrentSession().createQuery("DELETE FROM ReplyArticle WHERE NAME=:poId",ReplyBean.class).setParameter("poId", poId).executeUpdate();
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM ReplyBean WHERE NAME=:poId",ReplyBean.class).setParameter("poId", poId).executeUpdate();
 		
 	}
 	

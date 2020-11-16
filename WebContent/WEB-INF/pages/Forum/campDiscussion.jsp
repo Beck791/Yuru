@@ -95,20 +95,20 @@
 				<div class="no-padding portfolio_container clearfix">
                     <!-- single work -->
                     <div class="col-md-4 col-sm-10 new"  style="background-color:#dbcf83">
-                        <a href="#0" class="portfolio_item">
+                        <a href="<c:url value='/Forum/readArticle/${poId}'/>" class="portfolio_item">
                             <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
                             <div class="portfolio_item_hover">
                                 <div class="portfolio-border clearfix">
                                     <div class="item_info">
-                                        <form action=""><span>$.{.}.</span></form>
-                                        <em>$.{.}.</em>
+                                        <span>AAAAAAAAAAAAAAAAAA.</span>
+                                        <em>AAAAAA</em>
                                     </div>
                                 </div>
                             </div>
                             
                         </a>
                         
-                        
+                       </div> 
                     </div>
                     <!-- end single work -->
 
