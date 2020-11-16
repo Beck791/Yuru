@@ -83,105 +83,97 @@
 	<!---------------------------------------------------------------------------->
 
 
-					<div class="">
-						<div class="">
-							<div class="">
-								<h1 class="t2">XXXXXX</h1>
-							</div>
-						</div>
-					</div>
-					<div class="">
-						<div class="">
-							<!-- Docking狀態需要隱藏的物件加上.is-dockingHide -->
-							<div class="">
-								<ul class="">
-									<li class="">
-										<span class="">2020-11-06 10:13</span>
-									</li>
-									<li class="">
-										<div class="c-iconLink">
-											<i class=""></i> <span class=""></span>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="">
-								<ul class="">
-									<li class="">
-										<div class="">
-											<label for="" class="">
-												<input type="" id="">
-												<div class=""></div> <span class="">按讚數</span>
-											</label>
-										</div>
-									</li>
-									<li class="">
-										<div class="">
-											<label for="" class=""> <input type="" id="" class="" data-id="">
-												<div class=""></div> <span class="">收藏</span>
-											</label>
-										</div>
-									</li>
-									<li >
-										<a href="" class=""> 
-											<i class=""></i> 
-												<span class="">回覆</span>
-										</a>
-									</li>
-									<li >
-										<a href="" class=""> 
-											<i class=""></i> 
-												<span class="">分享</span>
-										</a>
-									</li>
-									<li >
-										<a href="" class=""> 
-											<i class=""></i> 
-												<span class="">引言</span>
-										</a>
-									</li>
-									
-									<li class="">
-										<div class="" data-group-target="">
-											<a href="#" class=""
-												data-group-trigger=""> <i
-												class=" "></i>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				
-			<div class=""
-				style="display: block; width: 774.6px; height: 30px; float: none;"></div>
+	<div class="">
+		<div class="">
 			<div class="">
-				<div class="">
-					<div class="">
-						<!-- 文章編輯區 -->
+				<h1 class="t2">XXXXXX</h1>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<div class="">
+			<!-- Docking狀態需要隱藏的物件加上.is-dockingHide -->
+			<div class="">
+				<ul class="">
+					<li class=""><span class="">2020-11-06 10:13</span></li>
+					<li class="">
+						<div class="c-iconLink">
+							<i class=""></i> <span class=""></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="">
+				<ul class="">
+					<li class="">
 						<div class="">
-							<article id="" class=" ">
-								<div itemprop="">
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-									XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-								</div>
-							</article>
+							<label for="" class=""> <input type="" id="">
+								<div class=""></div> <span class="">按讚數</span>
+							</label>
 						</div>
-						<!-- 文章編輯區 -->
-						
-								
-							</div>
+					</li>
+					<li class="">
+						<div class="">
+							<label for="" class=""> <input type="" id="" class=""
+								data-id="">
+								<div class=""></div> <span class="">收藏</span>
+							</label>
 						</div>
-					</div>
+					</li>
+					<li><a href="" class=""> <i class=""></i> <span class="">回覆</span>
+					</a></li>
+					<li><a href="" class=""> <i class=""></i> <span class="">分享</span>
+					</a></li>
+					<li><a href="" class=""> <i class=""></i> <span class="">引言</span>
+					</a></li>
+
+					<li class="">
+						<div class="" data-group-target="">
+							<a href="#" class="" data-group-trigger=""> <i class=" "></i>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class=""
+		style="display: block; width: 774.6px; height: 30px; float: none;"></div>
+	<div class="">
+		<div class="">
+			<div class="">
+				<!-- 文章編輯區 -->
+				<c:forEach var="productBean" items="${PostBean}">
+					<tr>
+						<td>
+							<!-- <input type="submit" value="修改" name="update"/>	 -->
+						</td>
+						<td>${PostBean.poId}</td>
+						<td>${PostBean.memberId}</td>
+						<td>${PostBean.forumId}</td>
+						<td>${PostBean.poTitle}</td>
+						<td><img src="${PostBean.poImage}"></td>
+						<td>${PostBean.poContent}</td>
+						<td>${PostBean.likeNumber}</td>
+						<td>${PostBean.reContentNumber}</td>
+						<td>${PostBean.clickNumber}</td>
+						<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss"
+								value="${PostBean.poUpDateTime}" /></td>
+						<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss"
+								value="${PostBean.poUpDateTime}" /></td>
+					</tr>
+				</c:forEach>
+				<!-- 文章編輯區 -->
+
+
+			</div>
+		</div>
+	</div>
 
 	<!---------------------------------------------------------------------------->
-	
-				
+
+
 
 
 

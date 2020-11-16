@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +13,21 @@
 <link rel="icon" href="../img/fav.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />"
+	rel="stylesheet">
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
-<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet'
+	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
+<!-- datepicker -->
+<!-- 	<link href="/css/bootstrap.css" rel="stylesheet" /> -->
+<!-- 	<link href="/css/bootstrap-datepicker.css" rel="stylesheet" /> -->
+	<script src="/js/datepicker/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="/js/datepicker/bootstrap.js" type="text/javascript"></script>
+	<script src="<c:url value='/js/datepicker/bootstrap-datepicker.js' /> type="text/javascript"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,23 +45,18 @@
 }
 
 .top-bar {
-	/*     color: #333; */
-	/*     padding: 150px 0 150px; */
 	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car.jpg);
 	background: linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car.jpg);
-	/*     background-size: cover;
-/*     background-attachment: fixed; */
-	/*     background-position: center center; */
-	/*     text-align: center; */
 }
-form{
+
+form {
 	box-shadow: 1px 1px 7px #8a6d3b73;
-	padding:16px;
-	background-color:white;
-	width:600px;
-	margin:auto;
+	padding: 16px;
+	background-color: white;
+	width: 600px;
+	margin: auto;
 }
 </style>
 
@@ -61,174 +64,190 @@ form{
 <style>
 /***** key__visual *****/
 .key__visual {
-  position: relative;
-  height: 760px;
-  padding-top: 115px;
-  min-width: 1000px;
-  z-index: 1;
-  background: #fff;
-}
-.key__visual::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 115px;
-  background: #fff;
-  z-index: 9997;
-}
-.key__visual--inner {
-  position: relative;
-  height: 630px;
-}
-.key__visual--inner::before {
-  content: "";
-  background: url("../img/car/wave_top.png") repeat-x center 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  z-index: 1;
-}
-.key__visual--inner::after {
-  content: "";
-  background: url("../img/car/wave_bottom.png") repeat-x center 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-}
-.key__visual .key__visual--main {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 100%;
-  height: 630px;
-  overflow: hidden;
-  z-index: 0;
-  display: flex;
-}
-.key__visual .key__visual--main video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 100%;
-  z-index: 0;
-}
-.key__visual .key__visual--main::after {
-  content: "";
-  background: #000;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.1;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.key__visual h1 {
-  color: #fff;
-  font-size: 285.7%;
-  font-weight: bold;
-  position: absolute;
-  top: 210px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 980px;
-  margin: 0 auto;
-  z-index: 1;
-}
-.key__visual--movie {
-  position: absolute;
-  top: 270px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  margin: 8px auto 0;
-  width: 980px;
-  z-index: 1;
-}
-.key__visual--movie a {
-  background: url(/car/common_new/images/parts/icon_link_01.png) no-repeat 0 center;
-  background-size: 25px;
-  color: #fff;
-  font-size: 128.5%;
-  font-weight: bold;
-  padding: 6px 0 6px 35px;
-}
-.key__visual--movie a:hover {
-  text-decoration: underline;
-}
-.key__visual--banner {
-  position: absolute;
-  left: 50%;
-  bottom: 15%;
-  margin-left: -359px;
-}
-.key__visual--search {
-  position: relative;
-  text-align: center;
-  margin-top: 38px;
-  z-index: 1;
-}
-.key__visual--search button {
-  position: relative;
-  background: url(/car/common_new/images/parts/icon_search.png) no-repeat 18px center #F08300;
-  background-size: 20px;
-  border: 2px solid #fff;
-  border-radius: 25px;
-  color: #fff;
-  display: inline-block;
-  font-size: 114.2%;
-  font-weight: bold;
-  vertical-align: middle;
-  overflow: hidden;
-  padding: 11px 40px 10px;
-  position: relative;
-  width: 240px;
-  z-index: 1;
-}
-.key__visual--search button:before,
-.key__visual--search button:after {
-  content: "";
-  background: #fff;
-  position: absolute;
-  top: 0;
-  bottom: 7px;
-  right: 15px;
-  margin: auto 0;
-  width: 10px;
-  height: 1px;
-  transform: rotate(50deg);
-  z-index: 0;
-}
-.key__visual--search button:after {
-  top: 7px;
-  bottom: 0;
-  transform: rotate(-50deg);
+	position: relative;
+	height: 760px;
+	padding-top: 115px;
+	min-width: 1000px;
+	z-index: 1;
+	background: #fff;
 }
 
+.key__visual::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 115px;
+	background: #fff;
+	z-index: 9997;
+}
+
+.key__visual--inner {
+	position: relative;
+	height: 630px;
+}
+
+.key__visual--inner::before {
+	content: "";
+	background: url("../img/car/wave_top.png") repeat-x center 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	z-index: 1;
+}
+
+.key__visual--inner::after {
+	content: "";
+	background: url("../img/car/wave_bottom.png") repeat-x center 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+}
+
+.key__visual .key__visual--main {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	height: 630px;
+	overflow: hidden;
+	z-index: 0;
+	display: flex;
+}
+
+.key__visual .key__visual--main video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	z-index: 0;
+}
+
+.key__visual .key__visual--main::after {
+	content: "";
+	background: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.1;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.key__visual h1 {
+	color: #fff;
+	font-size: 285.7%;
+	font-weight: bold;
+	position: absolute;
+	top: 210px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	width: 980px;
+	margin: 0 auto;
+	z-index: 1;
+}
+
+.key__visual--movie {
+	position: absolute;
+	top: 270px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	margin: 8px auto 0;
+	width: 980px;
+	z-index: 1;
+}
+
+.key__visual--movie a {
+	background: url(/car/common_new/images/parts/icon_link_01.png) no-repeat
+		0 center;
+	background-size: 25px;
+	color: #fff;
+	font-size: 128.5%;
+	font-weight: bold;
+	padding: 6px 0 6px 35px;
+}
+
+.key__visual--movie a:hover {
+	text-decoration: underline;
+}
+
+.key__visual--banner {
+	position: absolute;
+	left: 50%;
+	bottom: 15%;
+	margin-left: -359px;
+}
+
+.key__visual--search {
+	position: relative;
+	text-align: center;
+	margin-top: 38px;
+	z-index: 1;
+}
+
+.key__visual--search button {
+	position: relative;
+	background: url(/car/common_new/images/parts/icon_search.png) no-repeat
+		18px center #F08300;
+	background-size: 20px;
+	border: 2px solid #fff;
+	border-radius: 25px;
+	color: #fff;
+	display: inline-block;
+	font-size: 114.2%;
+	font-weight: bold;
+	vertical-align: middle;
+	overflow: hidden;
+	padding: 11px 40px 10px;
+	position: relative;
+	width: 240px;
+	z-index: 1;
+}
+
+.key__visual--search button:before, .key__visual--search button:after {
+	content: "";
+	background: #fff;
+	position: absolute;
+	top: 0;
+	bottom: 7px;
+	right: 15px;
+	margin: auto 0;
+	width: 10px;
+	height: 1px;
+	transform: rotate(50deg);
+	z-index: 0;
+}
+
+.key__visual--search button:after {
+	top: 7px;
+	bottom: 0;
+	transform: rotate(-50deg);
+}
 
 .key__visual--bnr {
-    position: absolute;
-    bottom: 214px;
-    left: 0;
-    z-index: 9999;
-    width: 100%; 
-}
-#img{
-	opacity: 0.5;
+	position: absolute;
+	bottom: 214px;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
 }
 
+#img {
+	opacity: 0.7;
+}
 </style>
 
 </head>
@@ -238,105 +257,163 @@ form{
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
 	<!-- top bar -->
-<!-- 	<div class="top-bar"> -->
-<!-- 		<h1>露營車租借</h1> -->
-<!-- 		<p> -->
-<!-- 			<a href="#">Travel is the only thing you buy that makes you richer.</a> -->
-<!-- 		</p> -->
-<!-- 	</div> -->
+	<!-- 	<div class="top-bar"> -->
+	<!-- 		<h1>露營車租借</h1> -->
+	<!-- 		<p> -->
+	<!-- 			<a href="#">Travel is the only thing you buy that makes you richer.</a> -->
+	<!-- 		</p> -->
+	<!-- 	</div> -->
 	<!-- end top bar -->
 
 	<!-- main container -->
-	
+
 	<div class="key__visual">
-	<div class="book-appointment key__visual--inner">
-		<div class="key__visual--main">
-			<img class="lazyloaded" src="../img/car/car.png" alt="背景" id="img">
-		</div>
-		<div class="key__visual--bnr book-agileinfo-form">
-			<form id="form1" name="form1" action="<c:url value='/Car/reservation' />" method="post">
+		<div class="book-appointment key__visual--inner">
+			<div class="key__visual--main">
+				<video class="lazyloaded" src="../img/car/key_movie.mp4" id="img"
+					playsinline loop muted autoplay></video>
+			</div>
+			<div class="key__visual--bnr book-agileinfo-form">
+				<form id="form1" name="form1"
+					action="<c:url value='/Car/reservation' />" method="post">
 
-				<div class="main-agile-sectns">
-					<div class="agileits-btm-spc form-text1">
-						<img src="../img/car/location.png" width="15px">
-						<select name="dept" id="country1" class="frm-field required sect" required>
-							<option value="">取車地點</option>
-							<option value="台北">台北</option>
-							<option value="台中">台中</option>
-							<option value="台南">台南</option>
-							<option value="高雄">高雄</option>
-							<option value="花蓮">花蓮</option>
-						</select>
+					<div class="main-agile-sectns">
+						<div class="agileits-btm-spc form-text1">
+							<img src="../img/car/location.png" width="15px"> <select
+								name="dept" id="country1" class="frm-field required sect"
+								required>
+								<option value="">取車地點</option>
+								<option value="台北">台北</option>
+								<option value="台中">台中</option>
+								<option value="台南">台南</option>
+								<option value="高雄">高雄</option>
+								<option value="花蓮">花蓮</option>
+							</select>
+						</div>
+						<div class="agileits-btm-spc form-text2">
+							<img src="../img/car/location.png" width="15px"> <select
+								name="ret" id="country" class="frm-field required" required>
+								<option value="">還車地點</option>
+								<option value="台北">台北</option>
+								<option value="台中">台中</option>
+								<option value="台南">台南</option>
+								<option value="高雄">高雄</option>
+								<option value="花蓮">花蓮</option>
+							</select>
+						</div>
 					</div>
-					<div class="agileits-btm-spc form-text2">
-						<img src="../img/car/location.png" width="15px">
-						<select name="ret" id="country" class="frm-field required" required>
-							<option value="">還車地點</option>
-							<option value="台北">台北</option>
-							<option value="台中">台中</option>
-							<option value="台南">台南</option>
-							<option value="高雄">高雄</option>
-							<option value="花蓮">花蓮</option>
-						</select>
+					<div class="main-agile-sectns">
+						<div class="agileits-btm-spc form-text1">
+							<img src="../img/car/calender.png" width="15px"> 
+							<input type="date" placeholder="取車日期" name="deptDate"
+								class="frm-field required" required id="deptDate"
+								onchange="changeMin();">
+<!-- 							<input class="datepicker form-control" type="text"/> -->
+						</div>
+						<div class="agileits-btm-spc form-text2">
+							<img src="../img/car/clock.png" width="15px"> <select
+								name="deptTime" id="country" class="frm-field required" required>
+								<option value="">時間</option>
+								<option value="9:00">9:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="main-agile-sectns">
-					<div class="agileits-btm-spc form-text1">
-						<img src="../img/car/calender.png" width="15px">
-						<input type="date" placeholder="取車日期" name="deptDate" class="frm-field required" required
-							id="deptDate" onchange="changeMin();">
+					<div class="main-agile-sectns">
+						<div class="agileits-btm-spc form-text1">
+							<img src="../img/car/calender.png" width="15px"> <input
+								type="date" placeholder="還車日期" name="returnDate"
+								class="frm-field required" required id="returnDate">
+						</div>
+						<div class="agileits-btm-spc form-text2">
+							<img src="../img/car/clock.png" width="15px"> <select
+								name="returnTime" id="country"
+								onchange="change_country(this.value)" class="frm-field required"
+								required>
+								<option value="">時間</option>
+								<option value="9:00">9:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+							</select>
+						</div>
 					</div>
-					<div class="agileits-btm-spc form-text2">
-						<img src="../img/car/clock.png" width="15px">
-						<select name="deptTime" id="country" class="frm-field required" required>
-							<option value="">時間</option>
-							<option value="9:00">9:00</option>
-							<option value="10:00">10:00</option>
-							<option value="11:00">11:00</option>
-							<option value="12:00">12:00</option>
-							<option value="13:00">13:00</option>
-							<option value="14:00">14:00</option>
-							<option value="15:00">15:00</option>
-							<option value="16:00">16:00</option>
-							<option value="17:00">17:00</option>
-							<option value="18:00">18:00</option>
-						</select>
-					</div>
-				</div>
-				<div class="main-agile-sectns">
-					<div class="agileits-btm-spc form-text1">
-						<img src="../img/car/calender.png" width="15px">
-						<input type="date" placeholder="還車日期" name="returnDate" class="frm-field required" required
-							id="returnDate">
-					</div>
-					<div class="agileits-btm-spc form-text2">
-						<img src="../img/car/clock.png" width="15px">
-						<select name="returnTime" id="country" onchange="change_country(this.value)" class="frm-field required" required>
-							<option value="">時間</option>
-							<option value="9:00">9:00</option>
-							<option value="10:00">10:00</option>
-							<option value="11:00">11:00</option>
-							<option value="12:00">12:00</option>
-							<option value="13:00">13:00</option>
-							<option value="14:00">14:00</option>
-							<option value="15:00">15:00</option>
-							<option value="16:00">16:00</option>
-							<option value="17:00">17:00</option>
-							<option value="18:00">18:00</option>
-						</select>
-					</div>
-				</div>
-				
-				<div class="wthree-text">
-				
-				</div>
-				<input type="submit" value="Search">
-				<div class="clear"></div>
-			</form>
-		</div>
 
-	</div></div>
+					<div class="wthree-text"></div>
+					<input type="submit" value="Search">
+					<div class="clear"></div>
+				</form>
+			</div>
+
+		</div>
 	</div>
+	</div>
+
+	<div class="book-agileinfo-form input">
+		<form id="form3" name="form3"
+			action="<c:url value='/Car/reservation2' />" method="post">
+			<c:forEach items="${planList}" var="data" varStatus="step">
+				<table class="cartype">
+					<tr>
+						<%-- 					<td colspan="2" style="text-align:center" class="cartypetd"><img src="${data.imgUrl}"  width="250px"></td> --%>
+						<td colspan="2" style="text-align: center; width: 200px;"
+							class="cartypetd">${data.image}</td>
+						<td colspan="1" class="cartypetd"><font
+							style="font-size: 20px">${data.type}</font><input type="hidden"
+							id="type${step.index}" name="type${step.index}"
+							value="${data.type}"></td>
+					</tr>
+					<tr>
+						<td class="cartypetd" style="text-align: center">一般價格</td>
+						<td style="text-align: center">三日價格</td>
+						<td style="text-align: center">五日價格</td>
+					</tr>
+					<tr>
+						<td style="text-align: center">${data.price}/日</td>
+						<%-- 					<fmt:parseNumber value="${data.price*0.95}" type="currency"/>			 --%>
+						<td style="text-align: center">${data.price*0.95}/日</td>
+						<td style="text-align: center">${data.price*0.9}/日</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td style="text-align: center">數量 <select name="device"
+							id="device${step.index}" class="country">
+								<option value="">請選擇</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+						</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" style="text-align: center"><input
+							type="button" value="選擇這輛" onclick="doNext('${step.index}',);"></td>
+					</tr>
+				</table>
+				<br>
+			</c:forEach>
+
+		</form>
+	</div>
+
 	<!-- end main container -->
 
 	<!-- footer -->
@@ -408,6 +485,11 @@ form{
 			let deptd = $('#deptDate').val();
 			document.getElementById("returnDate").setAttribute("min", deptd);
 		}
+		
+		 $('.datepicker').datepicker({
+	    	 weekStart:1,
+	    	 color: 'red'
+		 });
 
 		//  檢查有無空白欄位
 		//    function doNext(){

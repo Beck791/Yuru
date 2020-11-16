@@ -1,7 +1,6 @@
 package com.yurucamp.car.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +33,6 @@ public class CarBean implements Serializable {
 
 	@Column(name = "image")
 	private String image;
-
 
 	public Integer getId() {
 		return id;
@@ -83,5 +81,4 @@ public class CarBean implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 }

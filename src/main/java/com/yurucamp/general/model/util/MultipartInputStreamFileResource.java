@@ -1,4 +1,4 @@
-package com.yurucamp.general.moder.util;
+package com.yurucamp.general.model.util;
 
 import java.io.IOException;
 import java.io.InputStream;

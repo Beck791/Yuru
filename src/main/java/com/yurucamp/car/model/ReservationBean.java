@@ -2,52 +2,73 @@ package com.yurucamp.car.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-
-import javax.persistence.CascadeType;
+import java.sql.Timestamp;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.yurucamp.member.model.MemberBean;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "Reservation")
 public class ReservationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
+
 	@Transient
 	private Integer memberId;
-	private Date orderDate;
-	private Integer dept;
-	private Integer ret;
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(name = "orderDate")
+	private Timestamp orderDate;
+
+	@Column(name = "dept")
+	private String dept;
+
+	@Column(name = "ret")
+	private String ret;
+
+	@Column(name = "deptDate")
 	private Date deptDate;
-	private Integer deptTime;
+
+	@Column(name = "deptTime")
+	private String deptTime;
+
+	@Column(name = "returnDate")
 	private Date returnDate;
-	private Integer returnTime;
-	private Integer type;
+
+	@Column(name = "returnTime")
+	private String returnTime;
+
+	@Column(name = "type")
+	private String type;
+
+	//@Transient 要確認。左記の記載では取得できない。
+	@Column(name = "carid")
+	private Integer carid;
+
+	@Column(name = "device")
 	private Integer device;
+
 	@Transient
 	private Integer couponId;
+
+	@Column(name = "amount")
 	private Integer amount;
+
+	@Column(name = "count")
 	private Integer count;
-	public Integer getId() {
-		return id;
-	}
-	
-	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
-	@JoinColumn(name="FK_MemberBean_Id")  
-	private MemberBean MemberBean;
-	
-	public ReservationBean(Integer id,Integer memberId,Date orderDate,Integer dept,Integer ret,Date deptDate,Integer deptTime,Date returnDate,
-			Integer returnTime,Integer type,Integer device,Integer couponId,Integer amount,Integer count) {
+
+	public ReservationBean(Integer id,Integer memberId,Timestamp orderDate,String dept,String ret,Date deptDate,String deptTime,Date returnDate,
+			String returnTime,String type,Integer device,Integer couponId,Integer amount,Integer count) {
 		this.id = id;
 		this.memberId = memberId;
 		this.orderDate = orderDate;
@@ -66,7 +87,7 @@ public class ReservationBean implements Serializable {
 
 	public ReservationBean() {
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -76,22 +97,22 @@ public class ReservationBean implements Serializable {
 	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
-	public Date getOrderDate() {
+	public Timestamp getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(Timestamp orderDate) {
 		this.orderDate = orderDate;
 	}
-	public Integer getDept() {
+	public String getDept() {
 		return dept;
 	}
-	public void setDept(Integer dept) {
+	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	public Integer getRet() {
+	public String getRet() {
 		return ret;
 	}
-	public void setRet(Integer ret) {
+	public void setRet(String ret) {
 		this.ret = ret;
 	}
 	public Date getDeptDate() {
@@ -100,10 +121,10 @@ public class ReservationBean implements Serializable {
 	public void setDeptDate(Date deptDate) {
 		this.deptDate = deptDate;
 	}
-	public Integer getDeptTime() {
+	public String getDeptTime() {
 		return deptTime;
 	}
-	public void setDeptTime(Integer deptTime) {
+	public void setDeptTime(String deptTime) {
 		this.deptTime = deptTime;
 	}
 	public Date getReturnDate() {
@@ -112,16 +133,16 @@ public class ReservationBean implements Serializable {
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
-	public Integer getReturnTime() {
+	public String getReturnTime() {
 		return returnTime;
 	}
-	public void setReturnTime(Integer returnTime) {
+	public void setReturnTime(String returnTime) {
 		this.returnTime = returnTime;
 	}
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public Integer getDevice() {
@@ -149,11 +170,16 @@ public class ReservationBean implements Serializable {
 		this.count = count;
 	}
 
-	public void setMemberBean(MemberBean MemberBean) {
-		this.MemberBean = MemberBean;
-		
+	public Integer getCarid() {
+		return carid;
 	}
-	
-	
+
+	public void setCarid(Integer carid) {
+		this.carid = carid;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 
 }

@@ -19,6 +19,8 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- step css -->
+<link href="<c:url value='/css/stepstyle.css' />" rel='stylesheet' type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -38,17 +40,12 @@
 }
 
 .top-bar {
-	/*     color: #333; */
-	/*     padding: 150px 0 150px; */
 	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
 	background: linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url../img/car/car.jpg);
-	/*     background-size: cover;
-	/*     background-attachment: fixed; */
-	/*     background-position: center center; */
-	/*     text-align: center; */
 }
+
 .cartype{
 	border: 1px solid #dbcf83;
     border-radius:30px;
@@ -80,6 +77,7 @@
 .tabletd {
 	padding: 7px;
 }
+
 </style>
 </head>
 
@@ -103,6 +101,9 @@
 			<form id="form2" name="form2" action="<c:url value='/Car/reservation' />" method="post">
 				<input type="hidden" id="type" name="type" value="">
 				<input type="hidden" id="amount" name="amount" value="">
+				<input type="hidden" id="totalPrice" name="totalPrice" value="">
+				<input type="hidden" id="normalPrice" name="normalPrice" value="">
+				<input type="hidden" id="discountPrice" name="discountPrice" value="">
 				<div class="main-agile-sectns">
 					<div class="agileits-btm-spc form-text1">
 						<img src="../img/car/location.png" width="15px">
@@ -132,6 +133,7 @@
 					<img src="../img/car/calender.png" width="15px">
 						<input type="date" placeholder="取車日期" name="deptDate" class="frm-field required" required
 							value="${deptDate}" id="deptDate">
+<!-- 							<input type="text" id="datepicker"> -->
 					</div>
 					<div class="agileits-btm-spc form-text2">
 						<img src="../img/car/clock.png" width="15px">
@@ -154,7 +156,7 @@
 					<div class="agileits-btm-spc form-text1">
 					<img src="../img/car/calender.png" width="15px">
 						<input type="date" placeholder="還車日期" name="returnDate" class="frm-field required" required
-							value="${returnDate}" id="retD">
+							value="${returnDate}" id="returnDate">
 					</div>
 					<div class="agileits-btm-spc form-text2">
 						<img src="../img/car/clock.png" width="15px">
@@ -184,44 +186,37 @@
 
 	</div>
 	</div>
-<!-- 	<div class="book-agileinfo-form input"> -->
-<%-- 		<c:forEach items="${planList}" var="data"> --%>
-<!-- 			<table class="cartype"> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan="3" class="cartypetd"></td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<%-- 					<td colspan="3" class="cartypetd">${data.type}</td> --%>
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td>一般價格</td> -->
-<!-- 					<td>三日價格</td> -->
-<!-- 					<td>五日價格</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<%-- 					<td>${data.price}</td> --%>
-<!-- 					<td>5% OFF</td> -->
-<!-- 					<td>10% OFF</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td>數量 -->
-<!-- 					<select name="device" id="device" onchange="change_country(this.value)" class="frm-field required"> -->
-<!-- 							<option value="">請選擇</option> -->
-<!-- 							<option value="1">1</option> -->
-<!-- 							<option value="2">2</option> -->
-<!-- 							<option value="3">3</option> -->
-<!-- 					</select> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan="3"><input type="submit" value="選擇這輛"></td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-<!-- 			<br> -->
-<%-- 		</c:forEach> --%>
-<!-- 		</div> -->
+	<br>
+	
+	<div class="container reserve-car">
+    <section class="reserve-step">
+        <div class="reserve-step-group">
+            <ol>
+                <li class="step-success">
+                    <div class="step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">選擇地點、時間 </div>
+<!--                         <a href="javascript:void(0)" class="step-edit edit_reserve_location">重新選擇<i class="svg"></i></a> -->
+                </li>
+                <li class="step-now">
+                    <div class="step-num step-circle">2</div>
+                    <div class="step-name">選擇車型、數量</div>
+                </li>
+                <li>
+                    <div class="step-num step-circle" style="background-color: transparent;">3</div>
+                    <div class="step-name">加購配件</div>
+                </li>
+                <li>
+                    <div class="step-num step-circle" style="background-color: transparent;">4</div>
+                    <div class="step-name">個人資料</div>
+                </li>
+                <li>
+                    <div class="step-num step-circle" style="background-color: transparent;">5</div>
+                    <div class="step-name">付款</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+    <br>
 		
 	<div class="book-agileinfo-form input">
 			<form id="form3" name="form3" action="<c:url value='/Car/reservation2' />" method="post">	
@@ -238,18 +233,17 @@
 					<td style="text-align:center">五日價格</td>	
 				</tr>	
 				<tr>
-					<td style="text-align:center">${data.price} /日</td>		
-<%-- 					<fmt:parseNumber value="${data.price}" type="currency"/>			 --%>
-<%-- 					<fmt:formatNumber type=”number” value=”${data.price*0.95}” maxFractionDigits=”0″/> --%>
-					<td style="text-align:center">${data.price*0.95} /日</td>
-					<td style="text-align:center">${data.price*0.9} /日</td>				
+					<td style="text-align:center">${data.price} /日<input type="hidden" id="oneDayPrice_${step.index}" value="${data.price}"></td>		
+<%-- 					<fmt:parseNumber value="${data.price*0.95}" type="currency"/>			 --%>
+					<td style="text-align:center">${data.price*0.95} /日<input type="hidden" id="threeDaysPrice_${step.index}" value="${data.price*0.95}"></td>
+					<td style="text-align:center">${data.price*0.9} /日<input type="hidden" id="fiveDaysPrice_${step.index}" value="${data.price*0.9}"></td>				
 				</tr>
 				<tr><td></td></tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td style="text-align:center">數量
-					<select name="device" id="device${step.index}" class="country">
+					<select name="amount" id="amount${step.index}" class="country">
 							<option value="">請選擇</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -343,13 +337,35 @@
 		
 		function doNext(count){
 			var type = $('#type' + count).val();
-			var device = $('#device' + count).val();
-			if(device == null || device == ''){
+			var amount = $('#amount' + count).val();
+			if(amount == null || amount == ''){
 				swal("請選擇車輛數量", "", "warning");
 				return;
 			}
 			$('#type').val(type);
-			$('#amount').val(device);
+			$('#amount').val(amount);
+			
+			//  金額計算
+			var date1 = new Date($('#deptDate').val()); 
+			var date2 = new Date($('#returnDate').val()); 
+			var Difference_In_Time = date2.getTime() - date1.getTime(); 
+			var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+			
+			var price = 0;
+			var price2 = 0;
+			var discount = 0;
+			price2 = Difference_In_Days * parseInt($('#oneDayPrice_'+count).val()) * parseInt($('#amount'+count).val());
+			if(Difference_In_Days < 3){
+				price = Difference_In_Days * parseInt($('#oneDayPrice_'+count).val()) * parseInt($('#amount'+count).val());
+			}else if(Difference_In_Days >= 3 && Difference_In_Days < 5){
+				price = Difference_In_Days * parseInt($('#threeDaysPrice_'+count).val()) * parseInt($('#amount'+count).val());
+			}else if(Difference_In_Days >= 5){
+				price = Difference_In_Days * parseInt($('#fiveDaysPrice_'+count).val()) * parseInt($('#amount'+count).val());
+			}
+			dicount = price2 - price;
+			$('#normalPrice').val(price2);
+			$('#totalPrice').val(price);
+			$('#discountPrice').val(dicount);
 			var action = document.getElementById("form2").action;
 			$('#form2').attr('action', action + "2").submit();
 			document.getElementById("form2").submit();
