@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Yurucamp_index</title>
-    <link rel="icon" href="img/yuruIcon.png" type="image/x-icon">
+    <title>YuruCamp</title>
+    <link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 	
 	<!-- Bootstrap -->
 	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -29,34 +28,33 @@
 </head>
 
 <body>
-
-<jsp:include page="/WEB-INF/pages/include/top.jsp" />
-
-        <!-- box-intro -->
-        <section class="box-intro">
-            <div class="table-cell">
-                <h1 class="box-headline letters rotate-2">
-                    <span class="box-words-wrapper">
-                        <b class="is-visible">yuru.</b>
-<!--                         <b>&nbsp;coding.</b> -->
-                        <b style="text-align:center" >&nbsp;&nbsp;camp</b>
-                        <b>キャンプ</b>
-                    </span>
-		        </h1>
-                <h5>everything you need to enjoy your personal travel</h5>
-            </div>
-
-            <div class="mouse">
-                <div class="scroll"></div>
-            </div>
-        </section>
-        <!-- end box-intro -->
-    </div>
+	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+	
+	<!-- box-intro -->
+	<section class="box-intro">
+		<div class="table-cell">
+			<h1 class="box-headline letters rotate-2">
+				<span class="box-words-wrapper">
+					<b class="is-visible">yuru.</b>
+	<!-- 			<b>&nbsp;coding.</b> -->
+					<b style="text-align:center" >&nbsp;&nbsp;camp</b>
+					<b>キャンプ</b>
+				</span>
+			</h1>
+			<h5>everything you need, and enjoy your personal travel</h5>
+		</div>
+		
+		<div class="mouse">
+			<div class="scroll"></div>
+		</div>
+	</section>
+	<!-- end box-intro -->
 
     <!-- portfolio div -->
     <div class="portfolio-div">
         <div class="portfolio">
             <div class="no-padding portfolio_container">
+            
                 <!-- single work -->
                 <div class="col-md-3 col-sm-6  fashion logo">
                     <a href="single-project.html" class="portfolio_item">
@@ -216,6 +214,7 @@
                     </a>
                 </div>
                 <!-- end single work -->
+                
             </div>
             <!-- end portfolio_container -->
         </div>
@@ -236,7 +235,6 @@
     <!-- end back to top -->
 
 
-
 	<!-- jQuery -->
 	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
@@ -244,7 +242,6 @@
 	<script src="<c:url value='/js/menu.js' />"></script>
 	<script src="<c:url value='/js/animated-headline.js' />"></script>
 	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
-
 
 	<!--  custom script -->
 	<script src="<c:url value='/js/custom.js' />"></script>
@@ -268,4 +265,5 @@
     </script>
     
 </body>
+
 </html>
