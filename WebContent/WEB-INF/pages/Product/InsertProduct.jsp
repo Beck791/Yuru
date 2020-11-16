@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -19,21 +22,21 @@
 
 	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
-	<form method="post"  id="imgur" enctype="multipart/form-data" action="<c:url value='/Product/InsertProductinfo'/>">
+<%-- 	<form method="post"  id="imgur" enctype="multipart/form-data" action="<c:url value='/Product/InsertProductinfo'/>"> --%>
+	<form id=formdata>
 	 <table class="btn btn-secondary">
-		<tr><td>輸入產品 :<td><input type="text" name="name" />
-		<tr><td>輸入品牌 :<td><input type="text" value="犀牛" name="brand" />
-		<tr><td>輸入價格 :<td><input type="text" value="888" name="price" />
-		<tr><td>上傳圖片 :<td><input type="file" name="image" >
-		<tr><td>輸入產品內容 :<td><input type="text" value="產品內容" name="description" />
-		<tr><td>輸入產品狀態:<td><input type="text" value="上架中" name="status" />
-		<tr><td>輸入庫存數量 :<td><input type="text" value="50" name="stock" />
-		<tr><td>輸入種類 :<td><input type="text" value="帳篷" name="category" />
+		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
+		<tr><td>輸入品牌 :<td><input type="text" id="brand" value="犀牛" name="brand" />
+		<tr><td>輸入價格 :<td><input type="text" id="price" value="888" name="price" />
+		<tr><td>上傳圖片 :<td><input type="file" id="image" name="image" >
+		<tr><td>輸入產品內容 :<td><input type="text" id="description" value="產品內容" name="description" />
+		<tr><td>輸入產品狀態:<td><input type="text" id="status" value="上架中" name="status" />
+		<tr><td>輸入庫存數量 :<td><input type="text" id="stock" value="50" name="stock" />
+		<tr><td>輸入種類 :<td><input type="text" id="category" value="帳篷" name="category" />
 	</table>
 	<br><br>
-			<input type="submit" value="新增" class="btn btn-primary" />
-			<input type="reset" value="取消" class="btn btn-primary" />
-			
+			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />
+<!-- 			<input type="reset" value="取消" class="btn btn-primary" /> -->			
 	</form>
 	
 	<hr>
@@ -63,6 +66,32 @@
 </table>
 	</div>
 	<script>
+	
+	function sendForm() {	
+// 		var brand = $('#brand').val();
+// 		var image = $('#image').val();
+// 		var status = $('#status').val();
+// 		var form = $('#formdata');
+        var formData = new FormData($('#formdata'));
+		console.log(formData);
+// 		var data = JSON.stringify(formData);
+// 		console.log(data);
+        $.ajax({
+        	      type: 'POST',
+	              dataType: 'json',
+                  url : '/yurucamp/Product/InsertProductinfo',
+//                contentType : 'application/json; charset=utf-8',
+			      contentype : false,
+                  data : formData,
+                  success : function(data) {
+
+                           alert(data.name);
+
+                  }
+
+        });
+
+}
 	</script>
 	
 </body>

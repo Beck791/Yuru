@@ -15,6 +15,9 @@ import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 @Repository
 public class ProductDaoImp implements ProductDao {
 
@@ -76,13 +79,22 @@ public class ProductDaoImp implements ProductDao {
 	}
 
 	@Override
-	public List<ProductBean> querypage() throws SQLException {
+	public JSONArray querypage() throws SQLException {
 		String hql = "FROM ProductBean Order by id desc";
 		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
 		query.setFirstResult(0);
 		query.setMaxResults(5);
-		List<ProductBean> results = query.list();
+		JSONArray results = (JSONArray) query.list();
 		return results;
 	}
 	
+//	@Override
+//	public List<ProductBean> querypage() throws SQLException {
+//		String hql = "FROM ProductBean Order by id desc";
+//		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
+//		query.setFirstResult(0);
+//		query.setMaxResults(5);
+//		List<ProductBean> results = query.list();
+//		return results;
+//	}
 }

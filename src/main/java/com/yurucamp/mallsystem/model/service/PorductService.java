@@ -15,6 +15,9 @@ import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.BrandDao;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 @Service
 @Transactional
@@ -84,18 +87,35 @@ public class PorductService {
 		return null;
 	}
 	
+//	public JSONArray querypage() throws SQLException{
+//		JSONArray jsonArray = new JSONArray();
+//		List<ProductBean> list = productDao.querypage();
+//		for (ProductBean productBean : list) {
+//		
+//			BrandBean brandBean = brandDao.queryOne(productBean.getBrandId());
+//			productBean.setBrand(brandBean.getName());
+//			
+//			ItemStatus itemStatus = productDao.queryOneStatus(productBean.getStatusId());
+//			productBean.setStatus(itemStatus.getName());
+//			JSONObject jobj = JSONObject.fromObject(productBean);
+//			
+//			jsonArray.add(jobj);
+//		}
+//			
+//		return jsonArray;
+//	}
 	public List<ProductBean> querypage() throws SQLException{
 		
 		List<ProductBean> list = productDao.querypage();
 		for (ProductBean productBean : list) {
-		
+			
 			BrandBean brandBean = brandDao.queryOne(productBean.getBrandId());
 			productBean.setBrand(brandBean.getName());
 			
 			ItemStatus itemStatus = productDao.queryOneStatus(productBean.getStatusId());
 			productBean.setStatus(itemStatus.getName());;
 		}
-			
+		
 		return list;
 	}
 

@@ -15,6 +15,7 @@
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
+
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 <style>
@@ -28,15 +29,17 @@
 <div align="center" margin=100px>
 <!-- <h1>&nbsp;</h1> -->
 <!-- <h1>&nbsp;</h1> -->
+<div>
 <h1>露營商品管理</h1>
-<br><br>
+</div>
+<div>
     <a href="<c:url value='/Product/Index' />" class="btn btn-primary">露營商城</a><br><br>
 	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br>
     <a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">查詢全部資料</a><br><br>
 	<a href="<c:url value='/Product/InsertProduct'/>" class="btn btn-primary">新增資料</a><br><br>
 	<a href="<c:url value='/Product/GetAllBrand'/>" class="btn btn-primary">查詢廠牌資料</a><br><br>
 	<a href="<c:url value='/Product/InsertBrand'/>" class="btn btn-primary">新增廠牌資料</a><br><br>
-
+</div>
 </div>
 <script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->

@@ -11,40 +11,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Component
 @Entity
-@Table(name = "OrderDetail")
-public class OrderDetailBean implements Serializable {
-
+@Table(name="shoppingcart")
+public class ShoppingCart implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "productId")
+	
+	@Column(name="memberId")
+	private Integer memberId;
+	
+	@Column(name="productId")
 	private Integer productId;
 	
-	@Column(name = "orderId")
-	private Integer orderId;
+	@Column(name="quantity")
+	private int quantity;
 	
-	@Column(name = "quantity")
-	private Integer quantity;
-
-	@Column(name = "price")
-	private Integer price;
-
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "createtime")
+	@Column(name="price")
+	private int price;
+	
+	@Column(name="createtime")
 	private Timestamp createtime;
-
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "updateTime")
-	private Timestamp updateTime;
+	
+	@Column(name="updatetime")
+	private Timestamp updatetime;
 
 	public Integer getId() {
 		return id;
@@ -52,6 +45,14 @@ public class OrderDetailBean implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public Integer getProductId() {
@@ -62,19 +63,19 @@ public class OrderDetailBean implements Serializable {
 		this.productId = productId;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public Integer getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -86,12 +87,14 @@ public class OrderDetailBean implements Serializable {
 		this.createtime = createtime;
 	}
 
-	public Timestamp getUpdateTime() {
-		return updateTime;
+	public Timestamp getUpdatetime() {
+		return updatetime;
 	}
 
-	public void setUpdateTime(Timestamp updateTime) {
-		this.updateTime = updateTime;
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
 	}
-
+	
+	
+	
 }

@@ -8,6 +8,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <style>
 * {
     font-family: 微軟正黑體;
@@ -44,7 +45,7 @@
 <td>${productBean.name}</td>	
 <td>${productBean.price}</td>
 <td>${productBean.brand}</td>
-<td>${productBean.image}</td>
+<td><img src="${productBean.image}"></td>
 <td>${productBean.webTraffic}</td>
 <td>${productBean.description}</td>
 <td>${productBean.stock}</td>

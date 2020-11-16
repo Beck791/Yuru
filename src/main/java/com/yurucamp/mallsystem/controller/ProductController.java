@@ -2,15 +2,17 @@ package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +39,9 @@ public class ProductController {
 
 	// 商城首頁
 	@GetMapping(value = "/Product/Index")
-	public String ProductIndex() {
+	public String ProductIndex(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryAll();	
+		model.addAttribute("productBeans", list);
 		return "mallSystemIndex";
 	}
 
@@ -58,32 +62,59 @@ public class ProductController {
 	// 後臺新增商品頁面
 	@RequestMapping(value = "/Product/InsertProduct", method = RequestMethod.GET)
 	public String InsertProductinfo()  {
+		
 		return "mallSystemInsertProduct";
 	}	
-	// 後臺新增商品資料
-	@PostMapping(value = "/Product/InsertProductinfo")
-	public String InsertProduct(@RequestParam("name") String name,
-								@RequestParam("brand") String brandname,
-								@RequestParam("price") Integer price,
-								@RequestParam("image") MultipartFile image,
-								@RequestParam("description") String description,
-								@RequestParam("status") String status,
-								@RequestParam("stock") Integer stock,
-								@RequestParam("category") String category, Model model)throws SQLException {
-		ProductBean productBean = new ProductBean();
-		productBean.setName(name);
-		productBean.setBrandId(brandService.queryId(brandname));
-		productBean.setPrice(price);
+//	// 後臺新增商品資料
+//	@PostMapping(value = "/Product/InsertProductinfo")
+//	@ResponseBody
+//	public JSONArray InsertProduct(@RequestParam("name") String name,
+//								@RequestParam("brand") String brandname,
+//								@RequestParam("price") Integer price,
+//								@RequestParam("image") MultipartFile image,
+//								@RequestParam("description") String description,
+//								@RequestParam("status") String status,
+//								@RequestParam("stock") Integer stock,
+//								@RequestParam("category") String category, Model model)throws SQLException {
+//		ProductBean productBean = new ProductBean();
+//		productBean.setName(name);
+//		productBean.setBrandId(brandService.queryId(brandname));
+//		productBean.setPrice(price);
+//		productBean.setImage(generalService.uploadToImgur(image));
+//		productBean.setDescription(description);
+//		productBean.setStatusId(productService.queryId(status));
+//		productBean.setStock(stock);
+//		productBean.setCategory(category);
+//		productBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
+//		productService.insert(productBean);
+//		List<ProductBean> list = productService.querypage();
+//		model.addAttribute("productBeans", list);
+//		return (JSONArray) list;
+//	}
+	// 後臺新增商品資料 {brand}/{image}/{status}
+	@PostMapping(value = "/Product/InsertProductinfo" , produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<ProductBean> InsertProduct(@RequestBody ProductBean productBean,
+			                               @RequestParam(value = "brand") String brand,
+										   @RequestParam(value = "image") MultipartFile image,
+										   @RequestParam(value = "status") String status, Model model)throws SQLException {
+//		ProductBean productBean = new ProductBean();
+		productBean.setName(productBean.getName());
+		productBean.setBrandId(brandService.queryId(brand));
+		productBean.setPrice(productBean.getPrice());
 		productBean.setImage(generalService.uploadToImgur(image));
-		productBean.setDescription(description);
+		productBean.setDescription(productBean.getDescription());
 		productBean.setStatusId(productService.queryId(status));
-		productBean.setStock(stock);
-		productBean.setCategory(category);
+		productBean.setStock(productBean.getStock());
+		productBean.setCategory(productBean.getCategory());
 		productBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		productService.insert(productBean);
 		List<ProductBean> list = productService.querypage();
-		model.addAttribute("productBeans", list);
-		return "mallSystemInsertProduct";
+//		map.put("queryPage",queryPage);
+		
+//		model.addAttribute("productBeans", list);
+		
+		return list;
 	}
 	
 	// 後臺刪除商品

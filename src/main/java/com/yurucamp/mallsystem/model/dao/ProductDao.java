@@ -7,6 +7,9 @@ import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 public interface ProductDao {
 
@@ -24,5 +27,6 @@ public interface ProductDao {
 
 	public ItemStatus queryOneStatus(Integer id) throws SQLException;
 	
-	public List<ProductBean> querypage() throws SQLException;
+	public JSONArray querypage() throws SQLException;
+//	public List<ProductBean> querypage() throws SQLException;
 }
