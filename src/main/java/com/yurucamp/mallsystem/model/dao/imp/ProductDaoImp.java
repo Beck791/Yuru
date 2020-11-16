@@ -10,13 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.ProductDao;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 @Repository
 public class ProductDaoImp implements ProductDao {
@@ -30,7 +26,7 @@ public class ProductDaoImp implements ProductDao {
 	}
 
 	@Override
-	public ProductBean queryOne(int id) throws SQLException {
+	public ProductBean queryOne(Integer id) throws SQLException {
 		ProductBean product = sessionFactory.getCurrentSession().get(ProductBean.class, id);
 		return product;
 	}
@@ -52,7 +48,7 @@ public class ProductDaoImp implements ProductDao {
 	}
 
 	@Override
-	public void deleteOne(int id) throws SQLException {
+	public void deleteOne(Integer id) throws SQLException {
 		ProductBean productBean = sessionFactory.getCurrentSession().get(ProductBean.class, id);
 		sessionFactory.getCurrentSession().delete(productBean);
 	}
@@ -78,23 +74,23 @@ public class ProductDaoImp implements ProductDao {
 		return itemStatus;	
 	}
 
-	@Override
-	public JSONArray querypage() throws SQLException {
-		String hql = "FROM ProductBean Order by id desc";
-		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
-		query.setFirstResult(0);
-		query.setMaxResults(5);
-		JSONArray results = (JSONArray) query.list();
-		return results;
-	}
-	
 //	@Override
-//	public List<ProductBean> querypage() throws SQLException {
+//	public JSONArray querypage() throws SQLException {
 //		String hql = "FROM ProductBean Order by id desc";
 //		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
 //		query.setFirstResult(0);
 //		query.setMaxResults(5);
-//		List<ProductBean> results = query.list();
+//		JSONArray results = (JSONArray) query.list();
 //		return results;
 //	}
+	
+	@Override
+	public List<ProductBean> querypage() throws SQLException {
+		String hql = "FROM ProductBean Order by id desc";
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
+		query.setFirstResult(0);
+		query.setMaxResults(5);
+		List<ProductBean> results = query.list();
+		return results;
+	}
 }

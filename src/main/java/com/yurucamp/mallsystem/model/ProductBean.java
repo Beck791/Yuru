@@ -68,6 +68,14 @@ public class ProductBean implements Serializable {
 	private String status;
 	
 	
+	@Override
+	public String toString() {
+		return "ProductBean [id=" + id + ", name=" + name + ", brandId=" + brandId + ", price=" + price + ", image="
+				+ image + ", webTraffic=" + webTraffic + ", description=" + description + ", statusId=" + statusId
+				+ ", stock=" + stock + ", category=" + category + ", createtime=" + createtime + ", updatetime="
+				+ updatetime + ", brand=" + brand + ", status=" + status + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}

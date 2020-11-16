@@ -2,17 +2,21 @@ package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -88,22 +92,13 @@ public class ProductController {
 //		model.addAttribute("productBeans", list);
 //		return (JSONArray) list;
 //	}
-	// 後臺新增商品資料 {brand}/{image}/{status}
-	@PostMapping(value = "/Product/InsertProductinfo" , produces = "application/json; charset=utf-8")
+	// 後臺新增商品資料
+	@PostMapping(value = "/Product/InsertProductinfo")
 	@ResponseBody
-	public List<ProductBean> InsertProduct(@RequestBody ProductBean productBean,
-			                               @RequestParam(value = "brand") String brand,
-										   @RequestParam(value = "image") MultipartFile image,
-										   @RequestParam(value = "status") String status, Model model)throws SQLException {
-//		ProductBean productBean = new ProductBean();
-		productBean.setName(productBean.getName());
-		productBean.setBrandId(brandService.queryId(brand));
-		productBean.setPrice(productBean.getPrice());
-		productBean.setImage(generalService.uploadToImgur(image));
-		productBean.setDescription(productBean.getDescription());
-		productBean.setStatusId(productService.queryId(status));
-		productBean.setStock(productBean.getStock());
-		productBean.setCategory(productBean.getCategory());
+	public List<ProductBean> InsertProduct(@ModelAttribute ProductBean productBean, Model model)throws SQLException {
+		
+		System.out.println(productBean.toString());
+		
 		productBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		productService.insert(productBean);
 		List<ProductBean> list = productService.querypage();
@@ -113,6 +108,26 @@ public class ProductController {
 		
 		return list;
 	}
+	
+	@PostMapping(path = "/Product/upfileimage",produces = "application/json")
+	@ResponseBody
+	public Map<String,String> img(@RequestPart(value = "image") MultipartFile image) {
+		
+		System.out.println(image);
+		String imgur = generalService.uploadToImgur(image);
+		Map<String,String> result = new HashMap<>();
+		
+		if(imgur != null) {
+			result.put("upload","true");
+			result.put("url",imgur);
+			
+		}else {
+			result.put("upload","true");
+			result.put("url",null);
+		}
+		 return result;
+	}
+	
 	
 	// 後臺刪除商品
 	@PostMapping(value = "/Product/DeleteProduct")
