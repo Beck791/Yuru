@@ -1,7 +1,6 @@
 package com.yurucamp.mallsystem.model.dao.imp;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;

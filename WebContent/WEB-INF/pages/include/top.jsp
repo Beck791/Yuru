@@ -17,7 +17,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
-<<<<<<< HEAD
+
 <!-- <!-- Bootstrap --> -->
 <%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
 <%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
@@ -30,7 +30,7 @@
 <!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- 	<script src="https://code.jquery.com/jquery.js"></script> -->
 <!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-=======
+
 <!-- Bootstrap -->
 <%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
 <%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
@@ -39,7 +39,7 @@
 <%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
 	<!-- modernizr -->
 	<script <c:url value="/modernizr.js"/>  ></script>
->>>>>>> d2cfd8e04f89ea0fe3a9e8251b35343135607dc1
+
 
   
 	<style>
