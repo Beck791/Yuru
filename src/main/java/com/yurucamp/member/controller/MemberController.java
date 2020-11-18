@@ -30,7 +30,7 @@ public class MemberController {
 	
 	@PostMapping("/SignIn")
 	@ResponseBody
-	public Map<String, String>  MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
+	public Map<String, String> MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
 		Map<String, String> rtnMap = new HashMap<String, String>();
 		List<MemberBean> memberUser = memberDao.queryUserId(Account,Password);
 		HttpSession session = request.getSession();
@@ -41,8 +41,6 @@ public class MemberController {
 			for(MemberBean s:memberUser) {
 				System.out.println("memberId"+s.getMemberId());
 				session.setAttribute("memberId",s.getMemberId());
-				System.out.println("id"+s.getId());
-				session.setAttribute("id",s.getId());
 				System.out.println("memberRolse"+s.getRoles());
                 session.setAttribute("memberRolse",s.getRoles().toString().trim());
 				System.out.println("memberPaid"+s.getPaid());

@@ -2,6 +2,8 @@ package com.yurucamp.member.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
+//import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +38,7 @@ public class MemberBean  implements Serializable{
 	private String gender;
 	
 	@Column(name="birthday")
-	private String birthday;
+	private Date birthday;
 	
 	@Column(name="phone")
 	private String phone;
@@ -48,7 +50,7 @@ public class MemberBean  implements Serializable{
 	private String mail;
 	
 	@Column(name="registerDate")
-	private String registerDate;
+	private Date registerDate;
 	
 	@Column(name="status")
 	private String status;
@@ -105,11 +107,11 @@ public class MemberBean  implements Serializable{
 		this.gender = gender;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -137,11 +139,11 @@ public class MemberBean  implements Serializable{
 		this.mail = mail;
 	}
 
-	public String getRegisterDate() {
+	public Date getRegisterDate() {
 		return registerDate;
 	}
 
-	public void setRegisterDate(String registerDate) {
+	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
 

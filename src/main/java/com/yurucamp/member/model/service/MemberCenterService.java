@@ -19,5 +19,12 @@ public class MemberCenterService {
 		System.out.println("ServicememberId="+memberId);
 		return memberCenterDao.queryMem(memberId); 
 	}
+	
+	public String add(MemberBean mBean) throws SQLException {
+//		System.out.println("ServicememberId="+memberId);
+		String mes=memberCenterDao.addMem(mBean);
+		System.out.println(mBean);
+		return mes;
+	}
 
 }

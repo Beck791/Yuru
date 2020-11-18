@@ -2,6 +2,8 @@ package com.yurucamp.member.model.dao;
 
 import java.sql.SQLException;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,15 +26,54 @@ public class MemberCenterDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	//查詢---登入
 	public MemberBean queryMem(String memberId) throws SQLException {
-//		MemberBean memInfo = sessionFactory.getCurrentSession().get(MemberBean.class,memberId);
-		
+//		MemberBean memInfo = sessionFactory.getCurrentSession().get(MemberBean.class,memberId);		
 		String hql = "from MemberBean where memberId=:memberId";
 		System.out.println(hql);
 		MemberBean memberBean= (MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult();
-//		String memberId = memberBean.getMemberId();
 		return memberBean ;	 
+	}
+		
+	//新增----註冊
+	public String addMem(MemberBean mBean) throws SQLException {
+		MemberBean result = null;
+		String mes=null;
+		try {
+			System.out.println("進到Dao");
+			String memberId = mBean.getMemberId();
+			System.out.println("memberId="+memberId);
+			String hql = "FROM MemberBean WHERE memberId=:memberId";
+			
+//		MemberBean result=getSession().get(MemberBean.class,mBean.getMemberId());
+			System.out.println("mes="+mes);
+			System.out.println("(MemberBean)="+(MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult());
+			
+			result = (MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(result);
+		}
+		if (result==null) {
+			sessionFactory.getCurrentSession().save(mBean);
+			mes="新增成功";			
+			System.out.println("mes="+mes);
+			return  mes;
+		}
+		mes="帳號重複";
+		System.out.println("mes="+mes);		
+		return  mes;
+	}
 
+	private String get(Class<MemberBean> class1, String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Session getSession() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

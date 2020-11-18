@@ -115,48 +115,68 @@ img {
 			  <tbody>
 			    <tr >
 					<td style="text-align:right;width:250px;">姓名:</td>
-					<td><input type="text" name="name" id="name" path="name" value="${MemberBean.name}"></td>
-			    	<td></td>
+					<td><input type="text" name="mcname" id="mcname" value="${MemberBean.name}"></td>
+			    	<td id="errormcname" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 			    </tr>
 			    <tr>
 					<td style="text-align:right;width:200px">密碼:</td>
-					<td><input type="password" name="password" id="password"
+					<td><input type="password" name="mcpassword" id="mcpassword"
+									 value="${MemberBean.password}"></td>
+					<td id="errormcpassword" style="text-align: left;color:red;font-weight: bold;float:left"></td>		    
+			    </tr>
+			    			    <tr>
+					<td style="text-align:right;width:200px">密碼確認:</td>
+					<td><input type="password" name="mcpassword2" id="mcpassword2"
 									path="password" value="${MemberBean.password}"></td>
-					<td></td>		    
+					<td id="errormcpassword2" style="text-align: left;color:red;font-weight: bold;float:left"></td>			    
 			    </tr>
 			    <tr>
 					<td style="text-align:right;width:200px">性別:</td>
-					<td><input type="text" name="gender" id="gender"
-									path="gender" value="${MemberBean.gender}"></td>
-					<td></td>
+<!-- 					<td><input type="text" name="gender" id="gender" -->
+<%-- 									path="gender" value="${MemberBean.gender}"></td> --%>
+					<td><select id="mcgender">
+					    <option hidden>
+					    <c:choose>
+						<c:when test="${MemberBean.gender eq 'F'}">
+						女生
+						</c:when>
+						<c:when test="${MemberBean.gender eq 'M'}">
+						男生
+						</c:when>
+						</c:choose>
+					    </option>
+					    <option value="F">女生</option>
+					    <option value="M">男生</option>
+					</select></td>
+					<td id="errormcgender" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 			    </tr>
 			    <tr>
 					<td style="text-align:right;width:200px">生日:</td>
-					<td><input type="text" name="birthday" id="birthday"
-						path="birthday" value="${MemberBean.birthday}"></td>
-					<td></td>
+					<td><input type="text" name="mcbirthday" id="mcbirthday"
+						 value="${MemberBean.birthday}"></td>
+					<td id="errormcbirthday" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr >
 					<td style="text-align:right;width:200px">電話:</td>
-					<td><input type="text" name="phone" id="phone" path="phone"
+					<td><input type="text" name="mcphone" id="mcphone" 
 						value="${MemberBean.phone}"></td>
-					<td></td>
+					<td id="mcerrorphone" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;width:200px">地址:</td>
-					<td><input type="text" name="address" id="address" path="address"
+					<td><input type="text" name="mcaddress" id="mcaddress"
 						value="${MemberBean.address}"></td>
-					<td></td>
+					<td id="errormcaddress" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;width:200px">mail:</td>
-					<td><input type="text" name="mail" id="mail" path="mail"
+					<td><input type="text" name="mcmail" id="mcmail" path="mcmail"
 						value="${MemberBean.mail}"></td>
-					<td></td>
+					<td id="errormcmail" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;width:200px"></td>
-					<td><br><button type="button" class="btn btn-light">更新資訊</button></td>
+					<td><br><button type="button" id="updatemem"class="btn btn-light">更新資訊</button></td>
 					<td></td>
 				</tr>
 			  </tbody>
@@ -193,61 +213,68 @@ img {
 	<br>
 	<br>	
 
-<!--             <h3 style="text-align:center">會員資料</h3> -->
-<!--             <div style="width: 90%;border: 1px solid #D0D0D0;"> -->
+<script>
 
-<%-- 					<form:form  method="Post" action="Insert" modelAttribute="memInfo"> --%>
-<!-- 						action="Controller名字"(Controller自己取的) modelAttribute="隨便名稱"(後端要對應)   -->
-<!-- 						<table class="table" style="float: right;border:2px solid black" > -->
-<!-- 							<tr style="border-style: hidden"> -->
-<!-- 								<td style="float: right;">姓名:</td> -->
-<!-- 								<td><input type="text" name="name" id="name" path="name" -->
-<%-- 									value="${MemberBean.name}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr "> -->
-<!-- 								<td style="float: right;border-style: hidden">密碼:</td> -->
-<!-- 								<td><input type="password" name="password" id="password" -->
-<%-- 									path="password" value="${MemberBean.password}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<td style="float: right">性別:</td> -->
-<!-- 								<td><input type="text" name="gender" id="gender" -->
-<%-- 									path="gender" value="${MemberBean.gender}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<td style="float:right;">生日:</td> -->
-<!-- 								<td><input type="text" name="birthday" id="birthday" -->
-<%-- 									path="birthday" value="${MemberBean.birthday}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr > -->
-<!-- 								<td style="float: right;border-style: hidden">電話:</td> -->
-<!-- 								<td><input type="text" name="phone" id="phone" path="phone" -->
-<%-- 									value="${MemberBean.phone}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<td style="float: right;border-style: hidden">地址:</td> -->
-<!-- 								<td><input type="text" name="address" id="address" path="address" -->
-<%-- 									value="${MemberBean.address}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<td style="float: right;border-style: hidden">mail:</td> -->
-<!-- 								<td><input type="text" name="mail" id="mail" path="mail" -->
-<%-- 									value="${MemberBean.mail}"></td> --%>
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<!-- 		</table> -->
-<!-- 		<div > -->
-<!-- 		<input type="reset" value="更新資訊"> -->
-<!-- 		</div> -->
-<%-- 		</form:form> --%>
-<!-- 		</div> -->
+$("#updatemem").click(function() {
+	if ($("#mcname").val()===""){
+		$("#errormcname").html("姓名不得為空值")
+		 return false;
+	}else if($("#mcpassword").val().length < 8){
+		$(".error").html("密碼請大於8位數")
+		 return false;				
+	}else if($("#mcpassword").val()!==$("#password2").val()){
+		$(".error").html("密碼與驗證密碼不一致")
+		 return false;				
+	}else if($("#mcgender").val()!="F"&&$("#gender").val()!="M"){
+		$(".error").html("性別請填寫M(男生)或F(女生)")
+		 return false;				
+	}else if($("#mcbirthday").val()===""){
+		$(".error").html("生日不得為空值")
+		 return false;	
+	}else if($("#mcmail").val()===""){
+		$(".error").html("mail不得為空值")
+		 return false;	
+	}
+	var data = new Object();
+	data.name = $("#name").val();
+	data.memberId = $("#memberId").val();
+	data.password = $("#password").val();
+	data.gender = $("#gender").val();
+	data.birthday = $("#birthday").val();
+	data.phone = "0988888888";
+	data.address = "新北市新店區";
+	data.mail = $("#mail").val();
+	data.registerDate = new Date();
+	data.status = "Y";
+	data.paid = 0;
+	data.roles = "member";
+	console.log(data);
+	$.ajax({
+		url : "<c:url value='/Member/Rer'/>",
+		method : 'POST',
+		dataType : 'json',
+		data : data
+	}).done(function(result) {
+		if (result.mes == "帳號重複") {
+			$("#ermsg2").html("有相同帳號，請重新輸入")
+		} else if(result.mes == "新增成功") {
+			$("#ermsg2").html("")
+			$("#name").val("");
+			$("#memberId").val("");
+			$("#password").val("");
+			$("#password2").val("");
+			$("#gender").val("");
+			$("#birthday").val("");
+			$("#mail").val("");
+			$("#mailc").val("");
+			$("#registerModal").click();
+			alert("註冊成功，您可以正常登入!");
+		}
 
+	})
+});
+
+</script>
 
 
 </body>
