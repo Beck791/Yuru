@@ -122,6 +122,8 @@
 		${sessionScope.memberId}
 		${sessionScope.memberRolse}
 		${sessionScope.memberPaid}
+		${sessionScope.id}
+<%-- 		${sessionScope.image} --%>
 			</div>
 
 		</header>

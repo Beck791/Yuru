@@ -22,7 +22,6 @@ import com.yurucamp.member.model.dao.MemberDao;
 
 @Controller
 @RequestMapping("/Member")
-@SessionAttributes({"memberId","memberRolse,memberPaid"})
 public class MemberController {
 	
 	@Autowired
@@ -45,6 +44,8 @@ public class MemberController {
                 session.setAttribute("memberRolse",s.getRoles().toString().trim());
 				System.out.println("memberPaid"+s.getPaid());
                 session.setAttribute("memberPaid",s.getPaid().toString().trim()); 
+                session.setAttribute("id",s.getId().toString().trim()); 
+                session.setAttribute("image",s.getImage()); 
                 
 //                request.getRequestDispatcher("/MemberCenterController").forward(request, response); 
 			}         
