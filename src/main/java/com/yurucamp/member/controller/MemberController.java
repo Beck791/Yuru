@@ -22,16 +22,29 @@ import com.yurucamp.member.model.dao.MemberDao;
 
 @Controller
 @RequestMapping("/Member")
+@SessionAttributes({ "memberBean", "id", "memberRolse", "memberPaid", "image" })
 public class MemberController {
-	
+
 	@Autowired
 	MemberDao memberDao;
-	
+
+	@SuppressWarnings("null")
 	@PostMapping("/SignIn")
 	@ResponseBody
-	public Map<String, String> MemberIndex(HttpServletRequest request,Model model,String Account,String Password) throws SQLException {
+	public Map<String, String> MemberIndex(HttpServletRequest request, Model model, String Account, String Password)
+			throws SQLException {
 		Map<String, String> rtnMap = new HashMap<String, String>();
-		List<MemberBean> memberUser = memberDao.queryUserId(Account,Password);
+		MemberBean memberBean = memberDao.queryUserId(Account, Password);
+		System.out.println(memberBean);
+		System.out.println(memberBean.getName());
+		model.addAttribute("memberBean", memberBean);
+		model.addAttribute("id", memberBean.getId());
+		model.addAttribute("memberRolse", memberBean.getRoles());
+		model.addAttribute("memberPaid", memberBean.getPaid());
+		model.addAttribute("image", memberBean.getImage());
+		
+		
+		List<MemberBean> memberUser = memberDao.queryaUserId(Account,Password);
 		HttpSession session = request.getSession();
 		
 		if(memberUser.isEmpty()) { 

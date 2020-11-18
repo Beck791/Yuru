@@ -1,7 +1,6 @@
 package com.yurucamp.member.model.dao.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -19,13 +18,33 @@ public class MemberDaoImpl implements MemberDao{
 	SessionFactory factory;
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<MemberBean> queryUserId(String Account,String Password) throws SQLException {
+	public MemberBean queryUserId(String Account,String Password) throws SQLException {
 		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";
 		Session session = null;
-		List<MemberBean> list = new ArrayList<>();
+//		List<MemberBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
-		list = session.createQuery(hql).setParameter("mid", Account)
+		MemberBean memberBean = (MemberBean) session.createQuery(hql).setParameter("mid", Account)
+									   .setParameter("paw", Password).getSingleResult();
+		return memberBean;
+	}
+//	@Override
+//	public MemberBean queryUserId(String Account,String Password) throws SQLException {
+//		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";
+//		Session session = null;
+////		List<MemberBean> list = new ArrayList<>();
+//		session = factory.getCurrentSession();
+//		MemberBean memberBean = (MemberBean) session.createQuery(hql).setParameter("mid", Account)
+//				.setParameter("paw", Password).getSingleResult();
+//		return memberBean;
+//	}
+
+	@Override
+	public List<MemberBean> queryaUserId(String Account, String Password) throws SQLException {
+		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";
+		Session session = null;
+//		List<MemberBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+	    List<MemberBean> list = session.createQuery(hql).setParameter("mid", Account)
 									   .setParameter("paw", Password).getResultList();
 		return list;
 	}

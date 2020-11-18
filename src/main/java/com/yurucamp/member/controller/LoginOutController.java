@@ -12,24 +12,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
-//@SessionAttributes({"memberId","memberRolse"})
+@SessionAttributes({"memberId","memberRolse"})
 public class LoginOutController  extends HttpServlet {
 
 
 	private static final long serialVersionUID = 1L;
 
 	@GetMapping("/Member/LoginOut")
-	public String ddd(HttpServletRequest request, HttpServletResponse response)
+	public String ddd(HttpServletRequest request, HttpServletResponse response,SessionStatus status,Model model)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);//防止建立Session
+			
 		
-			session.removeAttribute("memberId");
-			session.removeAttribute("memberRolse");
-			session.removeAttribute("memberPaid");
-			session.removeAttribute("id");
-			session.removeAttribute("image");
+		    // 登出時執行下列兩敘述
+			status.setComplete();		// 移除@SessionAttributes({"LoginOK"}) 標示的屬性物件
+			session.invalidate();		// 此敘述不能省略	
+//			session.removeAttribute("memberId");
+//			session.removeAttribute("memberRolse");
+//			session.removeAttribute("memberPaid");
+//			session.removeAttribute("id");
+//			session.removeAttribute("image");
 		return "indexPage";
 	}
 
