@@ -39,7 +39,7 @@ public class MemberController {
 		System.out.println(memberBean.getName());
 		model.addAttribute("memberBean", memberBean);
 		model.addAttribute("id", memberBean.getId());
-		model.addAttribute("memberRolse", memberBean.getRoles());
+		model.addAttribute("memberRolse", memberBean.getRoles().trim());
 		model.addAttribute("memberPaid", memberBean.getPaid());
 		model.addAttribute("image", memberBean.getImage());
 		

@@ -17,6 +17,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
+<<<<<<< HEAD
 
 <!-- <!-- Bootstrap --> -->
 <%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
@@ -39,6 +40,9 @@
 <%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
 	<!-- modernizr -->
 	<script <c:url value="/modernizr.js"/>  ></script>
+=======
+<script <c:url value="/modernizr.js"/>  ></script>
+>>>>>>> a1d7e9106c6857a3cd1f7ca344cf2935f5bc2eeb
 
 
   
@@ -92,7 +96,7 @@
 			<!-- box-nav -->
 
 			<c:choose>
-				<c:when test="${sessionScope.memberRolse eq 'admin'}">
+				<c:when test="${memberRolse eq 'admin'}">
 					<button type="button" class="btn btn-light"
 						style="float: right; margin-right: 288px; margin-top: -90px">
 						<a href="<c:url value='/Backstage/index' />" />後臺管理</a>
@@ -131,9 +135,10 @@
 			
 			<div  style="float: right; margin-right: 130px;; margin-top: -120px">
 		${sessionScope.memberId}
-		${sessionScope.memberRolse}
+		${memberRolse}
 		${sessionScope.memberPaid}
 		${sessionScope.id}
+		
 <%-- 		${sessionScope.image} --%>
 			</div>
 
