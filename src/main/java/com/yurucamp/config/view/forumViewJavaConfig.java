@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceView;
 public class forumViewJavaConfig {
 
 	@Bean
-	public View ClassifyPage() { // 呼叫此方法名稱及導向設定之jsp
+	public View forumClassifyIndexPage() { // 呼叫此方法名稱及導向設定之jsp
 		InternalResourceView view = new InternalResourceView();
 		view.setUrl("/WEB-INF/pages/Forum/forumClassifyIndex.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;

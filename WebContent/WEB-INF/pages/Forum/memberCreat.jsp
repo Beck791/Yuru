@@ -14,20 +14,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <!-- Bootstrap -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="../css/imgurStyle.css" rel="stylesheet" media="screen">
-<link href="../css/imgurMobile-style.css" rel="stylesheet" media="screen">
-<link rel="shortcut icon" href="./favicon.png">
-<script src="/js/jquery-3.2.1.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link href="<c:url value='/css/imgurStyle.css' />" rel="stylesheet" media="screen">
+<link href="<c:url value='/css/imgurMobile-style.css' />" rel="stylesheet"
+	media="screen">
+<link rel="shortcut icon" href="<c:url value='/favicon.png' />">
+<!-- LIVE 2D -->
+
+
+<!--  -->
+<script src="<c:url value='/js/jquery-3.2.1.js' />"></script>
+<script src="<c:url value='/js/bootstrap.min.js' />"></script>
 <!-- main css -->
-<link href="../css/style.css" rel="stylesheet">
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet">
 <!-- modernizr -->
-<script src="../js/modernizr.js"></script>
+<script src="<c:url value='/js/modernizr.js'/>"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -35,9 +43,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
-<script src="../js/ckeditorConfig.js"></script>
+<script src="<c:url value='/js/ckeditorConfig.js' />"></script>
 </head>
 <body>
+
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
 	<!-- top bar -->
@@ -55,8 +64,7 @@
 	<div style="width: 70%; margin: 1% 1% 1% 2%; float: left;">
 		<div class="panel panel-default" id="main" style="">
 			<div class="panel-heading" style="background-color: white">
-				<a href="<c:url value='/Forum/forumIndex' />">XXX</a>
-				› 新主題
+				<a href="<c:url value='/Forum/forumIndex' />">XXX</a> › 新主題
 			</div>
 
 			<div class="panel-body">
@@ -71,7 +79,7 @@
 						<div class="">
 							<label class="t1" for="content" path="poContent">主題內容</label>
 							<textarea name="contentforckeditor" rows="10" cols="10"
-								placeholder="請輸入主題內容" style="config.resize_enabled = false;"></textarea>
+								placeholder="請輸入主題內容" style=""></textarea>
 						</div>
 
 
@@ -94,12 +102,11 @@
 						<!-- 		</div> -->
 
 						<div>
-						<label >
-						<span>選擇圖片</span>
-						<input name="poImage" id="editor" type="file">
-						</label>
+							<label> <span>選擇圖片</span> <input name="poImage"
+								id="editor" type="file">
+							</label>
 						</div>
-						
+
 
 
 
@@ -115,38 +122,43 @@
 
 
 
-	<div style="width: 25%; margin: 1% 2% 1% 0%; float: right;height: 130%;">
+	<div
+		style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 130%;">
 		<div class="panel panel-default" id="main" style="">
 			<div>
 				<h1>廣告區</h1>
-				<span>
+				<span> </span>
+				<!-- LIVE 2D -->
+					<div id="landlord">
+						<div class="message" style="opacity: 0"></div>
+						<canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+						<div class="hide-button">隐藏</div>
+					</div>
+				 <!-- LIVE 2D -->
+	<!-- IMGUR SHOW -->
 				
-				XXXXXXXXX
-				</span>
 			</div>
 			<img alt="" src="">
 		</div>
 	</div>
-	<!-- IMGUR SHOW -->
+	
 	<div class="" style="background-color:">
-      <div style="text-align:center;">
-      
-      </div>
-       
-       <h1 >Imgur test </h1>
-       <hr> 
-        </div>
-    
-    <div class="dropzone" style="border-radius:30px;">
-    
-       <p></p> 
-       <div class="info"></div>
-        
-    </div>
-    
-    <script type="text/javascript" src="../js/imgur.js"></script>
-    <script type="text/javascript" src="../js/imgurUpload.js"></script>
-	<hr> 
+		<div style="text-align: center;"></div>
+
+		<h1>Imgur test</h1>
+		<hr>
+	</div>
+
+	<div class="dropzone" style="border-radius: 30px;">
+
+		<p></p>
+		<div class="info"></div>
+
+	</div>
+
+	<script type="text/javascript" src="<c:url value='/js/imgur.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/imgurUpload.js' />"></script>
+	<hr>
 
 	<!-- end main container -->
 
@@ -165,15 +177,15 @@
 
 
 
-<script src="ckeditor/ckeditor.js"></script>
+
 	<!-- jQuery -->
-	<script src="../js/jquery-2.1.1.js"></script>
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/menu.js"></script>
-	<script src="../js/animated-headline.js"></script>
-	<script src="../js/isotope.pkgd.min.js"></script>
-<script>
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
+	<script>
 		CKEDITOR.replace('contentforckeditor');
 	</script>
 
@@ -196,9 +208,9 @@
             </script>
 
 	<!--  custom script -->
-	<script src="../js/custom.js"></script>
+	<script src="<c:url value='/js/custom.js' />"></script>
 
-	<!-- google analytics  -->
+	<!-- LIVE 2D  -->
 
 
 </body>

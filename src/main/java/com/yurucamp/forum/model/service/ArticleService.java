@@ -36,6 +36,11 @@ public class ArticleService {
 		PostBean po = postDao.queryPostId(poId);
 		return po;
 		}
+	
+	public  List<PostBean> queryPostIdAll(Integer poId) throws SQLException {
+		List<PostBean> po = postDao.queryPostIdAll(poId);
+		return po;
+	}
 	public  List<ReplyBean> queryPoIdAllReply(Integer poId) throws SQLException {
 		List<ReplyBean> re = replyDao.queryPoIdAllReply(poId);
 		return re;

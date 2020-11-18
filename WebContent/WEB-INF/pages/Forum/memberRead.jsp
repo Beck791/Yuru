@@ -145,7 +145,7 @@
           <p class="user-sequence-first">回覆</p>
           <div class="extra-user-info">
             <dl class="pairs-justified">
-              <dt></dt>
+              <dt> <input type="submit" class="btn btn-primary" value="編輯"></dt>
               <dd></dd>
             </dl>
             <dl class="pairs-justified">
@@ -220,18 +220,19 @@
 
 
 	<!-- jQuery -->
-	<script src="<c:url value='/js/jquery-2.1.1.js'/>"></script>
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
-	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/js/menu.js'/>"></script>
-	<script src="<c:url value='/js/animated-headline.js'/>"></script>
-	<script src="<c:url value='/js/isotope.pkgd.min.js'/>"></script>
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
 
 
 	<!--  custom script -->
-	<script src="<c:url value='/js/custom.js'/>"></script>
+	<script src="<c:url value='/js/custom.js' />"></script>
 
 	<!-- google analytics  -->
+
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;

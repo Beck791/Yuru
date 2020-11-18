@@ -1,6 +1,7 @@
 package com.yurucamp.forum.model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.forum.model.PostBean;
+import com.yurucamp.forum.model.ReplyBean;
 
 @Repository
 public class PostDao {
@@ -45,6 +47,12 @@ private SessionFactory sessionFactory;
 	
 	public void  updatePost(PostBean postBean) throws SQLException {
 		sessionFactory.getCurrentSession().saveOrUpdate(postBean);
+	}
+
+
+	public List<PostBean> queryPostIdAll(Integer poId) {
+		List<PostBean> postList = sessionFactory.getCurrentSession().createQuery("from PostBean where poId=:poId", PostBean.class).setParameter("poId", poId).getResultList();
+		return postList;
 	}
 	
 //	public PostBean updatePost(PostBean po) {

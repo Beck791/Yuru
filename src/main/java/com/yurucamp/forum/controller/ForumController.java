@@ -30,21 +30,24 @@ public class ForumController {
 	@RequestMapping("/Forum/Index")
 	public String ToClassifyPage() {
 //		return "Forum/forumIndex";
-		return "ClassifyPage";
+		return "forumClassifyIndexPage";
 	}
 
 	@RequestMapping("/Forum/forumIndex")
-	public String ToCampDiscussionPage(Model model) {
-		
+	public String ToCampDiscussionPage(Integer poId,Model model) throws SQLException{
+		List<PostBean> postList = articleService.queryPostIdAll(poId);
+		model.addAttribute("postList", postList);
+		System.out.println("polist=?"+ postList);
 //		return "Forum/memberCreat";
 		return "campDiscussionPage";
 	}
-
 	
 
 	
-	@RequestMapping(value ="/Forum/pureInsert", method = RequestMethod.GET)
-	public String PureInsert(Model model) {
+
+	
+	@RequestMapping(value ="/Forum/goInsert", method = RequestMethod.GET)
+	public String GoInsert(Model model) {
 		PostBean po = new PostBean();
 		String a = "aaa";
 		model.addAttribute("ForumBean",a);
@@ -73,7 +76,9 @@ public class ForumController {
 	
 	
 	
-	@GetMapping(value ="/Forum/readArticle/{poId}" )
+	
+	
+	@GetMapping(value ="/Forum/readArticle/${PostBean.poId}" )
 	public String Read(@PathVariable("poId") Integer poId, Model model) throws SQLException{
 		PostBean postBean = articleService.queryPostId(poId);
 		model.addAttribute("PostBean", postBean);
@@ -101,7 +106,11 @@ public class ForumController {
 		return "memberReadPage";
 	}
 
-   
+	@RequestMapping("/Forum/articleList")
+	public String memberArticleList() {
+//		return "Forum/forumIndex";
+		return "memberArticleListPage";
+	}
 	
 	
 	

@@ -10,19 +10,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-   	<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
+   	<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
     <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link href="../ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
     <!-- main css -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="<c:url value='/css/style.css' />" rel="stylesheet">
     <!-- modernizr -->
-    <script src="../js/modernizr.js"></script>
+    <script src="<c:url value='/js/modernizr.js' />"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,8 +54,8 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       
-      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/pureInsert' />" class="" >新增文章</a></li>
-      <li class="nav-item"><a class="nav-link disabled" href="#">個人文章一覽</a></li>
+      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/goInsert' />" class="" >新增文章</a></li>
+      <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/articleList' />">個人文章一覽</a></li>
 
     </ul>
    
@@ -94,14 +94,15 @@
                 <!-- portfolio_container -->
 				<div class="no-padding portfolio_container clearfix">
                     <!-- single work -->
+                    <c:forEach var="PostBean" items="${postList}">
                     <div class="col-md-4 col-sm-10 new"  style="background-color:#dbcf83">
-                        <a href="<c:url value='/Forum/readArticle/${poId}'/>" class="portfolio_item">
+                        <a href="<c:url value='/Forum/readArticle/${PostBean.poId}'/>" class="portfolio_item">
                             <img src="../img/portfolio/02.jpg" alt="image" class="img-responsive" />
                             <div class="portfolio_item_hover">
                                 <div class="portfolio-border clearfix">
                                     <div class="item_info">
-                                        <span>AAAAAAAAAAAAAAAAAA.</span>
-                                        <em>AAAAAA</em>
+                                        <span>${PostBean.poTitle}</span>
+                                        <em>${PostBean.memberId}</em>
                                     </div>
                                 </div>
                             </div>
@@ -109,9 +110,10 @@
                         </a>
                         
                        </div> 
+                       </c:forEach>
                     </div>
                     <!-- end single work -->
-
+					
 
 
                       <!-- single work -->
@@ -291,19 +293,19 @@
     <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
     <!-- end back to top -->
 
-    <!-- jQuery -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <!--  plugins -->
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/menu.js"></script>
-    <script src="../js/animated-headline.js"></script>
-    <script src="../js/isotope.pkgd.min.js"></script>
+   <!-- jQuery -->
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
+	<!--  plugins -->
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
 
 
-    <!--  custom script -->
-    <script src="../js/custom.js"></script>
-    
-    <!-- google analytics  -->
+	<!--  custom script -->
+	<script src="<c:url value='/js/custom.js' />"></script>
+
+	<!-- google analytics  -->
 
 </body>
 
