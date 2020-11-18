@@ -5,13 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+
+</style>
 <meta charset="UTF-8">
-<title>${forumIndex}</title>
+<title>露營商城</title>
  	 <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-     <link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
+     <link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <!-- Bootstrap -->
      <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
      <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
@@ -29,6 +33,11 @@
 
 <jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
+ <!-- cart -->
+<div class='myblock' style='position:fixed; bottom:100px; right:10px; background-color:white; '> 
+  <a href="<c:url value='/shoppingcart'/>"><img src="../img\product\cart.png" height="30" />
+</div>
+
  <!-- top bar -->
     <div class="top-bar">
         <h1>露營商城</h1>
@@ -45,16 +54,19 @@
 				<div class="categories-grid wow fadeInLeft">
 					<nav class="categories text-center">
 						<ul class="portfolio_filter">
-							<li><a href="" class="active" data-filter="*">All</a></li>
-							<li><a href="" data-filter=".photography">Photography</a></li>
-							<li><a href="" data-filter=".logo">Logo</a></li>
-							<li><a href="" data-filter=".graphics">Graphics</a></li>
-							<li><a href="" data-filter=".ads">Advertising</a></li>
-							<li><a href="" data-filter=".fashion">Fashion</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>All</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Photography</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Logo</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Graphics</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Advertising</a></li>
+							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Fashion</a></li>
 							<c:choose>
 				            <c:when test="${sessionScope.memberRolse eq 'admin'}">
-							<li><a href="<c:url value='/Product/BackStageIndex'/>">商城管理系統</a></li>
+							<li><a href="<c:url value='/Product/BackStageIndex'/>" style='background-color:#dbcf83;border-radius:5px'>商城管理系統</a></li>
 							</c:when>
+<%-- 				            <c:when test="${not empty memberId}"> --%>
+<%-- 							<li><a href="<c:url value='/shoppingcart'/>"><img src="../img\product\cart.png" height="30" /></li> --%>
+<%-- 							</c:when> --%>
 						   </c:choose>
 						</ul>
 					</nav>
@@ -106,9 +118,9 @@
             <div class="carousel-item">
               <img class="d-block img-fluid" src="../img\product\banner_3.jpg" alt="Third slide">
             </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
-            </div>
+<!--             <div class="carousel-item"> -->
+<!--               <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide"> -->
+<!--             </div> -->
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">5
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -154,67 +166,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Four</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Five</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
+  
             </div>
           </div>
 
@@ -224,10 +176,8 @@
       </div>
       <!-- /.col-lg-9 -->
 
-    </div>
     <!-- /.row -->
 
-  </div>
 <!-- footer -->
     <footer>
         <div class="container-fluid">
@@ -237,7 +187,8 @@
     <!-- end footer -->
 
     <!-- back to top -->
-    <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+
+    
     <!-- end back to top -->
 
     <!-- jQuery -->
@@ -261,6 +212,7 @@
 		document.forms[i].method="post";
 		document.forms[i].submit();
 		}
+	
 	
 	</script>
 </body>

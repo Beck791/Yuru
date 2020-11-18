@@ -1,412 +1,318 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8" import="java.util.*,com.yurucamp.mallsystem.model.ProductBean" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Snippet - BBBootstrap</title>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
 <style>
-@import "compass/css3";
-
-$color-border: #eee;
-$color-label: #aaa;
-$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
-
-.product-image { float: left; width: 20%; }
-.product-details { float: left; width: 37%; }
-.product-price { float: left; width: 12%; }
-.product-quantity { float: left; width: 10%; }
-.product-removal { float: left; width: 9%; }
-.product-line-price { float: left; width: 12%; text-align: right; }
-
-.group:before,
-.group:after {
-    content: '';
-    display: table;
-} 
-.group:after {
-    clear: both;
-}
-.group {
-    zoom: 1;
-}
-
-
-/* Apply clearfix in a few places */
-.shopping-cart, .column-labels, .product, .totals-item {
-  @extend .group;
-}
-
-
-/* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
-}
-
-
-/* Body/Header stuff */
+								
 body {
-  padding: 0px 30px 30px 20px;
-  font-family: $font-default;
-  font-weight: 100;
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #fff;
+    background-repeat: no-repeat
 }
 
-h1 {
-  font-weight: 100;
+.plus-minus {
+    position: relative
 }
 
-label {
-  color: $color-label;
+.plus {
+    position: absolute;
+    top: -4px;
+    left: 2px;
+    cursor: pointer
 }
 
-.shopping-cart {
-  margin-top: -45px;
+.minus {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    cursor: pointer
 }
 
-
-/* Column headers */
-.column-labels {
-  label {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid $color-border;
-  }
-  
-  .product-image, .product-details, .product-removal {
-    text-indent: -9999px;
-  }
+.vsm-text:hover {
+    color: #FF5252
 }
 
-
-/* Product entries */
-.product {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $color-border;
-  
-  .product-image {
-    text-align: center;
-    img {
-      width: 100px;
-    }
-  }
-  
-  .product-details {
-    .product-title {
-      margin-right: 20px;
-      font-family: $font-bold;
-    }
-    .product-description {
-      margin: 5px 20px 5px 0;
-      line-height: 1.4em;
-    }
-  }
-  
-  .product-quantity {
-    input {
-      width: 40px;
-      
-    }
-  }
-  
-  .remove-product {
-    border: 0;
-    padding: 4px 8px;
-    background-color: #c66;
-    color: #fff;
-    font-family: $font-bold;
-    font-size: 12px;
-    border-radius: 3px;
-  }
-  
-  .remove-product:hover {
-    background-color: #a44;
-  }
+.book,
+.book-img {
+    width: 120px;
+    height: 180px;
+    border-radius: 5px
 }
 
-.totals {
-  .totals-item {
-    float: right;
-    clear: both;
+.book {
+    margin: 20px 15px 5px 15px
+}
+
+.border-top {
+    border-top: 1px solid #EEEEEE !important;
+    margin-top: 20px;
+    padding-top: 15px
+}
+
+.card {
+    margin: 40px 0px;
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
+}
+
+input,
+textarea {
+    background-color: #F3E5F5;
+    padding: 8px 15px 8px 15px;
     width: 100%;
-    margin-bottom: 10px;
-    
-    label {
-      float: left;
-      clear: both;
-      width: 79%;
-      text-align: right;
-    }
-    
-    .totals-value {
-      float: right;
-      width: 21%;
-      text-align: right;
-    }
-  }
-  
-  .totals-item-total {
-    font-family: $font-bold;
-  }
+    border-radius: 5px !important;
+    box-sizing: border-box;
+    border: 1px solid #F3E5F5;
+    font-size: 15px !important;
+    color: #000 !important;
+    font-weight: 300
 }
 
-.checkout {
-  float: right;
-  border: 0;
-  margin-top: 20px;
-  padding: 6px 25px;
-  background-color: #6b6;
-  color: #fff;
-  font-size: 25px;
-  border-radius: 3px;
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #9FA8DA;
+    outline-width: 0;
+    font-weight: 400
 }
 
-.checkout:hover {
-  background-color: #494;
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
 }
 
-
-@media screen and (max-width: 650px) {
-  
-  .shopping-cart {
-    margin: 0;
-    padding-top: 20px;
-    border-top: 1px solid $color-border;
-  }
-  
-  .column-labels {
-    display: none;
-  }
-  
-  .product-image {
-    float: right;
-    width: auto;
-    img {
-      margin: 0 0 10px 10px;
-    }
-  }
-  
-  .product-details {
-    float: none;
-    margin-bottom: 10px;
-    width: auto;
-  }
-  
-  .product-price {
-    clear: both;
-    width: 70px;
-  }
-  
-  .product-quantity {
-    width: 100px;
-    input {
-      margin-left: 20px;
-    }
-  }
-  
-  .product-quantity:before {
-    content: 'x';
-  }
-  
-  .product-removal {
-    width: auto;
-  }
-  
-  .product-line-price {
-    float: right;
-    width: 70px;
-  }
-  
+.pay {
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #673AB7;
+    margin: 10px 20px 10px 0px;
+    cursor: pointer;
+    box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
 }
 
-@media screen and (max-width: 350px) {
-  
-  .product-removal {
-    float: right;
-  }
-  
-  .product-line-price {
-    float: right;
-    clear: left;
-    width: auto;
+.gray {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+    color: #E0E0E0
+}
+
+.gray .pay {
+    box-shadow: none
+}
+
+#tax {
+    border-top: 1px lightgray solid;
     margin-top: 10px;
-  }
-  
-  .product .product-line-price:before {
-    content: 'Item Total: $';
-  }
-  
-  .totals {
-    .totals-item {
-      label {
-        width: 60%;
-      }
-      
-      .totals-value {
-        width: 40%;
-      }
-    }
-  }
+    padding-top: 10px
 }
 
-</style>
+.btn-blue {
+    border: none;
+    border-radius: 10px;
+    background-color: #673AB7;
+    color: #fff;
+    padding: 8px 15px;
+    margin: 20px 0px;
+    cursor: pointer
+}
+
+.btn-blue:hover {
+    background-color: #311B92;
+    color: #fff
+}
+
+#checkout {
+    float: left
+}
+
+#check-amt {
+    float: right
+}
+
+@media screen and (max-width: 768px) {
+
+    .book,
+    .book-img {
+        width: 100px;
+        height: 150px
+    }
+
+    .card {
+        padding-left: 15px;
+        padding-right: 15px
+    }
+
+    .mob-text {
+        font-size: 13px
+    }
+
+    .pad-left {
+        padding-left: 20px
+    }
+}</style>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+
 </head>
-<body>
-<h1>Shopping Cart</h1>
-
-<div class="shopping-cart">
-
-  <div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
-  </div>
-
-  <div class="product">
-    <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+<body oncontextmenu='return false' class='snippet-body'>
+<div class="container px-4 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-5">
+            <h4 class="heading">Shopping Cart</h4>
+        </div>
+        <div class="col-7">
+            <div class="row text-right">
+                <div class="col-4">
+                    <h6 class="mt-2">種類</h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="mt-2">數量</h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="mt-2">價錢</h6>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product-details">
-      <div class="product-title">Dingo Dog Bones</div>
-      <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+    <div class="row d-flex justify-content-center border-top">
+        <div class="col-5">
+            <div class="row d-flex">
+                <div class="book"> <img src="${productBean.image}" class="book-img"> </div>
+                <div class="my-auto flex-column d-flex pad-left">
+                    <h6 class="mob-text">產品名字${productBean.name}</h6>
+                    <p class="mob-text">產品內容${productBean.description}</p>
+                </div>
+            </div>
+        </div>
+        <div class="my-auto col-7">
+            <div class="row text-right">
+                <div class="col-4">
+                    <p class="mob-text">種類</p>
+                </div>
+                <div class="col-4">
+                    <div class="row d-flex justify-content-end px-3">
+                        <p class="mb-0" id="cnt1">1</p>
+                        <div class="d-flex flex-column plus-minus"> <span class="vsm-text plus">+</span> <span class="vsm-text minus">-</span> </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h6 class="mob-text">$9.99${productBean.price}</h6>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product-price">12.99</div>
-    <div class="product-quantity">
-      <input type="number" value="2" min="1">
+    <div class="row d-flex justify-content-center border-top">
+        <div class="col-5">
+            <div class="row d-flex">
+                <div class="book"> <img src="https://i.imgur.com/Oj1iQUX.jpg" class="book-img"> </div>
+                <div class="my-auto flex-column d-flex pad-left">
+                    <h6 class="mob-text">Homo Deus: A Brief<br>History of Tomorrow</h6>
+                    <p class="mob-text">Yuval Noah Harari</p>
+                </div>
+            </div>
+        </div>
+        <div class="my-auto col-7">
+            <div class="row text-right">
+                <div class="col-4">
+                    <p class="mob-text">Paperback</p>
+                </div>
+                <div class="col-4">
+                    <div class="row d-flex justify-content-end px-3">
+                        <p class="mb-0" id="cnt2">1</p>
+                        <div class="d-flex flex-column plus-minus"> <span class="vsm-text plus">+</span> <span class="vsm-text minus">-</span> </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h6 class="mob-text">$13.50</h6>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-3 radio-group">
+                        <div class="row d-flex px-3 radio"> <img class="pay" src="https://i.imgur.com/WIAP9Ku.jpg">
+                            <p class="my-auto">Credit Card</p>
+                        </div>
+                        <div class="row d-flex px-3 radio gray"> <img class="pay" src="https://i.imgur.com/OdxcctP.jpg">
+                            <p class="my-auto">Debit Card</p>
+                        </div>
+                        <div class="row d-flex px-3 radio gray mb-3"> <img class="pay" src="https://i.imgur.com/cMk1MtK.jpg">
+                            <p class="my-auto">PayPal</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="row px-2">
+                            <div class="form-group col-md-6"> <label class="form-control-label">Name on Card</label> <input type="text" id="cname" name="cname" placeholder="Johnny Doe"> </div>
+                            <div class="form-group col-md-6"> <label class="form-control-label">Card Number</label> <input type="text" id="cnum" name="cnum" placeholder="1111 2222 3333 4444"> </div>
+                        </div>
+                        <div class="row px-2">
+                            <div class="form-group col-md-6"> <label class="form-control-label">Expiration Date</label> <input type="text" id="exp" name="exp" placeholder="MM/YYYY"> </div>
+                            <div class="form-group col-md-6"> <label class="form-control-label">CVV</label> <input type="text" id="cvv" name="cvv" placeholder="***"> </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <div class="row d-flex justify-content-between px-4">
+                            <p class="mb-1 text-left">Subtotal</p>
+                            <h6 class="mb-1 text-right">$23.49</h6>
+                        </div>
+                        <div class="row d-flex justify-content-between px-4">
+                            <p class="mb-1 text-left">fee</p>
+                            <h6 class="mb-1 text-right">$60</h6>
+                        </div>
+                        <div class="row d-flex justify-content-between px-4" id="tax">
+                            <p class="mb-1 text-left">Total (fee included)</p>
+                            <h6 class="mb-1 text-right">$26.48</h6>
+                        </div> <button class="btn-block btn-blue"> <span> <span id="checkout">Checkout</span> <span id="check-amt">$26.48</span> </span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product-line-price">25.98</div>
-  </div>
-
-  <div class="product">
-    <div class="product-image">
-      <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-      <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-    </div>
-    <div class="product-price">45.99</div>
-    <div class="product-quantity">
-      <input type="number" value="1" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">45.99</div>
-  </div>
-
-  <div class="totals">
-    <div class="totals-item">
-      <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">71.97</div>
-    </div>
-    <div class="totals-item">
-      <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax">3.60</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">15.00</div>
-    </div>
-    <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">90.57</div>
-    </div>
-  </div>
-      
-      <button class="checkout">Checkout</button>
-
 </div>
-<script>
-/* Set rates + misc */
-var taxRate = 0.05;
-var shippingRate = 15.00; 
-var fadeTime = 300;
+<script type='text/javascript'>
 
+$(document).ready(function(){
 
-/* Assign actions */
-$('.product-quantity input').change( function() {
-  updateQuantity(this);
+$('.radio-group .radio').click(function(){
+$('.radio').addClass('gray');
+$(this).removeClass('gray');
 });
 
-$('.product-removal button').click( function() {
-  removeItem(this);
+$('.plus-minus .plus').click(function(){
+var count = $(this).parent().prev().text();
+$(this).parent().prev().html(Number(count) + 1);
 });
 
+$('.plus-minus .minus').click(function(){
+var count = $(this).parent().prev().text();
+$(this).parent().prev().html(Number(count) - 1);
+});
 
-/* Recalculate cart */
-function recalculateCart()
-{
-  var subtotal = 0;
-  
-  /* Sum up row totals */
-  $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.product-line-price').text());
-  });
-  
-  /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal + tax + shipping;
-  
-  /* Update totals display */
-  $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(subtotal.toFixed(2));
-    $('#cart-tax').html(tax.toFixed(2));
-    $('#cart-shipping').html(shipping.toFixed(2));
-    $('#cart-total').html(total.toFixed(2));
-    if(total == 0){
-      $('.checkout').fadeOut(fadeTime);
-    }else{
-      $('.checkout').fadeIn(fadeTime);
-    }
-    $('.totals-value').fadeIn(fadeTime);
-  });
-}
-
-
-/* Update quantity */
-function updateQuantity(quantityInput)
-{
-  /* Calculate line price */
-  var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.product-price').text());
-  var quantity = $(quantityInput).val();
-  var linePrice = price * quantity;
-  
-  /* Update line price display and recalc cart totals */
-  productRow.children('.product-line-price').each(function () {
-    $(this).fadeOut(fadeTime, function() {
-      $(this).text(linePrice.toFixed(2));
-      recalculateCart();
-      $(this).fadeIn(fadeTime);
-    });
-  });  
-}
-
-
-/* Remove item from cart */
-function removeItem(removeButton)
-{
-  /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
-  productRow.slideUp(fadeTime, function() {
-    productRow.remove();
-    recalculateCart();
-  });
-}
+});
 </script>
 </body>
 </html>

@@ -38,6 +38,16 @@ public class ShoppingCartController {
 	ShoppingCartService shoppingCartService;
 
 	
+	@GetMapping("/shoppingcart")
+	public String shopcart(HttpServletRequest request,Model model) throws SQLException {
+		HttpSession session = request.getSession();
+		Integer memberid = (Integer) session.getAttribute("id");
+		System.out.println(memberid);
+		ShoppingCart cart = new ShoppingCart();
+		shoppingCartService.queryAll(memberid);
+		return "cart";
+		
+	}
 	@GetMapping("/shoppingcart/addProduct")
 	public void addshopcart(HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();

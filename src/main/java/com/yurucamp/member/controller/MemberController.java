@@ -41,6 +41,8 @@ public class MemberController {
 			for(MemberBean s:memberUser) {
 				System.out.println("memberId"+s.getMemberId());
 				session.setAttribute("memberId",s.getMemberId());
+				System.out.println("id"+s.getId());
+				session.setAttribute("id",s.getId());
 				System.out.println("memberRolse"+s.getRoles());
                 session.setAttribute("memberRolse",s.getRoles().toString().trim());
 				System.out.println("memberPaid"+s.getPaid());
