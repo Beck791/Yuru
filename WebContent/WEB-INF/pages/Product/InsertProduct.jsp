@@ -22,7 +22,6 @@
 
 	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
 	
-<%-- 	<form method="post"  id="imgur" enctype="multipart/form-data" action="<c:url value='/Product/InsertProductinfo'/>"> --%>
 	<form id="formdata">
 	 <table class="btn btn-secondary" style="text-align:left" >
 		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
@@ -31,9 +30,6 @@
 								<option value="3">犀牛</option>
 								<option value="4">Camp</option>
 								<option value="5">努特</option>
-<!-- 								<option value=""></option> -->
-<!-- 								<option value=""></option> -->
-<!-- 								<option value=""></option> -->
 							</select>
 		<tr><td>輸入價格 :<td><input type="text" id="price" value="888" name="price" />
 		<tr><td>上傳圖片 :<td><input type="file" id="image" onchange="uploadimg()">
@@ -49,8 +45,7 @@
 		<tr><td>輸入種類 :<td><input type="text" id="category" value="帳篷" name="category" />
 	</table>
 	<br><br>
-			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />
-<!-- 			<input type="reset" value="取消" class="btn btn-primary" /> -->			
+			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />			
 	</form>
 		
 	<hr>
@@ -70,26 +65,7 @@
 			<th>新增日期</th>
 			<th>修改日期</th>
 		</tr>
-<%-- <c:forEach var="productBean" items="${productBeans}"> --%>
-<!-- <tr><td> -->
-<!-- <input type="submit" value="修改" name="update"/>	 -->
 
-<!-- </td> -->
-<%-- <td>${productBean.id}</td> --%>
-<%-- <td>${productBean.name}</td>	 --%>
-<%-- <td>${productBean.price}</td> --%>
-<%-- <td>${productBean.brand}</td> --%>
-<%-- <td><img src="${productBean.image}"></td> --%>
-<%-- <td>${productBean.webTraffic}</td> --%>
-<%-- <td>${productBean.description}</td> --%>
-<%-- <td>${productBean.stock}</td> --%>
-<%-- <td>${productBean.category}</td> --%>
-<%-- <td>${productBean.status}</td> --%>
-<%-- <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td> --%>
-<%-- <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr> --%>
-
-
-<%-- </c:forEach> --%>
 </table>
 	</div>
 	<script>
@@ -105,7 +81,6 @@
 		    contentType: false,
 		    success:function(result){
 		    	console.log(result.url);
-// 		    	$('#imgText').html(result.url);
 		    	$('input[name="image"]').val(result.url);
 		    	console.log($('input[name="image"]').val());
 		    }
@@ -115,36 +90,7 @@
 	function sendForm() {	
 		var form = $('#formdata').serialize();
 		console.log(form);
-// 		var formData = new FormData(form);
-// 		formData.append($('#form')[0]);
-// 		var image = $('#image').val();
-		
-// 		var dec = decodeURI(form);
-//         var formData = new FormData();
-//         var name =$('#name').val();
-//         var brandId =$('#brandId').val();
-//         var price =$('#price').val();
-//         var imgText =$('#imgText').val();
-//         var description =$('#description').val();
-//         var statusId =$('#statusId').val();
-//         var stock =$('#stock').val();
-//         var category =$('#category').val();
-//         console.log(name);
-//         console.log(imgText);
-//         var formData = new FormData(document.querySelector('form'))
-//         formData.append('productBean', dec);
-//          formData.append("name",name);
-//          formData.append("brandId",brandId);
-//          formData.append("price",price);
-//          formData.append("imgText",imgText);
-//          formData.append("description",description);
-//          formData.append("statusId",statusId);
-//          formData.append("stock",stock);
-//          formData.append("category",category);
-// 		 console.log(formData);
-// 		 console.log(dec);
-// 		var data = JSON.stringify(formData);
-// 		console.log(data);
+
         $.ajax({
         	      type: 'POST',
                   url : '/yurucamp/Product/InsertProductinfo',

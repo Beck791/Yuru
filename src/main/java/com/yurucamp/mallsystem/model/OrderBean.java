@@ -33,6 +33,9 @@ public class OrderBean implements Serializable {
 
 	@Column(name = "price")
 	private Integer price;
+	
+	@Column(name = "quantity")
+	private Integer quantity;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createTime")
@@ -45,6 +48,7 @@ public class OrderBean implements Serializable {
 	@Column(name = "orderAddress")
 	private String orderAddress;
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -101,4 +105,13 @@ public class OrderBean implements Serializable {
 		this.orderAddress = orderAddress;
 	}
 
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	
 }

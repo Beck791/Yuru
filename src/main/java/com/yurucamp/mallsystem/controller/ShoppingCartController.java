@@ -1,6 +1,8 @@
 package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,10 +10,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.yurucamp.mallsystem.model.OrderBean;
+import com.yurucamp.mallsystem.model.ProductBean;
+import com.yurucamp.mallsystem.model.ShoppingCart;
 import com.yurucamp.mallsystem.model.service.OrderBeanService;
 import com.yurucamp.mallsystem.model.service.OrderDetailBeanService;
+import com.yurucamp.mallsystem.model.service.ShoppingCartService;
 import com.yurucamp.member.model.service.MemberCenterService;
 
 @Controller
@@ -25,14 +33,18 @@ public class ShoppingCartController {
 	
 	@Autowired
 	OrderDetailBeanService orderDetailBeanService;
+	
+	@Autowired
+	ShoppingCartService shoppingCartService;
 
 	
 	@GetMapping("/shoppingcart/addProduct")
-	public String addshopcart(HttpServletRequest request,Model model) throws SQLException {
+	public void addshopcart(HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
-
-		return memberId;	
+		ShoppingCart cart = new ShoppingCart();
+//		if (shoppingCartService.idExists(cart.getQuantity()));
+		
 	}
 	@GetMapping("/shoppingcart/updateProduct")
 	public String updateProduct(HttpServletRequest request,Model model) throws SQLException {
@@ -48,6 +60,17 @@ public class ShoppingCartController {
 		
 		return memberId;	
 	}
+	
+	 @GetMapping(value = "/ordernow/{id}")
+	 public String ordernow(@PathVariable(value = "id") int id, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		
+
+
+
+	  return "cart"; // page name
+	 }
 }
 
 //	@GetMapping("/chooseFilm")

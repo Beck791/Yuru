@@ -33,12 +33,6 @@ public class ShoppingCart implements Serializable{
 	@Column(name="price")
 	private int price;
 	
-	@Column(name="createtime")
-	private Timestamp createtime;
-	
-	@Column(name="updatetime")
-	private Timestamp updatetime;
-
 	public Integer getId() {
 		return id;
 	}
@@ -79,21 +73,6 @@ public class ShoppingCart implements Serializable{
 		this.price = price;
 	}
 
-	public Timestamp getCreatetime() {
-		return createtime;
-	}
-
-	public void setCreatetime(Timestamp createtime) {
-		this.createtime = createtime;
-	}
-
-	public Timestamp getUpdatetime() {
-		return updatetime;
-	}
-
-	public void setUpdatetime(Timestamp updatetime) {
-		this.updatetime = updatetime;
-	}
 	
 	
 	
