@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
@@ -31,19 +32,25 @@ public class ArticleService {
 	public void insertReply(ReplyBean replyBean) throws SQLException {
 		replyDao.insertReply(replyBean);
 	}
-	
+	//查詢單一文章
 	public  PostBean queryPostId(Integer poId) throws SQLException {
 		PostBean po = postDao.queryPostId(poId);
 		return po;
 		}
-	
-	public  List<PostBean> queryPostIdAll(Integer poId) throws SQLException {
+	//查詢同一ID下全部文章(文章總覽用)
+	public List<PostBean> queryPostIdAll(Integer poId)throws SQLException {
 		List<PostBean> po = postDao.queryPostIdAll(poId);
 		return po;
 	}
+	
 	public  List<ReplyBean> queryPoIdAllReply(Integer poId) throws SQLException {
 		List<ReplyBean> re = replyDao.queryPoIdAllReply(poId);
 		return re;
+	}
+	
+	public  List<PostBean> queryPostAll() throws SQLException {
+			List<PostBean> po = postDao.queryPostAll();
+			return po;
 	}
 
 
@@ -53,11 +60,10 @@ public class ArticleService {
 	}
 
 
-	public List<PostBean> queryAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+
+
+
 	
 	
 }

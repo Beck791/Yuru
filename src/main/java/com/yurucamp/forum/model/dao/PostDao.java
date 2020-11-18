@@ -4,12 +4,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
+import com.yurucamp.mallsystem.model.BrandBean;
 
 @Repository
 public class PostDao {
@@ -51,9 +53,22 @@ private SessionFactory sessionFactory;
 
 
 	public List<PostBean> queryPostIdAll(Integer poId) {
-		List<PostBean> postList = sessionFactory.getCurrentSession().createQuery("from PostBean where poId=:poId", PostBean.class).setParameter("poId", poId).getResultList();
+		List<PostBean> postList = sessionFactory.getCurrentSession()
+		.createQuery("from PostBean where poId=:poId", PostBean.class)
+		.setParameter("poId", poId).getResultList();
+		
+		System.out.println(postList);
 		return postList;
 	}
+
+
+	public List<PostBean> queryPostAll() {
+		Query<PostBean> query = sessionFactory.getCurrentSession().createQuery("FROM PostBean", PostBean.class);
+		List<PostBean> list = query.list();
+		return list;
+	}
+	
+	
 	
 //	public PostBean updatePost(PostBean po) {
 //		PostBean  post = sessionFactory.getCurrentSession()

@@ -8,13 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+crossorigin="anonymous"></script>
 
 
 
 
 
 
-</div>
+<div>
 	<table class="table ">
 		<thead 　class="thead-dark">
 			<tr>
@@ -27,13 +30,13 @@
 			</tr>
 		</thead>
 
-		<c:forEach var="PostBean" items="#">
+		<c:forEach var="PostBean" items="postList">
 			<tbody>
 				<tr>
 					<td>露營休閒討論區</td>
 					<td>M001</td>
 					<td>AAAAAAAAA</td>
-					<td></td>
+					<td>${PostBean.poTile}</td>
 					<td></td>
 				</tr>
 			</tbody>
@@ -42,7 +45,7 @@
 
 
 	</table>
-
+</div>
 
 
 

@@ -33,19 +33,29 @@ public class ForumController {
 		return "forumClassifyIndexPage";
 	}
 
+//	@RequestMapping(value ="/Forum/memberPost" , method = RequestMethod.GET)
+//	public String QueryMemberPostId(Integer poId,Model model) throws SQLException{
+//		List<PostBean> postList = articleService.queryPostIdAll(poId);
+//		model.addAttribute("postList", postList);
+//		System.out.println("polist=?"+ postList);
+////		return "Forum/memberCreat";
+//		return "whereList";
+//	}
+//	
+
+	//文章總覽
 	@RequestMapping("/Forum/forumIndex")
-	public String ToCampDiscussionPage(Integer poId,Model model) throws SQLException{
-		List<PostBean> postList = articleService.queryPostIdAll(poId);
+	public String ToCampDiscussionPage(Model model) throws SQLException{
+		List<PostBean> postList = articleService.queryPostAll();
 		model.addAttribute("postList", postList);
 		System.out.println("polist=?"+ postList);
 //		return "Forum/memberCreat";
 		return "campDiscussionPage";
 	}
-	
 
-	
 
-	
+
+	//新增文章案件
 	@RequestMapping(value ="/Forum/goInsert", method = RequestMethod.GET)
 	public String GoInsert(Model model) {
 		PostBean po = new PostBean();
@@ -54,7 +64,7 @@ public class ForumController {
 		model.addAttribute("PostBean",po);
 		return "memberCreatPage";
 	}
-	
+	//新增文章
 	@RequestMapping(value ="/Forum/insert", method = RequestMethod.POST)
 	public String Insert( 			@RequestParam("poTitle")String poTitle,
 									@RequestParam(value="contentforckeditor",required = false)String poContent,
@@ -77,8 +87,8 @@ public class ForumController {
 	
 	
 	
-	
-	@GetMapping(value ="/Forum/readArticle/${PostBean.poId}" )
+	//文章閱讀頁面
+	@GetMapping(value ="/Forum/readArticle/${PostBean.poId}")
 	public String Read(@PathVariable("poId") Integer poId, Model model) throws SQLException{
 		PostBean postBean = articleService.queryPostId(poId);
 		model.addAttribute("PostBean", postBean);
@@ -87,6 +97,9 @@ public class ForumController {
 		System.out.println("potitle=?"+postBean.getPoTitle());
 		return "memberReadPage";
 	}
+	
+	
+	
 
 //	@RequestMapping(value = "/Forum/updateArticle", method = RequestMethod.POST)
 //	public String Update(@RequestParam("id") Integer id, Model model) throws SQLException {
@@ -101,18 +114,25 @@ public class ForumController {
 	public String Delete(@RequestParam("id") Integer id, Model model)
 			throws SQLException {
 		articleService.deleteOne(id);
-		List<PostBean> list = articleService.queryAll();
+		List<PostBean> list = articleService.queryPostAll();
 		model.addAttribute("PostBean", list);
 		return "memberReadPage";
 	}
-
+//文章列表
 	@RequestMapping("/Forum/articleList")
 	public String memberArticleList() {
 //		return "Forum/forumIndex";
 		return "memberArticleListPage";
 	}
 	
-	
+	@RequestMapping(value ="/Forum/memberPost" , method = RequestMethod.GET)
+	public String QueryMemberPost(Model model) throws SQLException{
+		List<PostBean> postListAll = articleService.queryPostAll();
+		model.addAttribute("postList", postListAll);
+		System.out.println("polist=?"+ postListAll);
+//		return "Forum/memberCreat";
+		return "campDiscussionPage";
+	}
 	
 	
 	

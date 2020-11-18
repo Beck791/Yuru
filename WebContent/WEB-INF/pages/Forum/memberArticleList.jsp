@@ -38,7 +38,12 @@
 
 </head>
 <body>
-<%-- 	<jsp:include page="/WEB-INF/pages/include/top.jsp" /> --%>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+crossorigin="anonymous"></script>
+
+
+	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 	<!-- top bar -->
 	<div class="top-bar">
 		<h1>露營論壇</h1>
@@ -74,8 +79,8 @@
     <button type="button" class="btn btn-outline-secondary dropdown-toggle" 
     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">會員文章一覽</button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">會員發文一覽</a>
-      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" id="memberPost" href="Javascript:;">會員發文一覽</a>
+      <div role="separator" id="memberReply" class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">會員回文一覽</a>
     </div>
   </div>
@@ -85,7 +90,7 @@
 </div>
 	<!-- main container -->
 		<!-- AJAX -->
-<div>
+<div id="List">
 
 
 
@@ -111,14 +116,22 @@
 </div>
 
 
-<script type="text/javascript">
-var xhr = new XMLHttpRequest();
-xhr.open("get","/whereList.jsp",true);
-xhr.send();
+<script>
+			$("#memberPost").click(function() { //click event
 
-
-
-</script>
+				$.ajax({
+					url : "/Forum/memberPost",
+					type : "GET",
+					dataType : "html", //server送回
+					contentType : 'application/json; charset=utf-8',
+					data : {}, //data空的代表沒任何參數
+					success : function(data) { //成功的話
+						$("#List").empty();
+						$("#List").append(data); //透過導向的URL到ajax方法 div class裝東西
+					}
+				})
+			})
+		</script>
 
 	<!-- end main container -->
 
