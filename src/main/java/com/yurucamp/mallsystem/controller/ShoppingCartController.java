@@ -13,12 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yurucamp.mallsystem.model.OrderBean;
 import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.ShoppingCart;
 import com.yurucamp.mallsystem.model.service.OrderBeanService;
 import com.yurucamp.mallsystem.model.service.OrderDetailBeanService;
+import com.yurucamp.mallsystem.model.service.PorductService;
 import com.yurucamp.mallsystem.model.service.ShoppingCartService;
 import com.yurucamp.member.model.service.MemberCenterService;
 
@@ -36,37 +38,58 @@ public class ShoppingCartController {
 	
 	@Autowired
 	ShoppingCartService shoppingCartService;
-
+	
+	@Autowired
+	PorductService productService;
 	
 	@GetMapping("/shoppingcart")
 	public String shopcart(HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();
-		Integer memberid = (Integer) session.getAttribute("id");
-		System.out.println(memberid);
-		ShoppingCart cart = new ShoppingCart();
-		shoppingCartService.queryAll(memberid);
+		Integer memberId = (Integer) session.getAttribute("id");
+		System.out.println(memberId);
+		List<ShoppingCart> list = shoppingCartService.queryAll(memberId);
+		System.out.println(list);
+		 List<ProductBean> productBeanlist = null ;
+		model.addAttribute("carts", list);
+		for (ShoppingCart shoppingCart : list) {
+			Integer productid = shoppingCart.getProductId();
+		 productBeanlist = (List<ProductBean>) productService.queryOne(productid);
+			}
+		
+		System.out.println(productBeanlist);
+
+//		List<ProductBean> pblist = new List<>()
+//		List<ProductBean> productBeanlist = new ArrayList<>(); 	
+		
+//		for (ProductBean productBean : productBeanlist) {
+//			model.addAttribute("productBean",productBean);
+//			
+//		}
+		model.addAttribute("productBeans", productBeanlist);
 		return "cart";
 		
 	}
 	@GetMapping("/shoppingcart/addProduct")
-	public void addshopcart(HttpServletRequest request,Model model) throws SQLException {
+	public String addshopcart(@RequestParam("id") Integer id,HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();
-		String memberId = (String) session.getAttribute("memberId");
+		String memberId = (String) session.getAttribute("id");
 		ShoppingCart cart = new ShoppingCart();
+		shoppingCartService.insert(id);
 //		if (shoppingCartService.idExists(cart.getQuantity()));
+		return "mallSystemIndex";
 		
 	}
 	@GetMapping("/shoppingcart/updateProduct")
 	public String updateProduct(HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();
-		String memberId = (String) session.getAttribute("memberId");
+		String memberId = (String) session.getAttribute("id");
 		
 		return memberId;	
 	}
 	@GetMapping("/shoppingcart/deleteProduct")
 	public String deleteProduct(HttpServletRequest request,Model model) throws SQLException {
 		HttpSession session = request.getSession();
-		String memberId = (String) session.getAttribute("memberId");
+		String memberId = (String) session.getAttribute("id");
 		
 		return memberId;	
 	}

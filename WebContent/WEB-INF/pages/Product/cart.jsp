@@ -195,6 +195,7 @@ button:focus {
             </div>
         </div>
     </div>
+    <c:forEach var="productBean" items="${productBeans}">
     <div class="row d-flex justify-content-center border-top">
         <div class="col-5">
             <div class="row d-flex">
@@ -208,11 +209,11 @@ button:focus {
         <div class="my-auto col-7">
             <div class="row text-right">
                 <div class="col-4">
-                    <p class="mob-text">種類</p>
+                    <p class="mob-text">種類${productBean.description}</p>
                 </div>
                 <div class="col-4">
                     <div class="row d-flex justify-content-end px-3">
-                        <p class="mb-0" id="cnt1">1</p>
+                        <p class="mb-0" id="cnt1">${cart.quantity}1</p>
                         <div class="d-flex flex-column plus-minus"> <span class="vsm-text plus">+</span> <span class="vsm-text minus">-</span> </div>
                     </div>
                 </div>
@@ -222,6 +223,7 @@ button:focus {
             </div>
         </div>
     </div>
+    </c:forEach>
     <div class="row d-flex justify-content-center border-top">
         <div class="col-5">
             <div class="row d-flex">

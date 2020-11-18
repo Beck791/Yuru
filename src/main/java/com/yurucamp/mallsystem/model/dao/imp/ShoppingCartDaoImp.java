@@ -1,9 +1,11 @@
 package com.yurucamp.mallsystem.model.dao.imp;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -55,17 +57,20 @@ public class ShoppingCartDaoImp implements ShoppingCartDao {
 	@Override
 	public List<ShoppingCart> queryAll(Integer memberId) throws SQLException {
 	
-		List<ShoppingCart> list = null;
-		try {
-				list =	sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId")
-						.setParameter("memberId", memberId)
-						.getResultList();
-		}catch(Exception e) {
-			System.out.println("No Result.");
-			return null;
-		}
+//		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+//		try {
+//				list =	sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId")
+//						.setParameter("memberId", memberId)
+//						.getResultList();
+//		}catch(Exception e) {
+//			System.out.println("No Result.");
+//			return list;
+//		}
+//		return list;
+		Query<ShoppingCart> query = sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId", ShoppingCart.class);
+		query.setParameter("memberId", memberId);
+		List<ShoppingCart> list = query.getResultList();
 		return list;
-		
 	}
 	@Override
 	public boolean quantityExists(Integer productId) {

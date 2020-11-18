@@ -21,6 +21,7 @@
 		<mapping class="com.yurucamp.mallsystem.model.ProductBean" />
 		<mapping class="com.yurucamp.mallsystem.model.TrackProductBean" />
 		<mapping class="com.yurucamp.mallsystem.model.ItemStatus" />
+		<mapping class="com.yurucamp.mallsystem.model.ShoppingCart" />
 		<!-- Forum Area -->
 		<mapping class="com.yurucamp.forum.model.PostBean" />
 		<mapping class="com.yurucamp.forum.model.ForumBean" />
