@@ -110,19 +110,11 @@
 		${sessionScope.memberId}
 		${memberRolse}
 		${sessionScope.memberPaid}
-		${sessionScope.id}
-		
-<%-- 		${sessionScope.image} --%>
+		${sessionScope.id}	
+
 			</div>
 
-		</header>
-		
-		
-<%-- 		${sessionScope.memberRolse} --%>
-<%-- 		${sessionScope.memberId} --%>
-<%-- 		${memberRolse} --%>
-<%-- 		${memberId} --%>
-		
+		</header>		
 
 		<!-- end box-header -->
 
@@ -162,7 +154,7 @@
 			<div class="modal-content">
 				<div class="modal-header" style="background-color: #dbcf83;height:70px;">
 					<h5 class="modal-title" id="exampleModalLabel"
-						style="font-size: large; font-weight: bolder;width:70%;display:inline;"">會員登入</h5>
+						style="font-size: large; font-weight: bolder;width:70%;display:inline;">會員登入</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close" style="float:right">
 						<span aria-hidden="true">&times;</span>
@@ -170,11 +162,6 @@
 					<div id="ermsg" style="color: red; font-weight: bold;"></div>
 				</div>
 				<div class="modal-body">
-<!-- 					<div style="width: 60%"> -->
-<!-- 						帳號: -->
-<!-- 						<input type="text" name="Account" id="Account" autocomplete="off"> -->
-<!-- 					</div><br> -->
-                 
                         <div class="input-contact" style="width:50%">
                             <input type="text" name="Accountin" id="Accountin" autocomplete="off">
                             <span>帳號</span>                 
@@ -183,20 +170,28 @@
                             <input type="password" name="Passwordin" id="Passwordin" autocomplete="off" style="border-style:none;height:100%;padding: 0 20px;">
                             <span>密碼</span>                 
                     	</div>
-                    	
-<!-- 					<div style="width: 60%"> -->
-<!-- 						密碼: -->
-<!-- 						<input type="Password" name="Password" id="Password" autocomplete="off">  -->
-<!-- 					</div><br>					 -->
+                    	<div class="form-check">
+					        <input type="checkbox" class="form-check-input" id="dropdownCheck">
+					        <label class="form-check-label" for="dropdownCheck">
+					          Remember me
+					        </label>
+					    </div>
 
-					<div class="modal-footer">
+					<div class="modal-footer" style="height:65px;">
+					<div style="width:70%;display:inline;float:left;">
 						<a href='#' class="mr-auto" data-dismiss="modal"
 							data-toggle="modal" data-target="#registerModal"
-							style="float: left; color: black;">註冊一個新帳號</a>
+							style="float: left; color: black;">註冊一個新帳號</a><br><br>
+						<a href='#' class="mr-auto" data-dismiss="modal"
+							data-toggle="modal" data-target=""
+							style="float: left; color: black;">忘記密碼</a>
+					</div>
+					<div style="width:30%;display:inline;float:left;">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-primary" id="signIn"
 							style="background-color: #dbcf83; border-color:#dbcf83;color: black;">登入</button>
+					</div>
 					</div>
 					<hr>
 					<div>
@@ -290,7 +285,7 @@
 						</div>
 					</div>
 
-					<div class="modal-footer" style="clear: both">
+					<div class="modal-footer" style="clear: both;height:60px;">
 					<div>
 						<a href='#' class="mr-auto" data-dismiss="modal"
 							data-toggle="modal" data-target="#loginModal"
