@@ -17,16 +17,16 @@ public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	SessionFactory factory;
 	
-	@Override
-	public MemberBean queryUserId(String Account,String Password) throws SQLException {
-		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";
-		Session session = null;
-//		List<MemberBean> list = new ArrayList<>();
-		session = factory.getCurrentSession();
-		MemberBean memberBean = (MemberBean) session.createQuery(hql).setParameter("mid", Account)
-									   .setParameter("paw", Password).getSingleResult();
-		return memberBean;
-	}
+//	@Override
+//	public MemberBean queryUserId(String Account,String Password) throws SQLException {
+//		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";
+//		Session session = null;
+////		List<MemberBean> list = new ArrayList<>();
+//		session = factory.getCurrentSession();
+//		MemberBean memberBean = (MemberBean) session.createQuery(hql).setParameter("mid", Account)
+//									   .setParameter("paw", Password).getSingleResult();
+//		return memberBean;
+//	}
 //	@Override
 //	public MemberBean queryUserId(String Account,String Password) throws SQLException {
 //		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";

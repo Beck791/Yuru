@@ -34,33 +34,30 @@ public class MemberController {
 	public Map<String, String> MemberIndex(HttpServletRequest request, Model model, String Account, String Password)
 			throws SQLException {
 		Map<String, String> rtnMap = new HashMap<String, String>();
-		MemberBean memberBean = memberDao.queryUserId(Account, Password);
-		System.out.println(memberBean);
-		System.out.println(memberBean.getName());
-		model.addAttribute("memberBean", memberBean);
-		model.addAttribute("id", memberBean.getId());
-		model.addAttribute("memberRolse", memberBean.getRoles().trim());
-		model.addAttribute("memberPaid", memberBean.getPaid());
-		model.addAttribute("image", memberBean.getImage());
-		
 		
 		List<MemberBean> memberUser = memberDao.queryaUserId(Account,Password);
 		HttpSession session = request.getSession();
-		
+
 		if(memberUser.isEmpty()) { 
+			System.out.println(memberUser);
 			rtnMap.put("msg", "查無此帳號!"); 
 		}else {
+			System.out.println(memberUser);
 			for(MemberBean s:memberUser) {
 				System.out.println("memberId"+s.getMemberId());
-				session.setAttribute("memberId",s.getMemberId());
 				System.out.println("memberRolse"+s.getRoles());
-                session.setAttribute("memberRolse",s.getRoles().toString().trim());
 				System.out.println("memberPaid"+s.getPaid());
+				session.setAttribute("memberId",s.getMemberId());
+				session.setAttribute("memberRolse",s.getRoles().toString().trim());
                 session.setAttribute("memberPaid",s.getPaid().toString().trim()); 
                 session.setAttribute("id",s.getId().toString().trim()); 
                 session.setAttribute("image",s.getImage()); 
-                
-//                request.getRequestDispatcher("/MemberCenterController").forward(request, response); 
+                model.addAttribute("memberBean",s);
+                model.addAttribute("memberId",s.getMemberId());
+                model.addAttribute("memberRolse",s.getRoles().toString().trim());
+                model.addAttribute("memberPaid",s.getPaid().toString().trim()); 
+                model.addAttribute("id",s.getId().toString().trim()); 
+                model.addAttribute("image",s.getImage());                
 			}         
 			rtnMap.put("msg", "登入成功!");
 		}

@@ -17,34 +17,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
-<<<<<<< HEAD
-
-<!-- <!-- Bootstrap --> -->
-<%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
-<%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
-<!-- <!-- 翻字動畫 --> -->
-<!-- 	<!-- main css --> -->
-<%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
-<!-- 	<!-- modernizr --> -->
-<!-- 	<script <c:url value="/modernizr.js"/>  ></script> -->
-<!-- <!-- 文字框的提示文字 --> -->
-<!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- 	<script src="https://code.jquery.com/jquery.js"></script> -->
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
-<!-- Bootstrap -->
-<%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
-<%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
-<!-- 翻字動畫 -->
-	<!-- main css -->
-<%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
-	<!-- modernizr -->
-	<script <c:url value="/modernizr.js"/>  ></script>
-=======
 <script <c:url value="/modernizr.js"/>  ></script>
->>>>>>> a1d7e9106c6857a3cd1f7ca344cf2935f5bc2eeb
-
-
   
 	<style>
 	
@@ -133,7 +106,7 @@
 				class="box-menu-text">Menu</span><span class="box-menu-icon"></span>
 			</a>
 			
-			<div  style="float: right; margin-right: 130px;; margin-top: -120px">
+			<div  style="float: right; margin-right: 130px;margin-top: -120px">
 		${sessionScope.memberId}
 		${memberRolse}
 		${sessionScope.memberPaid}
@@ -223,7 +196,7 @@
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-primary" id="signIn"
-							style="background-color: #dbcf83; border-color: #dbcf83; color: black;">登入</button>
+							style="background-color: #dbcf83; border-color:#dbcf83;color: black;">登入</button>
 					</div>
 					<hr>
 					<div>
@@ -361,9 +334,9 @@
 			}).done(function(result) {
 				if(result.msg== "登入成功!"){ 
 					$("#loginModal").click();
-					window.location.reload()
+					window.location.reload();
 				} else {
-					$("#ermsg").html("帳號或密碼錯誤，請重新輸入!")
+					$("#ermsg").html("帳號或密碼錯誤，請重新輸入!");
 				}
 			})
 		});
