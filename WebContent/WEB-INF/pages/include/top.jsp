@@ -17,29 +17,8 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- //匯入icon -->
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
-<<<<<<< HEAD
-<!-- <!-- Bootstrap --> -->
-<%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
-<%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
-<!-- <!-- 翻字動畫 --> -->
-<!-- 	<!-- main css --> -->
-<%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
-<!-- 	<!-- modernizr --> -->
-<!-- 	<script <c:url value="/modernizr.js"/>  ></script> -->
-<!-- <!-- 文字框的提示文字 --> -->
-<!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- 	<script src="https://code.jquery.com/jquery.js"></script> -->
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-=======
-<!-- Bootstrap -->
-<%-- <link href="<c:url value='/bootstrap.min.css' />" rel="stylesheet"> --%>
-<%-- <link href="<c:url value='/ionicons.min.css' />" rel="stylesheet"> --%>
-<!-- 翻字動畫 -->
-	<!-- main css -->
-<%-- 	<link href="<c:url value='/style.css' />" rel="stylesheet"> --%>
-	<!-- modernizr -->
-	<script <c:url value="/modernizr.js"/>  ></script>
->>>>>>> d2cfd8e04f89ea0fe3a9e8251b35343135607dc1
+<script <c:url value="/modernizr.js"/>  ></script>
+
 
   
 	<style>
@@ -92,7 +71,7 @@
 			<!-- box-nav -->
 
 			<c:choose>
-				<c:when test="${sessionScope.memberRolse eq 'admin'}">
+				<c:when test="${memberRolse eq 'admin'}">
 					<button type="button" class="btn btn-light"
 						style="float: right; margin-right: 288px; margin-top: -90px">
 						<a href="<c:url value='/Backstage/index' />" />後臺管理</a>
@@ -131,9 +110,10 @@
 			
 			<div  style="float: right; margin-right: 130px;; margin-top: -120px">
 		${sessionScope.memberId}
-		${sessionScope.memberRolse}
+		${memberRolse}
 		${sessionScope.memberPaid}
 		${sessionScope.id}
+		
 <%-- 		${sessionScope.image} --%>
 			</div>
 
