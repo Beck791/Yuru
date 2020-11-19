@@ -1,6 +1,7 @@
 package com.yurucamp.member.model.dao;
 
 import java.sql.SQLException;
+import java.util.Random;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,7 +27,7 @@ public class MemberCenterDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	//查詢---登入
+	//查詢---會員中心資料
 	public MemberBean queryMem(String memberId) throws SQLException {
 //		MemberBean memInfo = sessionFactory.getCurrentSession().get(MemberBean.class,memberId);		
 		String hql = "from MemberBean where memberId=:memberId";
@@ -66,14 +67,20 @@ public class MemberCenterDao {
 		return  mes;
 	}
 
-	private String get(Class<MemberBean> class1, String memberId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Session getSession() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//亂數---註冊驗證碼
+	public Integer sendRm() throws SQLException {
+		
+        Random rand=new Random(); 
+        
+        Integer numa=rand.nextInt(10); 
+        Integer numb=rand.nextInt(10); 
+        Integer numc=rand.nextInt(10); 
+        Integer numd=rand.nextInt(10); 
+        Integer nume=rand.nextInt(10); 
+        Integer numf=rand.nextInt(10); 
+        Integer numg=rand.nextInt(10); 
+        Integer num=numa*100000+numb*100000+numc*10000+numd*1000+nume*100+numf*10+numg;
+        System.out.println("隨機亂數="+num);
+		return num;
+		}
 }

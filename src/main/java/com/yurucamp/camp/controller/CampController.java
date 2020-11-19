@@ -70,9 +70,9 @@ public class CampController {
 		return "Test";
 	}
 
-	@GetMapping("/CampSite/TestOne")
-	public String Test1() throws SQLException {
-		return "TestOne";
+	@GetMapping("/CampSite/fy374")
+	public String fy374() throws SQLException {
+		return "fy374";
 	}
 
 	@GetMapping("/CampSite/Mail")
