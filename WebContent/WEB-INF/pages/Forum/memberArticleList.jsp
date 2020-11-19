@@ -43,7 +43,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 crossorigin="anonymous"></script>
 
 
-	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/pages/include/top.jsp" /> --%>
 	<!-- top bar -->
 	<div class="top-bar">
 		<h1>露營論壇</h1>
@@ -75,16 +75,9 @@ crossorigin="anonymous"></script>
 </div>
 <div style="width:50%;left:25%;top:60%; " >
 <div class="input-group mb-3" >
-  <div class="input-group-prepend">
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle" 
-    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">會員文章一覽</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" id="memberPost" href="Javascript:;">會員發文一覽</a>
-      <div role="separator" id="memberReply" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">會員回文一覽</a>
-    </div>
-  </div>
-  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" id="memberSearch">
+  <button onclick="callMemberPost()" >會員發文一覽</button>
+  <button onclick="callMemberReply()">會員回文一覽</button>
 </div>
 	</div>
 </div>
@@ -93,7 +86,35 @@ crossorigin="anonymous"></script>
 <div id="List">
 
 
+<div>
+	<table class="table" id="memberPostList">
+		<thead 　class="thead-dark">
+			<tr>
+				<th>論壇分類</th>
+				<th>MemberID</th>
+				<th>文章標題</th>
+				<th>發文時間</th>
+				<th>最後修改時間</th>
+				<th>管理動作</th>
+			</tr>
+		</thead>
+	</table>
+<%-- 		<c:forEach var="PostBean" items="postList"> --%>
+<!-- 			<tbody> -->
+<!-- 				<tr> -->
+<!-- 					<td>露營休閒討論區</td> -->
+<!-- 					<td>M001</td> -->
+<!-- 					<td>AAAAAAAAA</td> -->
+<%-- 					<td>${PostBean.poTile}</td> --%>
+<!-- 					<td></td> -->
+<!-- 				</tr> -->
+<!-- 			</tbody> -->
+<%-- 		</c:forEach> --%>
 
+
+
+	
+</div>
 
 
 
@@ -115,23 +136,80 @@ crossorigin="anonymous"></script>
 
 </div>
 
+<script>
+function callMemberPost() {	
+		var memberSearch = $('#memberSearch').val();
+		console.log(memberSearch);
+
+        $.ajax({
+        	      type: 'GET',
+                  url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch + '&type=memberPost',
+                  success : function(data) {
+								
+                	  			console.log(data);
+                	  
+		                	  	if(data){
+		                	  		
+		                	  		for(let PostBean of data){
+		                	  			console.log(PostBean);
+		                	  			
+		                	  			var resultHtml = "<tr>"
+		                	  				           + "<td>" + PostBean.forumId + "</td>" 
+		                	  			               + "<td>" + PostBean.memberId + "</td>"
+		                	  			               + "<td>" + PostBean.potitle + "</td>"
+		                	  			               + "<td>" + PostBean.poCreatTime + "</td>"
+		                	  			               + "<td>" + PostBean.poUpdateTime + "</td>" 
+		                	  			               + "</tr>";
+		                	  			
+		                	  			console.log(resultHtml);
+		                	  			
+		                	  			$("#memberPostList").append(resultHtml);
+		                	  			
+		                	  		}
+		                	  		
+		                	  	}
+                  }
+        });
+}
+</script>
 
 <script>
-			$("#memberPost").click(function() { //click event
+function callMemberReply() {	
+		var memberSearch = $('#memberSearch').val();
+		console.log(memberSearch);
 
-				$.ajax({
-					url : "/Forum/memberPost",
-					type : "GET",
-					dataType : "html", //server送回
-					contentType : 'application/json; charset=utf-8',
-					data : {}, //data空的代表沒任何參數
-					success : function(data) { //成功的話
-						$("#List").empty();
-						$("#List").append(data); //透過導向的URL到ajax方法 div class裝東西
-					}
-				})
-			})
-		</script>
+        $.ajax({
+        	      type: 'GET',
+                  url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch,
+                  success : function(data) {
+								
+                	  			console.log(data);
+                	  
+		                	  	if(data){
+		                	  		
+		                	  		for(let ReplyBean of data){
+		                	  			console.log(ReplyBean);
+		                	  			
+		                	  			var resultHtml = "<tr>"
+		                	  				           + "<td>" + ReplyBean.forumId + "</td>" 
+		                	  			               + "<td>" + ReplyBean.memberId + "</td>"
+		                	  			               + "<td>" + ReplyBean.retitle + "</td>"
+		                	  			               + "<td>" + ReplyBean.reCreatTime + "</td>"
+		                	  			               + "<td>" + ReplyBean.reUpdateTime + "</td>" 
+		                	  			               + "</tr>";
+		                	  			
+		                	  			console.log(resultHtml);
+		                	  			
+		                	  			$("#memberReplyList").append(resultHtml);
+		                	  			
+		                	  		}
+		                	  		
+		                	  	}
+                  }
+        });
+}
+</script>
+
 
 	<!-- end main container -->
 

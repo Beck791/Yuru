@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
 
 @Repository
@@ -41,6 +42,14 @@ private SessionFactory sessionFactory;
 	
 	public void  updateReply(ReplyBean replyBean) throws SQLException {
 		sessionFactory.getCurrentSession().saveOrUpdate(replyBean);
+	}
+
+
+	public List<ReplyBean> queryMemberReply(String memberId) {
+		List<ReplyBean> replyList = sessionFactory.getCurrentSession()
+				.createQuery("from ReplyBean where memberId=:memberId", ReplyBean.class)
+				.setParameter("memberId", memberId).getResultList();
+		return replyList;
 	}
 	
 	

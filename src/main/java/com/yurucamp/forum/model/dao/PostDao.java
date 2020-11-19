@@ -52,7 +52,7 @@ private SessionFactory sessionFactory;
 	}
 
 
-	public List<PostBean> queryPostIdAll(Integer poId) {
+	public List<PostBean> queryPostIdList(Integer poId) {
 		List<PostBean> postList = sessionFactory.getCurrentSession()
 		.createQuery("from PostBean where poId=:poId", PostBean.class)
 		.setParameter("poId", poId).getResultList();
@@ -67,6 +67,21 @@ private SessionFactory sessionFactory;
 		List<PostBean> list = query.list();
 		return list;
 	}
+
+
+	public void deleteOne(Integer poId) {
+		PostBean postBean = sessionFactory.getCurrentSession().get(PostBean.class, poId);
+		sessionFactory.getCurrentSession().delete(postBean);
+	}
+
+
+	public List<PostBean> queryMemberPost(String memberId) {
+		List<PostBean> postList = sessionFactory.getCurrentSession()
+				.createQuery("from PostBean where memberId=:memberId", PostBean.class)
+				.setParameter("memberId", memberId).getResultList();
+		return postList;
+	}
+		
 	
 	
 	

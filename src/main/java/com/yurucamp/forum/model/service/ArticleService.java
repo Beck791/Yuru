@@ -38,8 +38,8 @@ public class ArticleService {
 		return po;
 		}
 	//查詢同一ID下全部文章
-	public List<PostBean> queryPostIdAll(Integer poId)throws SQLException {
-		List<PostBean> po = postDao.queryPostIdAll(poId);
+	public List<PostBean> queryPostIdList(Integer poId)throws SQLException {
+		List<PostBean> po = postDao.queryPostIdList(poId);
 		return po;
 	}
 	//查詢同一ID下所有回覆(文章read用)
@@ -53,17 +53,32 @@ public class ArticleService {
 			return po;
 	}
 
-
-	public void deleteOne(Integer id) {
-		// TODO Auto-generated method stub
+	//刪除特定poid文章
+	public void deleteOne(Integer poId)throws SQLException {
+		postDao.deleteOne(poId);
 		
 	}
 
 
-	public PostBean queryOne(Integer poId) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public List<PostBean> queryMemberPost(String memberId) {
+		List<PostBean> po = postDao.queryMemberPost(memberId);
+		return po;
 	}
+
+	public List<ReplyBean> queryMemberReply(String memberId) {
+		List<ReplyBean> re = replyDao.queryMemberReply(memberId);
+		return re;
+	}
+
+	
+	
+	
+
+	
+	
+
+	
 
 
 	
