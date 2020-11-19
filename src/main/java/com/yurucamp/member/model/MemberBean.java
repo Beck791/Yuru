@@ -66,6 +66,14 @@ public class MemberBean  implements Serializable{
 	
 	public MemberBean() {
 	}
+	
+	public MemberBean(Integer id, String name,String password,String phone,String address) {
+		this.id = id;
+		this.name = name;
+		this.password =password;
+		this.phone = phone;
+		this.address = address;
+	}
 
 	public Integer getId() {
 		return id;

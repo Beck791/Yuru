@@ -89,6 +89,7 @@ public class MemberCenterController {
 		return mes1;
 	}
 	
+	//寄送註冊信
 	@PostMapping("/Member/sendRegisterMail")
 	@ResponseBody
 	public Map<String,Integer> sendRegisterMail(String mail,String name) throws SQLException, Throwable {
@@ -99,4 +100,36 @@ public class MemberCenterController {
 		return num1;
 	}
 	
+	//更新會員資訊
+	@PostMapping("/Member/updatemcmem")
+	@ResponseBody
+	public Map<String, String> updatemcmem(Model model,String birthday,String registerDate,
+			String roles,String memberId,String gender,String status,
+			Integer paid,String mail,String name,String password,String phone,
+			String address,Integer id) throws SQLException, Throwable {
+		
+		System.out.println("第一站Controller");
+		MemberBean mBean=new MemberBean();
+		mBean.setId(id);		
+		mBean.setName(name);
+		mBean.setPassword(password);
+		mBean.setPhone(phone);	
+		mBean.setAddress(address);
+		mBean.setMemberId(memberId);
+		mBean.setGender(gender);
+		mBean.setBirthday(DateUtils.StringToDate(birthday));
+		mBean.setMail(mail);
+		mBean.setRegisterDate(DateUtils.StringToDate(registerDate));
+		mBean.setStatus(status);
+		mBean.setPaid(paid);		
+		mBean.setRoles(roles);	
+		System.out.println("第一站Controller name ="+mBean.getName());		
+		System.out.println("第一站Controller Birthday ="+mBean.getBirthday());
+
+		String r=service.update(mBean);
+		System.out.println("回到Controller r="+r);
+		Map<String, String> mes1 = new HashMap<String, String>();
+		mes1.put("r", r); 
+		return mes1;
+	}
 }

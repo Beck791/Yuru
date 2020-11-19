@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yurucamp.mallsystem.model.BrandBean;
@@ -83,4 +84,13 @@ public class MemberCenterDao {
         System.out.println("隨機亂數="+num);
 		return num;
 		}
+	
+	//更新會員中心
+	public String updatem(MemberBean mbean) {
+		System.out.println("進到Dao");
+		sessionFactory.getCurrentSession().update(mbean);
+		
+		String r="更新完成";
+		return r;
+	}
 }
