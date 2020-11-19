@@ -16,15 +16,15 @@ public class campViewJavaConfig {
 	}
 	
 	@Bean
-	public View Test() { // 測試用
+	public View fy374() { // 鳳凰谷 頁面
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/CampSite/Test.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/CampSite/fy374.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 	@Bean
-	public View TestOne() { // 測試用
+	public View Test() { // 測試用
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/Index/portfolio.html"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/CampSite/Test.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 
