@@ -101,15 +101,16 @@ public class ForumController {
 	
 	
 
-//	@RequestMapping(value = "/Forum/updateArticle", method = RequestMethod.POST)
-//	public String Update(@RequestParam("id") Integer id, Model model) throws SQLException {
-//		PostBean postBean = new PostBean();
-//		postBean = articleService.queryOne(id);
-//		model.addAttribute("PostBean", postBean);
-//		
-//		return "memberReadPage";
-//	}
-//	
+	@RequestMapping(value = "/Forum/updateArticle", method = RequestMethod.POST)
+	public String Update(@RequestParam("id") Integer id, Model model) throws SQLException {
+		PostBean postBean = new PostBean();
+		postBean = articleService.queryOne(id);
+		model.addAttribute("PostBean", postBean);
+		
+		return "memberReadPage";
+	}
+	
+	
 	@RequestMapping(value = "/Forum/Delete", method = RequestMethod.POST)
 	public String Delete(@RequestParam("id") Integer id, Model model)
 			throws SQLException {
