@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<link rel="icon" href="${pageContext.request.contextPath}/img/yuruIcon.png" type="image/x-icon">
+<link rel="icon" href="<c:url value='/img/yuruIcon.png'/>" type="image/x-icon">
 
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
