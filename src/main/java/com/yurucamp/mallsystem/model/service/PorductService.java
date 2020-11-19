@@ -2,8 +2,7 @@ package com.yurucamp.mallsystem.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
-
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -119,4 +118,13 @@ public class PorductService {
 		return list;
 	}
 
+	public Map<Integer,ProductBean> queryallon() throws SQLException{
+		return productDao.queryallon();
+		
+	}
+	public List<ProductBean> queryAllon() throws SQLException{
+		return productDao.queryAllon();
+		
+		
+	}
 }

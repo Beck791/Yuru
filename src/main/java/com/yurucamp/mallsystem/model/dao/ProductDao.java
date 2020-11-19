@@ -2,6 +2,7 @@ package com.yurucamp.mallsystem.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.yurucamp.mallsystem.model.ItemStatus;
 import com.yurucamp.mallsystem.model.ProductBean;
@@ -24,4 +25,9 @@ public interface ProductDao {
 	public ItemStatus queryOneStatus(Integer id) throws SQLException;
 	
 	public List<ProductBean> querypage() throws SQLException;
+	
+	public Map<Integer,ProductBean> queryallon() throws SQLException;
+	
+	public List<ProductBean> queryAllon() throws SQLException;
+
 }

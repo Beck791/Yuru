@@ -16,71 +16,101 @@ import com.yurucamp.mallsystem.model.dao.ShoppingCartDao;
 @Repository
 public class ShoppingCartDaoImp implements ShoppingCartDao {
 
-	private SessionFactory sessionFactory;
-
-	@Autowired
-	public ShoppingCartDaoImp(@Qualifier(value = "sessionFactory") SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
 	@Override
 	public void insert(Integer productId) throws SQLException {
-		ProductBean productBean = sessionFactory.getCurrentSession().get(ProductBean.class, productId);
-		ShoppingCart cart = new ShoppingCart();
-		cart.setProductId(productId);
-		if (quantityExists(productId)) {
-			cart.setQuantity(cart.getQuantity()+1);
-		}
-		cart.setQuantity(1);	
-		cart.setPrice(productBean.getPrice());
-		sessionFactory.getCurrentSession().save(cart);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(ShoppingCart shoppingCart) throws SQLException {
-		ShoppingCart cart = sessionFactory.getCurrentSession().get(ShoppingCart.class, shoppingCart.getId());
-		cart.setQuantity(shoppingCart.getQuantity());	
-		sessionFactory.getCurrentSession().update(cart);
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void deleteProduct(Integer productId) throws SQLException {
-		sessionFactory.getCurrentSession().createQuery("delete ShoppingCart where productId=:productId")
-		.setParameter("memberId", productId);
+		// TODO Auto-generated method stub
+		
 	}
 
-
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<ShoppingCart> queryAll(Integer memberId) throws SQLException {
-	
-//		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
-//		try {
-//				list =	sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId")
-//						.setParameter("memberId", memberId)
-//						.getResultList();
-//		}catch(Exception e) {
-//			System.out.println("No Result.");
-//			return list;
-//		}
-//		return list;
-		Query<ShoppingCart> query = sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId", ShoppingCart.class);
-		query.setParameter("memberId", memberId);
-		List<ShoppingCart> list = query.getResultList();
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 	@Override
 	public boolean quantityExists(Integer productId) {
-		boolean Exists = false;
-		ShoppingCart cart =	(ShoppingCart) sessionFactory.getCurrentSession().createQuery("from ShoppingCart where productId=:productId")
-				.setParameter("productId",productId)
-				.getSingleResult();
-		int quantity = cart.getQuantity();
-		if (quantity > 0) {
-		 Exists = true;
-		}
-		return Exists;
+		// TODO Auto-generated method stub
+		return false;
 	}
+//
+//	private SessionFactory sessionFactory;
+//
+//	@Autowired
+//	public ShoppingCartDaoImp(@Qualifier(value = "sessionFactory") SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+//
+//	@Override
+//	public void insert(Integer productId) throws SQLException {
+//		ProductBean productBean = sessionFactory.getCurrentSession().get(ProductBean.class, productId);
+//		ShoppingCart cart = new ShoppingCart();
+//		cart.setProductId(productId);
+//		if (quantityExists(productId)) {
+//			cart.setQuantity(cart.getQuantity()+1);
+//		}
+//		cart.setQuantity(1);	
+//		cart.setPrice(productBean.getPrice());
+//		sessionFactory.getCurrentSession().save(cart);
+//	}
+//
+//	@Override
+//	public void update(ShoppingCart shoppingCart) throws SQLException {
+//		ShoppingCart cart = sessionFactory.getCurrentSession().get(ShoppingCart.class, shoppingCart.getId());
+//		cart.setQuantity(shoppingCart.getQuantity());	
+//		sessionFactory.getCurrentSession().update(cart);
+//
+//	}
+//
+//	@Override
+//	public void deleteProduct(Integer productId) throws SQLException {
+//		sessionFactory.getCurrentSession().createQuery("delete ShoppingCart where productId=:productId")
+//		.setParameter("memberId", productId);
+//	}
+//
+//
+//
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<ShoppingCart> queryAll(Integer memberId) throws SQLException {
+//	
+////		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+////		try {
+////				list =	sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId")
+////						.setParameter("memberId", memberId)
+////						.getResultList();
+////		}catch(Exception e) {
+////			System.out.println("No Result.");
+////			return list;
+////		}
+////		return list;
+//		Query<ShoppingCart> query = sessionFactory.getCurrentSession().createQuery("from ShoppingCart where memberId=:memberId", ShoppingCart.class);
+//		query.setParameter("memberId", memberId);
+//		List<ShoppingCart> list = query.getResultList();
+//		return list;
+//	}
+//	@Override
+//	public boolean quantityExists(Integer productId) {
+//		boolean Exists = false;
+//		ShoppingCart cart =	(ShoppingCart) sessionFactory.getCurrentSession().createQuery("from ShoppingCart where productId=:productId")
+//				.setParameter("productId",productId)
+//				.getSingleResult();
+//		int quantity = cart.getQuantity();
+//		if (quantity > 0) {
+//		 Exists = true;
+//		}
+//		return Exists;
+//	}
 }

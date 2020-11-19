@@ -2,7 +2,9 @@ package com.yurucamp.mallsystem.model.dao.imp;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -92,5 +94,23 @@ public class ProductDaoImp implements ProductDao {
 		query.setMaxResults(5);
 		List<ProductBean> results = query.list();
 		return results;
+	}
+
+	@Override
+	public Map<Integer, ProductBean> queryallon() throws SQLException {
+		Map<Integer, ProductBean> map= new LinkedHashMap<>();
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1", ProductBean.class);
+		List<ProductBean> list = query.list();
+		for (ProductBean productBean : list) {
+			map.put( productBean.getId(),productBean);
+		}
+		return map;
+	}
+
+	@Override
+	public List<ProductBean> queryAllon() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
 	}
 }

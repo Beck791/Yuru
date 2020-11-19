@@ -41,7 +41,7 @@ public class ProductController {
 	// 商城首頁
 	@GetMapping(value = "/Product/Index")
 	public String ProductIndex(Model model) throws SQLException {
-		List<ProductBean> list = productService.queryAll();	
+		List<ProductBean> list = productService.queryAllon();	
 		model.addAttribute("productBeans", list);
 		return "mallSystemIndex";
 	}
