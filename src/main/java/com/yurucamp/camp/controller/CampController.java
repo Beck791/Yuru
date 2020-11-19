@@ -9,8 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.yurucamp.camp.model.CampInfo;
 import com.yurucamp.camp.model.service.CampService;
@@ -27,7 +26,7 @@ public class CampController {
 		return "CampSiteIndex";
 	}
 
-	@RequestMapping(value = "/CampSite/Insert", method = RequestMethod.POST)
+	@PostMapping("/CampSite/Insert") // 新增
 	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
 			throws SQLException {
 		ci.getCampDetail();
@@ -36,14 +35,14 @@ public class CampController {
 		return "QueryOneCamp";
 	}
 
-	@RequestMapping(value = "/CampSite/PureInsert", method = RequestMethod.GET)
+	@GetMapping("/CampSite/PureInsert") // 新增前置作業
 	public String PureInsert(Model model) {
 		CampInfo ci = new CampInfo();
 		model.addAttribute("campInfo", ci);
 		return "InsertCamp";
 	}
 
-	@RequestMapping(value = "/CampSite/QueryOne", method = RequestMethod.GET)
+	@GetMapping("/CampSite/QueryOne")
 	public String QueryOne(Model model) throws SQLException {
 		CampInfo ci = new CampInfo();
 		int id = 2;
@@ -52,18 +51,34 @@ public class CampController {
 		return "QueryOneCamp";
 	}
 
-	@RequestMapping(value = "/CampSite/DeleteOne", method = RequestMethod.GET)
+	@GetMapping("/CampSite/DeleteOne")
 	public String DeleteOne(Model model) throws SQLException {
 		int id = 1;
 		service.deleteCamp(id);
 		return "CampSiteIndex";
 	}
 
-	@RequestMapping(value = "/CampSite/QueryAllCamp", method = RequestMethod.GET)
+	@GetMapping("/CampSite/QueryAllCamp")
 	public String QueryAllCamp(Model model) throws SQLException {
 		List<CampInfo> list = service.queryAllCamp();
 		model.addAttribute("campInfo", list);
 		return "QueryAllCamp";
+	}
+
+	@GetMapping("/CampSite/Test")
+	public String Test(Model model) throws SQLException {
+		return "Test";
+	}
+
+	@GetMapping("/CampSite/TestOne")
+	public String Test1() throws SQLException {
+		return "TestOne";
+	}
+
+	@GetMapping("/CampSite/Mail")
+	public String Mail() throws SQLException {
+		service.sendRegistEmail();
+		return "Test";
 	}
 
 }
