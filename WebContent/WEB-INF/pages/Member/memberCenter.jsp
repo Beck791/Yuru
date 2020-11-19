@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +88,17 @@ img {
 					<div>
 						<h2 style="text-align: left; font-weight: bold;">Hello,${MemberBean.name}</h2>
 						<p class="lead" style="text-align: left; font-weight: bold;">${MemberBean.memberId}</p>
-						<button type="button" class="btn btn-primary">一般會員</button>
+						<p>
+			    		<c:choose>
+							<c:when test="${MemberBean.paid eq '0'}">
+							一般會員
+							</c:when>
+							<c:when test="${MemberBean.paid eq '1'}">
+							付費會員
+							</c:when>
+						</c:choose>
+
+						</p>
 					</div>
 				</td>
 			</tr>
@@ -152,15 +163,15 @@ img {
 			    </tr>
 			    <tr>
 					<td style="text-align:right;width:200px">生日:</td>
-					<td><input type="text" name="mcbirthday" id="mcbirthday"
-						 value="${MemberBean.birthday}"></td>
+					<td><fmt:formatDate type="both" pattern="yyyy-MM-dd" 
+						 value="${MemberBean.birthday}"></fmt:formatDate></td>
 					<td id="errormcbirthday" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr >
 					<td style="text-align:right;width:200px">電話:</td>
 					<td><input type="text" name="mcphone" id="mcphone" 
 						value="${MemberBean.phone}"></td>
-					<td id="mcerrorphone" style="text-align: left;color:red;font-weight: bold;float:left"></td>
+					<td id="errormcphone" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;width:200px">地址:</td>
@@ -183,11 +194,21 @@ img {
 			</table>
         </div>
         <div id="menu2" class="tab-pane fade munuinf">
-            <h3>${MemberBean.memberId}</h3>
-            <div>
-            	<input type="radio" name="pay" value="pay" />會員升級 NT$500/年 <br>
-           		<button>確認</button>
-            </div>
+        <div style="padding-left:15px;"><br><br>
+<%--             <h3>${MemberBean.name}</h3> --%>
+            		<c:choose>
+							<c:when test="${MemberBean.paid eq '1'}">
+							您已經是付費會員，無須升級。<br><br>
+							</c:when>
+							<c:when test="${MemberBean.paid eq '0'}">
+							   <div>
+				            	<input type="radio" name="pay" value="pay" />會員升級 NT$500 <br><br>
+				           		<button>確認</button><br><br>
+				            </div>
+							</c:when>
+						</c:choose>
+ 
+           </div>
         </div>
         <div id="menu3" class="tab-pane fade munuinf" >
             <h3>Menu 3</h3>
@@ -216,24 +237,30 @@ img {
 <script>
 
 $("#updatemem").click(function() {
+	var a=0;
 	if ($("#mcname").val()===""){
 		$("#errormcname").html("姓名不得為空值")
-		 return false;
-	}else if($("#mcpassword").val().length < 8){
-		$(".error").html("密碼請大於8位數")
-		 return false;				
-	}else if($("#mcpassword").val()!==$("#password2").val()){
-		$(".error").html("密碼與驗證密碼不一致")
-		 return false;				
-	}else if($("#mcgender").val()!="F"&&$("#gender").val()!="M"){
-		$(".error").html("性別請填寫M(男生)或F(女生)")
-		 return false;				
-	}else if($("#mcbirthday").val()===""){
-		$(".error").html("生日不得為空值")
-		 return false;	
-	}else if($("#mcmail").val()===""){
-		$(".error").html("mail不得為空值")
-		 return false;	
+		a=1;
+	}if($("#mcpassword").val().length < 8){
+		$("#errormcpassword").html("密碼請大於8位數")
+		a=1;
+	}if($("#mcpassword").val()!==$("#mcpassword2").val()){
+		$("#errormcpassword").html("密碼與驗證密碼不一致")	
+		a=1;
+	}if($("#mcbirthday").val()===""){
+		$("#errormcbirthday").html("生日不得為空值")	
+		a=1;
+	}if($("#mcmail").val()===""){
+		$("#errormcmail").html("mail不得為空值")	
+		a=1;
+	}if($("#mcphone").val()===""){
+		$("#errormcphone").html("phone不得為空值")	
+		a=1;
+	}if($("#mcaddress").val()===""){
+		$("#errormcaddress").html("phone不得為空值")	
+		a=1;
+	}if (a>=1){
+		return false;
 	}
 	var data = new Object();
 	data.name = $("#name").val();

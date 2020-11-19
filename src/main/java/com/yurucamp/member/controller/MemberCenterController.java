@@ -35,17 +35,8 @@ import com.yurucamp.member.utils.DateUtils;
 @SessionAttributes({"memberId","memberRolse"})
 public class MemberCenterController {
 
-	private static final int yyyy = 0;
-	private static final int MM = 0;
 	@Autowired
 	MemberCenterService service ;
-
-	//		// YuruCamp首頁連結會員中心
-	//		@GetMapping("/Member/MemberCenter")
-	//		public String MemberCenter() {			
-	//			return "MemberViewPage";
-	//		}
-	// 開啟會員中心前要先拉出資料庫資料
 
 	@GetMapping("/Member/MemberCenter")
 	public String MemberCenter(HttpServletRequest request,Model model) throws SQLException {
@@ -54,10 +45,8 @@ public class MemberCenterController {
 		String memberId = (String) session.getAttribute("memberId");
 		mb = service.queryMem(memberId); 
 		model.addAttribute("MemberBean",mb);
-		//mb以MemberBean傳到前端
-		//		System.out.println("ControllermemberId="+memberId);
-		//		System.out.println("Controllci="+ci);
 		System.out.println(mb.getMemberId());
+		System.out.println(mb.getBirthday());
 		return "MemberViewPage";
 	}
 
@@ -94,11 +83,20 @@ public class MemberCenterController {
 		System.out.println("DAO回到Controller");
 		System.out.println("mes="+mes);
 		
-		
 		//把成功失敗訊息丟置前端
 		Map<String, String> mes1 = new HashMap<String, String>();
 		mes1.put("mes", mes); 
 		return mes1;
-
 	}
+	
+	@PostMapping("/Member/sendRegisterMail")
+	@ResponseBody
+	public Map<String,Integer> sendRegisterMail(String mail,String name) throws SQLException, Throwable {
+		System.out.println("mail:"+mail);
+		Integer num=service.sendRE(mail, name);
+		Map<String,Integer> num1 = new HashMap<String,Integer>();
+		num1.put("num", num); 
+		return num1;
+	}
+	
 }

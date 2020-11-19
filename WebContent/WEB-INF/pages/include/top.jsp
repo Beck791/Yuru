@@ -11,15 +11,9 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <!-- //匯入bootstrap -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- //匯入jQuery -->
-<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!-- //匯入bootstrap javascript -->
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<!-- //匯入icon -->
-<script	src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js'></script>
-<script <c:url value="/modernizr.js"/>  ></script>
-  
-	<style>
+<style>
 	
 	.mempic{
  		display:inline-block; 
@@ -71,26 +65,26 @@
 			<c:choose>
 				<c:when test="${memberRolse eq 'admin'}">
 					<button type="button" class="btn btn-light"
-						style="float: right; margin-right: 288px; margin-top: -90px">
-						<a href="<c:url value='/Backstage/index' />" />後臺管理</a>
+						style="float: right; margin-right:400px; margin-top: -90px;background-color:#dbcf83;">
+						<a href="<c:url value='/Backstage/index' />" style="color:black;"/>後臺管理</a>
 					</button>
-					<button type="button" class="btn btn-light"
-						style="float: right; margin-right: 195px; margin-top: -90px">
-						<a href="<c:url value='/Member/MemberCenter' />">會員中心</a>
+					<button type="button" class="btn btn-light entermem"
+						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;">
+						<a href="<c:url value='/Member/MemberCenter' />" style="color:black;" />${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
-						style="float: right; margin-right: 130px; margin-top: -90px">
-						<a href="<c:url value='/Member/LoginOut' />">登出</a>
+						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						<a href="<c:url value='/Member/LoginOut' />" style="color:black" />登出</a>
 					</button>
 				</c:when>
 				<c:when test="${not empty memberId}">
-					<button type="button" class="btn btn-light"
-						style="float: right; margin-right: 195px; margin-top: -90px">
-						<a href="<c:url value='/Member/MemberCenter' />">會員中心</a>
+					<button type="button" class="btn btn-light entermem"
+						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;">
+						<a href="<c:url value='/Member/MemberCenter' />" style="color:black;" />${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
-						style="float: right; margin-right: 130px; margin-top: -90px">
-						<a href="<c:url value='/Member/LoginOut' />">登出</a>					
+						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						<a href="<c:url value='/Member/LoginOut' />" style="color:black" />登出</a>
 					</button>
 				</c:when>
 				<c:otherwise>
@@ -107,14 +101,18 @@
 			</a>
 			
 			<div  style="float: right; margin-right: 130px;margin-top: -120px">
-		${sessionScope.memberId}
-		${memberRolse}
-		${sessionScope.memberPaid}
-		${sessionScope.id}	
+<%-- 		${sessionScope.memberId} --%>
+<%-- 		${memberRolse} --%>
+<%-- 		${sessionScope.memberPaid} --%>
+<%-- 		${sessionScope.id}	 --%>
+<%-- 		${memberBean.name} --%>
 
 			</div>
 
-		</header>		
+		</header>	
+		
+  
+
 
 		<!-- end box-header -->
 
@@ -246,31 +244,37 @@
 								style="border-style: none; height: 100%; padding: 0 20px; width: 100%" />
 							<span>確認密碼</span>
 						</div>
-						<div class="input-contact" style="width: 30%; float: left;margin-bottom:15px;">
-							<input type="text" name="gender" id="gender" autocomplete="off" /> <span>性別</span>
-						</div>
-						<div class="input-contact"
-							style="width: 65%; float: right; text-align: left;margin-bottom:15px;">
+						
+						<div class="input-contact" style="width: 65%; float:left; text-align: left;margin-bottom:15px;">
 							<input type="date" id="birthday" name="birthday" value=""
 								max="tDate" class='limit-max-date' autocomplete="off"
 								style="border-style: none; height: 100%; padding: 0 20px; width: 100%; text-align:right;color:#BEBEBE" />
 							<span>生日</span>
 						</div>
+						
+						<div class="input-contact" style="width: 30%; float:right;margin-bottom:15px;">
+							<input type="text" name="gender" id="gender" autocomplete="off" /> <span>性別</span>
+						</div>
+
 						<!--                     	<div class="input-contact" style="width:100%;float:left;"> -->
 						<!--                             <input type="text" name="phone" id="phone" autocomplete="off"> -->
 						<!--                             <span>電話</span>                  -->
 						<!--                     	</div> -->
-						<div class="input-contact" style="width: 100%; float: left;margin-bottom:15px;">
+						<div class="input-contact" style="width: 65%; float: left;margin-bottom:15px;">
 							<input type="text" name="mail" id="mail"
 								autocomplete="off" /> <span>mail</span>
 						</div>
-						<div style="float: left;margin-bottom:15px;">
-							<button type="button" class="btn btn-secondary"
+						<div style="float:right;margin-bottom:15px;">
+							<button type="button" class="btn btn-secondary" id="sendregstermail"
 								style="border-radius: 5px">發送驗證碼</button>
 						</div>
-						<div class="input-contact" style="width: 65%; float: right;margin-bottom:15px;">
-							<input type="text" name="mailc" id="mailc" autocomplete="off">
-							<span>mail驗證碼</span>
+						<div style="float:right;margin-bottom:15px;">
+								<button type="button" class="btn btn-secondary" id="oksendregstermail"
+								style="border-radius:5px;display:none;">已完成驗證</button>
+						</div>
+						<div class="input-contact" style="width: 65%; float:left;margin-bottom:15px;">
+							<input type="text" name="" id="" autocomplete="off">
+							<span>我不是機器人</span>
 						</div>
 					</div>
 
@@ -305,7 +309,6 @@
 	</div>
 	</div>
 	
-	
 	<script>
 
 		$("#icon").click(function(){
@@ -335,10 +338,47 @@
 				}
 			})
 		});
+		
+		
+		$("#sendregstermail").click(function() {
+			$("#ermsg").html("");
+			$("#ermsg2").html("");
+			if ($("#mail").val()==""||$("#mail").val().length < 8){
+				$("#ermsg2").html("mail格式錯誤");
+				return false;
+			}if($("#name").val()===""){
+				$("#ermsg2").html("姓名不得為空值");
+				return false;
+			};
+			var data = new Object();
+			data.mail = $("#mail").val();
+			data.name = $("#name").val();			
+			console.log(data);
+			$.ajax({
+				url : "/yurucamp/Member/sendRegisterMail",
+				method : 'POST',
+				dataType : 'json',
+				data : data
+			}).done(function(result) {
+// 				bootbox.alert({<input type="text">});		
+				confirmnum=prompt("請輸入mail驗證碼:");
+				
+				while (confirmnum!=result.num){
+					if (confirmnum==null){return null};
+					confirmnum=prompt("您輸入的驗證碼錯誤，請再次輸入!")
+				}
+				if(confirmnum==result.num){
+					$("#sendregstermail").hide();
+					$("#oksendregstermail").show();
+					$("#oksendregstermail").attr("disabled", true);					
+				}
+			})			
+		});
+		
 
 		$("#regieted").click(function() {
 			$("#ermsg").html("");
-			$("#ermsg2").html("")
+			$("#ermsg2").html("");
 			if ($("#name").val()===""){
 				$("#ermsg2").html("姓名不得為空值")
 				 return false;
@@ -359,8 +399,10 @@
 				 return false;	
 			}else if($("#mail").val()===""){
 				$("#ermsg2").html("mail不得為空值")
-				 return false;	
-			}
+				 return false;	}
+// 			}else if($("#oksendregstermail").display==none){
+// 				$("#ermsg2").html("請驗證您的mail")
+// 				 return false;	}
 			var data = new Object();
 			data.name = $("#name").val();
 			data.memberId = $("#memberId").val();
@@ -536,6 +578,14 @@
 		})()
 		input1.setAttribute('max', tDate)
 
+		$(document).ready(function(){
+		  $(".entermem").hover(function(){
+		    $(".entermem").css("background-color","#dbcf83");
+		    },function(){
+		    $(".entermem").css("background-color","transparent");
+		  });
+		});
+		
 		
 	</script>
 	
