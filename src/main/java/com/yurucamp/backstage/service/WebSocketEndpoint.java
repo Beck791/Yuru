@@ -19,9 +19,12 @@ public class WebSocketEndpoint {
     public void onMessage(String message, Session session) throws IOException,
             InterruptedException, EncodeException {
         System.out.println("User input: " + message);
-        //session.getBasicRemote().sendText("Hello world Mr. " + message);
-        //for (Session s : session.getOpenSessions()) {
+        System.out.println("DAO: "+session );
+        
+        
+//        session.getBasicRemote().sendText("Hello world Mr. " + message);
         for (Session s : sessions) {    //對每個連接的Client傳送訊息
+        	 System.out.println("Session: "+s.getBasicRemote());
             if (s.isOpen()) {
                 s.getBasicRemote().sendText(message);
             }
