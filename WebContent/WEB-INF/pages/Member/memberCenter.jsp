@@ -247,58 +247,39 @@ $("#updatemem").click(function() {
 	}if($("#mcpassword").val()!==$("#mcpassword2").val()){
 		$("#errormcpassword").html("密碼與驗證密碼不一致")	
 		a=1;
-	}if($("#mcbirthday").val()===""){
-		$("#errormcbirthday").html("生日不得為空值")	
-		a=1;
-	}if($("#mcmail").val()===""){
-		$("#errormcmail").html("mail不得為空值")	
-		a=1;
 	}if($("#mcphone").val()===""){
 		$("#errormcphone").html("phone不得為空值")	
 		a=1;
 	}if($("#mcaddress").val()===""){
-		$("#errormcaddress").html("phone不得為空值")	
+		$("#errormcaddress").html("address不得為空值")	
 		a=1;
 	}if (a>=1){
 		return false;
 	}
 	var data = new Object();
-	data.name = $("#name").val();
-	data.memberId = $("#memberId").val();
-	data.password = $("#password").val();
-	data.gender = $("#gender").val();
-	data.birthday = $("#birthday").val();
-	data.phone = "0988888888";
-	data.address = "新北市新店區";
-	data.mail = $("#mail").val();
-	data.registerDate = new Date();
+	data.name = $("#mcname").val();
+	data.password = $("#mcpassword").val();
+	data.phone = $("#mcphone").val();
+	data.address = $("#mcaddress").val();
+	data.mail = $("#mcmail").val();
 	data.status = "Y";
 	data.paid = 0;
 	data.roles = "member";
+	data.id="${memberBean.id}";
+	data.memberId="${memberBean.memberId}";
+	data.gender ="${memberBean.gender}";
+	data.birthday ="${MemberBean.birthday}";
+	data.registerDate ="${memberBean.registerDate}";
 	console.log(data);
 	$.ajax({
-		url : "<c:url value='/Member/Rer'/>",
+		url : "<c:url value='/Member/updatemcmem'/>",
 		method : 'POST',
 		dataType : 'json',
 		data : data
 	}).done(function(result) {
-		if (result.mes == "帳號重複") {
-			$("#ermsg2").html("有相同帳號，請重新輸入")
-		} else if(result.mes == "新增成功") {
-			$("#ermsg2").html("")
-			$("#name").val("");
-			$("#memberId").val("");
-			$("#password").val("");
-			$("#password2").val("");
-			$("#gender").val("");
-			$("#birthday").val("");
-			$("#mail").val("");
-			$("#mailc").val("");
-			$("#registerModal").click();
-			alert("註冊成功，您可以正常登入!");
-		}
-
-	})
+		window.location.reload();
+		alert(result.r);
+		})
 });
 
 </script>

@@ -29,15 +29,12 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['訂閱人數',     11],
+          ['沒訂閱人數',      10]
         ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: '會員VIP',
           is3D: true,
         };
 
@@ -53,11 +50,11 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
+          ['Year', '訂閱', '沒訂閱'],
+          ['2016',  1000,      400],
+          ['2017',  1170,      460],
+          ['2018',  660,       1120],
+          ['2019',  1030,      540]
         ]);
 
         var options = {

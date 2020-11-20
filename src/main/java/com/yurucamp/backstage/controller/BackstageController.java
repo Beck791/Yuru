@@ -50,6 +50,11 @@ public class BackstageController {
 		return "backstagewebSocketTest";
 	}
 	
+	@GetMapping("/socket")
+	public String backstageWebSocketIndex() {
+		return "backstagewebSocket";
+	}
+	
 	@GetMapping("/forum")
 	public String backstageForumIndex() throws SQLException {
 		List<Test> products = backstageService.getAllProducts();

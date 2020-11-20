@@ -7,6 +7,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+
 import com.yurucamp.member.model.MemberBean;
 import com.yurucamp.member.model.dao.MemberCenterDao;
 
@@ -54,6 +56,13 @@ public class MemberCenterService {
 		return num;
 	}
 	
-	
+	//更新會員中心
+	public String update(MemberBean mbean) throws SQLException {
+		System.out.println("進到Service");
+		String r=memberCenterDao.updatem(mbean); 
+		System.out.println("Service r="+r);
+		return  r;
+		
+	}
 
 }

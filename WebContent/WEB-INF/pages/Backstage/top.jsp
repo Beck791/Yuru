@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +18,27 @@
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
                             <li class="active"><a href="/yurucamp/Backstage/index" class="sf-house">Home</a></li>
-                            <li><a href="/yurucamp/Backstage/member" class="sf-user-id">會員系統</a></li>
-                            <li><a href="/yurucamp/Backstage/camp" class="md-landscape">營地系統</a></li>
-                            <li class="cm-submenu">
-                                <a class="md-directions-car">露營車系統<span class="caret"></span></a>
-                                <ul>
-                                    <li><a href="layouts-breadcrumb1.html">1st nav breadcrumb</a></li>
-                                    <li><a href="layouts-breadcrumb2.html">2nd nav breadcrumb</a></li>
-                                    <li><a href="layouts-tabs.html">2nd nav tabs</a></li>
-                                </ul>
-                            </li>
-                            <li class="cm-submenu">
-                                <a class="md-shopping-cart">商城系統<span class="caret"></span></a>
-                                <ul>
-                                    <li><a href="ico-sf.html">Small-n-flat</a></li>
-                                    <li><a href="ico-md.html">Material Design</a></li>
-                                    <li><a href="ico-fa.html">Font Awesome</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/yurucamp/Backstage/forum" class="sf-notepad">論壇系統</a></li>
+<!--                             <li><a href="/yurucamp/Backstage/member" class="sf-user-id">會員系統</a></li> -->
+<!--                             <li><a href="/yurucamp/Backstage/camp" class="md-landscape">營地系統</a></li> -->
+<!--                             <li class="cm-submenu"> -->
+<!--                                 <a class="md-directions-car">露營車系統<span class="caret"></span></a> -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="layouts-breadcrumb1.html">1st nav breadcrumb</a></li> -->
+<!--                                     <li><a href="layouts-breadcrumb2.html">2nd nav breadcrumb</a></li> -->
+<!--                                     <li><a href="layouts-tabs.html">2nd nav tabs</a></li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+<!--                             <li class="cm-submenu"> -->
+<!--                                 <a class="md-shopping-cart">商城系統<span class="caret"></span></a> -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="ico-sf.html">Small-n-flat</a></li> -->
+<!--                                     <li><a href="ico-md.html">Material Design</a></li> -->
+<!--                                     <li><a href="ico-fa.html">Font Awesome</a></li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+<!--                             <li><a href="/yurucamp/Backstage/forum" class="sf-notepad">論壇系統</a></li> -->
                             <li><a href="/yurucamp/Backstage/calendar" class="sf-calendar">日歷</a></li>
+                            <li><a href="/yurucamp/Backstage/camp" class="sf-user-id">客服系統</a></li>
                         </ul>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                     <button class="btn md-account-circle-white btn-warning" data-toggle="dropdown"></button>
                     <ul class="dropdown-menu">
                         <li class="disabled text-center">
-                            <a style="cursor:default;"><strong>John Smith</strong></a>
+                            <a style="cursor:default;"><strong>${memberBean.name}</strong></a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -98,7 +100,7 @@
                             <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                            <a href="<c:url value='/Member/LoginOut' />"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
                         </li>
                     </ul>
                 </div>
