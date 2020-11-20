@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
-<link rel="icon" href="../img/fav.png" type="image/x-icon">
+<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
@@ -77,6 +77,64 @@
 .tabletd {
 	padding: 7px;
 }
+/* guide */
+
+.cal-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cal-app_list {
+    margin: 0 auto;
+    background: #dbcf83;
+    min-height: 200px;
+}
+
+.cal-app_list .cal-app_item a p {
+    margin: 0;
+    color: #5d5030e0;
+    letter-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.cal-app_list .cal-app_item a p>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.cal-app_list .cal-app_item img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 34px;
+}
+
+.cal-app_list .cal-app_item.cal-xs-5 {
+    width: 20%;
+}
+
+.cal-app_list .cal-app_item {
+    float: left;
+    text-align: center;
+    padding-top: 5%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+ul, li {
+    list-style: outside none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 1200px)
+.cal-container {
+    width: 1200px;
+}
 
 </style>
 </head>
@@ -104,6 +162,7 @@
 				<input type="hidden" id="totalPrice" name="totalPrice" value="">
 				<input type="hidden" id="normalPrice" name="normalPrice" value="">
 				<input type="hidden" id="discountPrice" name="discountPrice" value="">
+				<input type="hidden" id="carId" name="carId" value="">
 				<div class="main-agile-sectns">
 					<div class="agileits-btm-spc form-text1">
 						<img src="../img/car/location.png" width="15px">
@@ -175,9 +234,9 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="wthree-text">
-				
+
 				</div>
 				<input type="submit" value="Search">
 				<div class="clear"></div>
@@ -185,9 +244,8 @@
 		</div>
 
 	</div>
-	</div>
 	<br>
-	
+
 	<div class="container reserve-car">
     <section class="reserve-step">
         <div class="reserve-step-group">
@@ -217,26 +275,26 @@
         </div>
     </section>
     <br>
-		
+
 	<div class="book-agileinfo-form input">
-			<form id="form3" name="form3" action="<c:url value='/Car/reservation2' />" method="post">	
+			<form id="form3" name="form3" action="<c:url value='/Car/reservation2' />" method="post">
 		<c:forEach items="${planList}" var="data" varStatus="step">
 			<table class="cartype">
 				<tr>
-<%-- 					<td colspan="2" style="text-align:center" class="cartypetd"><img src="${data.imgUrl}"  width="250px"></td> --%>
 					<td colspan="2" style="text-align:center;width:200px;" class="cartypetd">${data.image}</td>
 					<td colspan="1" class="cartypetd"><font style="font-size:20px">${data.type}</font><input type="hidden" id="type${step.index}" name="type${step.index}" value="${data.type}"></td>
 				</tr>
 				<tr>
 					<td class="cartypetd" style="text-align:center">一般價格</td>
 					<td style="text-align:center">三日價格</td>
-					<td style="text-align:center">五日價格</td>	
-				</tr>	
+					<td style="text-align:center">五日價格</td>
+				</tr>
 				<tr>
-					<td style="text-align:center">${data.price} /日<input type="hidden" id="oneDayPrice_${step.index}" value="${data.price}"></td>		
+					<td style="text-align:center">${data.price} /日<input type="hidden" id="oneDayPrice_${step.index}" value="${data.price}"></td>
 <%-- 					<fmt:parseNumber value="${data.price*0.95}" type="currency"/>			 --%>
+<%-- 						<fmt:formatNumber type=”number” value=”${data.price*0.95}” maxFractionDigits=”0″/> --%>
 					<td style="text-align:center">${data.price*0.95} /日<input type="hidden" id="threeDaysPrice_${step.index}" value="${data.price*0.95}"></td>
-					<td style="text-align:center">${data.price*0.9} /日<input type="hidden" id="fiveDaysPrice_${step.index}" value="${data.price*0.9}"></td>				
+					<td style="text-align:center">${data.price*0.9} /日<input type="hidden" id="fiveDaysPrice_${step.index}" value="${data.price*0.9}"></td>
 				</tr>
 				<tr><td></td></tr>
 				<tr>
@@ -249,25 +307,69 @@
 							<option value="2">2</option>
 							<option value="3">3</option>
 					</select>
-					</td>					
-				</tr>	
+					</td>
+				</tr>
 				<tr>
-					<td colspan="3" style="text-align:center"><input type="button" value="選擇這輛" onclick="doNext('${step.index}',);"></td>					
-				</tr>	
+					<td colspan="3" style="text-align:center">
+						<input type="button" value="選擇這輛" onclick="doNext('${step.index}',);">
+						<input type="hidden" id="carId_${step.index}" value="${data.id} " >
+					</td>
+				</tr>
 			</table>
 			<br>
 		</c:forEach>
-		
+
 		</form>
 		</div>
-		</div>
+		</div><br>
+		
+<!-- 導覽列 -->
+   <section class="cal-app_list">
+    <div class="cal-container">
+        <ul class="clearfix">
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
+                            <a href="/tw/zh/faq/index">
+                                <img src="../img/car/information.png" width="40px">
+                                <p class="cal-app_name"><span>預約流程</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/order.png">
+<%--                             <a href="<c:url value='/Car/Order' />"> --%>
+							<a href="javascript:queryContract();">
+                                <img src="../img/car/order.png" width="30px">
+                                <p class="cal-app_name"><span>訂單查詢</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
+                            <a href="https://news.china-airlines.com/bvct/branch?country=tw&amp;locale=zh">
+                                <img src="../img/car/map.png" width="50px">
+                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
+                            <a href="https://calec.china-airlines.com/OnlineSurvey/esv_introduction.aspx?lang=zh-TW&amp;country=tw&amp;locale=zh">
+                                <img src="../img/car/qa.png" width="40px">
+                                <p class="cal-app_name"><span>常見問與答</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
+                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                                <img src="../img/car/email.png" width="40px">
+                                <p class="cal-app_name"><span>聯絡我們</span></p>
+                            </a>
+                        </li>
+
+        	</ul>
+    	</div>
+
+    </section>
 
 <!-- 	end main container -->
 
 	<!-- footer -->
 	<footer>
 		<div class="container-fluid">
-			<p class="copyright">© Box Portfolio 2016</p>
+			<p class="copyright">© YURU.camp</p>
 		</div>
 	</footer>
 	<!-- end footer -->
@@ -334,23 +436,25 @@
 			document.getElementById("returnDate").setAttribute("min", deptDate);
 		}
 
-		
+
 		function doNext(count){
 			var type = $('#type' + count).val();
 			var amount = $('#amount' + count).val();
+			var carId = $('#carId_' + count).val();
 			if(amount == null || amount == ''){
 				swal("請選擇車輛數量", "", "warning");
 				return;
 			}
 			$('#type').val(type);
 			$('#amount').val(amount);
-			
+			$('#carId').val(carId);
+
 			//  金額計算
-			var date1 = new Date($('#deptDate').val()); 
-			var date2 = new Date($('#returnDate').val()); 
-			var Difference_In_Time = date2.getTime() - date1.getTime(); 
+			var date1 = new Date($('#deptDate').val());
+			var date2 = new Date($('#returnDate').val());
+			var Difference_In_Time = date2.getTime() - date1.getTime();
 			var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-			
+
 			var price = 0;
 			var price2 = 0;
 			var discount = 0;
@@ -370,9 +474,9 @@
 			$('#form2').attr('action', action + "2").submit();
 			document.getElementById("form2").submit();
 		}
-		
-		
-		
+
+
+
 	</script>
 
 </body>

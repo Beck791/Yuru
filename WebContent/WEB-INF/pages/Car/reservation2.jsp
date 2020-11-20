@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
-<link rel="icon" href="../img/fav.png" type="image/x-icon">
+<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
@@ -81,6 +82,65 @@ h3 {
 .tabletd {
 	padding: 7px;
 }
+
+/* guide */
+
+.cal-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cal-app_list {
+    margin: 0 auto;
+    background: #dbcf83;
+    min-height: 200px;
+}
+
+.cal-app_list .cal-app_item a p {
+    margin: 0;
+    color: #5d5030e0;
+    letter-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.cal-app_list .cal-app_item a p>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.cal-app_list .cal-app_item img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 34px;
+}
+
+.cal-app_list .cal-app_item.cal-xs-5 {
+    width: 20%;
+}
+
+.cal-app_list .cal-app_item {
+    float: left;
+    text-align: center;
+    padding-top: 5%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+ul, li {
+    list-style: outside none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 1200px)
+.cal-container {
+    width: 1200px;
+}
 </style>
 </head>
 
@@ -98,7 +158,7 @@ h3 {
 	<!-- end top bar -->
 
 	<!-- main container -->
-	
+
 	<br><br>
 	<div class="container reserve-car">
     <section class="reserve-step">
@@ -130,7 +190,7 @@ h3 {
     </section>
     </div>
     <br>
-	
+
 	<div class="book-appointment">
 		<div class="book-agileinfo-form">
 
@@ -140,6 +200,7 @@ h3 {
 						<p>露營組<br>內含露營椅、小木桌、露營燈、小音箱</p>
 						<img alt="" src="../img/car/monster.png">
 						<br> <select id="country1" class="frm-field required sect" name="device" onchange="deviceChange()">
+
 							<option value="">數量</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -148,13 +209,13 @@ h3 {
 
 						<br><br><p style="font-size:20px;">優惠序號 coupon</p>
 						<p>請輸入您的優惠券號碼</p>
-						<br> <input type="text" placeholder="請輸入" name="discount" id="discount" onblur="couponRedeem();">
-					
+						<br> <input type="text" placeholder="請輸入" name="discount" id="discount" onblur="couponRedeem()">
+
 			</form>
 		</div>
 
    <div  class="book-agileinfo-form">
-   	<form action="<c:url value='/Car/reservation3'/>" method="GET">
+   	<form action="<c:url value='/Car/reservation3'/>" method="POST">
 	<table id="amount-table">
 		<tr>
 			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >您選擇的方案</td>
@@ -212,40 +273,99 @@ h3 {
 		<tr>
 			<td colspan="3"><input type="submit" value="確定預約"></td>
 		</tr>
+		<tr>
+			<td>
+				<input type="hidden" id="dept" name="dept" value="${dept}">
+				<input type="hidden" id="ret" name="ret" value="${ret}">
+				<input type="hidden" id="deptDate" name="deptDate" value="${deptDate}">
+				<input type="hidden" id="deptTime" name="deptTime" value="${deptTime}">
+				<input type="hidden" id="returnDate" name="returnDate" value="${returnDate}">
+				<input type="hidden" id="returnTime" name="returnTime" value="${returnTime}">
+				<input type="hidden" id="type" name="type" value="${type}">
+				<input type="hidden" id="carId" name="carId" value="${carId}">
+				<input type="hidden" id="device" name="device" value="${device}">
+				<input type="hidden" id="couponName" name="couponName" value="${couponName}">
+				<input type="hidden" id="amount" name="amount" value="${totalPrice}">
+				<input type="hidden" id="count" name="count" value="${amount}">
+			</td>
+		</tr>
 	</table>
 	</form>
+	
+	
 
 	<div class="clear"></div>
 		</div>
-	</div>
+	</div><br>
+	<!-- 導覽列 -->
+   <section class="cal-app_list">
+    <div class="cal-container">
+        <ul class="clearfix">
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
+                            <a href="/tw/zh/faq/index">
+                                <img src="../img/car/information.png" width="40px">
+                                <p class="cal-app_name"><span>預約流程</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/order.png">
+<%--                             <a href="<c:url value='/Car/Order' />"> --%>
+							<a href="javascript:queryContract();">
+                                <img src="../img/car/order.png" width="30px">
+                                <p class="cal-app_name"><span>訂單查詢</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
+                            <a href="https://news.china-airlines.com/bvct/branch?country=tw&amp;locale=zh">
+                                <img src="../img/car/map.png" width="50px">
+                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
+                            <a href="https://calec.china-airlines.com/OnlineSurvey/esv_introduction.aspx?lang=zh-TW&amp;country=tw&amp;locale=zh">
+                                <img src="../img/car/qa.png" width="40px">
+                                <p class="cal-app_name"><span>常見問與答</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
+                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                                <img src="../img/car/email.png" width="40px">
+                                <p class="cal-app_name"><span>聯絡我們</span></p>
+                            </a>
+                        </li>
 
-	
-	
+        	</ul>
+    	</div>
+
+    </section>
+
+
+
 <!-- 	new start -->
-	<form:form method='POST' modelAttribute="bookBean" class='form-horizontal' enctype="multipart/form-data" >
-		<input type="hidden" id="dept" name="dept" value="dept">
-		<input type="hidden" id="ret" name="ret" value="ret">
-		<input type="hidden" id="deptDate" name="deptDate" value="deptDate">
-		<input type="hidden" id="deptTime" name="deptTime" value="deptTime">
-		<input type="hidden" id="returnDate" name="returnDate" value="returnDate">
-		<input type="hidden" id="returnTime" name="returnTime" value="returnTime">
-		<input type="hidden" id="device" name="device" value="device">
-		<input type="hidden" id="amount" name="amount" value="amount">
-		<input type="hidden" id="device" name="type" value="type">
-		<input type="hidden" id="discount" name="discount" value="discount">
+<%-- 	<form:form method='POST' modelAttribute="bookBean" class='form-horizontal' enctype="multipart/form-data" > --%>
+<!-- 		<input type="hidden" id="carId" name="carId" value="carId"> -->
+<!-- 		<input type="hidden" id="dept" name="dept" value="dept"> -->
+<!-- 		<input type="hidden" id="ret" name="ret" value="ret"> -->
+<!-- 		<input type="hidden" id="deptDate" name="deptDate" value="deptDate"> -->
+<!-- 		<input type="hidden" id="deptTime" name="deptTime" value="deptTime"> -->
+<!-- 		<input type="hidden" id="returnDate" name="returnDate" value="returnDate"> -->
+<!-- 		<input type="hidden" id="returnTime" name="returnTime" value="returnTime"> -->
+<!-- 		<input type="hidden" id="device" name="device" value="device"> -->
+<!-- 		<input type="hidden" id="amount" name="amount" value="amount"> -->
+<!-- 		<input type="hidden" id="type" name="type" value="type"> -->
+<!-- 		<input type="hidden" id="discount" name="discount" value="discount"> -->
 <!-- 		<div class='col-lg-offset-2 col-lg-10'> -->
 <!-- 			<input id="btnAdd" type='submit' class='btn btn-primary' value="送出" /> -->
-		</div>
-	</form:form>
-		
+<!--		</div>-->
+<%-- 	</form:form> --%>
+
 <!-- 	new end -->
-	
+
 	<!-- end main container -->
 
 	<!-- footer -->
 	<footer>
 		<div class="container-fluid">
-			<p class="copyright">© Box Portfolio 2016</p>
+			<p class="copyright">© YURU.camp</p>
 		</div>
 	</footer>
 	<!-- end footer -->
@@ -286,41 +406,80 @@ h3 {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
-		
-		
+
+
 	</script>
-	
+
 
 	<script>
-	
+
 	function deviceChange(){
 		var country = $('#country1').val();
 		$('#deviceAmount').html(country);
+		$('#device').val(country);
 		if('' != country){
 			var price = parseInt(country) * 1200;
 			$('#devicePrice').html(price);
-		}else{
+			$('#totalPrice').html(${totalPrice} + price);
+		} else {
 			$('#devicePrice').html('');
+			$('#totalPrice').html(${totalPrice});
 		}
 	}
-	
+
 	function couponRedeem(){
-		var couponUrl = '<c:url value='/Car/Discount' />';
-		$.ajax({type: 'POST',url: couponUrl,data: {couponNumber:$('#discount').val()}, success: function(result){
+		var couponUrl = "<c:url value='/Car/Discount' />";
+		$.ajax({type: 'POST',url: couponUrl,data: {couponNumber:$('#discount').val()}, 
+			success: function(result){	
 		    console.log(result);
 			console.log(result.couponName);
 		    console.log(result.discountAmount);
 		    if('Y' == result.invalidFlag){
 				swal("此優惠序號已過期或為無效序號", "", "warning");
 		    	$('#couponName').html('');
+		    	$('#couponName').val('');
 			    $('#discountAmount').html('');
-		    }else{
+			    $('#totalPrice').html(${totalPrice});
+		    } else {
 			    $('#couponName').html(result.couponName);
+			    $('#couponName').val(result.couponName);
+			    console.log( $('#couponName').val(result.couponName));
 			    $('#discountAmount').html(- result.discountAmount);
+			    $('#totalPrice').html(${totalPrice}-result.discountAmount);
 		    }
 		  }});
 	}
-	
+
+// 	function totalprice(){
+// 		var totalUrl = '<c:url value='/Car/Total' />';
+// 		$.ajax({type: 'POST', url: totalUrl,
+// 			data: {price:$('#price2').val(),coupon:$('#discountAmount').val(),
+// 				deviceamount:$('#deviceAmount').val(),deviceprice:$('#devicePrice').val(),
+// 				discount:$('#discount').val(),coupon:$('#discountAmount').val(),},
+// 				success: function(){
+// 			    console.log(total);
+// 			  }});
+// 	}
+
+// 	$("#deviceform").input(function() {
+// 		var data = new Object();
+// 		data.price = $("#price2").val();
+// 		data.coupon = $("#discountAmount").val();
+// 		console.log(data);
+// 		$.ajax({
+// 			url : "/yurucamp/Member/SignIn",
+// 			method : 'POST',
+// 			dataType : 'json',
+// 			data : data
+// 		}).done(function(result) {
+// 			if(result.msg== "登入成功!"){
+// 				$("#loginModal").click();
+// 				window.location.reload()
+// 			}else{
+// 				$("#ermsg").html("帳號或密碼錯誤，請重新輸入!")
+// 			}
+// 	})
+
 	</script>
 
 </body>

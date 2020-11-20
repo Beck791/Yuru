@@ -35,5 +35,26 @@ public class carViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Car/reservation3.jsp");
 		return view; 
 	}
+	
+	@Bean
+	public View CarOrderPage() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/order.jsp");
+		return view; 
+	}
+	
+	@Bean
+	public View CarOrderDetailPage() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/orderDetail.jsp");
+		return view; 
+	}
+	
+	@Bean
+	public View CarLocationPage() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/GoogleMap.jsp");
+		return view; 
+	}
 
 }

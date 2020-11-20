@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,12 +18,21 @@ public class ReservationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@Transient
+//	@Transient
+	@Column(name = "memberId")
 	private Integer memberId;
+
+//	@Transient
+	@Column(name = "carid")
+	private Integer carid;
+
+//	@Transient
+	@Column(name = "couponId")
+	private Integer couponId;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "orderDate")
@@ -51,15 +59,8 @@ public class ReservationBean implements Serializable {
 	@Column(name = "type")
 	private String type;
 
-	//@Transient 要確認。左記の記載では取得できない。
-	@Column(name = "carid")
-	private Integer carid;
-
 	@Column(name = "device")
 	private Integer device;
-
-	@Transient
-	private Integer couponId;
 
 	@Column(name = "amount")
 	private Integer amount;
@@ -67,7 +68,7 @@ public class ReservationBean implements Serializable {
 	@Column(name = "count")
 	private Integer count;
 
-	public ReservationBean(Integer id,Integer memberId,Timestamp orderDate,String dept,String ret,Date deptDate,String deptTime,Date returnDate,
+	public ReservationBean(Integer id, Integer memberId,Timestamp orderDate,String dept,String ret,Date deptDate,String deptTime,Date returnDate,
 			String returnTime,String type,Integer device,Integer couponId,Integer amount,Integer count) {
 		this.id = id;
 		this.memberId = memberId;
