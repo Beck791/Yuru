@@ -80,8 +80,7 @@ img {
 			<tr>
 				<td style="height: 100%; background-color: white; width: 50%;">
 					<div class="jumbotron-bg" style="margin-right: 15px; float: right">
-						<img
-							src=${memberBean.image}>
+						<img src=${memberBean.image}>
 					</div>
 				</td>
 				<td>

@@ -69,21 +69,21 @@
 						<a href="<c:url value='/Backstage/index' />" style="color:black;"/>後臺管理</a>
 					</button>
 					<button type="button" class="btn btn-light entermem"
-						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;">
-						<a href="<c:url value='/Member/MemberCenter' />" style="color:black;" />${memberBean.name}</a>
+						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						<img src=${memberBean.image} style="width:20px;height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
-						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83;;background-color:transparent">
 						<a href="<c:url value='/Member/LoginOut' />" style="color:black" />登出</a>
 					</button>
 				</c:when>
 				<c:when test="${not empty memberId}">
 					<button type="button" class="btn btn-light entermem"
-						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;">
-						<a href="<c:url value='/Member/MemberCenter' />" style="color:black;" />${memberBean.name}</a>
+						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						<img src=${memberBean.image} style="width:20px;height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
-						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
+						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83;;background-color:transparent">
 						<a href="<c:url value='/Member/LoginOut' />" style="color:black" />登出</a>
 					</button>
 				</c:when>
@@ -668,10 +668,10 @@
 		input1.setAttribute('max', tDate)
 
 		$(document).ready(function(){
-		  $(".entermem").hover(function(){
-		    $(".entermem").css("background-color","#dbcf83");
+		  $(".out2").hover(function(){
+		    $(".out2").css("background-color","#dbcf83");
 		    },function(){
-		    $(".entermem").css("background-color","transparent");
+		    $(".out2").css("background-color","transparent");
 		  });
 		});
 		
