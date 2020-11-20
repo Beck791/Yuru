@@ -5,9 +5,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-@Component
-public class ShoppingCart {   
+
+public class ShoppingCart {  
 	
 	private Map<Integer, OrderBean> cart = new LinkedHashMap< >();
 	
@@ -33,23 +34,14 @@ public class ShoppingCart {
 		}
 	}
 
-	public boolean modifyQty(int productId, int newQty) {
-		if ( cart.get(productId) != null ) {
-		   OrderBean  orderbean = cart.get(productId);
-		   orderbean.setQuantity(newQty);
-	       return true;
-		} else {
-		   return false;
-		}
+	public void modifyQty(int productId, int newQty) {
+		   OrderBean orderbean = cart.get(productId);
+		   orderbean.setQuantity(newQty);	
 	}
+	
 	// 刪除某項商品
-	public int deleteProduct(Integer productId) {
-		if ( cart.get(productId) != null ) {
-	       cart.remove(productId);  // Map介面的remove()方法
-	       return 1;
-		} else {
-		   return 0;
-		}
+	public void deleteProduct(Integer productId) {
+		       cart.remove(productId);  // Map介面的remove()方法	 
 	}
 	public int getItemNumber(){   // ShoppingCart.itemNumber
 		return cart.size();
@@ -57,15 +49,46 @@ public class ShoppingCart {
 	//計算購物車內所有商品的合計金額(每項商品的單價*數量的總和)
 	public Integer getSubtotal(){
 		Integer subTotal = 0 ;
+
 		Set<Integer> set = cart.keySet();
 		for(int n : set){
 			OrderBean orderbean = cart.get(n);
 			Integer price    = orderbean.getPrice();
-			Integer fee = orderbean.getFee();
 			int quantity      = orderbean.getQuantity();
-			subTotal +=  price * quantity + fee;
+			subTotal +=  price * quantity ;
 		}
 		return subTotal;
+	}
+	
+	public Integer getFinalSubtotal(){
+		
+		Integer subTotal = 0 ;
+		Integer fee = 0 ;
+		Set<Integer> set = cart.keySet();
+		for(int n : set){
+			OrderBean orderbean = cart.get(n);
+			Integer price    = orderbean.getPrice();
+			fee = orderbean.getFee();
+			int quantity      = orderbean.getQuantity();
+			subTotal +=  price * quantity ;
+		}
+		subTotal = subTotal + fee;
+		return subTotal;
+	}
+	public Integer getPayFinalSubtotal(){
+		
+		Integer subTotal = 0 ;
+		Integer fee = 0 ;
+		Set<Integer> set = cart.keySet();
+		for(int n : set){
+			OrderBean orderbean = cart.get(n);
+			Integer price    = orderbean.getPrice();
+			fee = orderbean.getFee();
+			int quantity      = orderbean.getQuantity();
+			subTotal +=  price * quantity ;
+		}
+		subTotal = (int) ((subTotal + fee)*0.9);
+		return subTotal ;
 	}
 
 }

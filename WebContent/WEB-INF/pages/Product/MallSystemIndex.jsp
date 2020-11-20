@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,7 @@
      <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- modernizr -->
      <script src="<c:url value='/js/modernizr.js' />"></script>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -145,7 +147,13 @@
                 <p class="card-text">${productBean.description}</p>
               </div>
               <div class="card-footer">
-                <input type="submit" value="加入購物車" class="btn btn-primary" onclick="insert('${productBean.id}')" />
+<!--               <form> -->
+<!--               </form> -->
+<!--               <form method="post" id="form1"  action=""> -->
+              <form method="post"  action="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>">
+<%--                 <input type="submit" value="加入購物車" class="btn btn-primary" onclick="insert('${productBean.id}')" /> --%>
+                <input type="submit" value="加入購物車" class="btn btn-primary" />
+              </form>
               </div>
             </div>
           </div>
@@ -193,7 +201,7 @@
 
     <!-- jQuery -->
     <script src="../js/jquery-2.1.1.js"></script>
-    <!--  plugins -->
+
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/animated-headline.js"></script>
@@ -204,14 +212,14 @@
 	
 	<script>
 	
-	function insert(id){
-		
-		console.log(id);
-		for(var i=0;++i;)
-		document.forms[i].action="<c:url value='/shoppingcart/addProduct?id="+id+"'/>" ;
-		document.forms[i].method="post";
-		document.forms[i].submit();
-		}
+// 	function insert(id){
+// 		console.log(id);
+// 		for(var i=0 ; i<document.forms.length ; i++){
+// 			document.forms[i].action="<c:url value='/shoppingcart/addProduct?id="+id+"'/>" ;
+// 			document.forms[i].method="POST";
+// 			document.forms[i].submit();
+// 		}
+// 	}
 	
 	
 	</script>

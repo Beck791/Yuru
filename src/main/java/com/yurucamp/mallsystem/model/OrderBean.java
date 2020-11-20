@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -27,15 +28,13 @@ public class OrderBean implements Serializable {
 
 	@Column(name = "memberId")
 	private Integer memberId;
-
+	
 	@Column(name = "fee")
 	private Integer fee;
 
 	@Column(name = "price")
 	private Integer price;
 	
-	@Column(name = "quantity")
-	private Integer quantity;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createTime")
@@ -47,14 +46,51 @@ public class OrderBean implements Serializable {
 
 	@Column(name = "orderAddress")
 	private String orderAddress;
-
 	
+	@Transient
+	private Integer quantity;
+	
+	@Transient
+	private String productName;
+	
+	@Transient
+	private Integer productId;
+	
+	@Transient
+	private Integer total;
+	
+	@Transient
+	private String category;
+	
+	@Transient
+	private String description;
+	
+	@Transient
+	private String image;
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public Integer getMemberId() {
@@ -81,6 +117,14 @@ public class OrderBean implements Serializable {
 		this.price = price;
 	}
 
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -105,13 +149,39 @@ public class OrderBean implements Serializable {
 		this.orderAddress = orderAddress;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+
+	public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
 
 	
 }

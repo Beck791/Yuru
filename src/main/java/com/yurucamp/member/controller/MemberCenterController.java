@@ -32,7 +32,7 @@ import com.yurucamp.member.model.service.MemberCenterService;
 import com.yurucamp.member.utils.DateUtils;
 
 @Controller
-@SessionAttributes({"memberId","memberRolse"})
+@SessionAttributes({"memberId","memberRolse","memberRolse"})
 public class MemberCenterController {
 
 	private static final int yyyy = 0;

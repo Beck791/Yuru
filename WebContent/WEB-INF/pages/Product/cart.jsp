@@ -195,105 +195,146 @@ button:focus {
             </div>
         </div>
     </div>
-    <c:forEach var="productBean" items="${productBeans}">
+    <c:forEach varStatus="vs" var="orderbean" items="${ShoppingCart.content}">
+    <form>
     <div class="row d-flex justify-content-center border-top">
         <div class="col-5">
             <div class="row d-flex">
-                <div class="book"> <img src="${productBean.image}" class="book-img"> </div>
+                <div class="book"> <img src="${orderbean.value.image}" class="book-img"/> </div>
                 <div class="my-auto flex-column d-flex pad-left">
-                    <h6 class="mob-text">產品名字${productBean.name}</h6>
-                    <p class="mob-text">產品內容${productBean.description}</p>
+                    <h6 class="mob-text">產品名字${orderbean.value.productName}</h6>
+                    <p class="mob-text">產品內容${orderbean.value.description}211</p>
                 </div>
             </div>
         </div>
         <div class="my-auto col-7">
             <div class="row text-right">
                 <div class="col-4">
-                    <p class="mob-text">種類${productBean.description}</p>
+                    <p class="mob-text">種類${orderbean.value.category}</p>                   
                 </div>
                 <div class="col-4">
-                    <div class="row d-flex justify-content-end px-3">
-                        <p class="mb-0" id="cnt1">${cart.quantity}1</p>
-                        <div class="d-flex flex-column plus-minus"> <span class="vsm-text plus">+</span> <span class="vsm-text minus">-</span> </div>
+                    <div class="row d-flex justify-content-end px-3">    
+<%--                         <p class="mb-0" id="cnt1" onchange="update('${orderbean.value.productId},${orderbean.value.quantity}')">${orderbean.value.quantity}</p> --%>
+                        <span class="mb-0" id="newQty${vs.index}">${orderbean.value.quantity}</span>
+                        <div class="d-flex flex-column plus-minus" style="margin-left:10px;padding-bottom:10px">
+                        <img src="<c:url value='/img/product/uparrow.png' />"  class="vsm-text" height="15" style="margin-left:0px" onclick="updateup(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">
+                        <img src="<c:url value='/img/product/downarrow.png' />" class="vsm-text" height="13" style="margin-top:5px" onclick="updatedown(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">
+                        </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <h6 class="mob-text">$9.99${productBean.price}</h6>
+                    <h6 class="mob-text">$${orderbean.value.price}NT</h6>
+                    <button onclick="del('${orderbean.value.productId}')">remove</button>
+<%--                     <button  name="newQty" onclick="update(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">update</button> --%>
                 </div>
             </div>
         </div>
     </div>
+                    </form>
     </c:forEach>
-    <div class="row d-flex justify-content-center border-top">
-        <div class="col-5">
-            <div class="row d-flex">
-                <div class="book"> <img src="https://i.imgur.com/Oj1iQUX.jpg" class="book-img"> </div>
-                <div class="my-auto flex-column d-flex pad-left">
-                    <h6 class="mob-text">Homo Deus: A Brief<br>History of Tomorrow</h6>
-                    <p class="mob-text">Yuval Noah Harari</p>
-                </div>
-            </div>
-        </div>
-        <div class="my-auto col-7">
-            <div class="row text-right">
-                <div class="col-4">
-                    <p class="mob-text">Paperback</p>
-                </div>
-                <div class="col-4">
-                    <div class="row d-flex justify-content-end px-3">
-                        <p class="mb-0" id="cnt2">1</p>
-                        <div class="d-flex flex-column plus-minus"> <span class="vsm-text plus">+</span> <span class="vsm-text minus">-</span> </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <h6 class="mob-text">$13.50</h6>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--     <div class="row d-flex justify-content-center border-top"> -->
+<!--         <div class="col-5"> -->
+<!--             <div class="row d-flex"> -->
+<!--                 <div class="book"> <img src="https://i.imgur.com/Oj1iQUX.jpg" class="book-img"> </div> -->
+<!--                 <div class="my-auto flex-column d-flex pad-left"> -->
+<!--                     <h6 class="mob-text">Homo Deus: A Brief<br>History of Tomorrow</h6> -->
+<!--                     <p class="mob-text">Yuval Noah Harari</p> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--         <div class="my-auto col-7"> -->
+<!--             <div class="row text-right"> -->
+<!--                 <div class="col-4"> -->
+<%--                     <p class="mob-text">Paperback ${memberBean.name}</p> --%>
+<!--                 </div> -->
+<!--                 <div class="col-4"> -->
+<!--                     <div class="row d-flex justify-content-end px-3"> -->
+<!--                         <p class="mb-0" id="cnt2">1</p> -->
+<!--                         <div class="d-flex flex-column plus-minus">  -->
+<!--                         <span class="vsm-text plus">+</span>  -->
+<!--                         <span class="vsm-text minus">-</span> </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-4"> -->
+<!--                     <h6 class="mob-text">$13.50</h6> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
                 <div class="row">
                     <div class="col-lg-3 radio-group">
-                        <div class="row d-flex px-3 radio"> <img class="pay" src="https://i.imgur.com/WIAP9Ku.jpg">
-                            <p class="my-auto">Credit Card</p>
+                        <div class="row d-flex px-3 radio"> 
+                            <p class="my-auto"></p>
                         </div>
-                        <div class="row d-flex px-3 radio gray"> <img class="pay" src="https://i.imgur.com/OdxcctP.jpg">
-                            <p class="my-auto">Debit Card</p>
+                        <div class="row d-flex px-3 radio gray"> 
+                            <p class="my-auto"></p>
                         </div>
-                        <div class="row d-flex px-3 radio gray mb-3"> <img class="pay" src="https://i.imgur.com/cMk1MtK.jpg">
-                            <p class="my-auto">PayPal</p>
+                        <div class="row d-flex px-3 radio gray mb-3"> 
+                            <p class="my-auto"></p>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="row px-2">
-                            <div class="form-group col-md-6"> <label class="form-control-label">Name on Card</label> <input type="text" id="cname" name="cname" placeholder="Johnny Doe"> </div>
-                            <div class="form-group col-md-6"> <label class="form-control-label">Card Number</label> <input type="text" id="cnum" name="cnum" placeholder="1111 2222 3333 4444"> </div>
+                            <div class="form-group col-md-6"> <label class="form-control-label"></label> </div>
+                            <div class="form-group col-md-6"> <label class="form-control-label"></label> </div>
                         </div>
                         <div class="row px-2">
-                            <div class="form-group col-md-6"> <label class="form-control-label">Expiration Date</label> <input type="text" id="exp" name="exp" placeholder="MM/YYYY"> </div>
-                            <div class="form-group col-md-6"> <label class="form-control-label">CVV</label> <input type="text" id="cvv" name="cvv" placeholder="***"> </div>
+                            <div class="form-group col-md-6"> <label class="form-control-label"></label>  </div>
+                            <div class="form-group col-md-6"> 共有${ShoppingCart.itemNumber}項商品<label class="form-control-label"></label> </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt-2">
                         <div class="row d-flex justify-content-between px-4">
-                            <p class="mb-1 text-left">Subtotal</p>
-                            <h6 class="mb-1 text-right">$23.49</h6>
+                            <p class="mb-1 text-left">總金額</p>
+                            <h6 class="mb-1 text-right">$${ShoppingCart.subtotal}</h6>
                         </div>
                         <div class="row d-flex justify-content-between px-4">
-                            <p class="mb-1 text-left">fee</p>
+                            <p class="mb-1 text-left">運費</p>
                             <h6 class="mb-1 text-right">$60</h6>
                         </div>
+                  			 <c:choose>
+                            <c:when test="${memberPaid eq '1'}">
+                        <div class="row d-flex justify-content-between px-4">
+                            <p class="mb-1 text-left">付費會員優惠折購</p>
+                            <h6 class="mb-1 text-right">90% off</h6>
+                        </div>
+                         </c:when>
+                            </c:choose>
                         <div class="row d-flex justify-content-between px-4" id="tax">
-                            <p class="mb-1 text-left">Total (fee included)</p>
-                            <h6 class="mb-1 text-right">$26.48</h6>
-                        </div> <button class="btn-block btn-blue"> <span> <span id="checkout">Checkout</span> <span id="check-amt">$26.48</span> </span> </button>
+                            <p class="mb-1 text-left">總金額(含 運費)</p>
+                            <c:choose>
+                            <c:when test="${memberPaid eq '0'}">
+                            <h6 class="mb-1 text-right">$${ShoppingCart.finalSubtotal}</h6>
+                            </c:when>
+                            <c:when test="${memberPaid eq '1'}">
+                            <h6 class="mb-1 text-right">$${ShoppingCart.payFinalSubtotal}</h6>
+                            </c:when>
+                            </c:choose>
+                        </div> 
+                      
+                        <c:choose>
+                            <c:when test="${memberPaid eq '0'}">
+                        <button class="btn-block btn-blue" id="checkout0">
+                        <span style="float: left">Checkout</span> 
+                        <span style="float: right">$${ShoppingCart.finalSubtotal}</span> 
+                           </button>
+                         </c:when>
+                            <c:when test="${memberPaid eq '1'}">
+                        <button class="btn-block btn-blue" id="checkout1" onclick="location.href='<c:url value='/shoppingcart/insertorder'/>'">
+                        <span style="float: left">Checkout</span> 
+                        <span style="float: right">$${ShoppingCart.payFinalSubtotal}</span></button>
+                         </c:when>
+                          </c:choose>
+                        <button class="btn-block btn-blue" id="checkout1" onclick="location.href='<c:url value='/Product/Index'/>'">繼續購物</button>
+                          
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <script type='text/javascript'>
 
@@ -315,6 +356,81 @@ $(this).parent().prev().html(Number(count) - 1);
 });
 
 });
+
+function del(id){
+	console.log(id);
+	if(confirm("確定刪除此商品?")){
+	for(var i=0 ; i<document.forms.length ; i++){	
+	document.forms[i].action="<c:url value='/shoppingcart/deleteProduct?id=" + id + "'/>" ;
+	document.forms[i].method="post";
+	document.forms[i].submit();
+	}
+	}}
+	
+
+function updateup(id, qty, index){
+	console.log(id);
+	console.log(qty);
+	console.log(index);
+	
+	var x = "newQty" + index;
+
+	var newQty = document.getElementById(x).innerHTML;
+	parseInt(newQty);
+	newQty ++ ;
+	
+	if  (newQty == qty ) {
+		window.alert ("新、舊數量相同，不必修改");
+		return;
+	}
+	
+	for(var i=0 ; i<document.forms.length ; i++){	
+		document.forms[i].action="<c:url value='/shoppingcart/updateProduct?id=" + id +"&newQty=" + newQty +"'/>" ;
+		document.forms[i].method="post";
+		document.forms[i].submit();
+	
+	}
+}
+
+function updatedown(id, qty, index){
+	console.log(id);
+	console.log(qty);
+	console.log(index);
+	
+	
+	
+	var x = "newQty" + index;
+	
+	var newQty = document.getElementById(x).innerHTML;
+	parseInt(newQty);
+	newQty -- ;
+	
+	var upstop = 1;
+	
+	if  (newQty < 0 ) {
+		window.alert ('數量不能小於 0');
+		newQty = 0;
+		document.getElementById(x).innerHTML = '0';
+		return;
+	} else if  (newQty == 0 ) {
+		if(confirm("商品數量不為0，確定刪除此商品?")){
+	    del(id);
+		}
+		document.getElementById(x).innerHTML = qty;
+		return;
+	} 
+	else if  (newQty == qty ) {
+		window.alert ("新、舊數量相同，不必修改");
+		return;
+	}
+
+	for(var i=0 ; i<document.forms.length ; i++){	
+		document.forms[i].action="<c:url value='/shoppingcart/updateProduct?id=" + id +"&newQty=" + newQty +"'/>" ;
+		document.forms[i].method="post";
+		document.forms[i].submit();
+		
+	}
+}
 </script>
 </body>
 </html>
