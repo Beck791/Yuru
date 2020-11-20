@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionAttributeStore;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
 import com.yurucamp.mallsystem.model.OrderBean;
 import com.yurucamp.mallsystem.model.OrderDetailBean;
@@ -115,11 +117,6 @@ public class ShoppingCartController {
 //		orderbean.setTotal(cart.getSubtotal());
 //		System.out.println(cart.getSubtotal());
 		cart.addToCart(productId, orderbean);
-		if(memberBean.getPaid() == 1) {
-			orderbean.setTotal(cart.getPayFinalSubtotal());	
-		}else {
-			orderbean.setTotal(cart.getFinalSubtotal());		
-		}
 		System.out.println(orderbean.getTotal());
 		System.out.println(cart.getContent());
 		List<ProductBean> list = productService.queryAllon();	
@@ -187,26 +184,31 @@ public class ShoppingCartController {
 		}
 		
 		
+		OrderBean orderBean = new OrderBean();
+		orderBean.setCreateTime(new Timestamp(System.currentTimeMillis()));
+		orderBean.setMemberId(memberBean.getId());
+		orderBean.setFee(60);
 		Map<Integer,OrderBean> orderBeanMap = cart.getContent();
+		if(memberBean.getPaid() == 1) {
+			orderBean.setTotal(cart.getPayFinalSubtotal());	
+		}else {
+			orderBean.setTotal(cart.getFinalSubtotal());		
+		}
+		orderBean  = orderBeanService.insert(orderBean);
 		
 		for(Integer key : orderBeanMap.keySet()) {
 			OrderDetailBean  orderDetailBean = new OrderDetailBean();
-			OrderBean bean = orderBeanMap.get(key);
-			bean.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			bean.setMemberId(memberBean.getId());
-			
-			
-			orderDetailBean.setId(bean.getId());
+			OrderBean bean = orderBeanMap.get(key);		
+			orderDetailBean.setOrderId(orderBean.getId());
 			orderDetailBean.setPrice(bean.getPrice());
 			orderDetailBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 			orderDetailBean.setProductId(bean.getProductId());
 			orderDetailBean.setQuantity(bean.getQuantity());
-			
-			orderBeanService.insert(bean, orderDetailBean);
-			
+			orderDetailBeanService.insert(orderDetailBean);
 		}
-		model.addAttribute("ShoppingCart", null);
-		return "cart"; // page name
+			cart.getContent().clear();
+		model.addAttribute("orderBean",orderBean);
+		return "order"; 
 	}
 
 }

@@ -3,6 +3,7 @@ package com.yurucamp.mallsystem.model.dao.imp;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -21,9 +22,9 @@ public class OrderBeanDaoImp implements OrderBeanDao{
 	}
 	
 	@Override
-	public void insert(OrderBean orderBean) {
-		sessionFactory.getCurrentSession().save(orderBean);
-		
+	public OrderBean insert(OrderBean orderBean) {
+	    sessionFactory.getCurrentSession().save(orderBean);
+	    return orderBean;
 	}
 
 	@Override
@@ -47,15 +48,13 @@ public class OrderBeanDaoImp implements OrderBeanDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderBean> queryByMemberId(Integer id) {
-		List<OrderBean> list = null;
-		try {
-			list = sessionFactory.getCurrentSession()
-								.createQuery("From OrderBean a where a.uNo = :uNo")
-								.setParameter("MemberId", id)
-								.getResultList();
-		}catch(Exception e) {
-			return null;
-		}
+		
+
+			Query<OrderBean> query = sessionFactory.getCurrentSession().createQuery("From OrderBean  where memberId = :memberId", OrderBean.class);
+			query.setParameter("memberId", id);
+			List<OrderBean> list = query.getResultList();
+	
+	
 		return list;
 	}
 }

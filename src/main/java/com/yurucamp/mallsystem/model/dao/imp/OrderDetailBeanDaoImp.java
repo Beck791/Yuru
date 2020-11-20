@@ -54,8 +54,8 @@ public class OrderDetailBeanDaoImp implements OrderDetailBeanDao{
 		List<OrderDetailBean> list = null;
 		try {
 			list = sessionFactory.getCurrentSession()
-							.createQuery("From OrderDetailBean a where a.productID = :productID")
-							.setParameter("orderID", orderId)
+							.createQuery("From OrderDetailBean  where orderId = :orderId")
+							.setParameter("orderId", orderId)
 							.getResultList();
 		} catch (Exception e) {
 			System.out.println("No Result.");

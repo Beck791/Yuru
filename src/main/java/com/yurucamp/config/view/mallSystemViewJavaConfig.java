@@ -71,6 +71,20 @@ public class mallSystemViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Product/cart.jsp"); 
 		return view;
 	}
+	
+	@Bean
+	public View order() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/order.jsp"); 
+		return view;
+	}
+	
+	@Bean
+	public View orderDetail() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/orderDetail.jsp"); 
+		return view;
+	}
 
 	@Bean
 	public View redirectMallSystemIndex() {

@@ -22,9 +22,8 @@ public class OrderBeanService {
 	@Autowired
 	OrderDetailBeanDao orderDetailBeanDao;
 	
-	public void insert(OrderBean orderBean,OrderDetailBean orderDetailBean) throws SQLException {
-		orderBeanDao.insert(orderBean);
-		orderDetailBeanDao.insert(orderDetailBean);
+	public OrderBean insert(OrderBean orderBean) throws SQLException {
+		return orderBeanDao.insert(orderBean);
 		
 	}
 	public void update(OrderBean orderBean) {

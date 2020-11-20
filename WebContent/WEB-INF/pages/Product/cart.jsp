@@ -217,14 +217,14 @@ button:focus {
 <%--                         <p class="mb-0" id="cnt1" onchange="update('${orderbean.value.productId},${orderbean.value.quantity}')">${orderbean.value.quantity}</p> --%>
                         <span class="mb-0" id="newQty${vs.index}">${orderbean.value.quantity}</span>
                         <div class="d-flex flex-column plus-minus" style="margin-left:10px;padding-bottom:10px">
-                        <img src="<c:url value='/img/product/uparrow.png' />"  class="vsm-text" height="15" style="margin-left:0px" onclick="updateup(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">
-                        <img src="<c:url value='/img/product/downarrow.png' />" class="vsm-text" height="13" style="margin-top:5px" onclick="updatedown(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">
+                        <img src="<c:url value='/img/product/uparrow.png'/>"  class="vsm-text" height="15" style="margin-left:0px" onclick="updateup(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})"/>
+                        <img src="<c:url value='/img/product/downarrow.png' />" class="vsm-text" height="13" style="margin-top:5px" onclick="updatedown(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <h6 class="mob-text">$${orderbean.value.price}NT</h6>
-                    <button onclick="del('${orderbean.value.productId}')">remove</button>
+                    <button onclick="del('${orderbean.value.productId}')"><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
 <%--                     <button  name="newQty" onclick="update(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">update</button> --%>
                 </div>
             </div>
@@ -317,7 +317,7 @@ button:focus {
                       
                         <c:choose>
                             <c:when test="${memberPaid eq '0'}">
-                        <button class="btn-block btn-blue" id="checkout0">
+                        <button class="btn-block btn-blue" id="checkout0" onclick="location.href='<c:url value='/shoppingcart/insertorder'/>'">
                         <span style="float: left">Checkout</span> 
                         <span style="float: right">$${ShoppingCart.finalSubtotal}</span> 
                            </button>

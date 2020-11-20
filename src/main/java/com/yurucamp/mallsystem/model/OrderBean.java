@@ -32,9 +32,11 @@ public class OrderBean implements Serializable {
 	@Column(name = "fee")
 	private Integer fee;
 
-	@Column(name = "price")
-	private Integer price;
+	@Column(name = "orderAddress")
+	private String orderAddress;
 	
+	@Column(name = "price")
+	private Integer total;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "createTime")
@@ -44,8 +46,8 @@ public class OrderBean implements Serializable {
 	@Column(name = "updateTIme")
 	private Timestamp updateTIme;
 
-	@Column(name = "orderAddress")
-	private String orderAddress;
+	@Transient
+	private Integer price;
 	
 	@Transient
 	private Integer quantity;
@@ -55,9 +57,6 @@ public class OrderBean implements Serializable {
 	
 	@Transient
 	private Integer productId;
-	
-	@Transient
-	private Integer total;
 	
 	@Transient
 	private String category;

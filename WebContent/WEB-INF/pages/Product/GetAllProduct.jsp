@@ -24,7 +24,7 @@
 <h2 class="bg-dark text-white">所有產品資料</h2>
 <a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a>
 	<form method="post" action="<c:url value='/Product/DeleteProduct'/>">
-       輸入刪除的產品編號 : <input type="text" id="idName" name="id" autofocus placeholder="請輸入四位數字" maxlength="4" required="required" onblur="checkName()" />
+       輸入刪除的產品編號 : <input type="text" id="idName" name="id" autofocus placeholder="請輸入欲刪除編號" maxlength="4" required="required" onblur="checkName()" />
 	<input type="submit"  value="確定" class="btn btn-primary" />	<p>
 	 <span class="sp" id="idspName" style="color:red"></span><br>
 	<font color='red' size="-1">${errorMsg.productId}</font>
@@ -37,15 +37,15 @@
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 
-<form method="post" id="form1"  action="">
-<input type="submit" value="修改" name="" class="btn btn-primary" onclick="update('${productBean.id}')" />	
-<input type="submit" value="刪除" name="" class="btn btn-primary" onclick="del('${productBean.id}')" />	
+<form>
+<button type="submit" value="修改" name="" class="" onclick="update('${productBean.id}')" ><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
+<button type="submit" value="刪除" name="" class="" onclick="del('${productBean.id}')" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
 </td>
 <td>${productBean.id}</td>
 <td>${productBean.name}</td>	
 <td>${productBean.price}</td>
 <td>${productBean.brand}</td>
-<td><img src="${productBean.image}"></td>
+<td><img src="${productBean.image}" height="50"></td>
 <td>${productBean.webTraffic}</td>
 <td>${productBean.description}</td>
 <td>${productBean.stock}</td>
@@ -80,19 +80,19 @@ function checkName() {
 }
 
 function update(id){
-	for(var i=0;++i;)
+	for(var i=0;++i;){
 	document.forms[i].action="<c:url value='/Product/UpdateProduct?id="+id+"'/>" ;
 	document.forms[i].method="post";
 	document.forms[i].submit();
-	}
+	}}
 	
 function del(id){
 	if(confirm("真的要刪除嗎!!!!!?")){
-	for(var i=0;++i;)
+	for(var i=0;++i;){
 	document.forms[i].action="<c:url value='/Product/DeleteProduct?id="+id+"'/>" ;
 	document.forms[i].method="post";
 	document.forms[i].submit();
-	}}
+	}}}
 
 </script>
 </body>

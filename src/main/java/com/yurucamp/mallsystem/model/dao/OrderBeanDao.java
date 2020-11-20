@@ -6,7 +6,7 @@ import com.yurucamp.mallsystem.model.OrderBean;
 
 public interface OrderBeanDao {
 	
-	public void insert(OrderBean orderBean);
+	public OrderBean insert(OrderBean orderBean);
 	
 	public void update(OrderBean orderBean);
 	

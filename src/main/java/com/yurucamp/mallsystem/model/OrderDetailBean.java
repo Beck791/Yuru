@@ -94,4 +94,13 @@ public class OrderDetailBean implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	
 }
