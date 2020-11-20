@@ -128,7 +128,7 @@
 				<li><a href="<c:url value='/Product/Index' />">露營商城</a></li>
 				<li><a href="<c:url value='/Car/Index' />">露營車租借</a></li>
 				<li><a href="<c:url value='/Forum/Index' />">露營論壇</a></li>
-				<li><a href="<c:url value='/Blog/Index' />">BLOG</a></li>
+				<li><a href="<c:url value='/Backstage/socket' />">客服聊天</a></li>
 				<!--            <li class="box-label">會員系統</li> -->
 				<!-- 			<li><a class="glyphicon glyphicon-user" href="about.html">會員中心</a></li> -->
 				<li class="box-social"><a

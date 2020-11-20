@@ -1,26 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>web socket</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-clearmin.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/roboto.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/small-n-flat.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
-
-<script src="${pageContext.request.contextPath}/js/lib/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.mousewheel.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.cookie.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/fastclick.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/clearmin.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/demo/home.js"></script>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
+	<!-- Bootstrap -->
+	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+	<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+	<!-- main css -->
+	<link href="<c:url value='/css/style.css' />" rel="stylesheet">
+	<!-- modernizr -->
+	<script src="<c:url value='/js/modernizr.js' />"></script>
+	<title>客服區</title>
+	
 
 
 <style>
@@ -356,13 +352,23 @@ input.textarea {
     opacity: 0.9;
 }
 </style>
-
 </head>
-<body class="cm-no-transition cm-1-navbar">
-<jsp:include page="/WEB-INF/pages/Backstage/top.jsp" />     
-<div id="global">
-	 <div class="container-fluid">
-	 	  <div class="container">
+<body>
+	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+	
+	<!-- top bar -->
+	<div class="top-bar">
+		<h1>智慧客服</h1>
+		<p><a href="#">CampSite</a>&nbsp;&nbsp;/&nbsp;&nbsp;live &amp; life</p>
+	</div>
+	<!-- end top bar -->
+
+	<!-- main container -->
+	<div class="main-container portfolio-inner clearfix">
+		<!-- portfolio div -->
+		<div class="portfolio-div">
+			<div class="portfolio">
+
 				<div>
 		            <form id="chatRoomForm" onsubmit="return false;">
 		             <input type="hidden" id="userNameInput" value="${sessionScope.memberId}" /> 
@@ -370,10 +376,39 @@ input.textarea {
 	  						<input class="textarea"   id="userinput" type="text" placeholder="Type here!"/><div class="emojis"></div>
 		            </form>
 		     	</div>
- 	      </div>
-  	</div>      
-</div>
-<script>
+		     </div>
+			<!-- portfolio -->
+		</div>
+		<!-- end portfolio div -->
+	</div>
+	<!-- end main container -->
+
+	<!-- footer -->
+<!-- 	<footer> -->
+<!-- 		<div class="container-fluid"> -->
+<!-- 			<p class="copyright">© YuruCamp 2020</p> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
+	<!-- end footer -->
+
+	<!-- back to top -->
+	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+	<!-- end back to top -->
+
+
+	<!-- jQuery -->
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
+	<!--  plugins -->
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
+
+	<!--  custom script -->
+	<script src="<c:url value='/js/custom.js' />"></script>
+	
+	
+	<script>
 window.onload = function () {
     //獲取DOM元件
 //     var loginBtn = document.getElementById("loginBtn");
@@ -459,7 +494,8 @@ function getTime() {
 	
 	return  newTime.getHours() +":" + newTime.getMinutes();
 }
+</script>   
 
-</script>        
 </body>
+
 </html>
