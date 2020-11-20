@@ -22,19 +22,14 @@ public class ReplyBean {
 	
 	@Column(name="memberId")
 	private String memberId;
-	
 	@Column(name="poId")
 	private Integer poId;
-	
 	@Column(name="reCreatTime")
 	private	Date reCreatTime;
-	
 	@Column(name="reUpDateTime")
 	private	Date reUpDateTime;
-	
 	@Column(name="reContent")
 	private	String reContent;
-	
 	@Column(name="reImage")
 	private	String reImage;
 	

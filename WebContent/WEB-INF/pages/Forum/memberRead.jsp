@@ -55,9 +55,9 @@
 		</p>
 	</div>
 	<!-- end top bar -->
-<div>XXXXXXXXXXXXXXXXXXXX</div>
+<div></div>
 	<!-- main container -->
-	<div>${PostBean.poId}</div>
+	
 	 <div id="container">
       <!-- User Column -->
       <div class="user-column">
@@ -82,7 +82,8 @@
       <div class="article-column">
         <!-- Article Topic -->
         <div class="article-info">
-          <p class="article-topic">${PostBean.poTitle}</p>
+          <p class="article-topic">${PostBean.poTitle}
+          <div style="float:right;">${PostBean.poId}</div></p>
           <p class="article-act-list">${PostBean.poCreatTime}</p>
           <p class="article-act-list list-divider"></p>  
           <p class="article-act-list">${PostBean.clickNumber} views</p>

@@ -58,6 +58,15 @@ public class PostBean {
 	
 	
 	
+	
+	@Override
+	public String toString() {
+		return "PostBean [poId=" + poId + ", memberId=" + memberId + ", forumId=" + forumId + ", poTitle=" + poTitle
+				+ ", poCreatTime=" + poCreatTime + ", poUpDateTime=" + poUpDateTime + ", poContent=" + poContent
+				+ ", poImage=" + poImage + ", likeNumber=" + likeNumber + ", reContentNumber=" + reContentNumber
+				+ ", clickNumber=" + clickNumber + ", forumName=" + forumName + ", name=" + name + "]";
+	}
+	
 	public Integer getPoId() {
 		return poId;
 	}

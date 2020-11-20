@@ -2,7 +2,10 @@ package com.yurucamp.forum.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +24,6 @@ import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
 import com.yurucamp.forum.model.service.ArticleService;
 import com.yurucamp.general.model.service.GeneralService;
-import com.yurucamp.member.model.MemberBean;
 
 @Controller
 @SessionAttributes({"memberId"})
@@ -65,7 +67,7 @@ public class ForumController {
 
 
 
-	//新增文章案件
+	//新增文章跳轉
 	@RequestMapping(value ="/Forum/goInsert", method = RequestMethod.GET)
 	public String GoInsert(Model model) {
 		PostBean po = new PostBean();
@@ -96,6 +98,45 @@ public class ForumController {
 		model.addAttribute("postList", postList);
 		return "campDiscussionPage";
 	}
+	//新增回文跳轉
+		@RequestMapping(value ="/Forum/goReply", method = RequestMethod.GET)
+		public String GoReply(Model model) {
+			ReplyBean re = new ReplyBean();
+			String a = "aaa";
+			model.addAttribute("ForumBean",a);
+			model.addAttribute("ReplyBean",re);
+			return "memberCreatPage";
+		}
+	
+	
+	
+	//新增回覆
+	@RequestMapping(value ="/Forum/Reply", method = RequestMethod.POST)
+	public String Reply( 			
+									@RequestParam(value="contentforckeditor",required = false)String poContent,
+									@RequestParam(value="poImage",required = false)MultipartFile poImage,								
+									Model model) 
+	
+		throws SQLException {
+		System.out.println("Already Save Object.id = " + poContent);
+		ReplyBean replyBean = new ReplyBean();
+		replyBean.setMemberId((String) model.getAttribute("memberId"));
+		replyBean.setReContent(poContent);
+		replyBean.setReImage(generalService.uploadToImgur(poImage));
+		replyBean.setReCreatTime(new Timestamp(System.currentTimeMillis()));
+		replyBean.setReUpDateTime(null);
+		articleService.insertReply(replyBean);
+		System.out.println("Already Save Object.id = " + replyBean.getPoId());
+		List<PostBean> postList = articleService.queryPostAll();
+		model.addAttribute("postList", postList);
+		return "campDiscussionPage";
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -113,14 +154,15 @@ public class ForumController {
 	
 	
 	
-	//更新文章
-	@RequestMapping(value = "/Forum/updateArticle", method = RequestMethod.POST)
-	public String Update(@RequestParam("poId") Integer poId, Model model) throws SQLException {
+	//更新文章跳轉
+	@RequestMapping(value = "/Forum/updateArticle", method = RequestMethod.GET)
+	public String GoUpdate(@RequestParam("poId") Integer poId, Model model) throws SQLException {
 		PostBean postBean = new PostBean();
 		postBean = articleService.queryPostId(poId);
+		System.out.println(postBean);
 		model.addAttribute("PostBean", postBean);
 		
-		return "memberReadPage";
+		return "memberUpdatePage";
 	}
 	
 	//刪除文章
@@ -138,7 +180,7 @@ public class ForumController {
 //		return "Forum/forumIndex";
 		return "memberArticleListPage";
 	}
-	//搜尋文章 by AJAX
+	//搜尋會員發文與回文 by AJAX
 	@RequestMapping(value ="/Forum/memberPost" , method = RequestMethod.GET)
 	@ResponseBody
 	public Object QueryMemberPost(@RequestParam("memberPost")String memberId,@RequestParam("type")String type,  Model model) throws SQLException{
@@ -153,8 +195,22 @@ public class ForumController {
 		return postListAll;
 	}
 		else {
+			List<Map<String,Object>> resultList = new ArrayList<>();
+			
 			List<ReplyBean> replyListAll = articleService.queryMemberReply(memberId);
-			model.addAttribute("replyList", replyListAll);
+		
+			for(ReplyBean bean : replyListAll){
+				PostBean postBean = articleService.queryPostId(bean.getPoId());
+				
+				Map<String,Object> resultMap = new HashMap<>();
+				resultMap.put("ReplyBean", bean);
+				resultMap.put("PostBean", postBean);
+				
+				resultList.add(resultMap);
+			}
+			
+			model.addAttribute("replyList", resultList);
+			
 			System.out.println("replylist=?"+ replyListAll);
 //			return "Forum/memberCreat";
 			return replyListAll;
@@ -162,27 +218,6 @@ public class ForumController {
 		}
 		}
 		
-//	//新增回文
-//		@RequestMapping(value ="/Forum/reply", method = RequestMethod.POST)
-//		public String reply( 			@RequestParam("poTitle")String reTitle,
-//										@RequestParam(value="contentforckeditor",required = false)String poContent,
-//										@RequestParam(value="poImage",required = false)MultipartFile poImage,								
-//										Model model) 
-//		
-//			throws SQLException {
-//			System.out.println("Already Save Object.id = " + poContent);
-//			PostBean postBean = new PostBean();
-//			postBean.setPoTitle(poTitle);
-//			postBean.setPoContent(poContent);
-//			postBean.setPoImage(generalService.uploadToImgur(poImage));
-//			postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
-//			postBean.setPoUpDateTime(null);
-//			articleService.insertPost(postBean);
-//			System.out.println("Already Save Object.id = " + postBean.getPoId());
-//			List<PostBean> postList = articleService.queryPostAll();
-//			model.addAttribute("postList", postList);
-//			return "campDiscussionPage";
-//		}
-	
+
 	
 }

@@ -34,8 +34,10 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<!-- <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script> -->
 <script src="../js/ckeditorConfig.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
@@ -66,12 +68,36 @@
 						<div class="form-group">
 							<label class="t1" for="potitle" path="poTitle">主題標題</label> <input
 								type="text" class="form-control" id="poTitle" path="poTitle"
-								name="poTitle" placeholder="請輸入主題標題" />
+								name="poTitle" value="${PostBean.poTitle} " />
 						</div>
 						<div class="">
 							<label class="t1" for="content" path="poContent">主題內容</label>
-							<textarea name="contentforckeditor" rows="10" cols="10"
-								placeholder="請輸入主題內容" style="config.resize_enabled = false;"></textarea>
+							<textarea id="contentforckeditor"name="contentforckeditor" rows="10" cols="10"
+							  style="config.resize_enabled = false;"></textarea>
+							<script>
+									var editor;		
+									
+							                    editor = ClassicEditor
+							                    .create( document.querySelector( '#contentforckeditor' ) ,{
+// 							                        removePlugins: ['Heading'],
+							                    	ckfinder: {
+							                    		uploadUrl: "/yurucamp/Imgur"
+							                    	}
+							                    })
+							                    .then( newEditor => {
+							                        editor = newEditor;
+							                        
+							                        var content = `${PostBean.poContent}`;
+							                        
+							                        editor.setData(content);
+							                    } )
+							                    .catch( error => {
+							                        console.error( error );
+							                    } );
+							                    
+							                    
+							</script>
+								
 						</div>
 
 
@@ -165,7 +191,7 @@
 
 
 
-<script src="ckeditor/ckeditor.js"></script>
+<!-- <script src="ckeditor/ckeditor.js"></script> -->
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
 	<!--  plugins -->
@@ -173,27 +199,9 @@
 	<script src="../js/menu.js"></script>
 	<script src="../js/animated-headline.js"></script>
 	<script src="../js/isotope.pkgd.min.js"></script>
-<script>
-		CKEDITOR.replace('contentforckeditor');
-	</script>
+	
 
-	<script>
-                    editor = ClassicEditor
-                    .create( document.querySelector( '#editor' ) ,{
-                        removePlugins: ['Heading'],
-                    	ckfinder: {
-// 	                        uploadUrl: "/motozone/Image/" + location.href.substring(location.href.lastIndexOf("/") + 1)
-                    		uploadUrl: "/yurucamp/Imgur"
-                    	}
-                    })
-                    .then( newEditor => {
-                        editor = newEditor
-                    } )
-                    .catch( error => {
-                        console.error( error );
-                    } );
-                    
-            </script>
+
 
 	<!--  custom script -->
 	<script src="../js/custom.js"></script>

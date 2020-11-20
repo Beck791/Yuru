@@ -88,16 +88,7 @@ crossorigin="anonymous"></script>
 
 <div>
 	<table class="table" id="memberPostList">
-		<thead 　class="thead-dark">
-			<tr>
-				<th>論壇分類</th>
-				<th>MemberID</th>
-				<th>文章標題</th>
-				<th>發文時間</th>
-				<th>最後修改時間</th>
-				<th>管理動作</th>
-			</tr>
-		</thead>
+		
 	</table>
 <%-- 		<c:forEach var="PostBean" items="postList"> --%>
 <!-- 			<tbody> -->
@@ -147,39 +138,56 @@ function callMemberPost() {
                   success : function(data) {
 								
                 	  			console.log("data=" + data.length);
-                	            
+                	  			var resultHtml =
+                	  			"<thead　class='thead-dark'>"
+    	  						+"<tr>"
+								+"<th>論壇分類</th>"
+								+"<th>MemberID</th>"
+								+"<th>文章標題</th>"
+								+"<th>發文時間</th>"
+								+"<th>最後修改時間</th>"
+								+"<th>管理動作</th>"
+								+"</tr>"
+								+"</thead>"
 		                	  	if(data.length>0){
 		                	  		cnt=0;
+		                	  		
+		                	  		 resultHtml += "<tbody>";
+		                	  		
 		                	  		for(let PostBean of data){
 		                	  			console.log(PostBean);
 		                	  			cnt++;
 		                	  			if(cnt%2==0 ){
-		                	  				colorx="#db5643";
+		                	  				colorx="#fff";
 		                	  			}else{
-		                	  				colorx="#1122dd";
+		                	  				colorx="#dbcf83";
 		                	  			}
 		                	  			var updateArticle = "<c:url value='/Forum/updateArticle' />";
 		                	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
-		                	  			var resultHtml = "<tr bgcolor ='"+ colorx + "'>"
-		                	  				           + "<td>" + PostBean.forumId + "</td>" 
-		                	  			               + "<td>" + PostBean.memberId + "</td>"
-		                	  			               + "<td>" + PostBean.potitle + "</td>"
-		                	  			               + "<td>" + PostBean.poCreatTime + "</td>"
-		                	  			               + "<td>" + PostBean.poUpdateTime + "</td>" 
-		                	  			               + "<td>" + "<button type='button' onclick='" + updateArticle + "'  >編輯</button>"  + "</td>" 
-		                	  			               + "<td>" + "<button type='button' onclick='" + deleteArticle + "'   >刪除</button>" +  "</td>" 
-		                	  			               + "</tr>";
+		                	  			resultHtml = resultHtml  
+		                	  			             + "<tr bgcolor ='"+ colorx + "'>"
+		                	  				         + "<td>" + PostBean.forumId + "</td>" 
+		                	  			             + "<td>" + PostBean.memberId + "</td>"
+		                	  			             + "<td>" + PostBean.poTitle + "</td>"
+		                	  			             + "<td>" + PostBean.poCreatTime + "</td>"
+		                	  			             + "<td>" + PostBean.poUpdateTime + "</td>" 
+		                	  			             + "<td>" + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + PostBean.poId + "' \"  >編輯</button>"   
+		                	  			             + "<button type='button'   >刪除</button>" +  "</td>" 
+		                	  			             + "</tr>";
 		                	  			
 		                	  			console.log(resultHtml);
 		                	  			
-		                	  			$("#memberPostList").append(resultHtml);
+		                	  			
 // 		                	  			 <button type="button"  onclick="<c:url value='/Forum/updateArticle' />"  >編輯</button>
 // 		                	  		     <button type="button"  onclick=""  >刪除</button>
 		                	  		}
 		                	  		
+		                	  		resultHtml += "</tbody>";
+		                	  		$("#memberPostList").html(resultHtml);
+		                	  		
 		                	  	}else{
 		                	  		alert("no data");
-		                	  		$("#memberPostList").clear().append("no data");
+		                	  		$("#memberPostList").html(resultHtml);
 		                	  		
 		                	  	}
                   }
@@ -189,38 +197,69 @@ function callMemberPost() {
 
 <script>
 function callMemberReply() {	
-		var memberSearch = $('#memberSearch').val();
-		console.log(memberSearch);
+	var memberSearch = $('#memberSearch').val();
+	console.log(memberSearch);
 
-        $.ajax({
-        	      type: 'GET',
-                  url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch,
-                  success : function(data) {
-								
-                	  			console.log(data);
-                	  
-		                	  	if(data){
-		                	  		
-		                	  		for(let ReplyBean of data){
-		                	  			console.log(ReplyBean);
-		                	  			
-		                	  			var resultHtml = "<tr>"
-		                	  				           + "<td>" + ReplyBean.forumId + "</td>" 
-		                	  			               + "<td>" + ReplyBean.memberId + "</td>"
-		                	  			               + "<td>" + ReplyBean.retitle + "</td>"
-		                	  			               + "<td>" + ReplyBean.reCreatTime + "</td>"
-		                	  			               + "<td>" + ReplyBean.reUpdateTime + "</td>" 
-		                	  			               + "</tr>";
-		                	  			
-		                	  			console.log(resultHtml);
-		                	  			
-		                	  			$("#memberReplyList").append(resultHtml);
-		                	  			
-		                	  		}
-		                	  		
-		                	  	}
-                  }
-        });
+$.ajax({
+    type: 'GET',
+    url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch + '&type=memberPost',
+    success : function(data) {
+					
+  	  			console.log("data=" + data.length);
+  	  			var resultHtml =
+  	  			"<thead　class='thead-dark'>"
+					+"<tr>"
+					+"<th>論壇分類</th>"
+					+"<th>MemberID</th>"
+					+"<th>文章標題</th>"
+					+"<th>發文時間</th>"
+					+"<th>最後修改時間</th>"
+					+"<th>管理動作</th>"
+					+"</tr>"
+					+"</thead>"
+          	  	if(data.length>0){
+          	  		cnt=0;
+          	  		
+          	  		 resultHtml += "<tbody>";
+          	  		
+          	  		for(let Row of data){
+          	  			console.log(Row);
+          	  			cnt++;
+          	  			if(cnt%2==0 ){
+          	  				colorx="#fff";
+          	  			}else{
+          	  				colorx="#dbcf83";
+          	  			}
+          	  			var updateArticle = "<c:url value='/Forum/updateArticle'/>";
+          	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
+          	  			resultHtml = resultHtml  
+          	  			             + "<tr bgcolor ='"+ colorx + "'>"
+          	  				         + "<td>" + "" + "</td>" 
+          	  			             + "<td>" + Row.ReplyBean.memberId + "</td>"
+          	  			             + "<td>" + Row.PostBean.poTitle + "</td>"
+          	  			             + "<td>" + Row.ReplyBean.reCreatTime + "</td>"
+          	  			             + "<td>" + Row.ReplyBean.reUpdateTime + "</td>" 
+          	  			             + "<td>" + "<button type='button' onclick='window.href('" + updateArticle + "');'>編輯</button>"   
+          	  			             + "<button type='button'   >刪除</button>" +  "</td>" 
+          	  			             + "</tr>";
+          	  			
+          	  			console.log(resultHtml);
+          	  			
+          	  			
+//           	  			 <button type="button"  onclick="<c:url value='/Forum/updateArticle' />"  >編輯</button>
+//           	  		     <button type="button"  onclick=""  >刪除</button>
+          	  		}
+          	  		
+          	  		resultHtml += "</tbody>";
+          	  		$("#memberPostList").html(resultHtml);
+          	  		
+          	  	}else{
+          	  		alert("no data");
+          	  		$("#memberPostList").html(resultHtml);
+          	  		
+          	  	}
+    }
+});
 }
 </script>
 
