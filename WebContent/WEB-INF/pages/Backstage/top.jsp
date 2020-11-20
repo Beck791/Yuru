@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +90,7 @@
                     <button class="btn md-account-circle-white btn-warning" data-toggle="dropdown"></button>
                     <ul class="dropdown-menu">
                         <li class="disabled text-center">
-                            <a style="cursor:default;"><strong>John Smith</strong></a>
+                            <a style="cursor:default;"><strong>${memberBean.name}</strong></a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -99,7 +100,7 @@
                             <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                            <a href="<c:url value='/Member/LoginOut' />"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
                         </li>
                     </ul>
                 </div>
