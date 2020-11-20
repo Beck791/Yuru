@@ -1,11 +1,7 @@
 package com.yurucamp.member.controller;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.yurucamp.general.model.service.GeneralService;
 import com.yurucamp.member.model.MemberBean;
@@ -37,8 +28,13 @@ import com.yurucamp.member.utils.DateUtils;
 @SessionAttributes({"memberId","memberRolse"})
 public class MemberCenterController {
 
+	String imgstr=null;
+	
 	@Autowired
 	MemberCenterService service ;
+	
+	@Autowired
+	GeneralService generalService;
 
 	@GetMapping("/Member/MemberCenter")
 	public String MemberCenter(HttpServletRequest request,Model model) throws SQLException {
@@ -76,6 +72,8 @@ public class MemberCenterController {
 		mBean.setStatus(status);		
 		mBean.setPaid(paid);	
 		mBean.setRoles(roles);	
+		mBean.setImage(imgstr);
+		System.out.println("imgstr=:"+imgstr);
 		
 		System.out.println("Controller-getbean-memberId="+mBean.getMemberId());
 
@@ -149,5 +147,17 @@ public class MemberCenterController {
 		return rt;
 
 		}
+	
+	//上傳頭貼
+	@PostMapping(value="/Member/registeraddpic",produces= {"application/json"})
+	
+	public @ResponseBody String registeraddpic(@RequestParam(value="files",defaultValue = "未輸入") MultipartFile file) throws Exception {
+		System.out.println("file.getName();="+file.getName());	
+		imgstr=generalService.uploadToImgur(file);
+		return imgstr ;
+
+		}
+	
+
 	
 }

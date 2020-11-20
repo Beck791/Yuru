@@ -349,9 +349,28 @@
 				</div>
 			</div>
 	</div>
-	</div>
+	
 	<script>
-
+	
+	$("#filed").change(function(){
+		var fileReader=new FileReader();
+		var prviewFile=this.files[0];
+		var form=new FormData();
+		form.append("files",prviewFile);
+		$.ajax({
+			type:"POST",
+			url : "/yurucamp/Member/registeraddpic",
+			dataType : 'json',
+			data : form,
+			mimeType:"multipart/form-data",
+			cache:false,
+			processData:false,
+			contentType:false
+			}).done(function(result) {			
+				
+			})	
+		});
+	
 		$("#icon").click(function(){
 			$("#ermsg").html("");
 			$("#ermsg2").html("");

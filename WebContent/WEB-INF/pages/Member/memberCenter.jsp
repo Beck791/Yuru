@@ -81,7 +81,7 @@ img {
 				<td style="height: 100%; background-color: white; width: 50%;">
 					<div class="jumbotron-bg" style="margin-right: 15px; float: right">
 						<img
-							src="https://pic.90sjimg.com/design/03/29/25/25/5d18c98895c61.png">
+							src=${memberBean.image}>
 					</div>
 				</td>
 				<td>
