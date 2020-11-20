@@ -17,26 +17,27 @@
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
                             <li class="active"><a href="/yurucamp/Backstage/index" class="sf-house">Home</a></li>
-                            <li><a href="/yurucamp/Backstage/member" class="sf-user-id">會員系統</a></li>
-                            <li><a href="/yurucamp/Backstage/camp" class="md-landscape">營地系統</a></li>
-                            <li class="cm-submenu">
-                                <a class="md-directions-car">露營車系統<span class="caret"></span></a>
-                                <ul>
-                                    <li><a href="layouts-breadcrumb1.html">1st nav breadcrumb</a></li>
-                                    <li><a href="layouts-breadcrumb2.html">2nd nav breadcrumb</a></li>
-                                    <li><a href="layouts-tabs.html">2nd nav tabs</a></li>
-                                </ul>
-                            </li>
-                            <li class="cm-submenu">
-                                <a class="md-shopping-cart">商城系統<span class="caret"></span></a>
-                                <ul>
-                                    <li><a href="ico-sf.html">Small-n-flat</a></li>
-                                    <li><a href="ico-md.html">Material Design</a></li>
-                                    <li><a href="ico-fa.html">Font Awesome</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/yurucamp/Backstage/forum" class="sf-notepad">論壇系統</a></li>
+<!--                             <li><a href="/yurucamp/Backstage/member" class="sf-user-id">會員系統</a></li> -->
+<!--                             <li><a href="/yurucamp/Backstage/camp" class="md-landscape">營地系統</a></li> -->
+<!--                             <li class="cm-submenu"> -->
+<!--                                 <a class="md-directions-car">露營車系統<span class="caret"></span></a> -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="layouts-breadcrumb1.html">1st nav breadcrumb</a></li> -->
+<!--                                     <li><a href="layouts-breadcrumb2.html">2nd nav breadcrumb</a></li> -->
+<!--                                     <li><a href="layouts-tabs.html">2nd nav tabs</a></li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+<!--                             <li class="cm-submenu"> -->
+<!--                                 <a class="md-shopping-cart">商城系統<span class="caret"></span></a> -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="ico-sf.html">Small-n-flat</a></li> -->
+<!--                                     <li><a href="ico-md.html">Material Design</a></li> -->
+<!--                                     <li><a href="ico-fa.html">Font Awesome</a></li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+<!--                             <li><a href="/yurucamp/Backstage/forum" class="sf-notepad">論壇系統</a></li> -->
                             <li><a href="/yurucamp/Backstage/calendar" class="sf-calendar">日歷</a></li>
+                            <li><a href="/yurucamp/Backstage/camp" class="sf-user-id">客服系統</a></li>
                         </ul>
                     </div>
                 </div>
