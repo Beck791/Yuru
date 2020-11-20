@@ -33,7 +33,6 @@
 		<!-- portfolio div -->
 		<div class="portfolio-div">
 			<div class="portfolio">
-
 				<div>
 		            <form id="chatRoomForm" onsubmit="return false;">
 		             <input type="hidden" id="userNameInput" value="${sessionScope.memberId}" /> 
@@ -76,9 +75,7 @@
 	<script>
 window.onload = function () {
     //獲取DOM元件
-//     var loginBtn = document.getElementById("loginBtn");
     var userNameInput = document.getElementById("userNameInput");
-//     var infoWindow = document.getElementById("infoWindow");
     var userinput = document.getElementById("userinput");
     var chatRoomForm = document.getElementById("chatRoomForm");
     var messageDisplay = document.getElementById("messageDisplay");
@@ -123,13 +120,9 @@ window.onload = function () {
         //onopen , 連線成功時觸發
         webSocket.onopen = function (event) {
             isConnectSuccess = true;
-//             loginBtn.disabled = true;
-//             userNameInput.disabled = true;
 			   console.log("登入成功");
              
             //送一個登入聊天室的訊息
-           
-            
 //             var firstLoginInfo = {
 //                 userName : "系統",
 //                 message : userNameInput.value + " 登入了聊天室",
@@ -147,20 +140,43 @@ window.onload = function () {
             	direction = "self";
             }
             console.log("messageObject"+event.data);
-//             messageDisplay.innerHTML += "</br>" + messageObject.userName + " 說 : " + messageObject.message;
             messageDisplay.innerHTML += "<li class='"+direction+"'><div class='msg'><p>" 
-            						+  messageObject.message  +"   </p><time>"+ messageObject.nowTime+"</time></div></li>"
+            						+  messageObject.message  +"   </p><time>"+ messageObject.nowTime+"</time></div></li>";
+            						
+            				
+            if(messageObject.message == 'bot'){
+            	Ai("歡迎使用智慧客服機器人<br>輸入1 查詢露營營地<br>輸入2 查詢商城資訊 <br>輸入3 查詢論壇");
+            }else if(messageObject.message == '1'){
+            	Ai("露營地推薦:苗栗縣南庄鄉");
+            }else if(messageObject.message == '2'){
+            	Ai("商城熱賣:露營帳篷");
+            }else if(messageObject.message == '3'){
+            	Ai("最近討論:晚上的露營好趣處");
+            }					
+            add();						
         };
+        
+        function Ai(msg){
+        	  var firstLoginInfo = {
+                   userName : "系統",
+                   message : msg,
+                   nowTime : getTime()
+               };
+               webSocket.send(JSON.stringify(firstLoginInfo));
+        }
+        
     }
 };
 
 function getTime() {
 	var newTime = new Date();
-	
 	return  newTime.getHours() +":" + newTime.getMinutes();
 }
+
+function add(){
+	window.scrollTo(0,document.body.scrollHeight);
+}
+
 </script>   
-
 </body>
-
 </html>
