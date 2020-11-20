@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yurucamp.general.model.service.GeneralService;
 import com.yurucamp.member.model.MemberBean;
 import com.yurucamp.member.model.service.MemberCenterService;
 import com.yurucamp.member.utils.DateUtils;
@@ -64,7 +66,7 @@ public class MemberCenterController {
 		mBean.setMemberId(memberId);
 		mBean.setPassword(password);
 		mBean.setGender(gender);	
-		mBean.setBirthday(DateUtils.StringToDate(birthday));	
+		mBean.setBirthday(DateUtils.StringToDate(birthday));
 		System.out.println("birthdaypass="+DateUtils.StringToDate(birthday));
 		mBean.setPhone(phone);
 		mBean.setAddress(address);	
@@ -132,4 +134,20 @@ public class MemberCenterController {
 		mes1.put("r", r); 
 		return mes1;
 	}
+	
+	//忘記密碼
+	@PostMapping("/Member/forgetinfo")
+	@ResponseBody
+	public Map<String,Boolean> forgetinfo(Model model,String memberId,String name) throws SQLException, Throwable {
+		System.out.println("第一站Controller");
+		System.out.println("memberId="+memberId);
+		System.out.println("name="+name);	
+		Boolean r=service.forget(memberId,name);
+		
+		Map<String,Boolean> rt = new HashMap<String,Boolean>();
+		rt.put("r", r); 
+		return rt;
+
+		}
+	
 }

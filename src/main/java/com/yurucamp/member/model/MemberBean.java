@@ -62,7 +62,7 @@ public class MemberBean  implements Serializable{
 	private String roles;
 	
 	@Column(name="image")
-	private Blob image;
+	private String image;
 	
 	public MemberBean() {
 	}
@@ -179,11 +179,11 @@ public class MemberBean  implements Serializable{
 		this.roles = roles;
 	}
 
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

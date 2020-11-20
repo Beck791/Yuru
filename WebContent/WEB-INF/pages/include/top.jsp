@@ -108,7 +108,7 @@
 <%-- 		${memberBean.name} --%>
 
 			</div>
-
+			
 		</header>	
 		
   
@@ -181,7 +181,7 @@
 							data-toggle="modal" data-target="#registerModal"
 							style="float: left; color: black;">註冊一個新帳號</a><br><br>
 						<a href='#' class="mr-auto" data-dismiss="modal"
-							data-toggle="modal" data-target=""
+							data-toggle="modal" data-target="#forgetpsdModal"
 							style="float: left; color: black;">忘記密碼</a>
 					</div>
 					<div style="width:30%;display:inline;float:left;">
@@ -309,6 +309,47 @@
 	</div>
 	</div>
 	
+	<!-- forgotpassword Modal -->
+	<div class="modal fade" id="forgetpsdModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color:#dbcf83;;height:70px;">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="font-size: large; font-weight: bolder;width:70%;display:inline;">忘記密碼</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close" style="float:right">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div id="ermsg3" style="color: red; font-weight: bold;"></div>
+
+				</div>
+				<div class="modal-body">
+                        <div class="input-contact" style="width:50%">
+                            <input type="text" name="forgotname" id="forgotname" autocomplete="off">
+                            <span>姓名</span>                 
+                    	</div>                    
+                       <div class="input-contact" style="width:50%">
+                            <input type="text" name="forgotaccount" id="forgotaccount" autocomplete="off" style="border-style:none;height:100%;padding: 0 20px;">
+                            <span>帳號</span>                 
+                    	</div>
+					</div>
+
+					<div class="modal-footer" style="clear: both;height:60px;">
+					<div>
+						<a href='#' class="mr-auto" data-dismiss="modal" id="forgettologin"
+							data-toggle="modal" data-target="#loginModal"
+							style="float: left; color: black;">已經有帳號，直接登入</a>
+					</div>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" id="forgetenter"
+							style="background-color: #dbcf83; border-color: #dbcf83; color: black;">確認</button>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
 	<script>
 
 		$("#icon").click(function(){
@@ -339,6 +380,34 @@
 			})
 		});
 		
+		
+		$("#forgetenter").click(function() {
+			$("#ermsg1").html("");
+			$("#ermsg2").html("");
+			$("#ermsg3").html("");
+			if ($("#forgotname").val()==""||$("#forgotaccount").val()==""){
+				$("#ermsg3").html("請輸入姓名及帳號");
+				 return false;
+			}
+			var data = new Object();
+			data.name= $("#forgotname").val();
+			data.memberId= $("#forgotaccount").val();
+			console.log(data);
+			$.ajax({
+				url : "/yurucamp/Member/forgetinfo",
+				method : 'POST',
+				dataType : 'json',
+				data : data
+			}).done(function(result) {
+				$("#ermsg3").html("");
+				if(result.r==true){ 
+					$("#forgettologin").click();
+					alert("請至mail收信後重新登入");
+					} else {
+					$("#ermsg3").html("查無相關資訊!");
+				}
+			})
+		});
 		
 		$("#sendregstermail").click(function() {
 			$("#ermsg").html("");
@@ -404,6 +473,7 @@
 // 				$("#ermsg2").html("請驗證您的mail")
 // 				 return false;	}
 			var data = new Object();
+			var formData = new FormData($( "#uploadPic" )[0]);  
 			data.name = $("#name").val();
 			data.memberId = $("#memberId").val();
 			data.password = $("#password").val();

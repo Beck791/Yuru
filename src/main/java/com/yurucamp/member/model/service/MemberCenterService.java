@@ -64,5 +64,42 @@ public class MemberCenterService {
 		return  r;
 		
 	}
+	
+	//忘記密碼
+	public boolean forget(String memberId,String name) throws SQLException {
+
+		System.out.println("進到Service");
+		MemberBean r=memberCenterDao.forgetReturnDb(memberId,name); 
+		System.out.println("回到Service");
+		System.out.println("oh ya");
+		System.out.println("r"+r);
+		System.out.println("name="+name+"ok");
+				
+		if (r==null || !r.getName().equals(name) ) {			
+		return false;
+		};
+		
+		System.out.println("oh ya 2");
+		SimpleMailMessage message = new SimpleMailMessage();
+		//收信人
+		message.setTo(r.getMail());
+		
+		//信件標題
+		message.setSubject("YuruCamp會員 忘記密碼");
+		
+		//信件內文
+
+		String content = "Dear " 
+				+ name
+				+ ", \n\n您的密碼為：\n\n" 
+				+ r.getPassword()
+				+ "\n\n請以此密碼登入。\n\n" ;
+		message.setText(content);		
+		//發出信件
+		mailSender.send(message);
+		
+		return true;	
+	
+	}
 
 }

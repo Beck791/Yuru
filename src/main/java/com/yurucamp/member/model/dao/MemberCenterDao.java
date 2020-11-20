@@ -93,4 +93,19 @@ public class MemberCenterDao {
 		String r="更新完成";
 		return r;
 	}
+	
+	//忘記密碼--回資料庫確認是否有此筆資料，有的話撈出Bean
+	public MemberBean  forgetReturnDb(String memberId,String name) throws SQLException {
+		try {
+		System.out.println("進到Dao  name="+name);
+		String hql = "from MemberBean where memberId=:memberId";
+		System.out.println("hql="+hql);
+		MemberBean memberBean= (MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult();
+		System.out.println("memberBean="+memberBean);
+				
+		return memberBean;
+		} catch (Exception e) {return null;}	
+		
+	}
+
 }
