@@ -146,26 +146,40 @@ function callMemberPost() {
                   url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch + '&type=memberPost',
                   success : function(data) {
 								
-                	  			console.log(data);
-                	  
-		                	  	if(data){
-		                	  		
+                	  			console.log("data=" + data.length);
+                	            
+		                	  	if(data.length>0){
+		                	  		cnt=0;
 		                	  		for(let PostBean of data){
 		                	  			console.log(PostBean);
-		                	  			
-		                	  			var resultHtml = "<tr>"
+		                	  			cnt++;
+		                	  			if(cnt%2==0 ){
+		                	  				colorx="#db5643";
+		                	  			}else{
+		                	  				colorx="#1122dd";
+		                	  			}
+		                	  			var updateArticle = "<c:url value='/Forum/updateArticle' />";
+		                	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
+		                	  			var resultHtml = "<tr bgcolor ='"+ colorx + "'>"
 		                	  				           + "<td>" + PostBean.forumId + "</td>" 
 		                	  			               + "<td>" + PostBean.memberId + "</td>"
 		                	  			               + "<td>" + PostBean.potitle + "</td>"
 		                	  			               + "<td>" + PostBean.poCreatTime + "</td>"
 		                	  			               + "<td>" + PostBean.poUpdateTime + "</td>" 
+		                	  			               + "<td>" + "<button type='button' onclick='" + updateArticle + "'  >編輯</button>"  + "</td>" 
+		                	  			               + "<td>" + "<button type='button' onclick='" + deleteArticle + "'   >刪除</button>" +  "</td>" 
 		                	  			               + "</tr>";
 		                	  			
 		                	  			console.log(resultHtml);
 		                	  			
 		                	  			$("#memberPostList").append(resultHtml);
-		                	  			
+// 		                	  			 <button type="button"  onclick="<c:url value='/Forum/updateArticle' />"  >編輯</button>
+// 		                	  		     <button type="button"  onclick=""  >刪除</button>
 		                	  		}
+		                	  		
+		                	  	}else{
+		                	  		alert("no data");
+		                	  		$("#memberPostList").clear().append("no data");
 		                	  		
 		                	  	}
                   }

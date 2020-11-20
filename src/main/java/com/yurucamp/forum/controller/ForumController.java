@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
 import com.yurucamp.forum.model.service.ArticleService;
 import com.yurucamp.general.model.service.GeneralService;
+import com.yurucamp.member.model.MemberBean;
 
 @Controller
+@SessionAttributes({"memberId"})
 public class ForumController {
 	
 	@Autowired
@@ -29,7 +33,12 @@ public class ForumController {
 	GeneralService generalService;
 
 	@RequestMapping("/Forum/Index")
-	public String ToClassifyPage() {
+	public String ToClassifyPage(Model model, SessionStatus status) {
+		String memberId =(String) model.getAttribute("memberId");
+		if (memberId == null) {
+			status.setComplete();
+			return "indexPage";
+		}
 //		return "Forum/forumIndex";
 		return "forumClassifyIndexPage";
 	}
@@ -75,6 +84,7 @@ public class ForumController {
 		throws SQLException {
 		System.out.println("Already Save Object.id = " + poContent);
 		PostBean postBean = new PostBean();
+		postBean.setMemberId((String) model.getAttribute("memberId"));
 		postBean.setPoTitle(poTitle);
 		postBean.setPoContent(poContent);
 		postBean.setPoImage(generalService.uploadToImgur(poImage));
