@@ -162,7 +162,27 @@ public class ForumController {
 		}
 		}
 		
-	
+//	//新增回文
+//		@RequestMapping(value ="/Forum/reply", method = RequestMethod.POST)
+//		public String reply( 			@RequestParam("poTitle")String reTitle,
+//										@RequestParam(value="contentforckeditor",required = false)String poContent,
+//										@RequestParam(value="poImage",required = false)MultipartFile poImage,								
+//										Model model) 
+//		
+//			throws SQLException {
+//			System.out.println("Already Save Object.id = " + poContent);
+//			PostBean postBean = new PostBean();
+//			postBean.setPoTitle(poTitle);
+//			postBean.setPoContent(poContent);
+//			postBean.setPoImage(generalService.uploadToImgur(poImage));
+//			postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
+//			postBean.setPoUpDateTime(null);
+//			articleService.insertPost(postBean);
+//			System.out.println("Already Save Object.id = " + postBean.getPoId());
+//			List<PostBean> postList = articleService.queryPostAll();
+//			model.addAttribute("postList", postList);
+//			return "campDiscussionPage";
+//		}
 	
 	
 }

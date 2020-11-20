@@ -5,48 +5,58 @@
 <head>
 <meta charset="UTF-8">
 <title>web socket</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-clearmin.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/roboto.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/small-n-flat.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/webSocket.css">
+
+<script src="${pageContext.request.contextPath}/js/lib/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.mousewheel.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.cookie.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/fastclick.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/clearmin.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/demo/home.js"></script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+
 </head>
-<body>
-	<div>
-            <form id="chatRoomForm" onsubmit="return false;">
-                聊天室
-                名字: <input type="text" id="userNameInput" /> 
- 
-                <input type="button" id="loginBtn" value="登入" /> <span id="infoWindow"></span>
- 
-                <input type="text" id="userinput" /> 
-  
-                <input type="submit" value="送出訊息" />
-            </form>
-        </div>
-        <div id="messageDisplay"></div>
-        
+<body class="cm-no-transition cm-1-navbar">
+<jsp:include page="/WEB-INF/pages/Backstage/top.jsp" />     
+<div id="global">
+	 <div class="container-fluid">
+	 	  <div class="container">
+				<div>
+		            <form id="chatRoomForm" onsubmit="return false;">
+		             <input type="hidden" id="userNameInput" value="${sessionScope.memberId}" /> 
+		 			<div ><ol id="messageDisplay" class="chat"> </ol></div>		
+	  						<input class="textarea"   id="userinput" type="text" placeholder="Type here!"/><div class="emojis"></div>
+		            </form>
+		     	</div>
+ 	      </div>
+  	</div>      
+</div>
 <script>
 window.onload = function () {
     //獲取DOM元件
-    var loginBtn = document.getElementById("loginBtn");
+//     var loginBtn = document.getElementById("loginBtn");
     var userNameInput = document.getElementById("userNameInput");
-    var infoWindow = document.getElementById("infoWindow");
+//     var infoWindow = document.getElementById("infoWindow");
     var userinput = document.getElementById("userinput");
     var chatRoomForm = document.getElementById("chatRoomForm");
     var messageDisplay = document.getElementById("messageDisplay");
  
     var webSocket;
     var isConnectSuccess = false;
- 
+ 	
     //設置登入鈕的動作，沒有登出，登入才可發言
-    loginBtn.addEventListener("click", function () {
-        //檢查有無輸入名稱
-        if (userNameInput.value && userNameInput.value !== "") {
-            setWebSocket();  //設置WebSocket連接
-        } else {
-            infoWindow.innerHTML = "請輸入名稱";
-        }
- 
-    });
+     setWebSocket();
     //Submit Form時送出訊息
     chatRoomForm.addEventListener("submit", function () {
         sendMessage();
+        $("#userinput").val('');
         return false;
     });
     //使用webSocket擁有的function, send(), 送出訊息
@@ -55,11 +65,12 @@ window.onload = function () {
         if (webSocket && isConnectSuccess) {
             var messageInfo = {
                 userName: userNameInput.value,
-                message: userinput.value
+                message: userinput.value,
+                nowTime: getTime()
             }
             webSocket.send(JSON.stringify(messageInfo));
         } else {
-            infoWindow.innerHTML = "未登入";
+        	   console.log("未登入");
         }
     }
  
@@ -71,34 +82,48 @@ window.onload = function () {
          
         //onerror , 連線錯誤時觸發  
         webSocket.onerror = function (event) {
-            loginBtn.disabled = false;
-            userNameInput.disabled = false;
-            infoWindow.innerHTML = "登入失敗";
+        	 console.log("登入失敗");
         };
  
         //onopen , 連線成功時觸發
         webSocket.onopen = function (event) {
             isConnectSuccess = true;
-            loginBtn.disabled = true;
-            userNameInput.disabled = true;
-            infoWindow.innerHTML = "登入成功";
+//             loginBtn.disabled = true;
+//             userNameInput.disabled = true;
+			   console.log("登入成功");
              
             //送一個登入聊天室的訊息
-            var firstLoginInfo = {
-                userName : "系統",
-                message : userNameInput.value + " 登入了聊天室"
-            };
-            webSocket.send(JSON.stringify(firstLoginInfo));
+           
+            
+//             var firstLoginInfo = {
+//                 userName : "系統",
+//                 message : userNameInput.value + " 登入了聊天室",
+//                 nowTime : getTime()
+//             };
+//             webSocket.send(JSON.stringify(firstLoginInfo));
         };
  
         //onmessage , 接收到來自Server的訊息時觸發
         webSocket.onmessage = function (event) {
             var messageObject = JSON.parse(event.data);
+            var direction;
+            
+            if(messageObject.userName == $("#userNameInput").val()){
+            	direction = "self";
+            }
             console.log("messageObject"+event.data);
-            messageDisplay.innerHTML += "</br>" + messageObject.userName + " 說 : " + messageObject.message;
+//             messageDisplay.innerHTML += "</br>" + messageObject.userName + " 說 : " + messageObject.message;
+            messageDisplay.innerHTML += "<li class='"+direction+"'><div class='msg'><p>" 
+            						+  messageObject.message  +"   </p><time>"+ messageObject.nowTime+"</time></div></li>"
         };
     }
 };
+
+function getTime() {
+	var newTime = new Date();
+	
+	return  newTime.getHours() +":" + newTime.getMinutes();
+}
 
 </script>        
 </body>
