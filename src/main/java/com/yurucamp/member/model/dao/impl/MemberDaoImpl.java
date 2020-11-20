@@ -38,6 +38,7 @@ public class MemberDaoImpl implements MemberDao{
 //		return memberBean;
 //	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberBean> queryaUserId(String Account, String Password) throws SQLException {
 		String hql = "FROM MemberBean m WHERE m.memberId = :mid and password = :paw";

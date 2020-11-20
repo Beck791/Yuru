@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,16 @@
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />"
+	rel="stylesheet">
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
-<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet'
+	type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
+	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -39,23 +45,39 @@
 	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
 	background: linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
+		rgba(255, 255, 255, .8)), url../img/car/car.jpg);
 }
 
-.deviceform {
-	/* border:3px solid #f5f0de;
-            background-color: #f5f0de; */
-	border-radius: 30px;
-	width: 450px;
-	padding: 30px;
-	padding-bottom: 20px;
-/* 	float: left; */
-	box-shadow:1px 1px 7px #8a6d3b73;
- 	margin:auto;
+.cartype{
+	border: 1px solid #dbcf83;
+    border-radius:30px;
+    width:800px;
+    padding: 20px;
+    margin: auto;
+/*     float:left; */
 }
-
-img{
-	margin:auto;
+.cartypetd {
+    padding:10px;
+        }
+#form2{
+	box-shadow: 1px 1px 7px #8a6d3b73;
+	padding:16px;
+}
+.country{
+    width: 64%;
+    color: #4a462c;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    padding: 8px 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0);
+    border: none;
+    border-bottom: 2px solid #b9af6f;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+td {
+	padding: 7px;
 }
 
 /* guide */
@@ -118,6 +140,8 @@ ul, li {
 }
 
 </style>
+
+
 </head>
 
 <body>
@@ -125,30 +149,45 @@ ul, li {
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
 	<!-- top bar -->
-	<div class="top-bar">
-		<h1>露營車租借</h1>
-		<p>
-			<a href="#">Travel is the only thing you buy that makes you richer.</a>
-		</p>
-	</div>
+		<div class="top-bar">
+			<h1>露營車訂單查詢</h1>
+			<p>
+				<a href="#">Travel is the only thing you buy that makes you richer.</a>
+			</p>
+		</div>
 	<!-- end top bar -->
 
 	<!-- main container -->
-	<div class="book-appointment">
-	<div class="book-agileinfo-form">
+	
+		<div class="book-agileinfo-form input">
+			<br><br>
+			<form id="form1" name="form1" action="<c:url value='/Car/OrderDetail' />" method="post">
+		<c:forEach items="${planList}" var="data" varStatus="step">
+			<table class="cartype">
+				<tr>
+					<td colspan="2" style="width:200px;" class="cartypetd">訂單編號 : ${data.id}
+					<input type="hidden" name="id" id="id" value="${data.id}"></td>					
+				</tr>
+				<tr>
+					<td class="cartypetd">取車地點 : ${data.dept}</td>
+					<td class="cartypetd">還車地點 : ${data.ret}</td>
+				</tr>
+				<tr>
+					<td class="cartypetd">取車日期 : ${data.deptDate}</td>
+					<td class="cartypetd">還車日期 : ${data.returnDate}</td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" value="查看訂單明細" onclick='detail("${data.id}")'>
+					</td>
+				</tr>
+			</table>
+			<br>
+		</c:forEach>
 
-			<form class="deviceform">
-<!-- 				background-color:#dbcf83 -->
-				<p style="text-align:center;"><img alt="" src="../img/car/success.png" width="15px" ></p>
-				<h3 style="font-size:20px; text-align:center; font-weight:bold;">預約成功</h3><br>
-<!-- 				<img alt="" src="../img/car/moon.png"> -->
-				<p style="text-align:center;color:#56421ebf;">您的預約已經完成，感謝您選擇YURU CAMP露營車，YURU CAMP期待與您的旅程。</p>
-					
-			</form>
-		</div>
-		
-				<div class="clear"></div>
-		</div>
+		</form>
+		</div><br>
 		
 <!-- 導覽列 -->
    <section class="cal-app_list">
@@ -190,11 +229,8 @@ ul, li {
     	</div>
 
     </section>
-		
-		
-		<div class="clear"></div>
-		</div>
-	
+
+
 
 	<!-- end main container -->
 
@@ -209,6 +245,7 @@ ul, li {
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
 	<!-- end back to top -->
+
 
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
@@ -238,6 +275,13 @@ ul, li {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
+		
+		
+		function detail(id){
+			$('#id').val(id);
+			document.form1.submit();
+		}
+			
 	</script>
 
 </body>

@@ -1,6 +1,7 @@
 package com.yurucamp.member.model.dao;
 
 import java.sql.SQLException;
+import java.util.Random;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yurucamp.mallsystem.model.BrandBean;
@@ -26,7 +28,7 @@ public class MemberCenterDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	//查詢---登入
+	//查詢---會員中心資料
 	public MemberBean queryMem(String memberId) throws SQLException {
 //		MemberBean memInfo = sessionFactory.getCurrentSession().get(MemberBean.class,memberId);		
 		String hql = "from MemberBean where memberId=:memberId";
@@ -66,14 +68,44 @@ public class MemberCenterDao {
 		return  mes;
 	}
 
-	private String get(Class<MemberBean> class1, String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	//亂數---註冊驗證碼
+	public Integer sendRm() throws SQLException {
+		
+        Random rand=new Random(); 
+        
+        Integer numa=rand.nextInt(10); 
+        Integer numb=rand.nextInt(10); 
+        Integer numc=rand.nextInt(10); 
+        Integer numd=rand.nextInt(10); 
+        Integer nume=rand.nextInt(10); 
+        Integer numf=rand.nextInt(10); 
+        Integer numg=rand.nextInt(10); 
+        Integer num=numa*100000+numb*100000+numc*10000+numd*1000+nume*100+numf*10+numg;
+        System.out.println("隨機亂數="+num);
+		return num;
+		}
+	
+	//更新會員中心
+	public String updatem(MemberBean mbean) {
+		System.out.println("進到Dao");
+		sessionFactory.getCurrentSession().update(mbean);
+		
+		String r="更新完成";
+		return r;
 	}
-
-	private Session getSession() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//忘記密碼--回資料庫確認是否有此筆資料，有的話撈出Bean
+	public MemberBean  forgetReturnDb(String memberId,String name) throws SQLException {
+		try {
+		System.out.println("進到Dao  name="+name);
+		String hql = "from MemberBean where memberId=:memberId";
+		System.out.println("hql="+hql);
+		MemberBean memberBean= (MemberBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("memberId", memberId).getSingleResult();
+		System.out.println("memberBean="+memberBean);
+				
+		return memberBean;
+		} catch (Exception e) {return null;}	
+		
 	}
 
 }

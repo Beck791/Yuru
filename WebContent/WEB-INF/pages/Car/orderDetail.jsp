@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,16 @@
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />"
+	rel="stylesheet">
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
-<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<link href="<c:url value='/css/formstyle.css' />" rel='stylesheet'
+	type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
+	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -27,6 +33,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
+
 .input-contact {
 	height: 40px;
 	width: 100%;
@@ -42,6 +49,18 @@
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
 }
 
+h3 {
+	font-size: 15px;
+	/* font-weight: 500; */
+	text-transform: capitalize;
+	color: #5d5030e0;
+	/* text-shadow: 1px 1px 7px #6b6b6b; */
+	/* letter-spacing: 5px; */
+	margin: 1.0em 0 1em;
+	/* text-align: center; */
+	/* font-family: 'Montserrat Alternates', sans-serif; */
+}
+
 .deviceform {
 	/* border:3px solid #f5f0de;
             background-color: #f5f0de; */
@@ -49,13 +68,23 @@
 	width: 450px;
 	padding: 30px;
 	padding-bottom: 20px;
-/* 	float: left; */
+	float: left;
 	box-shadow:1px 1px 7px #8a6d3b73;
- 	margin:auto;
+ 	margin:10px;
 }
 
-img{
+#amount-table {
+	border: 3px solid #dbcf83;
+	border-radius: 30px;
+	width: 600px;
+	padding: 30px;
+/* 	float:left; */
 	margin:auto;
+/* 	box-shadow:1px 1px 7px #8a6d3b73; */
+}
+
+.tabletd {
+	padding: 7px;
 }
 
 /* guide */
@@ -118,6 +147,8 @@ ul, li {
 }
 
 </style>
+
+
 </head>
 
 <body>
@@ -125,31 +156,83 @@ ul, li {
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
 
 	<!-- top bar -->
-	<div class="top-bar">
-		<h1>露營車租借</h1>
-		<p>
-			<a href="#">Travel is the only thing you buy that makes you richer.</a>
-		</p>
-	</div>
+		<div class="top-bar">
+			<h1>露營車訂單查詢</h1>
+			<p>
+				<a href="#">Travel is the only thing you buy that makes you richer.</a>
+			</p>
+		</div>
 	<!-- end top bar -->
 
 	<!-- main container -->
-	<div class="book-appointment">
-	<div class="book-agileinfo-form">
-
-			<form class="deviceform">
-<!-- 				background-color:#dbcf83 -->
-				<p style="text-align:center;"><img alt="" src="../img/car/success.png" width="15px" ></p>
-				<h3 style="font-size:20px; text-align:center; font-weight:bold;">預約成功</h3><br>
-<!-- 				<img alt="" src="../img/car/moon.png"> -->
-				<p style="text-align:center;color:#56421ebf;">您的預約已經完成，感謝您選擇YURU CAMP露營車，YURU CAMP期待與您的旅程。</p>
-					
-			</form>
-		</div>
+	
+		<div  class="book-agileinfo-form"><br><br>
+   	<form action="" method="POST">
+   	<c:forEach items="${planList}" var="data" varStatus="step">
+	<table id="amount-table">
+		<tr>
+			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >訂單明細</td>
+		</tr>
+		<tr>
+			<td class="tabletd">訂單編號</td>
+			<td colspan="2">${data.id}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">訂購日期</td>
+			<td colspan="2">${data.orderDate}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">取車地點</td>
+			<td colspan="2">${data.dept}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">還車地點</td>
+			<td colspan="2">${data.ret}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">取車日期</td>
+			<td>${data.deptDate}</td>
+			<td>${data.deptTime}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">還車日期</td>
+			<td>${data.returnDate}</td>
+			<td>${data.returnTime}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">租用車款</td>
+			<td colspan="2">${data.type}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">數量</td>
+			<td colspan="2">${data.count}</td>
+		</tr>
+		<tr>
+			<td class="tabletd">加購裝備數量</td>
+			<td id="deviceAmount">${data.device}</td>
+			<td id="devicePrice"></td>
+		</tr>
+<!-- 		<tr> -->
+<!-- 			<td class="tabletd">多日優惠折扣</td> -->
+<!-- 			<td></td> -->
+<!-- 			<td id="discount"></td> -->
+<!-- 		</tr> -->
+		<tr>
+			<td class="tabletd">優惠券折扣</td>
+			<td id="couponName">${data.couponId}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="tabletd">合計金額</td>
+			<td id="totalPrice">${data.amount}</td>
+		</tr>
 		
-				<div class="clear"></div>
-		</div>
-		
+	</table>
+	</c:forEach>
+	</form>
+	</div>
+	<br><br>
+	
 <!-- 導覽列 -->
    <section class="cal-app_list">
     <div class="cal-container">
@@ -190,10 +273,8 @@ ul, li {
     	</div>
 
     </section>
-		
-		
-		<div class="clear"></div>
-		</div>
+
+	<div class="clear"></div>
 	
 
 	<!-- end main container -->
@@ -209,6 +290,9 @@ ul, li {
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
 	<!-- end back to top -->
+
+
+
 
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
@@ -238,6 +322,7 @@ ul, li {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
+		
 	</script>
 
 </body>

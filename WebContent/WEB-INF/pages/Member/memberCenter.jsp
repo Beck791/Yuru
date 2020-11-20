@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,15 +80,24 @@ img {
 			<tr>
 				<td style="height: 100%; background-color: white; width: 50%;">
 					<div class="jumbotron-bg" style="margin-right: 15px; float: right">
-						<img
-							src="https://pic.90sjimg.com/design/03/29/25/25/5d18c98895c61.png">
+						<img src=${memberBean.image}>
 					</div>
 				</td>
 				<td>
 					<div>
 						<h2 style="text-align: left; font-weight: bold;">Hello,${MemberBean.name}</h2>
 						<p class="lead" style="text-align: left; font-weight: bold;">${MemberBean.memberId}</p>
-						<button type="button" class="btn btn-primary">一般會員</button>
+						<p>
+			    		<c:choose>
+							<c:when test="${MemberBean.paid eq '0'}">
+							一般會員
+							</c:when>
+							<c:when test="${MemberBean.paid eq '1'}">
+							付費會員
+							</c:when>
+						</c:choose>
+
+						</p>
 					</div>
 				</td>
 			</tr>
@@ -152,15 +162,15 @@ img {
 			    </tr>
 			    <tr>
 					<td style="text-align:right;width:200px">生日:</td>
-					<td><input type="text" name="mcbirthday" id="mcbirthday"
-						 value="${MemberBean.birthday}"></td>
+					<td><fmt:formatDate type="both" pattern="yyyy-MM-dd" 
+						 value="${MemberBean.birthday}"></fmt:formatDate></td>
 					<td id="errormcbirthday" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr >
 					<td style="text-align:right;width:200px">電話:</td>
 					<td><input type="text" name="mcphone" id="mcphone" 
 						value="${MemberBean.phone}"></td>
-					<td id="mcerrorphone" style="text-align: left;color:red;font-weight: bold;float:left"></td>
+					<td id="errormcphone" style="text-align: left;color:red;font-weight: bold;float:left"></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;width:200px">地址:</td>
@@ -183,11 +193,21 @@ img {
 			</table>
         </div>
         <div id="menu2" class="tab-pane fade munuinf">
-            <h3>${MemberBean.memberId}</h3>
-            <div>
-            	<input type="radio" name="pay" value="pay" />會員升級 NT$500/年 <br>
-           		<button>確認</button>
-            </div>
+        <div style="padding-left:15px;"><br><br>
+<%--             <h3>${MemberBean.name}</h3> --%>
+            		<c:choose>
+							<c:when test="${MemberBean.paid eq '1'}">
+							您已經是付費會員，無須升級。<br><br>
+							</c:when>
+							<c:when test="${MemberBean.paid eq '0'}">
+							   <div>
+				            	<input type="radio" name="pay" value="pay" />會員升級 NT$500 <br><br>
+				           		<button>確認</button><br><br>
+				            </div>
+							</c:when>
+						</c:choose>
+ 
+           </div>
         </div>
         <div id="menu3" class="tab-pane fade munuinf" >
             <h3>Menu 3</h3>
@@ -216,62 +236,49 @@ img {
 <script>
 
 $("#updatemem").click(function() {
+	var a=0;
 	if ($("#mcname").val()===""){
 		$("#errormcname").html("姓名不得為空值")
-		 return false;
-	}else if($("#mcpassword").val().length < 8){
-		$(".error").html("密碼請大於8位數")
-		 return false;				
-	}else if($("#mcpassword").val()!==$("#password2").val()){
-		$(".error").html("密碼與驗證密碼不一致")
-		 return false;				
-	}else if($("#mcgender").val()!="F"&&$("#gender").val()!="M"){
-		$(".error").html("性別請填寫M(男生)或F(女生)")
-		 return false;				
-	}else if($("#mcbirthday").val()===""){
-		$(".error").html("生日不得為空值")
-		 return false;	
-	}else if($("#mcmail").val()===""){
-		$(".error").html("mail不得為空值")
-		 return false;	
+		a=1;
+	}if($("#mcpassword").val().length < 8){
+		$("#errormcpassword").html("密碼請大於8位數")
+		a=1;
+	}if($("#mcpassword").val()!==$("#mcpassword2").val()){
+		$("#errormcpassword").html("密碼與驗證密碼不一致")	
+		a=1;
+	}if($("#mcphone").val()===""){
+		$("#errormcphone").html("phone不得為空值")	
+		a=1;
+	}if($("#mcaddress").val()===""){
+		$("#errormcaddress").html("address不得為空值")	
+		a=1;
+	}if (a>=1){
+		return false;
 	}
 	var data = new Object();
-	data.name = $("#name").val();
-	data.memberId = $("#memberId").val();
-	data.password = $("#password").val();
-	data.gender = $("#gender").val();
-	data.birthday = $("#birthday").val();
-	data.phone = "0988888888";
-	data.address = "新北市新店區";
-	data.mail = $("#mail").val();
-	data.registerDate = new Date();
+	data.name = $("#mcname").val();
+	data.password = $("#mcpassword").val();
+	data.phone = $("#mcphone").val();
+	data.address = $("#mcaddress").val();
+	data.mail = $("#mcmail").val();
 	data.status = "Y";
 	data.paid = 0;
 	data.roles = "member";
+	data.id="${memberBean.id}";
+	data.memberId="${memberBean.memberId}";
+	data.gender ="${memberBean.gender}";
+	data.birthday ="${MemberBean.birthday}";
+	data.registerDate ="${memberBean.registerDate}";
 	console.log(data);
 	$.ajax({
-		url : "<c:url value='/Member/Rer'/>",
+		url : "<c:url value='/Member/updatemcmem'/>",
 		method : 'POST',
 		dataType : 'json',
 		data : data
 	}).done(function(result) {
-		if (result.mes == "帳號重複") {
-			$("#ermsg2").html("有相同帳號，請重新輸入")
-		} else if(result.mes == "新增成功") {
-			$("#ermsg2").html("")
-			$("#name").val("");
-			$("#memberId").val("");
-			$("#password").val("");
-			$("#password2").val("");
-			$("#gender").val("");
-			$("#birthday").val("");
-			$("#mail").val("");
-			$("#mailc").val("");
-			$("#registerModal").click();
-			alert("註冊成功，您可以正常登入!");
-		}
-
-	})
+		window.location.reload();
+		alert(result.r);
+		})
 });
 
 </script>

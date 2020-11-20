@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
-<link rel="icon" href="../img/fav.png" type="image/x-icon">
+<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />"
@@ -19,6 +19,9 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet'
+	type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
 	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
@@ -51,7 +54,7 @@
 		rgba(255, 255, 255, .8)), url(../img/car.jpg);
 }
 
-form {
+#form1 {
 	box-shadow: 1px 1px 7px #8a6d3b73;
 	padding: 16px;
 	background-color: white;
@@ -248,6 +251,66 @@ form {
 #img {
 	opacity: 0.7;
 }
+
+/* guide */
+
+.cal-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cal-app_list {
+    margin: 0 auto;
+    background: #dbcf83;
+    min-height: 200px;
+}
+
+.cal-app_list .cal-app_item a p {
+    margin: 0;
+    color: #5d5030e0;
+    letter-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.cal-app_list .cal-app_item a p>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.cal-app_list .cal-app_item img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 34px;
+}
+
+.cal-app_list .cal-app_item.cal-xs-5 {
+    width: 20%;
+}
+
+.cal-app_list .cal-app_item {
+    float: left;
+    text-align: center;
+    padding-top: 5%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+ul, li {
+    list-style: outside none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 1200px)
+.cal-container {
+    width: 1200px;
+}
+
 </style>
 
 </head>
@@ -357,75 +420,248 @@ form {
 					<input type="submit" value="Search">
 					<div class="clear"></div>
 				</form>
+				<form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
 			</div>
 
 		</div>
 	</div>
 	</div>
 
-	<div class="book-agileinfo-form input">
-		<form id="form3" name="form3"
-			action="<c:url value='/Car/reservation2' />" method="post">
-			<c:forEach items="${planList}" var="data" varStatus="step">
-				<table class="cartype">
-					<tr>
-						<%-- 					<td colspan="2" style="text-align:center" class="cartypetd"><img src="${data.imgUrl}"  width="250px"></td> --%>
-						<td colspan="2" style="text-align: center; width: 200px;"
-							class="cartypetd">${data.image}</td>
-						<td colspan="1" class="cartypetd"><font
-							style="font-size: 20px">${data.type}</font><input type="hidden"
-							id="type${step.index}" name="type${step.index}"
-							value="${data.type}"></td>
-					</tr>
-					<tr>
-						<td class="cartypetd" style="text-align: center">一般價格</td>
-						<td style="text-align: center">三日價格</td>
-						<td style="text-align: center">五日價格</td>
-					</tr>
-					<tr>
-						<td style="text-align: center">${data.price}/日</td>
-						<%-- 					<fmt:parseNumber value="${data.price*0.95}" type="currency"/>			 --%>
-						<td style="text-align: center">${data.price*0.95}/日</td>
-						<td style="text-align: center">${data.price*0.9}/日</td>
-					</tr>
-					<tr>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td style="text-align: center">數量 <select name="device"
-							id="device${step.index}" class="country">
-								<option value="">請選擇</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-						</select>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3" style="text-align: center"><input
-							type="button" value="選擇這輛" onclick="doNext('${step.index}',);"></td>
-					</tr>
-				</table>
-				<br>
-			</c:forEach>
+		<section class="main-news">
+        <h4 class="section-til">
+           	 最新情報
+        </h4>
+                <a href="/News/Detail?ID=62" class="main-news-box1">
+                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
+                        <div class="main-news-box-til">
+                            <span>多日租車優惠活動</span>
+                        </div>
+                    </div>
+                    <div class="main-news-hover">
+                        <div class="main-news-hover-til">
+                         	  多日租車優惠活動
+                        </div>
+                        
+                        <p class="main-news-hover-desc">提供多日租車優惠活動，租越久省越多</p>
+                    </div>
+                </a>
+                <a href="/News/Detail?ID=65" class="main-news-box1">
+                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
+                        <div class="main-news-box-til">
+                            <span>秋日舒活．悠遊趣</span>
+                        </div>
+                    </div>
+                    <div class="main-news-hover">
+                        <div class="main-news-hover-til">
+                         	   秋日舒活．悠遊趣
+                        </div>
+                        
+                        <p class="main-news-hover-desc">在落雨松林下睡一晚</p>
+                    </div>
+                </a>
+                <a href="/News/Detail?ID=64" class="main-news-box2">
+                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
+                        <div class="main-news-box-til">
+                            <span>租車優惠券限時大方送</span>
+                        </div>
+                        
+                    </div>
+                    <div class="main-news-hover">
+                        <div class="main-news-hover-til">
+                            	感恩時節．優惠券送給您
+                        </div>
+                        
+                        <p class="main-news-hover-desc">快來預約拿好康</p>
+                    </div>
+                </a>
+                <a href="/News/Detail?ID=63" class="main-news-box2">
+                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
+                        <div class="main-news-box-til">
+                            <span>悠遊租車 x 台新GOGO 卡友優惠</span>
+                        </div>
+                    </div>
+                    <div class="main-news-hover">
+                        <div class="main-news-hover-til">
+                           	 悠遊租車 x 台新GOGO 卡友優惠
+                        </div>
+                        
+                        <p class="main-news-hover-desc">台新GOGO卡友享8折</p>
+                    </div>
+                </a>
+                <a href="/News/Detail?ID=66" class="main-news-box2">
+                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
+                        <div class="main-news-box-til">
+                            <span>LINE Pay租車  送LINE POINTS</span>
+                        </div>
+                    </div>
+                    <div class="main-news-hover">
+                        <div class="main-news-hover-til">
+                            LINE Pay租車  送LINE POINTS
+                        </div>
+                        
+                        <p class="main-news-hover-desc">平日回饋15%，假日10%</p>
+                    </div>
+                </a>
+        <a href="/News" class="main-news-more-btn btn">看更多</a>
+    </section>
+    
+<!--服務特色 -->
 
-		</form>
-	</div>
+  <section class="how-service">
+        <h3 class="section-til" id="HowService">
+            服務特色
+        </h3>
+        <div class="icon-grid how-service-grid">
+            <ul>
+                <li>
+                    <div class="how-service-unlimited">
+                        <i class="svg"><img src="../img/car/01.png"></i>
+                        <div class="icon-grid-til">無單日里程上限</div>
+                        <div class="icon-grid-desc">
+                            	租車不限里程數，讓您盡情安排行程不受限制
+                        </div>
+                        <!--<span class="icon-grid-hint">
+                            本服務需視車輛調度情況始能確定是否提供，中租租車保留異地還車之接單決定權。
+                        </span>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-clock">
+                        <i class="svg"><img src="../img/car/02.png"></i>
+                        <div class="icon-grid-til">逾時10小時以1日租金計算</div>
+                        <div class="icon-grid-desc">
+                            	逾時超過10小時才以1日租金計算，優於同業，讓您還車不趕時，平安回家
+                        </div>
+                        
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-24">
+                        <i class="svg"><img src="../img/car/03.png"></i>
+                        <div class="icon-grid-til">24小時0800服務專線</div>
+                        <div class="icon-grid-desc">
+                            24小時0800服務專線，服務不打烊
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-identity">
+                        <i class="svg"><img src="../img/car/04.png"></i>
+                        <div class="icon-grid-til">免押證件、免簽本票</div>
+                        <div class="icon-grid-desc">
+                            	免押證件、免簽本票，承租人符合規定出示相關證件，刷卡後即可租車
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-oil">
+                        <i class="svg"><img src="../img/car/05.png"></i>
+                        <div class="icon-grid-til">無加收里程費</div>
+                        <div class="icon-grid-desc">
+                            	租車不依里程收費，讓您輕鬆使用無負擔
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-return">
+                        <i class="svg" ><img src="../img/car/06.png"></i>
+                        <div class="icon-grid-til">異地還車服務</div>
+                        <div class="icon-grid-desc">
+                            	提供全台短租站異地還車服務
+                        </div>
+                        <span class="icon-grid-hint">
+                            	本服務需視車輛調度情況始能確定是否提供，中租租車保留異地還車之接單決定權
+                        </span>
+<!--                         <a href="#" data-href="notice_Return" class="icon-grid-hint notice-anchor-item"> -->
+<!--                           	  詳細資訊 -->
+<!--                         </a> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-shield">
+                        <i class="svg"><img src="../img/car/07.png"></i>
+                        <div class="icon-grid-til">安全保障</div>
+                        <div class="icon-grid-desc">
+                           	 車損險、竊盜險、乘客險、強制險、第三人責任險
+                        </div>
+<!--                         <a href="#" data-href="notice_Shield" class="icon-grid-hint notice-anchor-item"> -->
+<!--                            	 詳細資訊 -->
+<!--                         </a> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="how-service-value">
+                        <i class="svg"><img src="../img/car/08.png"></i>
+                        <div class="icon-grid-til">行車守護加購</div>
+                        <div class="icon-grid-desc">
+                            	加購即免負擔車損自負額、營業損失及竊盜自負額
+                        </div>
+<!--                         <a href="https://www.rentalcar.com.tw/News/Detail?ID=47" target="_blank" class="icon-grid-hint notice-anchor-item">詳細資訊</a> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+<!-- 導覽列 -->
+           <section class="cal-app_list">
+    <div class="cal-container">
+        <ul class="clearfix">
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
+                            <a href="/tw/zh/faq/index">
+                                <img src="../img/car/information.png" width="40px">
+                                <p class="cal-app_name"><span>預約流程</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/order.png">
+<%--                             <a href="<c:url value='/Car/Order' />"> --%>
+							<a href="javascript:queryContract();">
+                                <img src="../img/car/order.png" width="30px">
+                                <p class="cal-app_name"><span>訂單查詢</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
+                            <a href="<c:url value='/Car/Location' />">
+                                <img src="../img/car/map.png" width="50px">
+                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
+                            <a href="https://calec.china-airlines.com/OnlineSurvey/esv_introduction.aspx?lang=zh-TW&amp;country=tw&amp;locale=zh">
+                                <img src="../img/car/qa.png" width="40px">
+                                <p class="cal-app_name"><span>常見問與答</span></p>
+                            </a>
+                        </li>
+                        <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
+                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                                <img src="../img/car/email.png" width="40px">
+                                <p class="cal-app_name"><span>聯絡我們</span></p>
+                            </a>
+                        </li>
+
+        </ul>
+    </div>
+
+    </section>
 
 	<!-- end main container -->
 
 	<!-- footer -->
 	<footer>
 		<div class="container-fluid">
-			<p class="copyright">© Box Portfolio 2016</p>
+			<p class="copyright">© YURU.camp</p>
 		</div>
 	</footer>
 	<!-- end footer -->
 
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="https://www.rentalcar.com.tw/News/Detail?ID=64"></a>
 	<!-- end back to top -->
 
 
@@ -490,32 +726,13 @@ form {
 	    	 weekStart:1,
 	    	 color: 'red'
 		 });
-
-		//  檢查有無空白欄位
-		//    function doNext(){
-		//        if($("#dept").val()==""){
-		//               alert("您尚未選取取車地點");
-		//               eval("document.form1['dept'].focus()");       
-		//           }else if($("#ret").val()==""){
-		//               alert("您尚未選取還車地點");
-		//               eval("document.form1['ret'].focus()");    
-		//           }else if($("#depttime").val()==""){
-		//               alert("您尚未選取取車時間");
-		//               eval("document.form1['depttime'].focus()");     
-		//           }else if($("#returntime").val()==""){
-		//               alert("您尚未選取還車時間");
-		//               eval("document.form1['returntime'].focus()");    
-		//           }else if($("#type").val()==""){
-		//               alert("您尚未選取訂購車型");
-		//               eval("document.form1['type'].focus()"); 
-		//           }else if($("#device").val()==""){
-		//               alert("您尚未選取露營組數量");
-		//               eval("document.form1['device'].focus()");              
-		//           }else{
-		//               document.form1.submit();
-		//           }
-		//    }
 		
+		 
+		 function queryContract(){
+			var action = document.getElementById("form2").action;
+			document.getElementById("form2").submit();
+		 }
+		 
 	</script>
 
 </body>

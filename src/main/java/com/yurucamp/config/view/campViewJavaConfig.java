@@ -14,6 +14,19 @@ public class campViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/CampSite/campSiteIndex.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
+	
+	@Bean
+	public View fy374() { // 鳳凰谷 頁面
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/fy374.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	@Bean
+	public View Test() { // 測試用
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/Test.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
 
 	@Bean
 	public View InsertCamp() { // 新增
@@ -35,4 +48,6 @@ public class campViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/CampSite/UpdateCamp.jsp");
 		return view;
 	}
+	
+	
 }

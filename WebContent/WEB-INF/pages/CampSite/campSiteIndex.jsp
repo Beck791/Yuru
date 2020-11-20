@@ -89,7 +89,7 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-12 central">
-						<a href="<c:url value='#' />" class="portfolio_item"> <img
+						<a href="<c:url value='/CampSite/fy374' />" class="portfolio_item"> <img
 							src="<c:url value='/img/camp/nzfhg119/nzfhg119_1.png' />" alt="image" class="img-responsive" />
 							<span class="portfolio_item_hover">
 								<span class="portfolio-border clearfix">
@@ -104,7 +104,7 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-12 south">
-						<a href="<c:url value='#' />" class="portfolio_item"> <img
+						<a href="<c:url value='/CampSite/Test' />" class="portfolio_item"> <img
 							src="<c:url value='/img/camp/cm349/cm349_1.png' />" alt="image" class="img-responsive" />
 							<span class="portfolio_item_hover">
 								<span class="portfolio-border clearfix">
@@ -119,7 +119,7 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 north">
-						<a href="<c:url value='#' />" class="portfolio_item"> <img
+						<a href="<c:url value='/CampSite/Mail' />" class="portfolio_item"> <img
 							src="<c:url value='/img/camp/dlh279/dlh279_1.png' />" alt="image" class="img-responsive" />
 							<span class="portfolio_item_hover">
 								<span class="portfolio-border clearfix">
