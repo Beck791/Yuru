@@ -120,7 +120,6 @@ ul.slides li img {
 	<br>
 	<br>
 
-	<h2 class="title">南庄 鳳凰谷</h2>
 	<div class="wrapper">
 		<ul class="slides">
 			<li><img src="<c:url value='/img/camp/fy374/fy374_1.png' />"
@@ -148,6 +147,8 @@ ul.slides li img {
 			<i class="fa fa-caret-right"></i>
 		</div>
 	</div>
+	
+	<h2 class="title">南庄 鳳凰谷</h2>
 
 
 	<!-- Trigger the modal with a button -->

@@ -13,7 +13,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<script
+	src="https://www.google.com/recaptcha/api.js?render=6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p"></script>
 
 </head>
 
@@ -40,6 +41,85 @@
 
 		</div>
 	</div>
+
+	<button class="g-recaptcha"
+		data-sitekey="6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p"
+		data-callback='onSubmit' data-action='onSubmit'>Submit</button>
+
+	<form action="" method="POST">
+
+		<label for="name">Name:</label> <input name="name" required><br />
+
+		<label for="email">Email:</label> <input name="email" type="email"
+			required><br />
+		<div class="g-recaptcha"
+			data-sitekey="6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p"></div>
+		<br /> <input type="submit" value="Submit">
+	</form>
+
+<form action="<c:url value='/Ajax/CampSite/bot' />" method="post" id="form">
+    {{ csrf_field() }}
+    <button type="submit"
+            class="g-recaptcha"
+            data-sitekey="6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p"
+            data-callback="OnSubmitFunction">
+        Submit
+    </button>
+</form>
+<script>
+function OnSubmitFunction(token) {
+	document.getElementById('form').submit();
+}
+</script>
+
+	<script>
+		grecaptcha
+				.ready(function() {
+					console.log('1. grecaptcha.ready');
+					console
+							.log('2. grecaptcha.execute("6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p", { action: "<c:url value='/Ajax/CampSite/bot' />" })');
+					grecaptcha
+							.execute(
+									'6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p',
+									{
+										action : "submit"
+									})
+							.then(
+									function(token) {
+										console
+												.log(
+														'3. Get token from reCAPTCHA service => ',
+														token);
+										console.log('4. Verifying Bot...');
+										$
+												.ajax({
+													type : 'POST',
+													url : "<c:url value='/Ajax/CampSite/bot' />",
+													data : {
+														token : token
+													},
+													success : function(res) {
+														console
+																.log(
+																		'5. Return => ',
+																		res);
+													}
+												});
+									});
+				});
+
+		function onSubmit(e) {
+			e.preventDefault();
+			grecaptcha.ready(function() {
+				grecaptcha.execute('6LdxzeQZAAAAAFG--yKa_Knlv4JrSOaj4t8-Le4p',
+						{
+							action : "<c:url value='/Ajax/CampSite/recaptchaV3' />"
+						}).then(function(token) {
+					// Add your logic to submit to your backend server here.
+				});
+			});
+		}
+	</script>
 
 </body>
 </html>

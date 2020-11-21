@@ -27,7 +27,28 @@ public class campViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/CampSite/Test.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
+	
+	@Bean
+	public View TestOne() { // 測試用
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/TestOne.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
 
+	@Bean
+	public View reCAPTCHA_v2() { // reCAPTCHA_v2
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/reCAPTCHA_v2.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	
+	@Bean
+	public View reCAPTCHA_v3() { // reCAPTCHA_v3
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/CampSite/reCAPTCHA_v3.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
+	
 	@Bean
 	public View InsertCamp() { // 新增
 		InternalResourceView view = new InternalResourceView();

@@ -69,16 +69,26 @@ public class CampController {
 	public String Test(Model model) throws SQLException {
 		return "Test";
 	}
+	
+	@GetMapping("/CampSite/reCAPTCHA_v2")
+	public String reCAPTCHA_v2(Model model) throws SQLException {
+		return "reCAPTCHA_v2";
+	}
+	
+	@GetMapping("/CampSite/reCAPTCHA_v3")
+	public String reCAPTCHA_v3(Model model) throws SQLException {
+		return "reCAPTCHA_v3";
+	}
 
 	@GetMapping("/CampSite/fy374")
 	public String fy374() throws SQLException {
 		return "fy374";
 	}
 
-	@GetMapping("/CampSite/Mail")
+	@GetMapping("/CampSite/TestOne")
 	public String Mail() throws SQLException {
 		service.sendRegistEmail();
-		return "Test";
+		return "TestOne";
 	}
 
 }
