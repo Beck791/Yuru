@@ -5,12 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -23,11 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yurucamp.camp.model.service.CampService;
-
-import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutOneTime;
-import ecpay.payment.integration.domain.InvoiceObj;
-import ecpay.payment.integration.exception.EcpayException;
 
 @RestController
 public class AjaxController {
@@ -154,35 +145,4 @@ public class AjaxController {
 		return success;
 	}
 
-	@PostMapping(value = "/EcPay/Authority", produces = "text/html;charset=UTF-8")
-	public String authorityEcPayPM(HttpServletRequest req) {
-
-		String baseURL = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
-				+ req.getContextPath();
-		System.out.println("baseURL: "+baseURL);
-		AioCheckOutOneTime aio = new AioCheckOutOneTime();
-		AllInOne all = new AllInOne("");
-
-		// without invoice
-		InvoiceObj invoice = null;
-
-		aio.setMerchantTradeNo(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 15));
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		aio.setMerchantTradeDate(sdf.format(date));
-		aio.setItemName("YuruCamp白金會員升級");
-		aio.setTotalAmount("500");
-		aio.setTradeDesc("YuruCamp");
-		aio.setReturnURL("https://joycart.azurewebsites.net/testAIO"); // need to modify
-		aio.setClientBackURL(baseURL);
-
-		try {
-			String html = all.aioCheckOut(aio, invoice);
-
-			return html;
-		} catch (EcpayException e) {
-			throw new Error(e.getNewExceptionMessage());
-		}
-
-	}
 }
