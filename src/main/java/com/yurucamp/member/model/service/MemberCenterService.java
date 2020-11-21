@@ -65,6 +65,12 @@ public class MemberCenterService {
 		
 	}
 	
+	//綠界付款成功，更改Membean.paid為1
+	public void mbPaid(MemberBean memberBean) throws SQLException {
+		System.out.println("進到Service");
+		memberCenterDao.mbPaidUpdate(memberBean); 		
+	}
+	
 	//忘記密碼
 	public boolean forget(String memberId,String name) throws SQLException {
 

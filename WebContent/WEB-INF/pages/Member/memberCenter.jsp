@@ -202,7 +202,7 @@ img {
 							<c:when test="${MemberBean.paid eq '0'}">
 							   <div>
 				            	<input type="radio" name="pay" value="pay" />會員升級 NT$500 <br><br>
-				           		<button>確認</button><br><br>
+				           		<button id="ecpay">確認</button><br><br>
 				            </div>
 							</c:when>
 						</c:choose>
@@ -219,6 +219,7 @@ img {
         </div>
     </div>
     
+    <div id="test1"></div>
 <body>
 
 	<br>
@@ -269,6 +270,7 @@ $("#updatemem").click(function() {
 	data.gender ="${memberBean.gender}";
 	data.birthday ="${MemberBean.birthday}";
 	data.registerDate ="${memberBean.registerDate}";
+	data.image ="${memberBean.image}";
 	console.log(data);
 	$.ajax({
 		url : "<c:url value='/Member/updatemcmem'/>",
@@ -279,6 +281,29 @@ $("#updatemem").click(function() {
 		window.location.reload();
 		alert(result.r);
 		})
+});
+
+$("#ecpay").click(function() {
+	console.log("綠界");
+	
+	$.ajax({
+		url : "<c:url value='/EcPay/MemberUpgrade' />",
+		type : "POST",
+		data : "",
+		contentType : "application/json",
+		success : function(data) {
+			$.ajax({
+				url : "<c:url value='/Member/ecpayDbPaid' />",
+				type : "POST",
+				data : "",
+				contentType : "application/json",
+				success : function(data) {
+					$("#ecpay").html(data);
+				}
+			});
+			$("#ecpay").html(data);
+		}
+	});
 });
 
 </script>

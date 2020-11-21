@@ -1,5 +1,6 @@
 package com.yurucamp.general.controller;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -7,6 +8,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,14 +23,13 @@ public class EcPayController {
 
 	@ResponseBody
 	@PostMapping(value = "/EcPay/MemberUpgrade", produces = "text/html;charset=UTF-8")
-	public String authorityEcPayPM(HttpServletRequest req) {
+	public String authorityEcPayPM(HttpServletRequest req,Model model) throws SQLException {
 
 		String baseURL = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
-				+ req.getContextPath();
+				+ req.getContextPath()+"/Member/MemberCenter";
 		System.out.println("baseURL: " + baseURL);
 		AioCheckOutOneTime aio = new AioCheckOutOneTime();
 		AllInOne all = new AllInOne("");
-
 		// without invoice
 		InvoiceObj invoice = null;
 
@@ -43,6 +44,7 @@ public class EcPayController {
 		aio.setClientBackURL(baseURL);
 
 		try {
+			
 			String html = all.aioCheckOut(aio, invoice);
 			return html;
 		} catch (EcpayException e) {

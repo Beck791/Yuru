@@ -25,7 +25,7 @@ import com.yurucamp.member.model.service.MemberCenterService;
 import com.yurucamp.member.utils.DateUtils;
 
 @Controller
-@SessionAttributes({"memberId","memberRolse","memberRolse"})
+@SessionAttributes({"memberId","memberRolse","memberRolse","memberBean"})
 public class MemberCenterController {
 
 	String imgstr="https://i.imgur.com/gtsgIJd.png";
@@ -105,7 +105,7 @@ public class MemberCenterController {
 	@ResponseBody
 	public Map<String, String> updatemcmem(Model model,String birthday,String registerDate,
 			String roles,String memberId,String gender,String status,
-			Integer paid,String mail,String name,String password,String phone,
+			Integer paid,String mail,String name,String password,String phone,String image,
 			String address,Integer id) throws SQLException, Throwable {
 		
 		System.out.println("第一站Controller");
@@ -122,9 +122,11 @@ public class MemberCenterController {
 		mBean.setRegisterDate(DateUtils.StringToDate(registerDate));
 		mBean.setStatus(status);
 		mBean.setPaid(paid);		
-		mBean.setRoles(roles);	
+		mBean.setRoles(roles);
+		mBean.setImage(image);	
 		System.out.println("第一站Controller name ="+mBean.getName());		
 		System.out.println("第一站Controller Birthday ="+mBean.getBirthday());
+		
 
 		String r=service.update(mBean);
 		System.out.println("回到Controller r="+r);
@@ -157,7 +159,19 @@ public class MemberCenterController {
 		return imgstr ;
 
 		}
-	
 
+	//綠界 成功後打進來，更改付款欄位為1
+	@PostMapping("/Member/ecpayDbPaid")
+	@ResponseBody	
+	public void mbEcPaid(Model model) throws SQLException {
+//		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");		
+		System.out.println("memberBean=");	
+		System.out.println(memberBean);	
+		System.out.println("memberBean.getPaid()="+memberBean.getPaid());
+		memberBean.setPaid(1);
+		service.mbPaid(memberBean);
+		
+	}
 	
 }

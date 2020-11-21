@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.member.model.MemberBean;
@@ -106,6 +108,16 @@ public class MemberCenterDao {
 		return memberBean;
 		} catch (Exception e) {return null;}	
 		
+	}
+	
+	//綠界付款成功，更改Membean.paid為1
+	public void mbPaidUpdate(MemberBean memberBean) {
+		System.out.println("進到Dao");		
+		System.out.println("memberBean.getPaid()="+memberBean.getPaid());
+		sessionFactory.getCurrentSession().update(memberBean);
+		
+
+
 	}
 
 }
