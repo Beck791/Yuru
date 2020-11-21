@@ -14,7 +14,8 @@
 <!-- //匯入bootstrap javascript -->
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- 機器人驗證 -->
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://www.google.com/recaptcha/api.js?render=explicit&onload=onReCaptchaLoad"></script>
 
 <style>
 	
@@ -221,9 +222,9 @@
 					<div id="ermsg2" style="color: red; font-weight: bold;"></div>
 
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" style="height:320px;">
 
-					<div style="width: 55%; float: left;">
+					<div style="width: 55%; float: left">
 
 						<div class="input-contact" style="width: 48%; float:left;margin-bottom:15px;">
 							<input type="text" name="name" id="name" autocomplete="off" data-toggle="tooltip" title="請輸入姓名">
@@ -275,11 +276,10 @@
 								<button type="button" class="btn btn-secondary" id="oksendregstermail"
 								style="border-radius:5px;display:none;">已完成驗證</button>
 						</div>
-						<div class="input-contact" style="width: 65%; float:left;margin-bottom:15px;">
-							<input type="text" name="" id="" autocomplete="off">
-							<span>我不是機器人</span>
+<!-- 						<div class="input-contact" style="width: 65%; float:left;margin-bottom:15px;"> -->
+						<div id="myCaptcha" style="width: 65%;height:40%"></div>
 						</div>
-					</div>
+					
 
 					<div style="width: 45%; float: left; padding-left: 40px;">
 						照片：<br>
@@ -291,22 +291,24 @@
 							<span class="mempic"><img id="imgshow" src="" alt="" /></span>
 						</div>
 					</div>
+					</div>
 
-					<div class="modal-footer" style="clear: both;height:60px;">
+					<div class="modal-footer" style="clear: both;">
 					<div>
 						<a href='#' class="mr-auto" data-dismiss="modal"
 							data-toggle="modal" data-target="#loginModal"
-							style="float: left; color: black;">已經有帳號，直接登入</a>
+							style="float:left;color: black;">已經有帳號，直接登入</a>
 					</div>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-primary" id="regieted"
 							style="background-color: #dbcf83; border-color: #dbcf83; color: black;">註冊</button>
-					</div>
-					<hr>
+										<hr>
 					<div>
-						<button type="button" class="btn btn-secondary" id="fasregister">快速註冊</button>
+						<button type="button" class="btn btn-secondary" id="fasregister" style="float:left">快速註冊</button>
 					</div>
+					</div>
+
 				</div>
 			</div>
 	</div>
@@ -678,6 +680,33 @@
 		  });
 		});
 		
+		
+		//我不是機器人
+		var captchaWidgetId;
+		var onReCaptchaLoad = function() {
+
+			captchaWidgetId = grecaptcha.render('myCaptcha', {
+				'sitekey' : '6Lcks-UZAAAAAPrLqlwVUnFrKNXaetgKmnJ6hK7a', // required   
+				'theme' : 'light', // optional   
+				'callback' : 'verifyCallback' // optional   
+			});
+		};
+
+		var verifyCallback = function(recaptcha) {
+			//接到回傳值
+			// recaptcha =回傳值
+			console.log("ajax:"+ recaptcha);
+			$.ajax({
+				type : 'POST',
+				url : "<c:url value='/Ajax/CampSite/recaptchaV2' />",
+				data : {
+					recaptcha : recaptcha
+				},success : function(res) {
+					console.log('5. Return => ',res);
+				}
+			});
+
+		}
 		
 	</script>
 	
