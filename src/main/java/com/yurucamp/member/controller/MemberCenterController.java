@@ -28,7 +28,7 @@ import com.yurucamp.member.utils.DateUtils;
 @SessionAttributes({"memberId","memberRolse","memberRolse"})
 public class MemberCenterController {
 
-	String imgstr=null;
+	String imgstr="https://i.imgur.com/gtsgIJd.png";
 	
 	@Autowired
 	MemberCenterService service ;

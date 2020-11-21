@@ -13,6 +13,9 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- //匯入bootstrap javascript -->
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<!-- 機器人驗證 -->
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
 <style>
 	
 	.mempic{
@@ -70,7 +73,7 @@
 					</button>
 					<button type="button" class="btn btn-light entermem"
 						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
-						<img src=${memberBean.image} style="width:20px;height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
+						<img src=${memberBean.image} style="max-width:20px;max-height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
 						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83;;background-color:transparent">
@@ -80,7 +83,7 @@
 				<c:when test="${not empty memberId}">
 					<button type="button" class="btn btn-light entermem"
 						style="float: right; margin-right: 195px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83">
-						<img src=${memberBean.image} style="width:20px;height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
+						<img src=${memberBean.image} style="max-width:20px;max-height:20px"><a href="<c:url value='/Member/MemberCenter' />" style="color:black;" /> ${memberBean.name}</a>
 					</button>
 					<button type="button" class="btn btn-light out2"
 						style="float: right; margin-right: 130px; margin-top: -90px;background-color:transparent;border:2px solid #dbcf83;;background-color:transparent">
