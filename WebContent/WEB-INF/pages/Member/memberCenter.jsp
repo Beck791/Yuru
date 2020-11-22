@@ -13,8 +13,9 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />"
-	rel="stylesheet">
+<link href="<c:url value='/ionicons/css/ionicons.min.css' />"rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- modernizr -->
@@ -67,6 +68,7 @@ img {
 	border:2px solid #DDDDDD;
 	border-radius:20px;
 }
+
 </style>
 </head>
 
@@ -209,18 +211,332 @@ img {
  
            </div>
         </div>
-        <div id="menu3" class="tab-pane fade munuinf" >
-            <h3>Menu 3</h3>
-            <p>Some content in menu 3.</p>
-        </div>
+        <div id="menu3" class="tab-pane fade munuinf" style="border-style:none" >
+<!--             <h3 style="margin-top:70px;">Menu 3</h3> -->
+			  
+				<div class="card-deck" style="margin-top:20px;" >
+				  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">露營車</h5><br>
+				      <p class="card-text">訂單編號:10900001</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組&emsp;</td>
+								<td>650&emsp;</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">商城</h5><br>
+				      <p class="card-text">訂單編號:10900056</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王爸爸</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$4,200</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>躺椅&emsp;</td>
+								<td>790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>帳篷&emsp;</td>
+								<td>1650&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>摺疊桌&emsp;</td>
+								<td>1380&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>椅凳</td>
+								<td>380</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+				  			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">商城</h5><br>
+				      <p class="card-text">訂單編號:10900007</p>				    	
+				      <p class="card-text">訂購日期:2020/11/05</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$6,800</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>豪華帳棚&emsp;</td>
+								<td>6800&emsp;</td>
+								</tr>
+								
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+<!-- 				  橫排三個CARD結束 -->
+				  </div> 
+				  
+				  
+				<div class="card-deck" style="margin-top:20px;" >
+				  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">商城</h5><br>
+				      <p class="card-text">訂單編號:10900213</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">營地</h5><br>
+				      <p class="card-text">訂單編號:10900451</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+				  			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">商城</h5><br>
+				      <p class="card-text">訂單編號:10900021</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+<!-- 				  橫排三個CARD結束 -->
+				  </div> 
+				  
+				  
+				  				<div class="card-deck" style="margin-top:20px;" >
+				  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">商城</h5><br>
+				      <p class="card-text">訂單編號:10900001</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">營地</h5><br>
+				      <p class="card-text">訂單編號:10900001</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+				  			  <div class="card" style="overflow:hidden;margin-top:10px;">
+				    <div class="card-body" >
+				    <h5 style="font-size:large;font-weight:bold;">露營車</h5><br>
+				      <p class="card-text">訂單編號:10900001</p>				    	
+				      <p class="card-text">訂購日期:2020/10/31</p>
+				      <p class="card-text">收貨姓名:王小明</p>
+				      <p class="card-text">連絡電話:0911111111</p>			      
+				      <p class="card-text"></p>
+				      <p class="card-text">訂購金額:NT$145</p>
+				      <div style="background-color:#F0F0F0;height:25px;width:120%;margin-left:-15px;padding-left:20px;font-weight:bold;display: flex;align-items: center" class="listbutton">
+				      <i class='fas fa-list'></i>&emsp;購買明細</div>
+						<div class="listinfo" style="display:none">
+							<table style="margin-top:8px;width:100%"> 
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>露營車&emsp;</td>
+								<td>1790&emsp;</td>
+								</tr>
+								
+								<tr>
+								<td><i class="fa fa-caret-right">&emsp;</i></td>
+								<td>烹調組</td>
+								<td>650</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+				    <div class="card-footer" >
+				      <small class="text-muted"></small>
+				    </div>
+				  </div>
+				  
+<!-- 				  橫排三個CARD結束 -->
+				  </div> 
+				  
+				  
+				    
+				  
+				  
+<!-- 				  MENU3結束 -->
+				</div>	
+
         <div id="menu4" class="tab-pane fade munuinf">
             <h3>Menu 4</h3>
-            <p>Some content in menu 4.</p>
-        </div>
+         
     </div>
     
-    <div id="test1"></div>
-<body>
+
+</body>
 
 	<br>
 	<br>
@@ -305,6 +621,14 @@ $("#ecpay").click(function() {
 		}
 	});
 });
+
+	
+	  $(".listbutton").click(function(){
+		  if( $(".listinfo").css("display") == 'none' ){ 
+		  $(".listinfo").show();
+		  }else{$(".listinfo").hide();}
+	});
+
 
 </script>
 
