@@ -41,11 +41,14 @@ public class CampInfo implements Serializable {
 	@Column(name = "ownerPhone")
 	private String ownerPhone;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "campInfo", cascade = CascadeType.ALL)
-	private CampDetail campDetail;
-	
-	@Transient
-	private CampDetail campDetail1;
+	@Column(name = "closed")
+	private String closed;
+
+	@Column(name = "image")
+	private String image;
+
+//	@OneToOne(fetch = FetchType.LAZY, mappedBy = "campInfo", cascade = CascadeType.ALL)
+//	private CampDetail campDetail;
 
 	public CampInfo() {
 	}
@@ -106,13 +109,4 @@ public class CampInfo implements Serializable {
 	public void setOwnerPhone(String ownerPhone) {
 		this.ownerPhone = ownerPhone;
 	}
-
-	public CampDetail getCampDetail() {
-		return campDetail;
-	}
-
-	public void setCampDetail(CampDetail campDetail) {
-		this.campDetail = campDetail;
-	}
-
 }

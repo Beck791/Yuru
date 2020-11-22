@@ -23,8 +23,8 @@ import org.springframework.stereotype.Component;
 public class CampDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@GenericGenerator(name = "generator", strategy = "foreign", 
-	parameters = @Parameter(name="property", value = "campInfo"))
+//	@GenericGenerator(name = "generator", strategy = "foreign", 
+//	parameters = @Parameter(name="property", value = "campInfo"))
 	@Id
 	@GeneratedValue(generator = "generator")
 	@Column(name = "id")
@@ -57,10 +57,10 @@ public class CampDetail implements Serializable {
 	@Column(name = "hashTag")
 	private String hashTag;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private CampInfo campInfo;
-	
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@PrimaryKeyJoinColumn
+//	private CampInfo campInfo;
+
 	public CampDetail() {
 	}
 

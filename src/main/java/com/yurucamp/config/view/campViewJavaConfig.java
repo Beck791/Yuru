@@ -16,9 +16,9 @@ public class campViewJavaConfig {
 	}
 	
 	@Bean
-	public View fy374() { // 鳳凰谷 頁面
+	public View xldkayu186() { // 星亮點 Kayu_xldkayu186 頁面
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/CampSite/fy374.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/CampSite/xldkayu186.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 	@Bean

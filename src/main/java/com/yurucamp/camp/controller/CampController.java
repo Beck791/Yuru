@@ -29,7 +29,6 @@ public class CampController {
 	@PostMapping("/CampSite/Insert") // 新增
 	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
 			throws SQLException {
-		ci.getCampDetail();
 		service.saveCamp(ci);
 		System.out.println("Already Save Object.id = " + ci.getName());
 		return "QueryOneCamp";
@@ -80,14 +79,13 @@ public class CampController {
 		return "reCAPTCHA_v3";
 	}
 
-	@GetMapping("/CampSite/fy374")
-	public String fy374() throws SQLException {
-		return "fy374";
+	@GetMapping("/CampSite/xldkayu186")
+	public String xldkayu186() throws SQLException {
+		return "xldkayu186";
 	}
 
 	@GetMapping("/CampSite/TestOne")
 	public String Mail() throws SQLException {
-		service.sendRegistEmail();
 		return "TestOne";
 	}
 

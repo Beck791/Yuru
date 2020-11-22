@@ -48,7 +48,12 @@
 							<li><a href="" data-filter=".central">中部</a></li>
 							<li><a href="" data-filter=".south">南部</a></li>
 							<li><a href="" data-filter=".east">東部</a></li>
-<!-- 							<li><a href="" data-filter=".fashion">Fashion</a></li> -->
+							<c:choose>
+				            	<c:when test="${sessionScope.memberRolse eq 'admin'}">
+									<li><a href="" 
+									 onclick="location.href='<c:url value='/Product/Index'/>'">營地管理</a></li>
+								</c:when>
+						   </c:choose>
 						</ul>
 					</nav>
 				</div>
@@ -134,8 +139,8 @@
 
 					<!-- single work -->
 					<div class="col-md-4 col-sm-6 east">
-						<a href="<c:url value='/CampSite/PureInsert' />" class="portfolio_item"> <img
-							src="<c:url value='/img/camp/xldkayu186/xldkayu186_1.png' />" alt="image" class="img-responsive" />
+						<a href="<c:url value='/CampSite/xldkayu186' />" class="portfolio_item"> <img
+							src="<c:url value='/img/camp/xldkayu186/xldkayu186_index.png' />" alt="image" class="img-responsive" />
 							<span class="portfolio_item_hover">
 								<span class="portfolio-border clearfix">
 									<span class="item_info">
