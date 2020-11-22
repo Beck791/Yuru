@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>訂單確認</title>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -26,8 +26,6 @@
 	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
- <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDjdcK9yPMAP5kK73qorDZgq9RAuo4eo_o" type="text/javascript"></script>
- 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -36,6 +34,26 @@
     <![endif]-->
 <style>
 
+
+
+/* button { */
+/*     text-transform: capitalize; */
+/*     background: #dbcf83; */
+/*     color: #5d5030e0; */
+/*     border: none; */
+/*     border: 2px solid #dbcf83; */
+/*     padding: 1.5em 0em; */
+/*     font-weight: 600; */
+/*     font-size: 1em; */
+/*     margin-top: 1em; */
+/*     width: 100%; */
+/*     outline: none; */
+/*     letter-spacing: 1px; */
+/*     -webkit-transition: .5s all; */
+/*     -moz-transition: .5s all; */
+/*     transition: .5s all; */
+/*     cursor: pointer; */
+/* } */
 .input-contact {
 	height: 40px;
 	width: 100%;
@@ -76,8 +94,10 @@ h3 {
 }
 
 #amount-table {
-	border: 3px solid #dbcf83;
-	border-radius: 30px;
+/* 	border: 5px solid #dbcf83; */
+/* 	border-radius: 30px; */
+	font-size:17px ;
+	background-color:#FFFAF4;
 	width: 600px;
 	padding: 30px;
 /* 	float:left; */
@@ -181,21 +201,21 @@ ul, li {
 <!-- 		</tr> -->
         <tr>
 			<td class="tabletd">訂購人</td>
-			<td colspan="3">${memberBean.name}</td>
+			<td colspan="4">${memberBean.name}</td>
 		</tr>
         <tr>
 			<td class="tabletd">訂購人電話</td>
-			<td colspan="3">${memberBean.phone}</td>
+			<td colspan="4">${memberBean.phone}</td>
 		</tr>
 		<tr>
 			<td class="tabletd">訂購日期</td>
-			<td colspan="3"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${orderBean.createTime}"/></td>
+			<td colspan="4"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${orderBean.createTime}"/></td>
 		</tr>
 	
-    	<form method="Post" action='<c:url value='/shoppingcart/insertorder'/>'>
+    	<form method="Post" action='<c:url value='/shoppingcart/finish'/>'>
 		<tr>
 			<td class="tabletd">寄送地區</td>
-			<td colspan="3"><select name="urbanArea" >
+			<td colspan="4"><select name="urbanArea" required="required">
             <option value="">選擇地區</option>
 			<option value="基隆市">基隆市</option>
 			<option value="台北市">台北市</option>
@@ -221,33 +241,35 @@ ul, li {
 			<option value="連江縣">連江縣</option>		
             </select>	   
 		</tr>
-		<tr>
         <tr>
 			<td class="tabletd">郵遞區號:</td>
-			<td id="couponName" colspan="3"><input type="text" size="6" maxlength="6" name="postalCode"></td>
+			<td id="couponName" ><input type="text" size="6" maxlength="6" name="postalCode" required="required"></td>
+			<td></td>
+			<td></td>
+			<td></td>
 			
 		</tr>
 		<tr>
 			<td class="tabletd">寄送地址:</td>
-			<td id="couponName" colspan="3"><input type="text" size="25" name="address"></td>
+			<td id="couponName" colspan="4"><input type="text" size="25" name="address" required="required"></td>
 		
 			
 		</tr>
         <tr>
 			<td class="tabletd">消費金額</td>		      
-             <td colspan="3">$${ShoppingCart.subtotal}</td>     
+             <td colspan="4">$${ShoppingCart.subtotal}</td>     
             
 		</tr>
         <tr>
 			<td class="tabletd">運費</td>
-			<td colspan="3">${orderBean.fee}</td>
+			<td colspan="4">${orderBean.fee}</td>
 			
 		</tr>
 	   <c:choose>
               <c:when test="${memberPaid eq '1'}">                
         <tr>
 			<td class="tabletd">付費會員優惠折購</td>
-			<td colspan="3">90% off</td>
+			<td colspan="4">90% off</td>
 			
 		</tr>
                </c:when>
@@ -256,24 +278,25 @@ ul, li {
 			<td class="tabletd">合計總金額</td>
 		   <c:choose>
             <c:when test="${memberPaid eq '0'}">
-			<td colspan="3">$${ShoppingCart.finalSubtotal}NT</td>
+			<td colspan="4">$${ShoppingCart.finalSubtotal}NT</td>
              </c:when>
             <c:when test="${memberPaid eq '1'}">
-			<td colspan="3">$${ShoppingCart.payFinalSubtotal}NT</td>
+			<td colspan="4">$${ShoppingCart.payFinalSubtotal}NT</td>
              </c:when>
              </c:choose>
              
 		</tr>
                                                
 		<tr>
-		<td></td>
-		<td></td>
-			<td><input type="submit" value="確認結帳送出" /></td>
-			<td><input type="submit" value="確認結帳送出" /></td>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="確認地址送出" /></td>
+			<td>&nbsp;</td>
+		</form>
+			<td><input type="button" value="取消訂單" onclick="location.href='<c:url value='/shoppingcart/removeOrder'/>'"/></td>
+			<td></td>
 		</tr>
 		
 	</table>
-		</form>
 	
 
 	</div>
@@ -338,9 +361,9 @@ ul, li {
 
 <script type="text/javascript">
 //<![CDATA[
-Sys.Application.add_init(function() {
-    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("UpdateProgress6"));
-});
+// Sys.Application.add_init(function() {
+//     $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("UpdateProgress6"));
+// });
 //]]>
 </script>
 

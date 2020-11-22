@@ -10,6 +10,7 @@
 	<!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <meta charset="UTF-8">
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <title>Insert title here</title>
 <style>
 	
@@ -25,24 +26,24 @@
 	<form id="formdata">
 	 <table class="btn btn-secondary" style="text-align:left" >
 		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
-		<tr><td>輸入品牌 :<td ><select id="brandId" name="brandId" required >
+		<tr><td>輸入品牌 :<td ><select id="brandId" name="brandId" required="required" >
 								<option value="">選擇廠牌</option>
-								<option value="3">犀牛</option>
-								<option value="4">Camp</option>
-								<option value="5">努特</option>
+								<option value="1">台灣 努特Nuit</option>
+								<option value="2">台灣 犀牛RHINO</option>
+								<option value="3">日本 LOGOS</option>
 							</select>
 		<tr><td>輸入價格 :<td><input type="text" id="price" value="888" name="price" />
 		<tr><td>上傳圖片 :<td><input type="file" id="image" onchange="uploadimg()">
 		<input type="text" name="image" style="display:none">
 		<tr><td>輸入產品內容 :<td><input type="text" id="description" value="產品內容" name="description" />
-		<tr><td>輸入產品狀態:<td><select id="statusId" name="statusId" required>
+		<tr><td>輸入產品狀態:<td><select id="statusId" name="statusId" required="required">
 								<option value="">選擇狀態</option>
 								<option value="1">上架中</option>
 								<option value="2">下架中</option>
 								<option value="3">庫存不足</option>
 							   </select>
 		<tr><td>輸入庫存數量 :<td><input type="text" id="stock" value="50" name="stock" />
-		<tr><td>輸入種類 :<td><input type="text" id="category" value="帳篷" name="category" />
+		<tr><td>輸入種類 :<td><input type="text" id="category" value="桌椅傢具" name="category" />
 	</table>
 	<br><br>
 			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />			

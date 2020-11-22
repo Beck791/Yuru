@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
-@Table(name = "Orderitem")
+@Table(name = "ProductOrder")
 public class OrderBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class OrderBean implements Serializable {
 	@Column(name = "orderAddress")
 	private String orderAddress;
 	
-	@Column(name = "price")
+	@Column(name = "total")
 	private Integer total;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

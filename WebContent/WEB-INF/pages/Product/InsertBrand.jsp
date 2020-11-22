@@ -7,7 +7,8 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
+<title>新增品牌</title>
 </head>
 <body style="background-color:#fdf5e6">
 <div align="center">

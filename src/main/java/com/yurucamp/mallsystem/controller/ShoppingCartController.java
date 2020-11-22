@@ -8,20 +8,17 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionAttributeStore;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.WebRequest;
 
 import com.yurucamp.mallsystem.model.OrderBean;
 import com.yurucamp.mallsystem.model.OrderDetailBean;
@@ -30,7 +27,6 @@ import com.yurucamp.mallsystem.model.ShoppingCart;
 import com.yurucamp.mallsystem.model.service.OrderBeanService;
 import com.yurucamp.mallsystem.model.service.OrderDetailBeanService;
 import com.yurucamp.mallsystem.model.service.PorductService;
-import com.yurucamp.mallsystem.model.service.ShoppingCartService;
 import com.yurucamp.member.model.MemberBean;
 import com.yurucamp.member.model.service.MemberCenterService;
 
@@ -46,9 +42,6 @@ public class ShoppingCartController {
 
 	@Autowired
 	OrderDetailBeanService orderDetailBeanService;
-
-	@Autowired
-	ShoppingCartService shoppingCartService;
 
 	@Autowired
 	PorductService productService;
@@ -188,43 +181,35 @@ public class ShoppingCartController {
 		return "check";
 	}
 	
-	@PostMapping("/shoppingcart/orderDetail")
-	public String orderDetailView(@RequestParam("id")Integer orderId, Model model,SessionStatus status) throws SQLException {
-		
+	@PostMapping(value = "/shoppingcart/finish")
+	public String finish(
+			@RequestParam("urbanArea")String urbanArea,
+			@RequestParam("postalCode")String postalCode,
+			@RequestParam("address")String address,
+			Model model,SessionStatus status) throws SQLException {
 		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		
 		if (memberBean == null) {
 			return "mallSystemIndex";
 		}
-		
 		ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
 		if (cart == null) {
 			return "redirectMallSystemIndex";
 		}
 		
-		System.out.println("/shoppingcart/orderDetail~~~~~~~~~~~~");
-		System.out.println(orderId);
-		List<OrderDetailBean> Mapean = orderDetailBeanService.queryByOrderId(orderId);
-		
-		for (OrderDetailBean orderDetailBean : Mapean) {
-		ProductBean productBean =	productService.queryOne(orderDetailBean.getProductId());
-			orderDetailBean.setProductName(productBean.getName());
-			orderDetailBean.setProductImage(productBean.getImage());
-		}
-		OrderBean ordreBean = orderBeanService.queryone(orderId);
-		
-		model.addAttribute("orderDetailBeans",Mapean);
-		model.addAttribute("ordreBean",ordreBean);
-		
-		return "orderDetail";
+		OrderBean orderBean = new OrderBean();
+		orderBean.setCreateTime(new Timestamp(System.currentTimeMillis()));
+		orderBean.setMemberId(memberBean.getId());
+		orderBean.setFee(60);
+		memberBean.setAddress(postalCode+urbanArea+address);
+
+		model.addAttribute("orderBean", orderBean);
+		model.addAttribute("memberBean", memberBean);
+		model.addAttribute("ShoppingCart", cart);
+		return "finish"; 
 	}
-	
-	
-	@PostMapping(value = "/shoppingcart/insertorder")
-	public String insertorder( 
-			@RequestParam("urbanArea")String urbanArea,
-			@RequestParam("postalCode")String postalCode,
-			@RequestParam("address")String address,
-			Model model,SessionStatus status) throws SQLException {
+	@GetMapping(value = "/shoppingcart/insertorder")
+	public String insertorder(Model model,SessionStatus status) throws SQLException {
 		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 		
 		if (memberBean == null) {
@@ -240,8 +225,8 @@ public class ShoppingCartController {
 		orderBean.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		orderBean.setMemberId(memberBean.getId());
 		orderBean.setFee(60);
-		orderBean.setOrderAddress(postalCode+urbanArea+address);
-		System.out.println(orderBean.getOrderAddress());
+		System.out.println(memberBean.getAddress());
+		orderBean.setOrderAddress(memberBean.getAddress());
 		Map<Integer,OrderBean> orderBeanMap = cart.getContent();
 		if(memberBean.getPaid() == 1) {
 			orderBean.setTotal(cart.getPayFinalSubtotal());	
@@ -268,5 +253,53 @@ public class ShoppingCartController {
 		cart.getContent().clear();
 		return "order"; 
 	}
+	
+	@GetMapping("/shoppingcart/removeOrder")
+	public String removeOrder(Model model,SessionStatus status) throws SQLException {
+		
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		if (memberBean == null) {
+			return "mallSystemIndex";
+		}
+		
+		ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
+		if (cart == null) {
+			return "redirectMallSystemIndex";
+		}
+		
+		cart.getContent().clear();
+		return "redirectMallSystemIndex";
+		
+	}
+		
+	@PostMapping("/shoppingcart/orderDetail")
+	public String orderDetailView(@RequestParam("id")Integer orderId, Model model,SessionStatus status) throws SQLException {
+		
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		if (memberBean == null) {
+			return "mallSystemIndex";
+		}
+		
+		ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
+		if (cart == null) {
+			return "redirectMallSystemIndex";
+		}
+
+		List<OrderDetailBean> Mapean = orderDetailBeanService.queryByOrderId(orderId);
+		
+		for (OrderDetailBean orderDetailBean : Mapean) {
+		ProductBean productBean =	productService.queryOne(orderDetailBean.getProductId());
+			orderDetailBean.setProductName(productBean.getName());
+			orderDetailBean.setProductImage(productBean.getImage());
+		}
+		OrderBean ordreBean = orderBeanService.queryone(orderId);
+		
+		model.addAttribute("orderDetailBeans",Mapean);
+		model.addAttribute("ordreBean",ordreBean);
+		
+		return "orderDetail";
+	}
+	
+	
 
 }

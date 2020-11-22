@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>訂單明細</title>
-<<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
+<title>訂單確認</title>
+<link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/ionicons/css/ionicons.min.css' />"
@@ -26,7 +26,6 @@
 	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
-
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -37,6 +36,24 @@
 
 
 
+/* button { */
+/*     text-transform: capitalize; */
+/*     background: #dbcf83; */
+/*     color: #5d5030e0; */
+/*     border: none; */
+/*     border: 2px solid #dbcf83; */
+/*     padding: 1.5em 0em; */
+/*     font-weight: 600; */
+/*     font-size: 1em; */
+/*     margin-top: 1em; */
+/*     width: 100%; */
+/*     outline: none; */
+/*     letter-spacing: 1px; */
+/*     -webkit-transition: .5s all; */
+/*     -moz-transition: .5s all; */
+/*     transition: .5s all; */
+/*     cursor: pointer; */
+/* } */
 .input-contact {
 	height: 40px;
 	width: 100%;
@@ -87,14 +104,6 @@ h3 {
 	margin:auto;
 /* 	box-shadow:1px 1px 7px #8a6d3b73; */
 }
-
-.tdtest{
-
-padding-left: 6px;
-
-
-}
-
 .tabletd {
 	padding: 7px;
 }
@@ -169,7 +178,7 @@ ul, li {
 
 	<!-- top bar -->
 		<div class="top-bar">
-			<h1>訂單明細</h1>
+			<h1>確認訂單資料</h1>
 			<p>
 				<a href="#">Travel is the only thing you buy that makes you richer.</a>
 			</p>
@@ -179,71 +188,82 @@ ul, li {
 	<!-- main container -->
 	
 		<div  class="book-agileinfo-form"><br><br>
-   
-	<table id="amount-table" style="text-align:left">
+
+   	
+	<table id="amount-table">
 		<tr>
-			<td colspan="5" style="background:#dbcf83; font-size:20px; padding:6px" >
-			訂購日期：<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${ordreBean.createTime}"/></td>
-		</tr>		
+			<td colspan="4" style="background:#dbcf83; font-size:20px; padding:6px" >訂單資料填寫</td>
+		</tr>
+<!-- 		<tr> -->
+<!-- 			<td class="tabletd">訂單編號</td> -->
+<%-- 			<td colspan="2">${orderBean.id}</td> --%>
+<!-- 		</tr> -->
+        <tr>
+			<td class="tabletd">訂購人</td>
+			<td colspan="4">${memberBean.name}</td>
+		</tr>
+        <tr>
+			<td class="tabletd">訂購人電話</td>
+			<td colspan="4">${memberBean.phone}</td>
+		</tr>
 		<tr>
-			<td class="tdtest">產品</td>
-			<td>名稱</td>
-			<td>數量</td>
-			<td>價格</td>
-			<td>小計</td>
+			<td class="tabletd">訂購日期</td>
+			<td colspan="4"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${orderBean.createTime}"/></td>
+		</tr>
+	
+    	<form method="Post" action='<c:url value='/EcPay/Orders/'/>'>
+		<tr>
+			<td class="tabletd">寄送地址:</td>
+			<td colspan="4">${memberBean.address}</td>		
+		</tr>
+        <tr>
+			<td class="tabletd">消費金額</td>		      
+             <td colspan="4">$${ShoppingCart.subtotal}</td>     
+            
+		</tr>
+        <tr>
+			<td class="tabletd">運費</td>
+			<td colspan="4">${orderBean.fee}</td>
 			
 		</tr>
-   	<c:forEach items="${orderDetailBeans}" var="orderDetailBean" varStatus="step">
-		<tr>
-			<td class="tdtest"><img src="${orderDetailBean.productImage}" height="50"></td>
-			<td>${orderDetailBean.productName}</td> 
-			<td>${orderDetailBean.quantity}</td>
-			<td>$${orderDetailBean.price}</td>
-			<td>$${orderDetailBean.quantity * orderDetailBean.price}</td>
+	   <c:choose>
+              <c:when test="${memberPaid eq '1'}">                
+        <tr>
+			<td class="tabletd">付費會員優惠折購</td>
+			<td colspan="4">90% off</td>
+			
 		</tr>
-	    </c:forEach>
-
-		<tr>
-		<th colspan="4" class="tdtest">運費</th>
-		<th>$60</th>
-		</tr>
-		
-		<c:choose>
-         <c:when test="${memberPaid eq '1'}">                
-		<tr>
-		<th colspan="4" class="tdtest">付費會員優惠折購</th>
-		<th>90% off</th>
-		
-		</tr>
-        </c:when>
+               </c:when>
         </c:choose>
-       
-		
 		<tr>
-		<td colspan="5">
-		&nbsp;
-		</td>
-		
+			<td class="tabletd">合計總金額</td>
+		   <c:choose>
+            <c:when test="${memberPaid eq '0'}">
+			<td colspan="4">$${ShoppingCart.finalSubtotal}NT</td>
+             </c:when>
+            <c:when test="${memberPaid eq '1'}">
+			<td colspan="4">$${ShoppingCart.payFinalSubtotal}NT</td>
+             </c:when>
+             </c:choose>
+             
 		</tr>
+                                               
 		<tr>
-		<td colspan="3" class="tdtest"></td>
-		<td>合計</td>
-		<td>$${ordreBean.total}NT<td>
-		</tr>
-		
-		</tr>
-		<tr>
-		<td colspan="3"></td>
-		<td></td>
-		<td><input type="button" value="返回商城" onclick="location.href='<c:url value='/Product/Index'/>'" style="padding:5px"/><td>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="確認結帳送出" /></td>
+			<td>&nbsp;</td>
+		</form>
+			<td><input type="button" value="取消訂單" onclick="location.href='<c:url value='/shoppingcart/removeOrder'/>'"/></td>
+			<td></td>
 		</tr>
 		
 	</table>
+	
+
 	</div>
 	<br><br>
 	
-<!-- 導覽列 -->
-   <section class="cal-app_list">
+<section class="cal-app_list">
     <div class="cal-container">
         <ul class="clearfix">
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
@@ -282,7 +302,6 @@ ul, li {
     	</div>
 
     </section>
-
 	<div class="clear"></div>
 	
 
@@ -301,7 +320,13 @@ ul, li {
 	<!-- end back to top -->
 
 
-
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("UpdateProgress6"));
+});
+//]]>
+</script>
 
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>

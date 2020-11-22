@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <style>
 * {
     font-family: 微軟正黑體;
@@ -57,7 +57,7 @@
 
 </c:forEach>
 </table>
-<h3>共${productBeans.size()}筆員工資料</h3>
+<h3>共${productBeans.size()}筆產品資料</h3>
 </div>	
 </div>
 <script>

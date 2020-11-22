@@ -75,16 +75,6 @@ public class ProductDaoImp implements ProductDao {
 		ItemStatus itemStatus = sessionFactory.getCurrentSession().get(ItemStatus.class, id);
 		return itemStatus;	
 	}
-
-//	@Override
-//	public JSONArray querypage() throws SQLException {
-//		String hql = "FROM ProductBean Order by id desc";
-//		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
-//		query.setFirstResult(0);
-//		query.setMaxResults(5);
-//		JSONArray results = (JSONArray) query.list();
-//		return results;
-//	}
 	
 	@Override
 	public List<ProductBean> querypage() throws SQLException {

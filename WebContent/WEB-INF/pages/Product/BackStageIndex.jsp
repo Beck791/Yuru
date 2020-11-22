@@ -8,11 +8,11 @@
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>露營商品管理</title>
 <link rel="icon" href="<c:url value='/img/fav.png' />" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/ionicons/css/ionicons.min.css' />" rel="stylesheet">
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <!-- main css -->
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 
@@ -34,9 +34,9 @@
 </div>
 <div>
     <a href="<c:url value='/Product/Index' />" class="btn btn-primary">露營商城</a><br><br>
-	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br>
-    <a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">查詢全部資料</a><br><br>
-	<a href="<c:url value='/Product/InsertProduct'/>" class="btn btn-primary">新增資料</a><br><br>
+<%-- 	<a href="<c:url value='/Product/GetProduct.jsp'/>" class="btn btn-primary">查詢單筆資料 </a><br><br> --%>
+    <a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">查詢全部產品資料</a><br><br>
+	<a href="<c:url value='/Product/InsertProduct'/>" class="btn btn-primary">新增產品資料</a><br><br>
 	<a href="<c:url value='/Product/GetAllBrand'/>" class="btn btn-primary">查詢廠牌資料</a><br><br>
 	<a href="<c:url value='/Product/InsertBrand'/>" class="btn btn-primary">新增廠牌資料</a><br><br>
 </div>

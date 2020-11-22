@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>訂單完成</title>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -75,8 +75,10 @@ h3 {
 }
 
 #amount-table {
-	border: 3px solid #dbcf83;
-	border-radius: 30px;
+/* 	border: 5px solid #dbcf83; */
+/* 	border-radius: 30px; */
+	font-size:17px ;
+	background-color:#FFFAF4;
 	width: 600px;
 	padding: 30px;
 /* 	float:left; */
@@ -173,10 +175,10 @@ ul, li {
 		<tr>
 			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >訂單資料</td>
 		</tr>
-		<tr>
-			<td class="tabletd">訂單編號</td>
-			<td colspan="2">${orderBean.id}</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<td class="tabletd">訂單編號</td> -->
+<%-- 			<td colspan="2">${orderBean.id}</td> --%>
+<!-- 		</tr> -->
         <tr>
 			<td class="tabletd">訂購人</td>
 			<td colspan="2">${memberBean.name}</td>
@@ -187,7 +189,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td class="tabletd">訂購日期</td>
-			<td colspan="2"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${orderBean.createTime}"/></td>
+			<td colspan="2"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${orderBean.createTime}"/></td>
 		</tr>
 		<tr>
 		<tr>
@@ -209,9 +211,9 @@ ul, li {
 		</tr>
 		<form>
 		<tr>
-			<td class="tabletd"><button onclick="qurey('${orderBean.id}')">查看訂單明細</button></td>
+			<td class="tabletd"><input type="button" value="查看訂單明細" onclick="qurey('${orderBean.id}')" style="padding: 5px "></td>
 			<td></td>
-			<td><button>返回商城</button></td>
+			<td><input type="button" value="返回商城" onclick="location.href='<c:url value='/Product/Index'/>'" style="padding: 5px "></td>
 		</tr>
 		</form>
 	</table>

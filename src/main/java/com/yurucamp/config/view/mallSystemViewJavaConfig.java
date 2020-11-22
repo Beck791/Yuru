@@ -80,6 +80,13 @@ public class mallSystemViewJavaConfig {
 	}
 	
 	@Bean
+	public View finish() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Product/finish.jsp"); 
+		return view;
+	}
+	
+	@Bean
 	public View order() { 
 		InternalResourceView view = new InternalResourceView();
 		view.setUrl("/WEB-INF/pages/Product/order.jsp"); 

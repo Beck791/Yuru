@@ -7,9 +7,10 @@
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Snippet - BBBootstrap</title>
+<title>Shopping Cart</title>
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+<link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <style>
 								
 body {
@@ -317,7 +318,7 @@ button:focus {
                       
                         <c:choose>
                             <c:when test="${memberPaid eq '0'}">
-                        <button class="btn-block btn-blue" id="checkout0" onclick="location.href='<c:url value='/shoppingcart/insertorder'/>'">
+                        <button class="btn-block btn-blue" id="checkout0" onclick="location.href='<c:url value='/shoppingcart/check'/>'">
                         <span style="float: left">Checkout</span> 
                         <span style="float: right">$${ShoppingCart.finalSubtotal}</span> 
                            </button>

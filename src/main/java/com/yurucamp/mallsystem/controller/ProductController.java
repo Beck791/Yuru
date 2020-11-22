@@ -102,9 +102,6 @@ public class ProductController {
 		productBean.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		productService.insert(productBean);
 		List<ProductBean> list = productService.querypage();
-//		map.put("queryPage",queryPage);
-		
-//		model.addAttribute("productBeans", list);
 		
 		return list;
 	}
