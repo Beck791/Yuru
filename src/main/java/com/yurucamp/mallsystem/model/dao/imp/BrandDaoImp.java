@@ -75,35 +75,6 @@ public class BrandDaoImp implements BrandDao {
 		return id ;			
 	}
 
-	/**
-	* 使用hql語句進行分頁查詢
-	* @param hql 需要查詢的hql語句
-	* @param offset 第一條記錄索引
-	* @param pageSize 每頁需要顯示的記錄數
-	* @return 當前頁的所有記錄
-	*/
-//	@SuppressWarnings("rawtypes")
-//	public List findByPage(final String hql,
-//	final int offset, final int pageSize)
-//	{
-//	//通過一個HibernateCallback物件來執行查詢
-//	List list = getHibernateTemplate()
-//	.executeFind(new HibernateCallback()
-//	{
-//	//實現HibernateCallback介面必須實現的方法
-//	public Object doInHibernate(Session session)
-//	throws HibernateException
-//	{
-//	//執行Hibernate分頁查詢
-//	List result = session.createQuery(hql)
-//	.setFirstResult(offset)
-//	.setMaxResults(pageSize)
-//	.list();
-//	return result;
-//	}
-//	});
-//	return list;
-//	}
-	
+
 	
 }

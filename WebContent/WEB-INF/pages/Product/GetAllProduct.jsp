@@ -38,8 +38,8 @@
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 
 <form>
-<button type="submit" value="修改" name="" class="" onclick="update('${productBean.id}')" ><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
-<button type="submit" value="刪除" name="" class="" onclick="del('${productBean.id}')" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
+<button type="submit" value="修改" onclick="update('${productBean.id}')" ><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
+<button type="submit" value="刪除" onclick="del('${productBean.id}')" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
 </td>
 <td>${productBean.id}</td>
 <td>${productBean.name}</td>	

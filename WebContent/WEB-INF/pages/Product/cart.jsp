@@ -184,13 +184,13 @@ button:focus {
         <div class="col-7">
             <div class="row text-right">
                 <div class="col-4">
-                    <h6 class="mt-2">種類</h6>
+                    <h6 class="mt-2">單價</h6>
                 </div>
                 <div class="col-4">
                     <h6 class="mt-2">數量</h6>
                 </div>
                 <div class="col-4">
-                    <h6 class="mt-2">價錢</h6>
+                    <h6 class="mt-2">小計</h6>
                 </div>
             </div>
         </div>
@@ -203,14 +203,14 @@ button:focus {
                 <div class="book"> <img src="${orderbean.value.image}" class="book-img"/> </div>
                 <div class="my-auto flex-column d-flex pad-left">
                     <h6 class="mob-text">產品名字${orderbean.value.productName}</h6>
-                    <p class="mob-text">產品內容${orderbean.value.description}211</p>
+                    <p class="mob-text">產品種類${orderbean.value.category}211</p>
                 </div>
             </div>
         </div>
         <div class="my-auto col-7">
             <div class="row text-right">
                 <div class="col-4">
-                    <p class="mob-text">種類${orderbean.value.category}</p>                   
+                    <p class="mob-text">$${orderbean.value.price}NT</p>                   
                 </div>
                 <div class="col-4">
                     <div class="row d-flex justify-content-end px-3">    
@@ -223,7 +223,7 @@ button:focus {
                     </div>
                 </div>
                 <div class="col-4">
-                    <h6 class="mob-text">$${orderbean.value.price}NT</h6>
+                    <h6 class="mob-text">$${orderbean.value.quantity * orderbean.value.price}NT</h6>
                     <button onclick="del('${orderbean.value.productId}')"><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
 <%--                     <button  name="newQty" onclick="update(${orderbean.value.productId},${orderbean.value.quantity},${vs.index})">update</button> --%>
                 </div>
@@ -323,7 +323,7 @@ button:focus {
                            </button>
                          </c:when>
                             <c:when test="${memberPaid eq '1'}">
-                        <button class="btn-block btn-blue" id="checkout1" onclick="location.href='<c:url value='/shoppingcart/insertorder'/>'">
+                        <button class="btn-block btn-blue" id="checkout1" onclick="location.href='<c:url value='/shoppingcart/check'/>'">
                         <span style="float: left">Checkout</span> 
                         <span style="float: right">$${ShoppingCart.payFinalSubtotal}</span></button>
                          </c:when>
@@ -337,6 +337,10 @@ button:focus {
     </div> 
 </div>
 <script type='text/javascript'>
+
+// var producttotal = ${orderbean.value.price}*${orderbean.value.quantity};
+// var x = "producttotal" + index;
+// document.getElementById(x).innerHTML = producttotal;
 
 $(document).ready(function(){
 

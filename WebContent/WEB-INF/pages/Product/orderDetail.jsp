@@ -34,6 +34,8 @@
     <![endif]-->
 <style>
 
+
+
 .input-contact {
 	height: 40px;
 	width: 100%;
@@ -74,13 +76,22 @@ h3 {
 }
 
 #amount-table {
-	border: 3px solid #dbcf83;
-	border-radius: 30px;
+/* 	border: 5px solid #dbcf83; */
+/* 	border-radius: 30px; */
+	font-size:17px ;
+	background-color:#FFFAF4;
 	width: 600px;
 	padding: 30px;
 /* 	float:left; */
 	margin:auto;
 /* 	box-shadow:1px 1px 7px #8a6d3b73; */
+}
+
+.tdtest{
+
+padding-left: 6px;
+
+
 }
 
 .tabletd {
@@ -157,7 +168,7 @@ ul, li {
 
 	<!-- top bar -->
 		<div class="top-bar">
-			<h1>露營車訂單查詢</h1>
+			<h1>商品訂單細節</h1>
 			<p>
 				<a href="#">Travel is the only thing you buy that makes you richer.</a>
 			</p>
@@ -167,69 +178,58 @@ ul, li {
 	<!-- main container -->
 	
 		<div  class="book-agileinfo-form"><br><br>
-   	<form action="" method="POST">
-   	<c:forEach items="${planList}" var="data" varStatus="step">
-	<table id="amount-table">
+   
+	<table id="amount-table" style="text-align:left">
 		<tr>
-			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >訂單明細</td>
+			<td colspan="5" style="background:#dbcf83; font-size:20px; padding:6px" >訂單明細</td>
+		</tr>		
+		<tr>
+			<td class="tdtest">產品</td>
+			<td>名稱</td>
+			<td>數量</td>
+			<td>價格</td>
+			<td>小計</td>
+			
+		</tr>
+   	<c:forEach items="${orderDetailBeans}" var="orderDetailBean" varStatus="step">
+		<tr>
+			<td class="tdtest">${orderDetailBean.productImage}</td>
+			<td>${orderDetailBean.productName}</td> 
+			<td>${orderDetailBean.quantity}</td>
+			<td>$${orderDetailBean.price}</td>
+			<td>$${orderDetailBean.quantity * orderDetailBean.price}</td>
+		</tr>
+	    </c:forEach>
+
+		<tr>
+		<th colspan="4" class="tdtest">運費</th>
+		<th>$60</th>
+		</tr>
+		
+		<c:choose>
+         <c:when test="${memberPaid eq '1'}">                
+		<tr>
+		<th colspan="4" class="tdtest">付費會員優惠折購</th>
+		<th>90% off</th>
+		
+		</tr>
+        </c:when>
+        </c:choose>
+       
+		
+		<tr>
+		<td colspan="5">
+		&nbsp;
+		</td>
+		
 		</tr>
 		<tr>
-			<td class="tabletd">訂單編號</td>
-			<td colspan="2">編號</td>
-		</tr>
-		<tr>
-			<td class="tabletd">訂購日期</td>
-			<td colspan="2">訂購日期</td>
-		</tr>
-		<tr>
-			<td class="tabletd">取車地點</td>
-			<td colspan="2">取車地點</td>
-		</tr>
-		<tr>
-			<td class="tabletd">還車地點</td>
-			<td colspan="2">地點</td>
-		</tr>
-		<tr>
-			<td class="tabletd">取車日期</td>
-			<td>取車日期</td>
-			<td>取車日期</td>
-		</tr>
-		<tr>
-			<td class="tabletd">還車日期</td>
-			<td>還車日期</td>
-			<td>還車日期</td>
-		</tr>
-		<tr>
-			<td class="tabletd">租用車款</td>
-			<td colspan="2">租用車款</td>
-		</tr>
-		<tr>
-			<td class="tabletd">數量</td>
-			<td colspan="2">數量</td>
-		</tr>
-		<tr>
-			<td class="tabletd">加購裝備數量</td>
-			<td id="deviceAmount">加購裝備數量</td>
-			<td id="devicePrice"></td>
-		</tr>
-<!-- 		<tr> -->
-<!-- 			<td class="tabletd">多日優惠折扣</td> -->
-<!-- 			<td></td> -->
-<!-- 			<td id="discount"></td> -->
-<!-- 		</tr> -->
-		<tr>
-			<td class="tabletd">優惠券折扣</td>
-			<td id="couponName">優惠券折扣</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td colspan="2" class="tabletd">合計金額</td>
-			<td id="totalPrice">合計金額</td>
+		<th colspan="3" class="tdtest">合計</th>
+		<th>total</th>
+		<th>$${ordreBean.total}NT<th>
 		</tr>
 		
 	</table>
-	</c:forEach>
-	</form>
 	</div>
 	<br><br>
 	

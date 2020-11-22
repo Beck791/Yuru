@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,30 +94,23 @@ public class ShoppingCartController {
 		}
 		Map<Integer, ProductBean> productMap =productService.queryallon();
 		ProductBean productBean = productMap.get(productId);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println(productId);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 		OrderBean orderbean = new OrderBean();
 		orderbean.setProductId(productId);
 		orderbean.setProductName(productBean.getName());
 		
-		System.out.println(productBean.getName());
+
 		orderbean.setDescription(productBean.getDescription());
 		orderbean.setQuantity(1);
 		orderbean.setPrice(productBean.getPrice());
-		System.out.println(productBean.getPrice());
+
 		orderbean.setFee(60);
 		orderbean.setImage(productBean.getImage());
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println(productBean.getImage());
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println(memberBean.getPaid());
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 		orderbean.setCategory(productBean.getCategory());
-//		orderbean.setTotal(cart.getSubtotal());
-//		System.out.println(cart.getSubtotal());
+
 		cart.addToCart(productId, orderbean);
+		
 		System.out.println(orderbean.getTotal());
 		System.out.println(cart.getContent());
 		List<ProductBean> list = productService.queryAllon();	
@@ -171,8 +165,66 @@ public class ShoppingCartController {
 		return "cart";
 	}
 
-	@GetMapping(value = "/shoppingcart/insertorder")
-	public String insertorder( Model model,SessionStatus status) throws SQLException {
+	@GetMapping("/shoppingcart/check")
+	public String checkview(Model model,SessionStatus status) throws SQLException {
+	
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		if (memberBean == null) {
+			return "mallSystemIndex";
+		}
+		
+		ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
+		if (cart == null) {
+			return "redirectMallSystemIndex";
+		}
+		OrderBean orderBean = new OrderBean();
+		orderBean.setCreateTime(new Timestamp(System.currentTimeMillis()));
+		orderBean.setMemberId(memberBean.getId());
+		orderBean.setFee(60);
+		
+		model.addAttribute("orderBean", orderBean);
+		model.addAttribute("memberBean", memberBean);
+		model.addAttribute("ShoppingCart", cart);
+		return "check";
+	}
+	
+	@PostMapping("/shoppingcart/orderDetail")
+	public String orderDetailView(@RequestParam("id")Integer orderId, Model model,SessionStatus status) throws SQLException {
+		
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+		if (memberBean == null) {
+			return "mallSystemIndex";
+		}
+		
+		ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
+		if (cart == null) {
+			return "redirectMallSystemIndex";
+		}
+		
+		System.out.println("/shoppingcart/orderDetail~~~~~~~~~~~~");
+		System.out.println(orderId);
+		List<OrderDetailBean> Mapean = orderDetailBeanService.queryByOrderId(orderId);
+		
+		for (OrderDetailBean orderDetailBean : Mapean) {
+		ProductBean productBean =	productService.queryOne(orderDetailBean.getProductId());
+			orderDetailBean.setProductName(productBean.getName());
+			orderDetailBean.setProductImage(productBean.getImage());
+		}
+		OrderBean ordreBean = orderBeanService.queryone(orderId);
+		
+		model.addAttribute("orderDetailBeans",Mapean);
+		model.addAttribute("ordreBean",ordreBean);
+		
+		return "orderDetail";
+	}
+	
+	
+	@PostMapping(value = "/shoppingcart/insertorder")
+	public String insertorder( 
+			@RequestParam("urbanArea")String urbanArea,
+			@RequestParam("postalCode")String postalCode,
+			@RequestParam("address")String address,
+			Model model,SessionStatus status) throws SQLException {
 		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 		
 		if (memberBean == null) {
@@ -188,6 +240,8 @@ public class ShoppingCartController {
 		orderBean.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		orderBean.setMemberId(memberBean.getId());
 		orderBean.setFee(60);
+		orderBean.setOrderAddress(postalCode+urbanArea+address);
+		System.out.println(orderBean.getOrderAddress());
 		Map<Integer,OrderBean> orderBeanMap = cart.getContent();
 		if(memberBean.getPaid() == 1) {
 			orderBean.setTotal(cart.getPayFinalSubtotal());	
@@ -206,8 +260,12 @@ public class ShoppingCartController {
 			orderDetailBean.setQuantity(bean.getQuantity());
 			orderDetailBeanService.insert(orderDetailBean);
 		}
-			cart.getContent().clear();
+		System.out.println(orderBean.getId());
+//		List<OrderDetailBean> orderDetailBean = orderDetailBeanService.queryByOrderId(orderBean.getId());
+		System.out.println(orderBean.getId());
+//		model.addAttribute("orderDetailBeans",orderDetailBean);
 		model.addAttribute("orderBean",orderBean);
+		cart.getContent().clear();
 		return "order"; 
 	}
 

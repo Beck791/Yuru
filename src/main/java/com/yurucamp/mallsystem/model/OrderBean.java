@@ -67,6 +67,19 @@ public class OrderBean implements Serializable {
 	@Transient
 	private String image;
 	
+	@Transient
+	private Integer subtotal;
+
+	
+
+
+	public Integer getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(Integer subtotal) {
+		this.subtotal = subtotal;
+	}
 
 	public String getImage() {
 		return image;

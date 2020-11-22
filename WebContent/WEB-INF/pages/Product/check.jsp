@@ -26,7 +26,8 @@
 	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
-
+ <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDjdcK9yPMAP5kK73qorDZgq9RAuo4eo_o" type="text/javascript"></script>
+ 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -158,7 +159,7 @@ ul, li {
 
 	<!-- top bar -->
 		<div class="top-bar">
-			<h1>商品訂購完成!!</h1>
+			<h1>確認訂單資料</h1>
 			<p>
 				<a href="#">Travel is the only thing you buy that makes you richer.</a>
 			</p>
@@ -168,59 +169,117 @@ ul, li {
 	<!-- main container -->
 	
 		<div  class="book-agileinfo-form"><br><br>
+
    	
 	<table id="amount-table">
 		<tr>
-			<td colspan="3" style="background:#dbcf83; font-size:20px; padding:6px" >訂單資料</td>
+			<td colspan="4" style="background:#dbcf83; font-size:20px; padding:6px" >訂單資料填寫</td>
 		</tr>
-		<tr>
-			<td class="tabletd">訂單編號</td>
-			<td colspan="2">${orderBean.id}</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<td class="tabletd">訂單編號</td> -->
+<%-- 			<td colspan="2">${orderBean.id}</td> --%>
+<!-- 		</tr> -->
         <tr>
 			<td class="tabletd">訂購人</td>
-			<td colspan="2">${memberBean.name}</td>
+			<td colspan="3">${memberBean.name}</td>
 		</tr>
         <tr>
 			<td class="tabletd">訂購人電話</td>
-			<td colspan="2">${memberBean.phone}</td>
+			<td colspan="3">${memberBean.phone}</td>
 		</tr>
 		<tr>
 			<td class="tabletd">訂購日期</td>
-			<td colspan="2"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${orderBean.createTime}"/></td>
+			<td colspan="3"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${orderBean.createTime}"/></td>
+		</tr>
+	
+    	<form method="Post" action='<c:url value='/shoppingcart/insertorder'/>'>
+		<tr>
+			<td class="tabletd">寄送地區</td>
+			<td colspan="3"><select name="urbanArea" >
+            <option value="">選擇地區</option>
+			<option value="基隆市">基隆市</option>
+			<option value="台北市">台北市</option>
+			<option value="新北市">新北市</option>
+			<option value="桃園縣">桃園縣</option>
+			<option value="新竹市">新竹市</option>
+			<option value="新竹縣">新竹縣</option>
+			<option value="苗栗縣">苗栗縣</option>
+			<option value="台中市">台中市</option>
+			<option value="彰化縣">彰化縣</option>
+			<option value="南投縣">南投縣</option>
+			<option value="雲林縣">雲林縣</option>
+			<option value="嘉義市">嘉義市</option>
+			<option value="嘉義縣">嘉義縣</option>
+			<option value="台南市">台南市</option>
+			<option value="高雄市">高雄市</option>
+			<option value="屏東縣">屏東縣</option>
+			<option value="台東縣">台東縣</option>
+			<option value="花蓮縣">花蓮縣</option>
+			<option value="宜蘭縣">宜蘭縣</option>
+			<option value="澎湖縣">澎湖縣</option>
+			<option value="金門縣">金門縣</option>
+			<option value="連江縣">連江縣</option>		
+            </select>	   
 		</tr>
 		<tr>
+        <tr>
+			<td class="tabletd">郵遞區號:</td>
+			<td id="couponName" colspan="3"><input type="text" size="6" maxlength="6" name="postalCode"></td>
+			
+		</tr>
 		<tr>
 			<td class="tabletd">寄送地址:</td>
-			<td id="couponName">${orderBean.orderAddress}</td>
-			<td></td>
+			<td id="couponName" colspan="3"><input type="text" size="25" name="address"></td>
+		
+			
 		</tr>
         <tr>
-			<td class="tabletd">消費金額</td>
-			<td colspan="2">${orderBean.total - orderBean.fee }</td>
+			<td class="tabletd">消費金額</td>		      
+             <td colspan="3">$${ShoppingCart.subtotal}</td>     
+            
 		</tr>
         <tr>
 			<td class="tabletd">運費</td>
-			<td colspan="2">${orderBean.fee}</td>
+			<td colspan="3">${orderBean.fee}</td>
+			
 		</tr>
+	   <c:choose>
+              <c:when test="${memberPaid eq '1'}">                
+        <tr>
+			<td class="tabletd">付費會員優惠折購</td>
+			<td colspan="3">90% off</td>
+			
+		</tr>
+               </c:when>
+        </c:choose>
 		<tr>
 			<td class="tabletd">合計總金額</td>
-			<td colspan="2">$${orderBean.total}NT</td>
+		   <c:choose>
+            <c:when test="${memberPaid eq '0'}">
+			<td colspan="3">$${ShoppingCart.finalSubtotal}NT</td>
+             </c:when>
+            <c:when test="${memberPaid eq '1'}">
+			<td colspan="3">$${ShoppingCart.payFinalSubtotal}NT</td>
+             </c:when>
+             </c:choose>
+             
 		</tr>
-		<form>
+                                               
 		<tr>
-			<td class="tabletd"><button onclick="qurey('${orderBean.id}')">查看訂單明細</button></td>
-			<td></td>
-			<td><button>返回商城</button></td>
+		<td></td>
+		<td></td>
+			<td><input type="submit" value="確認結帳送出" /></td>
+			<td><input type="submit" value="確認結帳送出" /></td>
 		</tr>
-		</form>
+		
 	</table>
+		</form>
 	
+
 	</div>
 	<br><br>
 	
-<!-- 導覽列 -->
-   <section class="cal-app_list">
+<section class="cal-app_list">
     <div class="cal-container">
         <ul class="clearfix">
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
@@ -259,7 +318,6 @@ ul, li {
     	</div>
 
     </section>
-
 	<div class="clear"></div>
 	
 
@@ -278,7 +336,13 @@ ul, li {
 	<!-- end back to top -->
 
 
-
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("UpdateProgress6"));
+});
+//]]>
+</script>
 
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
@@ -294,15 +358,6 @@ ul, li {
 
 	<!-- google analytics  -->
 	<script>
-	
-	function qurey(id){
-		console.log(id);
-		document.forms[0].action="<c:url value='/shoppingcart/orderDetail?id=" + id + "'/>" ;
-		document.forms[0].method="post";
-		document.forms[0].submit();
-	}
-	
-	
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
 			i[r] = i[r] || function() {

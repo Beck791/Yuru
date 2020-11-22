@@ -4,12 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.yurucamp.mallsystem.model.BrandBean;
 import com.yurucamp.mallsystem.model.OrderBean;
 import com.yurucamp.mallsystem.model.OrderDetailBean;
+import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.mallsystem.model.dao.OrderDetailBeanDao;
 
 @Repository
@@ -48,38 +51,30 @@ public class OrderDetailBeanDaoImp implements OrderDetailBeanDao{
 		return OrderBean;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderDetailBean> queryByOrderId(Integer orderId) throws SQLException {
-		List<OrderDetailBean> list = null;
-		try {
-			list = sessionFactory.getCurrentSession()
-							.createQuery("From OrderDetailBean  where orderId = :orderId")
-							.setParameter("orderId", orderId)
-							.getResultList();
-		} catch (Exception e) {
-			System.out.println("No Result.");
-			return null;
-		}
-			return list;
 		
+		@SuppressWarnings("unchecked")
+		List<OrderDetailBean> list = sessionFactory.getCurrentSession().createQuery("From OrderDetailBean where orderId =:orderId").setParameter("orderId", orderId).getResultList();
+		
+		return list;
+		
+//		String hql = "from BrandBean where name=:name";
+//		System.out.println(hql);
+//		BrandBean brandBean= (BrandBean) sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", brandname).getSingleResult();
+//		Integer id = brandBean.getId();
+//		return id ;	
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderDetailBean> queryByProductId(Integer productId) throws SQLException {
-		List<OrderDetailBean> list = null;
-		try {
-			list = sessionFactory.getCurrentSession()
-							.createQuery("From OrderDetailBean a where a.productID = :productID")
-							.setParameter("productID", productId)
-							.getResultList();
-		} catch (Exception e) {
-			System.out.println("No Result.");
-			return null;
-		}
+
+			Query<OrderDetailBean> query = sessionFactory.getCurrentSession().createQuery("From OrderDetailBean a where a.productID =:productID", OrderDetailBean.class);
+			query.setParameter("productId", productId);
+			List<OrderDetailBean> list = query.list();
 			return list;
-		
+			
+			
 	}
 }
 
