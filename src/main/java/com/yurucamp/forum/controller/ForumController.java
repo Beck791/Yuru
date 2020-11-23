@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.yurucamp.forum.model.PostBean;
 import com.yurucamp.forum.model.ReplyBean;
 import com.yurucamp.forum.model.service.ArticleService;
+import com.yurucamp.forum.model.service.ForumService;
 import com.yurucamp.general.model.service.GeneralService;
 
 @Controller
@@ -33,6 +35,8 @@ public class ForumController {
 	ArticleService articleService;
 	@Autowired
 	GeneralService generalService;
+	@Autowired
+	ForumService forumService;
 
 	@RequestMapping("/Forum/Index")
 	public String ToClassifyPage(Model model, SessionStatus status) {
@@ -99,20 +103,21 @@ public class ForumController {
 		return "campDiscussionPage";
 	}
 	//新增回文跳轉
-		@RequestMapping(value ="/Forum/goReply", method = RequestMethod.GET)
-		public String GoReply(Model model) {
-			ReplyBean re = new ReplyBean();
-			String a = "aaa";
-			model.addAttribute("ForumBean",a);
-			model.addAttribute("ReplyBean",re);
-			return "memberCreatPage";
+		@RequestMapping("/Forum/goReply")
+		public String GoReply(Model model) throws SQLException {
+			List<PostBean> postList = articleService.queryPostAll();
+			System.out.println("polist=?"+ postList);
+			model.addAttribute("postList", postList);		
+//			List<ForumBean> forumList = forumService.queryForumAll();
+//			model.addAttribute("forumList",forumList);
+			return "memberReplyPage";
 		}
 	
 	
 	
 	//新增回覆
 	@RequestMapping(value ="/Forum/Reply", method = RequestMethod.POST)
-	public String Reply( 			
+	public String Reply( 			@RequestParam(value="postList")Integer poId,
 									@RequestParam(value="contentforckeditor",required = false)String poContent,
 									@RequestParam(value="poImage",required = false)MultipartFile poImage,								
 									Model model) 
@@ -120,6 +125,7 @@ public class ForumController {
 		throws SQLException {
 		System.out.println("Already Save Object.id = " + poContent);
 		ReplyBean replyBean = new ReplyBean();
+		replyBean.setPoId(poId);
 		replyBean.setMemberId((String) model.getAttribute("memberId"));
 		replyBean.setReContent(poContent);
 		replyBean.setReImage(generalService.uploadToImgur(poImage));

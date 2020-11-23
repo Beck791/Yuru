@@ -23,6 +23,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
     <link rel="stylesheet" href="<c:url value='/css/articles.css'/>" type="text/css">
 
 <!-- main css -->
@@ -55,7 +56,20 @@
 		</p>
 	</div>
 	<!-- end top bar -->
-<div></div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> 
+      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/forumIndex' />" class="" >回上一頁</a></li>     
+      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/goInsert' />" class="" >新增文章</a></li>
+      <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/articleList' />">個人文章一覽</a></li>
+    </ul>
+  </div>
+</nav>
 	<!-- main container -->
 	
 	 <div id="container">
@@ -92,7 +106,7 @@
               <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
-            <a href="">
+            <a href="<c:url value='/Forum/goReply'/>">
             	<i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
@@ -170,7 +184,8 @@
               <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
-              <i class="fa fa-reply" aria-hidden="true"></i> 回覆</p>
+            <a href="<c:url value='/Forum/goReply'/>">
+              <i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
               <i class="fa fa-quote-right" aria-hidden="true"></i> 引用</p>            

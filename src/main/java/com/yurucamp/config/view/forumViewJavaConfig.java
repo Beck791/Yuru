@@ -28,7 +28,12 @@ public class forumViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Forum/memberCreat.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
-
+	@Bean
+	public View memberReplyPage() { // 呼叫此方法名稱及導向設定之jsp
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Forum/memberReply.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		return view;
+	}
 	@Bean
 	public View memberReadPage() { // 呼叫此方法名稱及導向設定之jsp
 		InternalResourceView view = new InternalResourceView();

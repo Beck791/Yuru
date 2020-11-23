@@ -57,14 +57,27 @@
 		</p>
 	</div>
 	<!-- end top bar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> 
+      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/forumIndex' />" class="" >回上一頁</a></li>     
+      <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/goInsert' />" class="" >新增文章</a></li>
+      <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/articleList' />">個人文章一覽</a></li>
+    </ul>
+  </div>
+</nav>
 
 
 	<!-- main container -->
 	<div style="width: 70%; margin: 1% 1% 1% 2%; float: left;">
 		<div class="panel panel-default" id="main" style="">
 			<div class="panel-heading" style="background-color: white">
-				<a href="<c:url value='/Forum/forumIndex' />">XXX</a> › 新主題
+				<a href="<c:url value='/Forum/forumIndex' />">露營休閒討論區</a> › 新主題
 			</div>
 
 			<div class="panel-body">
@@ -142,19 +155,19 @@
 		</div>
 	</div>
 	
-	<div class="" style="background-color:">
-		<div style="text-align: center;"></div>
+<!-- 	<div class="" style="background-color:"> -->
+<!-- 		<div style="text-align: center;"></div> -->
 
-		<h1>Imgur test</h1>
-		<hr>
-	</div>
+<!-- 		<h1>Imgur test</h1> -->
+<!-- 		<hr> -->
+<!-- 	</div> -->
 
-	<div class="dropzone" style="border-radius: 30px;">
+<!-- 	<div class="dropzone" style="border-radius: 30px;"> -->
 
-		<p></p>
-		<div class="info"></div>
+<!-- 		<p></p> -->
+<!-- 		<div class="info"></div> -->
 
-	</div>
+<!-- 	</div> -->
 
 	<script type="text/javascript" src="<c:url value='/js/imgur.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/imgurUpload.js' />"></script>

@@ -92,12 +92,12 @@
 
 
                 <!-- portfolio_container -->
-				<div class="no-padding portfolio_container clearfix">
+				<div class="no-padding portfolio_container clearfix" width="500" height="500">
                     <!-- single work -->
                     <c:forEach var="PostBean" items="${postList}">
                     <div class="col-md-4 col-sm-10 new"  style="background-color:#dbcf83">
                         <a href="<c:url value='/Forum/readArticle/${PostBean.poId}'/>" class="portfolio_item">
-                            <img src="${PostBean.poImage}" alt="image" class="img-responsive" width="500" height="200"/>
+                            <img src="${PostBean.poImage}" alt="image" class="img-responsive" />
                             <div class="portfolio_item_hover">
                                 <div class="portfolio-border clearfix">
                                     <div class="item_info">

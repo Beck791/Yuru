@@ -12,17 +12,20 @@ import org.springframework.stereotype.Component;
 @Entity @Component @Table(name="Forum")
 public class ForumBean {
 	
-//	論壇
-	
-	private	Integer forumId;
-	private	String forumName;
-	private	String forumImage;
-	
-	
-	
-
 	@Id @Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private	Integer forumId;
+	@Column(name="name")
+	private	String forumName;
+	@Column(name="image")
+	private	String forumImage;
+	
+	@Override
+	public String toString() {
+		return "ForumBean [forumId=" + forumId + ", forumName=" + forumName + ", forumImage=" + forumImage + "]";
+	}
+	
+	
 	public Integer getForumId() {
 		return forumId;
 	}
@@ -30,7 +33,7 @@ public class ForumBean {
 		this.forumId = forumId;
 	}
 	
-	@Column(name="name")
+	
 	public String getForumName() {
 		return forumName;
 	}
@@ -38,7 +41,7 @@ public class ForumBean {
 		this.forumName = forumName;
 	}
 	
-	@Column(name="image")
+
 	public String getForumImage() {
 		return forumImage;
 	}
