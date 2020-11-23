@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,9 +41,20 @@ public class ProductController {
 
 	// 商城首頁
 	@GetMapping(value = "/Product/Index")
-	public String ProductIndex(Model model) throws SQLException {
+	public String ProductIndex(HttpServletRequest req,Model model) throws SQLException {
 		List<ProductBean> list = productService.queryAllon();	
 		model.addAttribute("productBeans", list);
+		
+		String memberId = (String) req.getAttribute("memberId");
+		
+		boolean isLogin = false; 
+		
+		if(memberId != null && !"".equals(memberId)) {
+			isLogin = true;
+		}
+		
+		model.addAttribute("isLogin", isLogin);
+		
 		return "mallSystemIndex";
 	}
 	

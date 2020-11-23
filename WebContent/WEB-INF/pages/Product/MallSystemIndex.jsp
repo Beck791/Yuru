@@ -44,7 +44,7 @@ select {
 <body>
 
 
-<jsp:include page="/WEB-INF/pages/include/top.jsp" />
+<jsp:include page="/WEB-INF/pages/include/top2.jsp" />
 
  <!-- cart -->
 <div class='myblock' style='position:fixed; bottom:100px; right:10px; background-color:white; '> 
@@ -72,10 +72,10 @@ select {
 <!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Logo</a></li> -->
 <!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Graphics</a></li> -->
 <!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Advertising</a></li> -->
-							<li> <a href="<c:url value='/'/>" class="list-group-item" style="font-size: 25px">首頁</a></li>
+							<li><a href="<c:url value='/'/>" class="list-group-item" style="font-size: 25px">首頁</a></li>
 							<li><a href="<c:url value='/Product/Index'/>" class="list-group-item" style="font-size: 25px">所有商品</a></li>
-							<li><a href="" class="list-group-item" style="font-size: 25px">促銷活動</a></li>
-							<li><a href="" class="list-group-item" style="font-size: 25px">最新消息</a></li>
+							<li><a href="#" class="list-group-item" style="font-size: 25px">促銷活動</a></li>
+							<li><a href="#" class="list-group-item" style="font-size: 25px">最新消息</a></li>
 <%-- 							<li> <a href="<c:url value='/Product/BrandNUIT'/>" class="list-group-item" style="font-size: 25px;background-color:#dbcf83;border-radius:5px">台灣 努特  Nuit</a></li> --%>
 							 
         
@@ -204,11 +204,11 @@ select {
 <!--               <form> -->
 <!--               </form> -->
 <!--               <form method="post" id="form1"  action=""> -->
-              <form method="post"  action="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>">
+              <form>
 <!--                 <input type="submit" value="加入購物車" class="btn btn-primary" /> -->
 <!--               </form> -->
-<%--               <form method="post"  action="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>"> --%>
-                <button type="submit" style="background-color: #dbcf83;border-radius: 5px;float: right;"><img src="../img\product\cart.png" height="30" /></button>
+<%--               <form method="post"  act9ion="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>"> --%>
+                <button onclick="addProduct(${productBean.id})" style="background-color: #dbcf83;border-radius: 5px;float: right;"><img src="../img\product\cart.png" height="30" /></button>
               </form>
               </div>
             </div>
@@ -268,24 +268,25 @@ select {
 	
 	<script>
 	
-// 	function orderby(selectObject){
-// 		var value = selectObject.value;  
-// 		  console.log(value);
-// 		document.getElementById("orderby").action="<c:url value='/Product/BackStageIndex'/>";
-// 		 console.log(value);
-// 		document.getElementById("orderby").method="POST";
-// 		document.getElementById("orderby").submit();	
-// 		txt.value =s;
-// 		document.all.sel.options[0].selected=true;
-// 		document.all.sel.options[0].action="<c:url value='/Product/BackStageIndex'/>";
-// 		document.all.sel.options[0].method="POST";
-// 		document.all.sel.options[0].submit();	
-// 			document.forms[0].action="<c:url value='/Product/BackStageIndex'/>" ;
-// 			document.forms[0].method="POST";
-// 			document.forms[0].submit();		
-// 	}
+	var isLogin = ${isLogin};
 	
+	function addProduct(id){
+		
+		if(!isLogin){
+			alert("請登入會員");
+		} else {
+			alert("加入購物車成功");
+			console.log(id);
+			for(var i=0 ; i<document.forms.length ; i++){
+				document.forms[i].action="<c:url value='/shoppingcart/addProduct?id="+id+"'/>";
+				document.forms[i].method="POST";
+				document.forms[i].submit();		
+			}	
+		}
+	}
+
 	
+
 	</script>
 </body>
 

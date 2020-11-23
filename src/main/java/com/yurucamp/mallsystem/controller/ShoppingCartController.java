@@ -2,6 +2,7 @@ package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -27,6 +29,7 @@ import com.yurucamp.mallsystem.model.service.OrderBeanService;
 import com.yurucamp.mallsystem.model.service.OrderDetailBeanService;
 import com.yurucamp.mallsystem.model.service.PorductService;
 import com.yurucamp.member.model.MemberBean;
+import com.yurucamp.member.model.dao.MemberDao;
 import com.yurucamp.member.model.service.MemberCenterService;
 
 @Controller
@@ -44,6 +47,9 @@ public class ShoppingCartController {
 
 	@Autowired
 	PorductService productService;
+	
+	@Autowired
+	MemberDao memberDao;
 
 	@GetMapping("/shoppingcart")
 	public String shopcart(Model model, SessionStatus status) throws SQLException {
@@ -63,10 +69,28 @@ public class ShoppingCartController {
 			return "cart";
 		}
 
+	@PostMapping("/shoppingcart/checklogin")
+	@ResponseBody
+	public Map<String, String> MemberIndex(HttpServletRequest request, Model model, String Account, String Password)
+			throws SQLException {
+		Map<String, String> rtnMap = new HashMap<String, String>();
+		
+		List<MemberBean> memberUser = memberDao.queryaUserId(Account,Password);
+
+		if(memberUser.isEmpty()) { 
+			System.out.println(memberUser);
+			rtnMap.put("msg", "請登入會員!"); 
+		}else {
+//			rtnMap.put("msg", "登入成功!");
+		}
+		return rtnMap;  
+	}
+	
 	@PostMapping("/shoppingcart/addProduct")
 	public String addshopcart(@RequestParam("id") Integer productId, Model model,HttpServletRequest request,SessionStatus status) throws SQLException {
 		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 		if (memberBean == null) {
+		 
 			return "redirectMallSystemIndex";
 		}
 
@@ -112,7 +136,7 @@ public class ShoppingCartController {
 
 	}
 
-	@RequestMapping(value="/shoppingcart/updateProduct", method= {RequestMethod.GET, RequestMethod.POST})
+	@PostMapping("/shoppingcart/updateProduct")
 	public String updateProduct(
 			@RequestParam(value = "id", required = false) Integer  prodcutId, 
 			@RequestParam(value = "newQty", required = false) Integer  qty, 
