@@ -184,8 +184,10 @@ function callMemberPost() {
 		                	  			             + "<td>" + PostBean.poTitle + "</td>"
 		                	  			             + "<td>" + PostBean.poCreatTime + "</td>"
 		                	  			             + "<td>" + PostBean.poUpdateTime + "</td>" 
-		                	  			             + "<td>" + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + PostBean.poId + "' \"  >編輯</button>"   
-		                	  			             + "<button type='button'   >刪除</button>" +  "</td>" 
+		                	  			             + "<td>" 
+		                	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + PostBean.poId + "' \"  >編輯</button>"   
+		                	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + PostBean.poId + "' \"   >刪除</button>" 
+		                	  			             + "</td>" 
 		                	  			             + "</tr>";
 		                	  			
 		                	  			console.log(resultHtml);

@@ -106,7 +106,7 @@
               <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
-            <a href="<c:url value='/Forum/goReply'/>">
+            <a href="<c:url value='/Forum/goReply?poId=${PostBean.poId}'/>">
             	<i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
@@ -150,13 +150,13 @@
 				<!-- 文章編輯區 -->
 
 	<!---------------------------------------------------------------------------->
-<c:forEach var="ReplyBean" items="${replyList}">
+<c:forEach var="replyBean" items="${replyList}">
  <div id="container">
       <!-- User Column -->
       <div class="user-column">
         <img src="img/headshot.jpg" height="100" alt="headshot">
         <div class="user-info">
-          <a href="#" class="user-account">${ReplyBean.memberId}</a>
+          <a href="#" class="user-account">${replyBean.memberId}</a>
           <p class="user-sequence-first">回覆</p>
           <div class="extra-user-info">
             <dl class="pairs-justified">
@@ -176,7 +176,7 @@
         <!-- Article Topic -->
         <div class="article-info">
           <p class="article-topic"></p>
-          <p class="article-act-list">${ReplyBean.reCreatTime}</p>
+          <p class="article-act-list">${replyBean.reCreatTime}</p>
           <p class="article-act-list list-divider"></p>  
           <p class="article-act-list"> views</p>
           <div style="float:right;">
@@ -193,15 +193,15 @@
         </div>
         <!-- Article Content -->
         <div style="width:96%;padding:15px 0;" class="article-content">
-          ${ReplyBean.reContent}
-        <img src="${ReplyBean.reImage}" style="height:300px;">
+          ${replyBean.reContent}
+        <img src="${replyBean.reImage}" style="height:300px;">
           <div class="article-reply" style="width:96%;margin-left:2%;border-left:3px solid #eee;padding-left:1em;"><br>
             …<br>
           </div>
         </div>
         <!-- Article Bottom Info -->
         <div class="article-bot-info">
-          <p class="article-act-list">${ReplyBean.reUpDateTime}</p>
+          <p class="article-act-list">${replyBean.reUpDateTime}</p>
           <div style="float:right;">
             <p class="article-act-list">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> [num]</p>

@@ -82,8 +82,10 @@
 
 			<div class="panel-body">
 				<div class=" panel-warning">
+			
 					<form method="Post" id="imgur" enctype="multipart/form-data"
-						action="<c:url value='/Forum/insert'/>">
+						action="<c:url value='/Forum/reply'/>">
+						<input type="hidden" name="poId" value="${postBean.poId} "/>
 						<div class="form-group">
 							<label class="t1" for="potitle" path="poTitle">主題標題</label> <input
 								type="text" class="form-control" id="poTitle" path="poTitle"
@@ -141,13 +143,13 @@
 			<div>
 				<h1>廣告區</h1>
 				<span> </span>
-				<!-- LIVE 2D -->
-					<div id="landlord">
-						<div class="message" style="opacity: 0"></div>
-						<canvas id="live2d" width="280" height="250" class="live2d"></canvas>
-						<div class="hide-button">隐藏</div>
-					</div>
-				 <!-- LIVE 2D -->
+<!-- 				LIVE 2D -->
+<!-- 					<div id="landlord"> -->
+<!-- 						<div class="message" style="opacity: 0"></div> -->
+<%-- 						<canvas id="live2d" width="280" height="250" class="live2d"></canvas> --%>
+<!-- 						<div class="hide-button">隐藏</div> -->
+<!-- 					</div> -->
+<!-- 				 LIVE 2D -->
 <!-- 	<!-- IMGUR SHOW --> 
 				
 <!-- 			</div> -->

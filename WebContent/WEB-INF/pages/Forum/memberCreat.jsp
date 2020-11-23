@@ -142,11 +142,11 @@
 				<h1>廣告區</h1>
 				<span> </span>
 				<!-- LIVE 2D -->
-					<div id="landlord">
-						<div class="message" style="opacity: 0"></div>
-						<canvas id="live2d" width="280" height="250" class="live2d"></canvas>
-						<div class="hide-button">隐藏</div>
-					</div>
+<!-- 					<div id="landlord"> -->
+<!-- 						<div class="message" style="opacity: 0"></div> -->
+<%-- 						<canvas id="live2d" width="280" height="250" class="live2d"></canvas> --%>
+<!-- 						<div class="hide-button">隐藏</div> -->
+<!-- 					</div> -->
 				 <!-- LIVE 2D -->
 	<!-- IMGUR SHOW -->
 				

@@ -45,6 +45,12 @@ public class ReplyBean {
 	
 
 	
+	@Override
+	public String toString() {
+		return "ReplyBean [reId=" + reId + ", memberId=" + memberId + ", poId=" + poId + ", reCreatTime=" + reCreatTime
+				+ ", reUpDateTime=" + reUpDateTime + ", reContent=" + reContent + ", reImage=" + reImage + ", name="
+				+ name + "]";
+	}
 	public Integer getReId() {
 		return reId;
 	}

@@ -27,7 +27,7 @@
 <link href="<c:url value='/css/imgurMobile-style.css' />" rel="stylesheet"
 	media="screen">
 <link rel="shortcut icon" href="<c:url value='/favicon.png' />">
-<script src="<c:url value='/js/jquery-3.2.1.js' />"></script>
+<%-- <script src="<c:url value='/js/jquery-3.2.1.js' />"></script> --%>
 <script src="<c:url value='/js/bootstrap.min.js' />"></script>
 <!-- main css -->
 <link href="../css/style.css" rel="stylesheet">
@@ -40,10 +40,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!-- <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script> -->
-<script src="<c:url value='/js/ckeditorConfig.js' />"></script>
 
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script> -->
 <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
