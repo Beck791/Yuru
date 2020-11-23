@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <title>Insert title here</title>
@@ -16,15 +16,16 @@
 	
 </style>
 </head>
-<body style="background-color:#fdf5e6">
+<body style="background-color:#F3F3FA">
 <div align="center">
-	<h2 class="bg-dark text-white">輸入新增資料</h2>
-
-
-	<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
+	<h2 style="background-color: #A6A6D2;color: #484891">輸入新增資料</h2>
+<input type="button" value="回首頁" class="btn btn-secondary" onclick="location.href='<c:url value='/Product/Index'/>'">
+<input type="button" value="管理產品資料" class="btn btn-secondary" onclick="location.href='<c:url value='/Product/GetAllProduct'/>'">
+<br><br>
+<%-- 	<a href="<c:url value='/Product/BackStageIndex'/>"  >回首頁</a><br><br> --%>
 	
 	<form id="formdata">
-	 <table class="btn btn-secondary" style="text-align:left" >
+	 <table class="btn btn-secondary" style="background-color:#D8D8EB;color:black;text-align:left">
 		<tr><td>輸入產品 :<td><input type="text" id="name" name="name" />
 		<tr><td>輸入品牌 :<td ><select id="brandId" name="brandId" required="required" >
 								<option value="">選擇廠牌</option>
@@ -46,30 +47,39 @@
 		<tr><td>輸入種類 :<td><input type="text" id="category" value="桌椅傢具" name="category" />
 	</table>
 	<br><br>
-			<input type="button" value="新增" class="btn btn-primary" onclick="sendForm()" />			
+			<input type="button" value="新增" class="btn btn-secondary" onclick="sendForm()" />
+			<button type="button" class="btn btn-secondary" id="m2">一鍵輸入</button>			
 	</form>
 		
 	<hr>
-	<table id="result-table"class="table table-dark table-striped" border="1">
+	<table id="result-table" class="table table-dark table-striped" border="1" style="background-color:#D8D8EB;color:black">
 		
-		<tr  style="background-color:#7A0099">
+		<tr  style="background-color:#A6A6D2">
 			<th>產品ID</th>
 			<th>產品名稱</th>
 			<th>價格</th>
 			<th>廠牌</th>
-			<th>圖檔</th>
-			<th>瀏覽次數</th>
+			<th>圖檔</th>	
 			<th>產品敘述</th>
 			<th>庫存量</th>
 			<th>種類</th>
 			<th>商品狀態</th>
 			<th>新增日期</th>
-			<th>修改日期</th>
 		</tr>
 
 </table>
 	</div>
 	<script>
+	
+	$("#m2").click(function() {
+		$("#name").val("M002");
+		$("#price").val("M002");
+		$("#description").val("M002");
+		$("#stock").val("M002");
+		$("#category").val("M002");
+		$("#Passwordin").val("M002");
+
+	});
 	
 	function uploadimg(){
 		var formData = new FormData();
@@ -97,7 +107,8 @@
                   url : '/yurucamp/Product/InsertProductinfo',
                   data : $("#formdata").serialize(),
                   success : function(data) {
-								
+                	  var resultHtml="";
+           
                 	  			console.log(data);
                 	  
 		                	  	if(data){
@@ -110,14 +121,12 @@
 		                	  			               + "<td>" + item.name + "</td>"
 		                	  			               + "<td>" + item.price + "</td>"
 		                	  			               + "<td>" + item.brand + "</td>"
-		                	  			               + "<td><img src='" + item.image + "' style='height: 30px;'/></td>"
-		                	  			               + "<td>" + item.webTraffic + "</td>"
+		                	  			               + "<td><img src='" + item.image + "' style='height: 150px;'/></td>"
 		                	  			               + "<td>" + item.description + "</td>"
 		                	  			               + "<td>" + item.stock + "</td>"
 		                	  			               + "<td>" + item.category + "</td>"
 		                	  			               + "<td>" + item.status + "</td>"
 		                	  			               + "<td>" + item.createtime + "</td>"
-		                	  			               + "<td>" + item.updatetime + "</td>"
 		                	  			               + "</tr>";
 		                	  			
 		                	  			console.log(resultHtml);

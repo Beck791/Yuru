@@ -300,7 +300,7 @@ button:focus {
                             <c:when test="${memberPaid eq '1'}">
                         <div class="row d-flex justify-content-between px-4">
                             <p class="mb-1 text-left">付費會員優惠折購</p>
-                            <h6 class="mb-1 text-right">90% off</h6>
+                            <h6 class="mb-1 text-right">10% off</h6>
                         </div>
                          </c:when>
                             </c:choose>

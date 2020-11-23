@@ -212,7 +212,7 @@ ul, li {
          <c:when test="${memberPaid eq '1'}">                
 		<tr>
 		<th colspan="4" class="tdtest">付費會員優惠折購</th>
-		<th>90% off</th>
+		<th>10% off</th>
 		
 		</tr>
         </c:when>

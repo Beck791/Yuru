@@ -230,7 +230,7 @@ ul, li {
               <c:when test="${memberPaid eq '1'}">                
         <tr>
 			<td class="tabletd">付費會員優惠折購</td>
-			<td colspan="4">90% off</td>
+			<td colspan="4">10% off</td>
 			
 		</tr>
                </c:when>

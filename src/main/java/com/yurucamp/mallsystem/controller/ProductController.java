@@ -2,7 +2,6 @@ package com.yurucamp.mallsystem.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,112 @@ public class ProductController {
 		model.addAttribute("productBeans", list);
 		return "mallSystemIndex";
 	}
+	
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/BrandNUIT")
+	public String ProductBrandNUIT(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryNuit();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/BrandRHINO")
+	public String ProductBrandRHINO(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryRHINO();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/BrandLOGOS")
+	public String ProductBrandLOGOS(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryLOGOS();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/CategoryTents")
+	public String ProductCategoryTents(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryCategoryTents();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/CategorySleepingBags")
+	public String ProductCategorySleepingBags(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryCategorySleepingBags();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/CategoryStoves")
+	public String ProductCategoryStoves(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryCategoryStoves();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/CategoryCooking")
+	public String ProductCategoryCooking(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryCategoryCooking();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	// 商城首頁分類搜尋
+	@GetMapping(value = "/Product/CategoryFurniture")
+	public String ProductCategoryFurniture(Model model) throws SQLException {
+		List<ProductBean> list = productService.queryCategoryFurniture();	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	
+	// 商城首頁分類搜尋
+	@PostMapping(value = "/Product/orderby")
+	public String Productorderby(@RequestParam("orderby")Integer value,Model model) throws SQLException {
+		List<ProductBean> list =null;
+		if(value == 1) {
+			 list = productService.queryTimeNew();
+		}
+		else if(value == 2) {
+			 list = productService.queryTimeOld();
+		}
+		else if(value == 3) {
+			 list = productService.queryPriceHigher();
+		}
+		else if(value == 4) {
+			 list = productService.queryPirceLower();
+		}
+		else if(value == 5) {
+			 list = productService.queryPopularProduct();
+		}
+		else if(value == 6) {
+			 list = productService.queryUnpopularProduct();
+		}
 
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+
+	// 後臺首頁
+	@GetMapping(value = "/Product/search")
+	public String Productsearch(@RequestParam("name")String name,Model model) throws SQLException {
+		System.out.println(name);
+		List<ProductBean> list = productService.querySearch(name);	
+		model.addAttribute("productBeans", list);
+		
+		return "mallSystemIndex";
+	}
+	
 	// 後臺首頁
 	@GetMapping(value = "/Product/BackStageIndex")
 	public String ProductBackStageIndex() {
@@ -168,9 +272,9 @@ public class ProductController {
 	// 後臺上架商品
 //		@PostMapping("/Product/UpdateProductinf")
 		public String PutOnShelfProduct(@RequestParam("id") Integer id, 
-									   @RequestParam("price") Integer price, 
-									   @RequestParam("stock") Integer stock,
-									   @RequestParam("description") String description ,Model model) throws SQLException {
+									    @RequestParam("price") Integer price, 
+									    @RequestParam("stock") Integer stock,
+									    @RequestParam("description") String description ,Model model) throws SQLException {
 			ProductBean productBean = new ProductBean();	
 			productBean.setId(id);
 			productBean.setPrice(price);

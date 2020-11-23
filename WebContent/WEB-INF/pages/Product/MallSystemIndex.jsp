@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,18 @@
 
 <style>
 
+*{
+font-family: 微軟正黑體;
+font-family: Arial;
+}
+
+select {
+    height: 37px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-left: 3px;
+   
+}
 </style>
 <meta charset="UTF-8">
 <title>露營商城</title>
@@ -55,22 +66,54 @@
 				<!-- portfolio_filter -->
 				<div class="categories-grid wow fadeInLeft">
 					<nav class="categories text-center">
-						<ul class="portfolio_filter">
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>All</a></li>
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Photography</a></li>
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Logo</a></li>
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Graphics</a></li>
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Advertising</a></li>
-							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Fashion</a></li>
+						<ul class="portfolio_filter" style="margin-bottom: 0;">
+<!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>All</a></li> -->
+<!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Photography</a></li> -->
+<!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Logo</a></li> -->
+<!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Graphics</a></li> -->
+<!-- 							<li><a href="" style='background-color:#dbcf83;border-radius:5px'>Advertising</a></li> -->
+							<li> <a href="<c:url value='/'/>" class="list-group-item" style="font-size: 25px">首頁</a></li>
+							<li><a href="<c:url value='/Product/Index'/>" class="list-group-item" style="font-size: 25px">所有商品</a></li>
+							<li><a href="" class="list-group-item" style="font-size: 25px">促銷活動</a></li>
+							<li><a href="" class="list-group-item" style="font-size: 25px">最新消息</a></li>
+<%-- 							<li> <a href="<c:url value='/Product/BrandNUIT'/>" class="list-group-item" style="font-size: 25px;background-color:#dbcf83;border-radius:5px">台灣 努特  Nuit</a></li> --%>
+							 
+        
+							<li>
+							<form action="<c:url value='/Product/orderby'/>" method="POST">
+							<select id="orderby" name="orderby" onchange="this.form.submit()" style="font-size: 25px"> 
+						            <option value="">排序</option>
+									<option value="1">上架時間新→舊</option>
+									<option value="2">上架時間舊→新</option>
+									<option value="3">價格順序高→低</option>
+									<option value="4">價格順序低→高</option>
+									<option value="5">熱門高→低</option>
+									<option value="6">熱門低→高</option>
+							</select> 
+							</form>
+							</li>
+							<li>
+							<form action="<c:url value='/Product/search'/>" method="Get">&nbsp;&nbsp;
+							<input name="name" type="search" placeholder="Search..." onchange="this.form.submit()" style="font-size: 25px"/>
+							</form>
+							</li>
+<%-- 							<c:choose> --%>
+<%-- 				            <c:when test="${sessionScope.memberRolse eq 'admin'}"> --%>
+<%-- 							<li><a href="<c:url value='/Product/BackStageIndex'/>" style="font-size: 25px;border-radius:5px;background-color:#D2E9FF" class="list-group-item">商城管理系統</a></li> --%>
+<%-- 							</c:when> --%>
+<%-- 						   </c:choose> --%>
+						</ul>
 							<c:choose>
 				            <c:when test="${sessionScope.memberRolse eq 'admin'}">
-							<li><a href="<c:url value='/Product/BackStageIndex'/>" style='background-color:#dbcf83;border-radius:5px'>商城管理系統</a></li>
-							</c:when>
-<%-- 				            <c:when test="${not empty memberId}"> --%>
-<%-- 							<li><a href="<c:url value='/shoppingcart'/>"><img src="../img\product\cart.png" height="30" /></li> --%>
-<%-- 							</c:when> --%>
-						   </c:choose>
+						<br>
+						<ul  class="portfolio_filter" style="margin-bottom: 0;" >
+<%-- 							<li><a href="<c:url value='/Product/BackStageIndex'/>" style="font-size: 25px;border-radius:5px;background-color:#D2E9FF" class="list-group-item">商城管理系統</a></li> --%>
+							<li><input type="button" style="font-size: 25px;border-radius:5px;background-color:#D2E9FF;padding:0px 10px" class="list-group-item" readonly value="商城管理系統" ></li>
+					     	<li><a href="<c:url value='/Product/GetAllProduct'/>" class="list-group-item" style="font-size: 25px">管理產品資料</a></li>
+							<li><a href="<c:url value='/Product/InsertProduct'/>" class="list-group-item" style="font-size: 25px">新增產品</a></li>
 						</ul>
+							</c:when>
+						   </c:choose>
 					</nav>
 				</div>
 				<!-- portfolio_filter -->
@@ -92,13 +135,20 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Shop Name</h1>
+        <h1 class="my-4" style="font-family: Arial">Brand</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+          <a href="<c:url value='/Product/BrandNUIT'/>" class="list-group-item" style="font-size: 25px">台灣 努特 Nuit</a>
+          <a href="<c:url value='/Product/BrandRHINO'/>" class="list-group-item" style="font-size: 25px">台灣 犀牛 RHINO</a>
+          <a href="<c:url value='/Product/BrandLOGOS'/>" class="list-group-item" style="font-size: 25px">日本 LOGOS</a>
         </div>
-
+        <h1 class="my-4" style="font-family: Arial">Category</h1>
+         <div class="list-group">
+          <a href="<c:url value='/Product/CategoryTents'/>" class="list-group-item" style="font-size: 25px">帳篷裝備 Tents & Tarp</a>
+          <a href="<c:url value='/Product/CategorySleepingBags'/>" class="list-group-item" style="font-size: 25px">睡袋 Sleeping Bags</a>
+          <a href="<c:url value='/Product/CategoryStoves'/>" class="list-group-item" style="font-size: 25px">爐具 Stoves</a>
+          <a href="<c:url value='/Product/CategoryCooking'/>" class="list-group-item" style="font-size: 25px">炊具 Cooking</a>
+          <a href="<c:url value='/Product/CategoryFurniture'/>" class="list-group-item" style="font-size: 25px">桌椅傢具 Furniture</a>
+        </div>
       </div>
       <!-- /.col-lg-3 -->
 
@@ -109,13 +159,17 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="../img\product\banner_1.jpg" alt="First slide">
+              <img class="d-block img-fluid" src="../img\product\banner_4.png" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="../img\product\banner_2.jpg" alt="Second slide">
+              <img class="d-block img-fluid" src="../img\product\banner_1.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="../img\product\banner_2.jpg" alt="Third slide">
             </div>
             <div class="carousel-item">
               <img class="d-block img-fluid" src="../img\product\banner_3.jpg" alt="Third slide">
@@ -124,7 +178,7 @@
 <!--               <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide"> -->
 <!--             </div> -->
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">5
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
@@ -143,7 +197,7 @@
                 <h4 class="card-title">
                   <a href="#">${productBean.name}</a>
                 </h4>
-                <h5>$${productBean.price}</h5>
+                <h4>$${productBean.price}</h4>
                 <p class="card-text">${productBean.description}</p>
               </div>
               <div class="card-footer">
@@ -151,8 +205,10 @@
 <!--               </form> -->
 <!--               <form method="post" id="form1"  action=""> -->
               <form method="post"  action="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>">
-<%--                 <input type="submit" value="加入購物車" class="btn btn-primary" onclick="insert('${productBean.id}')" /> --%>
-                <input type="submit" value="加入購物車" class="btn btn-primary" />
+<!--                 <input type="submit" value="加入購物車" class="btn btn-primary" /> -->
+<!--               </form> -->
+<%--               <form method="post"  action="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>"> --%>
+                <button type="submit" style="background-color: #dbcf83;border-radius: 5px;float: right;"><img src="../img\product\cart.png" height="30" /></button>
               </form>
               </div>
             </div>
@@ -212,13 +268,21 @@
 	
 	<script>
 	
-// 	function insert(id){
-// 		console.log(id);
-// 		for(var i=0 ; i<document.forms.length ; i++){
-// 			document.forms[i].action="<c:url value='/shoppingcart/addProduct?id="+id+"'/>" ;
-// 			document.forms[i].method="POST";
-// 			document.forms[i].submit();
-// 		}
+// 	function orderby(selectObject){
+// 		var value = selectObject.value;  
+// 		  console.log(value);
+// 		document.getElementById("orderby").action="<c:url value='/Product/BackStageIndex'/>";
+// 		 console.log(value);
+// 		document.getElementById("orderby").method="POST";
+// 		document.getElementById("orderby").submit();	
+// 		txt.value =s;
+// 		document.all.sel.options[0].selected=true;
+// 		document.all.sel.options[0].action="<c:url value='/Product/BackStageIndex'/>";
+// 		document.all.sel.options[0].method="POST";
+// 		document.all.sel.options[0].submit();	
+// 			document.forms[0].action="<c:url value='/Product/BackStageIndex'/>" ;
+// 			document.forms[0].method="POST";
+// 			document.forms[0].submit();		
 // 	}
 	
 	

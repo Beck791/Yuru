@@ -19,10 +19,13 @@
 </head>
 
 
-<body style="background-color:#fdf5e6">
+<body style="background-color:#F3F3FA">
 <div align="center">
-<h2 class="bg-dark text-white">所有產品資料</h2>
-<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a>
+<h2 style="background-color: #A6A6D2;color: #484891">所有產品資料</h2>
+<%-- <a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a> --%>
+<input type="button" value="回首頁" class="btn btn-secondary" onclick="location.href='<c:url value='/Product/Index'/>'">
+<input type="button" value="新增產品資料" class="btn btn-secondary" onclick="location.href='<c:url value='/Product/InsertProduct'/>'">
+<br>
 	<form method="post" action="<c:url value='/Product/DeleteProduct'/>">
        輸入刪除的產品編號 : <input type="text" id="idName" name="id" autofocus placeholder="請輸入欲刪除編號" maxlength="4" required="required" onblur="checkName()" />
 	<input type="submit"  value="確定" class="btn btn-primary" />	<p>
@@ -30,22 +33,25 @@
 	<font color='red' size="-1">${errorMsg.productId}</font>
 	</form>
 <div>	
-<table class="table table-dark table-striped" border="1">
-<tr style="background-color:#7A0099">
+<table class="table table-dark table-striped" border="1" style="background-color:#D8D8EB;color:black">
+<tr style="background-color:#A6A6D2">
 <th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
 <c:forEach var="productBean" items="${productBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 
 <form>
-<button type="submit" value="修改" onclick="update('${productBean.id}')" ><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
-<button type="submit" value="刪除" onclick="del('${productBean.id}')" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
+<br>
+<button type="submit" value="修改" onclick="update('${productBean.id}')" style="border:none;border-radius:200px "><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
+<br><br>
+<button type="submit" value="刪除" onclick="del('${productBean.id}')" style="border:none;border-radius:200px" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
+</form>
 </td>
 <td>${productBean.id}</td>
 <td>${productBean.name}</td>	
 <td>${productBean.price}</td>
 <td>${productBean.brand}</td>
-<td><img src="${productBean.image}" height="50"></td>
+<td><img src="${productBean.image}" height="150"></td>
 <td>${productBean.webTraffic}</td>
 <td>${productBean.description}</td>
 <td>${productBean.stock}</td>
@@ -53,7 +59,6 @@
 <td>${productBean.status}</td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
-</form>
 
 </c:forEach>
 </table>

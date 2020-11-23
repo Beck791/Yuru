@@ -78,8 +78,7 @@ public class ProductDaoImp implements ProductDao {
 	
 	@Override
 	public List<ProductBean> querypage() throws SQLException {
-		String hql = "FROM ProductBean Order by id desc";
-		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class);
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean Order by id desc",ProductBean.class);
 		query.setFirstResult(0);
 		query.setMaxResults(5);
 		List<ProductBean> results = query.list();
@@ -96,11 +95,128 @@ public class ProductDaoImp implements ProductDao {
 		}
 		return map;
 	}
-
+	
+	//首頁上架商品
 	@Override
 	public List<ProductBean> queryAllon() throws SQLException {
 		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1", ProductBean.class);
 		List<ProductBean> list = query.list();
 		return list;
 	}
+	//首頁標籤分類
+	@Override
+	public List<ProductBean> queryNuit() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and brandId=1", ProductBean.class);
+		List<ProductBean> list = query.list(); 
+		return list; 
+	}
+	
+	@Override
+	public List<ProductBean> queryRHINO() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and brandId=2", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryLOGOS() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and brandId=3", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	//首頁商品排序
+	@Override
+	public List<ProductBean> queryTimeNew() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by createtime desc", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryTimeOld() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by createtime", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryPriceHigher() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by price desc", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryPirceLower() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by price", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryPopularProduct() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by webTraffic desc", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryUnpopularProduct() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 Order by webTraffic", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryCategoryTents() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and category like '%帳篷裝備%'", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryCategorySleepingBags() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and category like '%睡袋%'", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryCategoryStoves() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and category like '%爐具%'", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryCategoryCooking() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and category like '%炊具%'", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> queryCategoryFurniture() throws SQLException {
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean where statusId=1 and category like '%桌椅傢具%'", ProductBean.class);
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<ProductBean> querySearch(String name) throws SQLException { //statusId=1 and 
+		String hql ="from ProductBean where statusId=1 and name like :name"
+			+" or statusId=1 and category like :name";
+		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery(hql,ProductBean.class)
+				.setParameter("name", "%"+name+"%");
+		List<ProductBean> list = query.list();
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

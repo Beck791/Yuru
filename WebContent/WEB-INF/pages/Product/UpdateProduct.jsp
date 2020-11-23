@@ -11,15 +11,16 @@
 <link rel="icon" href="<c:url value='/img/yuruIcon.png' />" type="image/x-icon">
 <title>修改產品資料</title>
 </head>
-<body style="background-color:#fdf5e6">
+<body style="background-color:#F3F3FA">
 <div align="center">
-<h2 class="bg-dark text-white">更新資料</h2>
-<a href="<c:url value='/Product/BackStageIndex'/>" >回首頁</a><br><br>
+<h2 style="background-color: #A6A6D2;color: #484891">更新資料</h2>
+<input type="button" value="回首頁" class="btn btn-secondary" onclick="location.href='<c:url value='/Product/Index'/>'">
+<br><br>
 
 <form method="post" action="<c:url value='/Product/UpdateProductinfo'/>">
 
-<table><th class="bg-dark text-white">欲更新商品資料<th class="bg-dark text-white">更新後商品資料<tr><td>
-<table align="left" class="table table-dark table-striped">
+<table style="background-color:#D8D8EB;color:black"><th style="background-color:#A6A6D2">欲更新商品資料<th style="background-color:#A6A6D2">更新後商品資料<tr><td>
+<table align="left" class="table table-dark table-striped" style="background-color:#D8D8EB;color:black">
 
 	<tr><td>產品編號 :<td><input type="text" name="id" readonly="readonly" value="${productBean.id}" />
 	<tr><td>產品 :<td><input type="text" name="name" readonly="readonly" value="${productBean.name}" />
@@ -37,7 +38,7 @@
 </table>		
 
 	<td>
-	<table align="left" class="table table-dark table-striped">
+	<table align="left" class="table table-dark table-striped" style="background-color:#D8D8EB;color:black">
 	<tr><td>產品編號 :<td><input type="text" disabled value="${productBeaninfo.id}" />
 	<tr><td>產品 :<td><input type="text" disabled value="${productBeaninfo.name}" />
 	<tr><td>價錢 :<td><input type="text" disabled value="${productBeaninfo.price}" />
@@ -55,10 +56,10 @@
 <!-- </form> -->
 </table>
 
-			<input type="submit" value="新增" class="btn btn-primary" />
-			<input type="reset" value="取消" class="btn btn-primary" />
+			<input type="submit" value="新增" class="btn btn-secondary" />
+			<input type="reset" value="取消" class="btn btn-secondary"/>
 </form><br>
-<a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-primary">繼續更改其它資料</a>
+<a href="<c:url value='/Product/GetAllProduct'/>" class="btn btn-secondary">繼續更改其它資料</a>
 </div>
 </body>
 </html>
