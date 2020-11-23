@@ -90,10 +90,13 @@ public class ForumController {
 		throws SQLException {
 		System.out.println("Already Save Object.id = " + poContent);
 		PostBean postBean = new PostBean();
+		postBean.setForum("露營休閒討論區");
 		postBean.setMemberId((String) model.getAttribute("memberId"));
 		postBean.setPoTitle(poTitle);
 		postBean.setPoContent(poContent);
-		postBean.setPoImage(generalService.uploadToImgur(poImage));
+		if(poImage != null && poImage.getSize() != 0) {
+			postBean.setPoImage(generalService.uploadToImgur(poImage));
+		}
 		postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
 		postBean.setPoUpDateTime(null);
 		articleService.insertPost(postBean);
@@ -163,6 +166,7 @@ public class ForumController {
 
 		return "memberReadPage";
 	}
+
 	
 	
 	
@@ -178,7 +182,7 @@ public class ForumController {
 		return "memberUpdatePage";
 	}
 	
-	//更新文章
+	//編輯文章
 		@RequestMapping(value ="/Forum/update", method = RequestMethod.POST)
 		public String Update( 			@RequestParam("poId")Integer poId,
 										@RequestParam("poTitle")String poTitle,
@@ -190,10 +194,13 @@ public class ForumController {
 			System.out.println("Already Save Object.id = " + poContent);
 			PostBean postBean = new PostBean();
 			postBean.setPoId(poId);
+			postBean.setForum("露營休閒討論區");
 			postBean.setMemberId((String) model.getAttribute("memberId"));
 			postBean.setPoTitle(poTitle);
 			postBean.setPoContent(poContent);
-			postBean.setPoImage(generalService.uploadToImgur(poImage));
+			if(poImage != null && poImage.getSize() != 0) {
+				postBean.setPoImage(generalService.uploadToImgur(poImage));
+			}
 			postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
 			postBean.setPoUpDateTime(null);
 			articleService.insertPost(postBean);
@@ -252,11 +259,9 @@ public class ForumController {
 				resultList.add(resultMap);
 			}
 			
-			model.addAttribute("replyList", resultList);
-			
-			System.out.println("replylist=?"+ replyListAll);
+			System.out.println("replylist=?"+ resultList);
 //			return "Forum/memberCreat";
-			return replyListAll;
+			return resultList;
 			
 		}
 		}

@@ -137,20 +137,15 @@
 
 
 
-	<div
-		style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 130%;">
+		<div style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 200%;">
 		<div class="panel panel-default" id="main" style="">
-			<div>
-				<h1>廣告區</h1>
-				<span> </span>
-<!-- 				LIVE 2D -->
-<!-- 					<div id="landlord"> -->
-<!-- 						<div class="message" style="opacity: 0"></div> -->
-<%-- 						<canvas id="live2d" width="280" height="250" class="live2d"></canvas> --%>
-<!-- 						<div class="hide-button">隐藏</div> -->
-<!-- 					</div> -->
-<!-- 				 LIVE 2D -->
-<!-- 	<!-- IMGUR SHOW --> 
+			<div style="margin:center;">
+				
+		                 	<img style="margin-left:3%;width:90%;top:96%" src="<c:url value='/img/forum/sidebanner_2.png'/>" alt="First slide">
+</div>
+		</div>
+				</div>
+		
 				
 <!-- 			</div> -->
 <!-- 			<img alt="" src=""> -->

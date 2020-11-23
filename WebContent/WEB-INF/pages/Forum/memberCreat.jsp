@@ -136,11 +136,13 @@
 
 
 	<div
-		style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 130%;">
+		style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 200%;">
 		<div class="panel panel-default" id="main" style="">
-			<div>
-				<h1>廣告區</h1>
-				<span> </span>
+			<div style="margin:center;">
+				
+		                 	<img style="margin-left:3%;width:90%;top:96%" src="<c:url value='/img/forum/sidebanner_2.png'/>" alt="First slide">
+</div>
+		</div>
 				<!-- LIVE 2D -->
 <!-- 					<div id="landlord"> -->
 <!-- 						<div class="message" style="opacity: 0"></div> -->
@@ -150,9 +152,7 @@
 				 <!-- LIVE 2D -->
 	<!-- IMGUR SHOW -->
 				
-			</div>
-			<img alt="" src="">
-		</div>
+			
 	</div>
 	
 <!-- 	<div class="" style="background-color:"> -->
@@ -171,7 +171,7 @@
 
 	<script type="text/javascript" src="<c:url value='/js/imgur.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/imgurUpload.js' />"></script>
-	<hr>
+	
 
 	<!-- end main container -->
 

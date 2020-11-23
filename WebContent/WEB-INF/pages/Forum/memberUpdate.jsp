@@ -75,14 +75,14 @@
 	<div style="width: 70%; margin: 1% 1% 1% 2%; float: left;">
 		<div class="panel panel-default" id="main" style="">
 			<div class="panel-heading" style="background-color: white">
-				<a href="<c:url value='/Forum/forumIndex' />">露營休閒討論區</a>
-				› 編輯主題
+				<a href="<c:url value='/Forum/forumIndex' />">露營休閒討論區</a>› 編輯主題
 			</div>
 
 			<div class="panel-body">
 				<div class=" panel-warning">
 					<form method="Post" id="imgur" enctype="multipart/form-data"
-						action="<c:url value='/Forum/insert'/>">
+						action="<c:url value='/Forum/update'/>">
+						<input type="hidden" name="poId" value="${postBean.poId} "/>
 						<div class="form-group">
 							<label class="t1" for="potitle" path="poTitle">主題標題</label> <input
 								type="text" class="form-control" id="poTitle" path="poTitle"
@@ -159,18 +159,15 @@
 
 
 
-	<div style="width: 25%; margin: 1% 2% 1% 0%; float: right;height: 130%;">
+		<div style="width: 25%; margin: 1% 2% 1% 0%; float: right; height: 200%;">
 		<div class="panel panel-default" id="main" style="">
-			<div>
-				<h1>廣告區</h1>
-				<span>
+			<div style="margin:center;">
 				
-				XXXXXXXXX
-				</span>
-			</div>
-			<img alt="" src="">
+		                 	<img style="margin-left:3%;width:90%;top:96%" src="<c:url value='/img/forum/sidebanner_2.png'/>" alt="First slide">
+</div>
 		</div>
-	</div>
+				</div>
+		
 <!-- 	<!-- IMGUR SHOW --> 
 <!-- 	<div class="" style="background-color:"> -->
 <!--       <div style="text-align:center;"> -->

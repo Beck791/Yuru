@@ -176,18 +176,23 @@ function callMemberPost() {
 		                	  				colorx="#dbcf83";
 		                	  			}
 		                	  			var updateArticle = "<c:url value='/Forum/updateArticle' />";
-		                	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
+		                	  			var deleteArticle ="<c:url value='/Forum/Delete'/>";
+		                  	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
+
 		                	  			resultHtml = resultHtml  
 		                	  			             + "<tr bgcolor ='"+ colorx + "'>"
-		                	  				         + "<td>" + PostBean.forumId + "</td>" 
+		                	  						 + "<td style='display:none'>" + PostBean.poId + "</td>" 
+		                	  				         + "<td>" + PostBean.forum + "</td>" 
 		                	  			             + "<td>" + PostBean.memberId + "</td>"
-		                	  			             + "<td>" + PostBean.poTitle + "</td>"
+		                  	  			             + "<td>"+"<a href=''>" + PostBean.poTitle + "</a></td>"
 		                	  			             + "<td>" + PostBean.poCreatTime + "</td>"
 		                	  			             + "<td>" + PostBean.poUpdateTime + "</td>" 
 		                	  			             + "<td>" 
 		                	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + PostBean.poId + "' \"  >編輯</button>"   
 		                	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + PostBean.poId + "' \"   >刪除</button>" 
 		                	  			             + "</td>" 
+		                  	  			        	 
+
 		                	  			             + "</tr>";
 		                	  			
 		                	  			console.log(resultHtml);
@@ -201,7 +206,7 @@ function callMemberPost() {
 		                	  		$("#memberPostList").html(resultHtml);
 		                	  		
 		                	  	}else{
-		                	  		alert("no data");
+		                	  		alert("此會員暫無發表文章，請重新搜尋");
 		                	  		$("#memberPostList").html(resultHtml);
 		                	  		
 		                	  	}
@@ -217,7 +222,7 @@ function callMemberReply() {
 
 $.ajax({
     type: 'GET',
-    url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch + '&type=memberPost',
+    url : '/yurucamp/Forum/memberPost?memberPost=' + memberSearch + '&type=memberReply',
     success : function(data) {
 					
   	  			console.log("data=" + data.length);
@@ -236,7 +241,7 @@ $.ajax({
           	  		cnt=0;
           	  		
           	  		 resultHtml += "<tbody>";
-          	  		
+          	  		console.log(data);
           	  		for(let Row of data){
           	  			console.log(Row);
           	  			cnt++;
@@ -245,38 +250,39 @@ $.ajax({
           	  			}else{
           	  				colorx="#dbcf83";
           	  			}
-          	  			var updateArticle = "<c:url value='/Forum/updateArticle'/>";
+          	  			var updateArticle = "<c:url value='/Forum/updateArticle?poId='/>";
           	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
+          	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
+          	  			console.log(Row);
           	  			resultHtml = resultHtml  
           	  			             + "<tr bgcolor ='"+ colorx + "'>"
           	  				         + "<td>" + "" + "</td>" 
           	  			             + "<td>" + Row.ReplyBean.memberId + "</td>"
-          	  			             + "<td>" + Row.PostBean.poTitle + "</td>"
+          	  			             + "<td>"+"<a href=''>" + Row.PostBean.poTitle + "</a></td>"
           	  			             + "<td>" + Row.ReplyBean.reCreatTime + "</td>"
           	  			             + "<td>" + Row.ReplyBean.reUpdateTime + "</td>" 
-          	  			             + "<td>" + "<button type='button' onclick='window.href('" + updateArticle + "');'>編輯</button>"   
-          	  			             + "<button type='button'   >刪除</button>" +  "</td>" 
+          	  			             + "<td>" 
+        	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + Row.ReplyBean.poId + "' \"  >編輯</button>"   
+        	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + Row.PostBean.poId + "' \"   >刪除</button>" 
+          	  			             + "</td>"
+          	  			        	 + "<td type='hidden'>" + PostBean.poId + "</td>" 
           	  			             + "</tr>";
           	  			
           	  			console.log(resultHtml);
-          	  			
-          	  			
-//           	  			 <button type="button"  onclick="<c:url value='/Forum/updateArticle' />"  >編輯</button>
-//           	  		     <button type="button"  onclick=""  >刪除</button>
           	  		}
           	  		
           	  		resultHtml += "</tbody>";
           	  		$("#memberPostList").html(resultHtml);
           	  		
           	  	}else{
-          	  		alert("no data");
+          	  		alert("此會員暫無回覆文章，請重新搜尋");
           	  		$("#memberPostList").html(resultHtml);
           	  		
           	  	}
     }
 });
 }
-</script>
+</script> 
 
 
 	<!-- end main container -->

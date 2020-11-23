@@ -24,8 +24,8 @@ public class PostBean {
 	private Integer poId;
 	@Column(name="memberId")
 	private String memberId;
-	@Column(name="forumId")
-	private Integer forumId;
+	@Column(name="forum")
+	private String forum;
 	@Column(name="poTitle")
 	private String poTitle;
 	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
@@ -61,7 +61,7 @@ public class PostBean {
 	
 	@Override
 	public String toString() {
-		return "PostBean [poId=" + poId + ", memberId=" + memberId + ", forumId=" + forumId + ", poTitle=" + poTitle
+		return "PostBean [poId=" + poId + ", memberId=" + memberId + ", forum=" + forum + ", poTitle=" + poTitle
 				+ ", poCreatTime=" + poCreatTime + ", poUpDateTime=" + poUpDateTime + ", poContent=" + poContent
 				+ ", poImage=" + poImage + ", likeNumber=" + likeNumber + ", reContentNumber=" + reContentNumber
 				+ ", clickNumber=" + clickNumber + ", forumName=" + forumName + ", name=" + name + "]";
@@ -82,11 +82,11 @@ public class PostBean {
 		this.memberId = memberId;
 	}
 
-	public Integer getForumId() {
-		return forumId;
+	public String getForum() {
+		return forum;
 	}
-	public void setForumId(Integer forumId) {
-		this.forumId = forumId;
+	public void setForum(String forum) {
+		this.forum = forum;
 	}
 	
 	public String getPoTitle() {

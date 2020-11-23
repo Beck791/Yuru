@@ -24,21 +24,17 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     
-    <link rel="stylesheet" href="<c:url value='/css/articles.css'/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value='/css/article.css'/>" type="text/css">
 
 <!-- main css -->
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
 
-
 <!-- modernizr -->
-<script src="<c:url value='/js/modernizr.js'/>"> </script>
+     <script src="<c:url value='/js/modernizr.js' />"></script>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
 
@@ -70,7 +66,68 @@
     </ul>
   </div>
 </nav>
+	
+	<div style="float:right;width:20%;margin-right:80px">
+					<div>&nbsp;</div>
+                 	<img class="d-block img-fluid" src="<c:url value='/img/forum/sidebanner_2.png'/>" alt="First slide">
+                    <div>&nbsp; </div>
+                    <img  class="d-block img-fluid" src="<c:url value='/img/forum/sidebanner_1.png'/>" alt="First slide">
+                    <div>&nbsp;</div>
+                    <img class="d-block img-fluid" src="<c:url value='/img/forum/sidebanner_4.png'/>" alt="First slide">
+                    <div>&nbsp;</div>
+                    <img class="d-block img-fluid" src="<c:url value='/img/forum/sidebanner_3.png'/>" alt="First slide">
+  					<div>&nbsp;</div>
+	
+				</div>
+	
+	
+	
+	
+	      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-8" style="left:100px;">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="<c:url value='/img/forum/banner_4.png'/>" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="<c:url value='/img/forum/banner_1.jpg'/>" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="<c:url value='/img/forum/banner_2.jpg'/>" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="<c:url value='/img/forum/banner_3.jpg'/>" alt="Third slide">
+            </div>
+<!--             <div class="carousel-item"> -->
+<!--               <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide"> -->
+<!--             </div> -->
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+	
+	
+	
+	
 	<!-- main container -->
+	
+	
+	
 	
 	 <div id="container">
       <!-- User Column -->
@@ -160,7 +217,7 @@
           <p class="user-sequence-first">回覆</p>
           <div class="extra-user-info">
             <dl class="pairs-justified">
-              <dt> <input type="submit" class="btn btn-primary" value="編輯"></dt>
+              <dt> </dt>
               <dd></dd>
             </dl>
             <dl class="pairs-justified">
@@ -220,9 +277,12 @@
 
 	<!-- end main container -->
 
+
+
+
 	<!-- footer -->
 	<footer>
-		<div class="container-fluid">
+		<div class="container-fluid" style="background-color:#fff;">
 			<p class="copyright">© Yuru Camp 2020</p>
 		</div>
 	</footer>
@@ -246,25 +306,14 @@
 
 	<!--  custom script -->
 	<script src="<c:url value='/js/custom.js' />"></script>
-
-	<!-- google analytics  -->
-
-	<script>
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script',
-				'https://www.google-analytics.com/analytics.js', 'ga');
-
-		ga('create', 'UA-76796224-1', 'auto');
-		ga('send', 'pageview');
-	</script>
+<script src="../js/menu.js"></script>
+    <script src="../js/animated-headline.js"></script>
+    <script src="../js/isotope.pkgd.min.js"></script>
+    <script src="../js/custom.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+	
+	
 
 </body>
 </html>
