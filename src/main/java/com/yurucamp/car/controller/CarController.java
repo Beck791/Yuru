@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.yurucamp.camp.model.service.CampService;
 import com.yurucamp.car.model.CarBean;
 import com.yurucamp.car.model.DiscountBean;
 import com.yurucamp.car.model.ReservationBean;
@@ -33,9 +33,7 @@ import com.yurucamp.member.model.MemberBean;
 public class CarController {
 	@Autowired
 	CarService carService;
-	@Autowired
-	CampService campService;
-
+	
 	@Autowired
 	discountService discountService;
 
@@ -298,8 +296,8 @@ public class CarController {
 				// 注意事項②参照
 			}
 
-//			HttpSession session = request.getSession();
-//			String memberId = (String)session.getAttribute("memberId");
+			HttpSession session = request.getSession();
+			String memberId = (String)session.getAttribute("memberId");
 //			System.out.println("device：" + device);
 
 		    //協定世界時のUTC 1970年1月1日深夜零時との差をミリ秒で取得
@@ -324,7 +322,7 @@ public class CarController {
 			rsvBean.setCouponId(discount.getId());
 			rsvBean.setAmount(Integer.parseInt(amount.trim()));
 			rsvBean.setCount(Integer.parseInt(count.trim()));
-//			rsvBean.setMemberId(memberBean.getId());
+			rsvBean.setMemberId(memberBean.getId());
 
 			System.out.println("ＣａｒＩＤ：" + carId);
 			System.out.println("クーポンＩＤ：" + discount.getId());
@@ -334,7 +332,7 @@ public class CarController {
 			
 			//TODO TEST MAIL
 //			carService.sendPlanSuccessEmail("ashley72045@gmail.com", "預約成功信", "歪尼歪");
-			campService.sendRegistEmail();
+//			campService.sendRegistEmail();
 //			new CampService().sendRegistEmail();
 			
 //			new sendMail().sendMail("ashley72045@gmail.com", "weeee", "預約成功信");
