@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
-<script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB843AmWX8hF0Sh9jMPr3kvmYfvWQu7mLM"></script>
 <script type="text/javascript">
 
 var centerX = 25.033561;
