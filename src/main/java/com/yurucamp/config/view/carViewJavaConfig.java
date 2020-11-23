@@ -56,5 +56,19 @@ public class carViewJavaConfig {
 		view.setUrl("/WEB-INF/pages/Car/GoogleMap.jsp");
 		return view; 
 	}
+	
+	@Bean
+	public View CarMenuPage() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/carMenu.jsp");
+		return view; 
+	}
+	
+	@Bean
+	public View CarContactPage() { 
+		InternalResourceView view = new InternalResourceView();
+		view.setUrl("/WEB-INF/pages/Car/contact.jsp");
+		return view; 
+	}
 
 }

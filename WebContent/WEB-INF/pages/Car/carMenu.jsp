@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,11 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- step css -->
+<link href="<c:url value='/css/stepstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
+	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -39,25 +46,37 @@
 	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
 		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
 	background: linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
+		rgba(255, 255, 255, .8)), url../img/car/car.jpg);
 }
 
-.deviceform {
-	/* border:3px solid #f5f0de;
-            background-color: #f5f0de; */
-	border-radius: 30px;
-	width: 450px;
-	padding: 30px;
-	padding-bottom: 20px;
-/* 	float: left; */
-	box-shadow:1px 1px 7px #8a6d3b73;
- 	margin:auto;
+.cartype{
+	border: 1px solid #dbcf83;
+    border-radius:30px;
+    width:600px;
+    padding: 20px;
+    margin: auto;
+/*     float:left; */
 }
-
-img{
-	margin:auto;
+.cartypetd {
+    padding:10px;
+}       
+        
+.country{
+    width: 64%;
+    color: #4a462c;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    padding: 8px 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0);
+    border: none;
+    border-bottom: 2px solid #b9af6f;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
-
+.tabletd {
+	padding: 7px;
+}
 /* guide */
 
 .cal-container {
@@ -117,6 +136,8 @@ ul, li {
     width: 1200px;
 }
 
+
+
 </style>
 </head>
 
@@ -126,7 +147,7 @@ ul, li {
 
 	<!-- top bar -->
 	<div class="top-bar">
-		<h1>露營車租借</h1>
+		<h1>露營車一覽</h1>
 		<p>
 			<a href="#">Travel is the only thing you buy that makes you richer.</a>
 		</p>
@@ -134,21 +155,61 @@ ul, li {
 	<!-- end top bar -->
 
 	<!-- main container -->
-	<div class="book-appointment">
-	<div class="book-agileinfo-form">
+	
+	<div class="book-agileinfo-form input">
+	<table style="margin:auto;">
+		<tr>
+			
+			<td style="padding:20px;">
+			<input type="button" value="   排序方式   " style="background:white; border: none;" readonly>
+			</td>
+			<td style="padding:10px;">
+			<input type="button" value="   依推薦順序   " onclick="location.href='<c:url value='/Car/CarMenu' />'" style="border: none; border-radius: 30px;">
+			</td>
+			<td style="padding:20px;">
+			<input type="button" value="   依價格排序   " onclick="location.href='<c:url value='/Car/CarMenuByPrice' />'" style="border: none; border-radius: 30px;">
+			</td>
+		</tr>
+	</table>
+	</div>
+	
+	<div class="book-agileinfo-form input">
+			<form id="form3" name="form3" action="<c:url value='/Car/reservation2' />" method="post">
+		<c:forEach items="${planList}" var="data" varStatus="step">
+			<table class="cartype">
+				<tr>
+					<td colspan="2" style="text-align:center;width:200px;" class="cartypetd">${data.image}</td>
+					<td colspan="1" class="cartypetd"><font style="font-size:20px">${data.type}</font><input type="hidden" id="type${step.index}" name="type${step.index}" value="${data.type}"></td>
+				</tr>
+				<tr>
+					<td class="cartypetd" style="text-align:center">一般價格</td>
+					<td style="text-align:center">三日價格</td>
+					<td style="text-align:center">五日價格</td>
+				</tr>
+				<tr>
+					<td style="text-align:center">${data.price} /日<input type="hidden" id="oneDayPrice_${step.index}" value="${data.price}"></td>
+<%-- 					<fmt:parseNumber value="${data.price*0.95}" type="currency"/>			 --%>
+<%-- 						<fmt:formatNumber type=”number” value=”${data.price*0.95}” maxFractionDigits=”0″/> --%>
+					<td style="text-align:center">${data.price*0.95} /日<input type="hidden" id="threeDaysPrice_${step.index}" value="${data.price*0.95}"></td>
+					<td style="text-align:center">${data.price*0.9} /日<input type="hidden" id="fiveDaysPrice_${step.index}" value="${data.price*0.9}"></td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td colspan="3" style="text-align:center">
+						<input type="button" value="預定好車" onclick="doNext('${step.index}',);">
+						<input type="hidden" id="carId_${step.index}" value="${data.id} " >
+					</td>
+				</tr>
+			</table>
+			<br>
+		</c:forEach>
 
-			<form class="deviceform">
-<!-- 				background-color:#dbcf83 -->
-				<p style="text-align:center;"><img alt="" src="../img/car/motorhomes-icon2.png" width="100px" ></p>
-				<h3 style="font-size:20px; text-align:center; font-weight:bold;"><img alt="" src="../img/car/success.png" width="15px" >	預約成功</h3><br>
-<!-- 				<img alt="" src="../img/car/moon.png"> -->
-				<p style="text-align:center;color:#56421ebf;">您的預約已經完成，感謝您選擇YURU CAMP露營車，YURU CAMP期待與您的旅程。</p>
-					
-			</form>
+		</form>
 		</div>
+		</div><br>
 		
-				<div class="clear"></div>
-		</div>
+		<form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
+		<div class="clear"></div>
 		
 <!-- 導覽列 -->
            <section class="cal-app_list">
@@ -188,14 +249,10 @@ ul, li {
 
         </ul>
     </div>
-    </section>
-	<form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>	
-		
-		<div class="clear"></div>
-		</div>
-	
 
-	<!-- end main container -->
+    </section>
+
+<!-- 	end main container -->
 
 	<!-- footer -->
 	<footer>
@@ -209,6 +266,9 @@ ul, li {
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
 	<!-- end back to top -->
 
+
+
+
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
 	<!--  plugins -->
@@ -216,7 +276,7 @@ ul, li {
 	<script src="../js/menu.js"></script>
 	<script src="../js/animated-headline.js"></script>
 	<script src="../js/isotope.pkgd.min.js"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!--  custom script -->
 	<script src="../js/custom.js"></script>

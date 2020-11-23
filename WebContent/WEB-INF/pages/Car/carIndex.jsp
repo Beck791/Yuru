@@ -23,6 +23,8 @@
 <!-- ad css -->
 <link href="<c:url value='/css/computer.css' />" rel='stylesheet'
 	type='text/css' />
+<%-- <link href="<c:url value='/css/computer2.css' />" rel='stylesheet' --%>
+<!-- 	type='text/css' /> -->
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 <!-- datepicker -->
@@ -366,10 +368,10 @@ ul, li {
 						</div>
 					</div>
 					<div class="main-agile-sectns">
-						<div class="agileits-btm-spc form-text1">
+						<div class="agileits-btm-spc form-text2">
 							<img src="../img/car/calender.png" width="15px"> 
 							<input type="date" placeholder="取車日期" name="deptDate"
-								class="frm-field required" required id="deptDate"
+								class="frm-field required" required id="deptDate" style="border:none;width:230px;height:40px; border-bottom: 2px solid #b9af6f;"
 								onchange="changeMin();">
 <!-- 							<input class="datepicker form-control" type="text"/> -->
 						</div>
@@ -393,7 +395,7 @@ ul, li {
 					<div class="main-agile-sectns">
 						<div class="agileits-btm-spc form-text1">
 							<img src="../img/car/calender.png" width="15px"> <input
-								type="date" placeholder="還車日期" name="returnDate"
+								type="date" title="還車日期" name="returnDate" style="border:none;width:230px;height:40px;border-bottom: 2px solid #b9af6f;"
 								class="frm-field required" required id="returnDate">
 						</div>
 						<div class="agileits-btm-spc form-text2">
@@ -619,7 +621,6 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/order.png">
-<%--                             <a href="<c:url value='/Car/Order' />"> --%>
 							<a href="javascript:queryContract();">
                                 <img src="../img/car/order.png" width="30px">
                                 <p class="cal-app_name"><span>訂單查詢</span></p>
@@ -628,7 +629,7 @@ ul, li {
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
                             <a href="<c:url value='/Car/Location' />">
                                 <img src="../img/car/map.png" width="50px">
-                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                                <p class="cal-app_name"><span>營業據點</span></p>
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
@@ -638,7 +639,7 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
-                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                            <a href="<c:url value='/Car/Contact' />">
                                 <img src="../img/car/email.png" width="40px">
                                 <p class="cal-app_name"><span>聯絡我們</span></p>
                             </a>
@@ -661,7 +662,7 @@ ul, li {
 
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
-	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="https://www.rentalcar.com.tw/News/Detail?ID=64"></a>
+	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="<c:url value='/Car/CarMenu' />"></a>
 	<!-- end back to top -->
 
 
@@ -674,13 +675,18 @@ ul, li {
 	<script src="../js/menu.js"></script>
 	<script src="../js/animated-headline.js"></script>
 	<script src="../js/isotope.pkgd.min.js"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!--  custom script -->
 	<script src="../js/custom.js"></script>
 
 	<!-- google analytics  -->
 	<script>
+	if('${errorMsg}' != ''){
+// 		alert('${errorMsg}');
+		swal('${errorMsg}', "", "warning");
+	}
+	
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
 			i[r] = i[r] || function() {

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.yurucamp.car.model.CarBean;
 import com.yurucamp.car.model.ReservationBean;
 
@@ -71,12 +73,12 @@ public class CarDaoImpl implements CarDao {
 		String tblReturnDateTime = " CONVERT(datetime, CONVERT(VARCHAR, rb.returnDate)+ ' ' + rb.returnTime)";
 
 		String sql = "FROM ReservationBean rb WHERE"
-				+ " (" + tblReturnDateTime + " > " + condDeptDateTime
-				+ " AND " + tblDeptDateTime + " < " + condDeptDateTime + ") "
-				+ " OR (" + tblReturnDateTime + " > " + condReturnDateTime
-				+ " AND " + tblDeptDateTime + " < " + condReturnDateTime + ") "
-				+ " OR (" + tblReturnDateTime + " < " + condReturnDateTime
-				+ " AND " + tblDeptDateTime + " > " + condDeptDateTime + ")";
+				+ " (" + tblReturnDateTime + " >= " + condDeptDateTime
+				+ " AND " + tblDeptDateTime + " <= " + condDeptDateTime + ") "
+				+ " OR (" + tblReturnDateTime + " >= " + condReturnDateTime
+				+ " AND " + tblDeptDateTime + " <= " + condReturnDateTime + ") "
+				+ " OR (" + tblReturnDateTime + " <= " + condReturnDateTime
+				+ " AND " + tblDeptDateTime + " >= " + condDeptDateTime + ")";
 
 		Session session = null;
 		List<ReservationBean> planList = new ArrayList<>();
@@ -85,7 +87,7 @@ public class CarDaoImpl implements CarDao {
 
 		return planList;
 	}
-	
+
 	@Override
 	public List<ReservationBean> getContractList(int memberId) {
 		String sql = "FROM ReservationBean WHERE memberId = '" + memberId + "'";
@@ -97,7 +99,7 @@ public class CarDaoImpl implements CarDao {
 
 		return contractList;
 	}
-	
+
 	@Override
 	public List<ReservationBean> getcontractDetailList(int id) {
 		String sql = "FROM ReservationBean WHERE id = '" + id + "'";
@@ -108,6 +110,30 @@ public class CarDaoImpl implements CarDao {
 		contractDetailList = session.createQuery(sql, ReservationBean.class).getResultList();
 
 		return contractDetailList;
+	}
+	
+	@Override
+	public List<CarBean> getCarMenuList() {
+		String sql = "FROM CarBean WHERE location = '台北'";
+
+		Session session = null;
+		List<CarBean> CarMenuList = new ArrayList<>();
+		session = factory.getCurrentSession();
+		CarMenuList = session.createQuery(sql, CarBean.class).getResultList();
+
+		return CarMenuList;
+	}
+	
+	@Override
+	public List<CarBean> getCarMenuByPriceList() {
+		String sql = "FROM CarBean WHERE location = '台北' ORDER BY price ASC";
+
+		Session session = null;
+		List<CarBean> CarMenuList = new ArrayList<>();
+		session = factory.getCurrentSession();
+		CarMenuList = session.createQuery(sql, CarBean.class).getResultList();
+
+		return CarMenuList;
 	}
 
 }

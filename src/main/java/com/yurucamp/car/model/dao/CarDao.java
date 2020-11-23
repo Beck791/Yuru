@@ -16,4 +16,8 @@ public interface CarDao {
 	public List<ReservationBean> getContractList(int memberId) throws SQLException;
 	
 	public List<ReservationBean> getcontractDetailList(int id) throws SQLException;
+	
+	public List<CarBean> getCarMenuList() throws SQLException;
+	
+	public List<CarBean> getCarMenuByPriceList() throws SQLException;
 }

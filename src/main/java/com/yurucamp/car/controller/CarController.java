@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +18,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.yurucamp.camp.model.service.CampService;
 import com.yurucamp.car.model.CarBean;
 import com.yurucamp.car.model.DiscountBean;
 import com.yurucamp.car.model.ReservationBean;
 import com.yurucamp.car.model.service.CarService;
 import com.yurucamp.car.model.service.discountService;
+import com.yurucamp.member.model.MemberBean;
 
 @Controller
+@SessionAttributes({"memberBean"})
 public class CarController {
 	@Autowired
 	CarService carService;
+	@Autowired
+	CampService campService;
 
 	@Autowired
 	discountService discountService;
@@ -39,49 +44,87 @@ public class CarController {
 		return "CarViewPage";
 	}
 	
+	@RequestMapping(value = "/Car/Index", method = RequestMethod.POST,
+			params = {})
+	public String carIndex(HttpServletRequest request, Model model) throws SQLException{
+
+		String errorMsg = (String) model.getAttribute("errorMsg");
+		model.addAttribute("errorMsg",errorMsg);
+		
+		return "CarViewPage";
+	}
+
 	@GetMapping("/Car/Location")
 	public String carLocation() {
 		return "CarLocationPage";
 	}
 	
+	@GetMapping("/Car/Contact")
+	public String carContact() {
+		return "CarContactPage";
+	}
+
 //	訂單查詢 start
-	
+
 	@RequestMapping(value = "/Car/Order", method = RequestMethod.POST,
 			params = {})
 	public String carOrder(HttpServletRequest request, Model model) throws SQLException{
 
-		HttpSession session = request.getSession();
-		int memberId = 1;
-		try {
-			memberId = (int)session.getAttribute("memberId");
-		} catch (Exception e) {
-			//do nothing...
-		}
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 
-		List<ReservationBean> planList = carService.query(memberId);
-		model.addAttribute("planList",planList);
-		return "CarOrderPage";
-	}	
-	
+		if(null == memberBean) {// not login
+			model.addAttribute("errorMsg","您尚未登入，請登入後再查詢");
+			return "CarViewPage";
+		}else {
+			List<ReservationBean> planList = carService.query(memberBean.getId());
+			model.addAttribute("planList",planList);
+			return "CarOrderPage";
+		}
+	}
+
 	@RequestMapping(value = "/Car/OrderDetail", method = RequestMethod.POST,
 			params = {"id"})
 	public String carOrderDetail(HttpServletRequest request, Model model, int id) throws SQLException{
+		
+//		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
+		
 //		int memberId = 1;
-		try {
-			id = (int)session.getAttribute("id");
-		} catch (Exception e) {
-			//do nothing...
-		}
+//		try {
+//			id = (int)session.getAttribute("id");
+//		} catch (Exception e) {
+//			//do nothing...
+//		}
 
 		List<ReservationBean> planList = carService.querydetail(id);
 		model.addAttribute("planList",planList);
 		return "CarOrderDetailPage";
 	}
-	
+
 //	訂單查詢  end
+
+//	車輛一覽 start
 	
+	@RequestMapping(value = "/Car/CarMenu", method = RequestMethod.GET,
+			params = {})
+	public String CarMenu(HttpServletRequest request, Model model) throws SQLException{
+
+		List<CarBean> planList = carService.querycar();
+		model.addAttribute("planList",planList);
+		return "CarMenuPage";
+	}
+	
+	@RequestMapping(value = "/Car/CarMenuByPrice", method = RequestMethod.GET,
+			params = {})
+	public String CarMenuByPrice(HttpServletRequest request, Model model) throws SQLException{
+
+		List<CarBean> planList = carService.querycarbyprice();
+		model.addAttribute("planList",planList);
+		return "CarMenuPage";
+	}
+	
+//	車輛一覽 end
 
 	@RequestMapping(value = "/Car/reservation", method = RequestMethod.POST,
 			params = { "dept", "ret", "deptDate", "deptTime", "returnDate", "returnTime" })
@@ -118,8 +161,7 @@ public class CarController {
 
 		// Carからの検索結果List
 		List<CarBean> planList = carService.getCarList(condList, arrCarId);
-
-
+		
 		model.addAttribute("dept", dept);
 		model.addAttribute("ret", ret);
 		model.addAttribute("deptDate", deptDate);
@@ -146,9 +188,9 @@ public class CarController {
 			@RequestParam(value = "normalPrice") String normalPrice,
 			@RequestParam(value = "discountPrice") String discountPrice){
 		System.out.println("カーアイディ：" + carId);
-		model.addAttribute("carId", carId);	
-		model.addAttribute("dept", dept);	
-		model.addAttribute("ret", ret); 		
+		model.addAttribute("carId", carId);
+		model.addAttribute("dept", dept);
+		model.addAttribute("ret", ret);
 		model.addAttribute("deptDate", deptDate);
 		model.addAttribute("deptTime", deptTime);
 		model.addAttribute("returnDate", returnDate);
@@ -218,7 +260,7 @@ public class CarController {
 //		}
 
 		@RequestMapping(value = "/Car/reservation3", method = RequestMethod.POST,
-				params = { "dept", "ret", "deptDate", "deptTime", "returnDate", "returnTime", "type", "carId", "device", "couponName",
+				params = { "dept", "ret", "deptDate", "deptTime", "returnDate", "returnTime", "type", "carId", "device", "couponName", "couponNo",
 						"amount", "count" })
 		public String reservation3(HttpServletRequest request, Model model,
 			@RequestParam(value = "dept") String dept,
@@ -231,12 +273,34 @@ public class CarController {
 			@RequestParam(value = "carId") String carId,
 			@RequestParam(value = "device") String device,
 			@RequestParam(value = "couponName") String couponName,
+			@RequestParam(value = "couponNo") String couponNo,
 			@RequestParam(value = "amount") String amount,
 			@RequestParam(value = "count") String count) throws SQLException{
 
-			HttpSession session = request.getSession();
-			String memberId = (String)session.getAttribute("memberId");
-			System.out.println("device：" + device);
+			MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
+
+			if (memberBean == null) {
+				// 注意事項①参照
+			}
+			System.out.println("couponNo：" + couponNo);
+
+			// クーポンBeanの取得
+			DiscountBean discountBean = new DiscountBean();
+			discountBean.setCouponNumber(couponNo);
+
+			// クーポンBeanの取得
+			List<DiscountBean> planList = discountService.getList(discountBean);
+			DiscountBean discount = new DiscountBean();
+
+			if(planList!=null && planList.size()>0) {
+				discount = planList.get(0);
+			} else {
+				// 注意事項②参照
+			}
+
+//			HttpSession session = request.getSession();
+//			String memberId = (String)session.getAttribute("memberId");
+//			System.out.println("device：" + device);
 
 		    //協定世界時のUTC 1970年1月1日深夜零時との差をミリ秒で取得
 		    long millis = System.currentTimeMillis();
@@ -248,8 +312,8 @@ public class CarController {
 		    Timestamp timestamp = new Timestamp(millis);
 			ReservationBean rsvBean = new ReservationBean();
 			rsvBean.setOrderDate(timestamp);
-			rsvBean.setDept(dept);	
-			rsvBean.setRet(ret); 	
+			rsvBean.setDept(dept);
+			rsvBean.setRet(ret);
 			rsvBean.setDeptDate(Date.valueOf(deptDate));
 			rsvBean.setDeptTime(deptTime);
 			rsvBean.setReturnDate(Date.valueOf(returnDate));
@@ -257,19 +321,27 @@ public class CarController {
 			rsvBean.setType(type);
 			rsvBean.setCarid(Integer.parseInt(carId.trim()));
 			rsvBean.setDevice(Integer.parseInt(device.trim()));
-			rsvBean.setCouponId(1);
+			rsvBean.setCouponId(discount.getId());
 			rsvBean.setAmount(Integer.parseInt(amount.trim()));
 			rsvBean.setCount(Integer.parseInt(count.trim()));
-			rsvBean.setMemberId(1);
+//			rsvBean.setMemberId(memberBean.getId());
 
 			System.out.println("ＣａｒＩＤ：" + carId);
-			System.out.println("メンバーＩＤ：" + memberId);
+			System.out.println("クーポンＩＤ：" + discount.getId());
+//			System.out.println("メンバーＩＤ：" + memberBean.getId());
 
 			carService.insert(rsvBean);
+			
+			//TODO TEST MAIL
+//			carService.sendPlanSuccessEmail("ashley72045@gmail.com", "預約成功信", "歪尼歪");
+			campService.sendRegistEmail();
+//			new CampService().sendRegistEmail();
+			
+//			new sendMail().sendMail("ashley72045@gmail.com", "weeee", "預約成功信");
 
 			return "ReservationPage3";
 		}
-		
+
 
 		private static int[] removeIntArraysDuplicate(int[] arrays) {
 

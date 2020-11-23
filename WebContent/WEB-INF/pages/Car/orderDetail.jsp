@@ -217,11 +217,11 @@ ul, li {
 <!-- 			<td></td> -->
 <!-- 			<td id="discount"></td> -->
 <!-- 		</tr> -->
-		<tr>
-			<td class="tabletd">優惠券折扣</td>
-			<td id="couponName">${data.couponId}</td>
-			<td></td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<td class="tabletd">優惠券折扣</td> -->
+<%-- 			<td id="couponName">${data.couponId}</td> --%>
+<!-- 			<td></td> -->
+<!-- 		</tr> -->
 		<tr>
 			<td colspan="2" class="tabletd">合計金額</td>
 			<td id="totalPrice">${data.amount}</td>
@@ -234,7 +234,7 @@ ul, li {
 	<br><br>
 	
 <!-- 導覽列 -->
-   <section class="cal-app_list">
+           <section class="cal-app_list">
     <div class="cal-container">
         <ul class="clearfix">
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
@@ -251,9 +251,9 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
-                            <a href="https://news.china-airlines.com/bvct/branch?country=tw&amp;locale=zh">
+                            <a href="<c:url value='/Car/Location' />">
                                 <img src="../img/car/map.png" width="50px">
-                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                                <p class="cal-app_name"><span>營業據點</span></p>
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
@@ -263,16 +263,16 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
-                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                            <a href="<c:url value='/Car/Contact' />">
                                 <img src="../img/car/email.png" width="40px">
                                 <p class="cal-app_name"><span>聯絡我們</span></p>
                             </a>
                         </li>
 
-        	</ul>
-    	</div>
-
+        </ul>
+    </div>
     </section>
+    <form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
 
 	<div class="clear"></div>
 	
@@ -322,6 +322,11 @@ ul, li {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
+		
+		function queryContract(){
+			var action = document.getElementById("form2").action;
+			document.getElementById("form2").submit();
+		 }
 		
 	</script>
 

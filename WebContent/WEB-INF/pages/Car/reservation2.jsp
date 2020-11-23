@@ -285,20 +285,22 @@ ul, li {
 				<input type="hidden" id="carId" name="carId" value="${carId}">
 				<input type="hidden" id="device" name="device" value="${device}">
 				<input type="hidden" id="couponName" name="couponName" value="${couponName}">
+				<input type="hidden" id="couponNo" name="couponNo" value="${discount}">
 				<input type="hidden" id="amount" name="amount" value="${totalPrice}">
 				<input type="hidden" id="count" name="count" value="${amount}">
+
 			</td>
 		</tr>
 	</table>
 	</form>
-	
-	
+
+
 
 	<div class="clear"></div>
 		</div>
 	</div><br>
-	<!-- 導覽列 -->
-   <section class="cal-app_list">
+<!-- 導覽列 -->
+           <section class="cal-app_list">
     <div class="cal-container">
         <ul class="clearfix">
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/information.png">
@@ -315,9 +317,9 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/map.png">
-                            <a href="https://news.china-airlines.com/bvct/branch?country=tw&amp;locale=zh">
+                            <a href="<c:url value='/Car/Location' />">
                                 <img src="../img/car/map.png" width="50px">
-                                <p class="cal-app_name"><span>營業所資訊</span></p>
+                                <p class="cal-app_name"><span>營業據點</span></p>
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/qa.png">
@@ -327,17 +329,16 @@ ul, li {
                             </a>
                         </li>
                         <li class="cal-xs-5 cal-app_item" cal-hover-img="../img/car/email.png">
-                            <a href="https://bookingportal.china-airlines.com/eRetailInterface/SubscribeNews.aspx?lang=zh-TW">
+                            <a href="<c:url value='/Car/Contact' />">
                                 <img src="../img/car/email.png" width="40px">
                                 <p class="cal-app_name"><span>聯絡我們</span></p>
                             </a>
                         </li>
 
-        	</ul>
-    	</div>
-
+        </ul>
+    </div>
     </section>
-
+    <form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
 
 
 <!-- 	new start -->
@@ -407,6 +408,10 @@ ul, li {
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
 
+		function queryContract(){
+			var action = document.getElementById("form2").action;
+			document.getElementById("form2").submit();
+		 }
 
 	</script>
 
@@ -420,65 +425,34 @@ ul, li {
 		if('' != country){
 			var price = parseInt(country) * 1200;
 			$('#devicePrice').html(price);
-			$('#totalPrice').html(${totalPrice} + price);
+			$('#totalPrice').html(${totalPrice} + price + ($('#discountAmount').html() == '' ? 0 : parseInt($('#discountAmount').html())) );
 		} else {
 			$('#devicePrice').html('');
-			$('#totalPrice').html(${totalPrice});
+			$('#totalPrice').html(${totalPrice}  + ($('#discountAmount').html() == '' ? 0 : parseInt($('#discountAmount').html())) );
 		}
 	}
 
 	function couponRedeem(){
 		var couponUrl = "<c:url value='/Car/Discount' />";
-		$.ajax({type: 'POST',url: couponUrl,data: {couponNumber:$('#discount').val()}, 
-			success: function(result){	
-		    console.log(result);
-			console.log(result.couponName);
-		    console.log(result.discountAmount);
+		$.ajax({type: 'POST',url: couponUrl,data: {couponNumber:$('#discount').val()},
+			success: function(result){
 		    if('Y' == result.invalidFlag){
-				swal("此優惠序號已過期或為無效序號", "", "warning");
+		    	if($('#discount').val() != ""){
+					swal("此優惠序號已過期或為無效序號", "", "warning");		    		
+		    	}
 		    	$('#couponName').html('');
 		    	$('#couponName').val('');
 			    $('#discountAmount').html('');
-			    $('#totalPrice').html(${totalPrice});
+			    $('#totalPrice').html(${totalPrice} + ($('#devicePrice').html() == '' ? 0 : parseInt($('#devicePrice').html())) );
 		    } else {
 			    $('#couponName').html(result.couponName);
 			    $('#couponName').val(result.couponName);
-			    console.log( $('#couponName').val(result.couponName));
+			    $('#couponNo').val($('#discount').val());
 			    $('#discountAmount').html(- result.discountAmount);
-			    $('#totalPrice').html(${totalPrice}-result.discountAmount);
+			    $('#totalPrice').html(${totalPrice} - result.discountAmount + ($('#devicePrice').html() == '' ? 0 : parseInt($('#devicePrice').html())) );
 		    }
 		  }});
 	}
-
-// 	function totalprice(){
-// 		var totalUrl = '<c:url value='/Car/Total' />';
-// 		$.ajax({type: 'POST', url: totalUrl,
-// 			data: {price:$('#price2').val(),coupon:$('#discountAmount').val(),
-// 				deviceamount:$('#deviceAmount').val(),deviceprice:$('#devicePrice').val(),
-// 				discount:$('#discount').val(),coupon:$('#discountAmount').val(),},
-// 				success: function(){
-// 			    console.log(total);
-// 			  }});
-// 	}
-
-// 	$("#deviceform").input(function() {
-// 		var data = new Object();
-// 		data.price = $("#price2").val();
-// 		data.coupon = $("#discountAmount").val();
-// 		console.log(data);
-// 		$.ajax({
-// 			url : "/yurucamp/Member/SignIn",
-// 			method : 'POST',
-// 			dataType : 'json',
-// 			data : data
-// 		}).done(function(result) {
-// 			if(result.msg== "登入成功!"){
-// 				$("#loginModal").click();
-// 				window.location.reload()
-// 			}else{
-// 				$("#ermsg").html("帳號或密碼錯誤，請重新輸入!")
-// 			}
-// 	})
 
 	</script>
 

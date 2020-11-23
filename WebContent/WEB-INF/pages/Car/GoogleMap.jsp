@@ -1,14 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB843AmWX8hF0Sh9jMPr3kvmYfvWQu7mLM"></script>
+<script type="text/javascript">
+
+var centerX = 25.033561;
+var centerY = 121.542594;
+var myCenter=new google.maps.LatLng(centerX,  centerY);
+var map ;
+function init() {
+	var mapProp = {
+		center : myCenter,
+		zoom: 8,
+		mapTypeId : google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+	var marker=new google.maps.Marker({
+		  position: myCenter,
+		  map: map,
+// 		  animation: google.maps.Animation.DROP
+// 		  animation: google.maps.Animation.BOUNCE
+// 		  icon:'../img/car/motorhomes-icon2.png'
+// 		  icon:'http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png'
+			icon: {
+		      url: '../img/car/motorhomes-icon2.png',
+		      scaledSize: new google.maps.Size(50, 50)
+		    }
+		});
+	
+	var markerGrandPlace = new google.maps.Marker({
+		  position: new google.maps.LatLng(24.150641,120.650998),
+		  map: map,
+		  icon: {
+		      url: '../img/car/motorhomes-icon2.png',
+		      scaledSize: new google.maps.Size(50, 50)
+		    }
+// 		  title: "台中"
+		});
+	
+	var markerGrandPlace = new google.maps.Marker({
+		  position: new google.maps.LatLng(22.623332,120.301835),
+		  map: map,
+		  icon: {
+		      url: '../img/car/motorhomes-icon2.png',
+		      scaledSize: new google.maps.Size(50, 50)
+		    }
+// 		  title: "高雄"
+		});
+	
+	var markerGrandPlace = new google.maps.Marker({
+		  position: new google.maps.LatLng(24.030552,121.627325),
+		  map: map,
+		  icon: {
+		      url: '../img/car/motorhomes-icon2.png',
+		      scaledSize: new google.maps.Size(50, 50)
+		    }
+// 		  title: "花蓮"
+		});
+	
+	var markerGrandPlace = new google.maps.Marker({
+		  position: new google.maps.LatLng(22.997198,120.212359),
+		  map: map,
+// 		  title:"台南"
+		  icon: {
+		      url: '../img/car/motorhomes-icon2.png',
+		      scaledSize: new google.maps.Size(50, 50)
+		    }
+		});
+	
+	marker.setMap(map);
+	var infowindow = new google.maps.InfoWindow({
+		content:"台北據點 <br> 大安捷運站4號出口  <br> (02)8982-8966  <br> 週一至週日 09:00 - 18:00"
+		});
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+		});
+
+	
+};
+
+
+function addMarker(){
+	var x1  = centerX + (Math.random() - 0.5 ) / 50.0;
+	var y1  = centerY + (Math.random() - 0.5 ) /10.;
+	var aCenter=new google.maps.LatLng(x1,  y1);
+	var marker=new google.maps.Marker({
+		  position: aCenter
+		});
+		marker.setMap(map);
+}
+function addMarkers(){
+	var arr = [];
+	for (x = 0; x < 10; x++){
+	   var x1  = centerX + (Math.random() - 0.5 ) / 3.0;
+	   var y1  = centerY + (Math.random() - 0.5 ) ;
+	   arr.push(
+		 {'x':x1,'y':y1}	  
+	   );
+	} 
+	for (i = 0; i < arr.length; i++){
+		var aCenter = new google.maps.LatLng(arr[i].x,  arr[i].y);
+		var marker = new google.maps.Marker({
+			  position: aCenter
+		});
+		marker.setMap(map);	   
+	}
+	
+	
+}
+
+google.maps.event.addDomListener(window, 'load', init);
+
+</script>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -27,37 +135,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
-.input-contact {
-	height: 40px;
-	width: 100%;
-	border: solid 0px rgba(0, 0, 0, .1);
-	position: relative;
-	margin-bottom: 30px;
-}
-
-.top-bar {
-	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
-	background: linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
-}
-
-.deviceform {
-	/* border:3px solid #f5f0de;
-            background-color: #f5f0de; */
-	border-radius: 30px;
-	width: 450px;
-	padding: 30px;
-	padding-bottom: 20px;
-/* 	float: left; */
-	box-shadow:1px 1px 7px #8a6d3b73;
- 	margin:auto;
-}
-
-img{
-	margin:auto;
-}
-
 /* guide */
 
 .cal-container {
@@ -116,7 +193,6 @@ ul, li {
 .cal-container {
     width: 1200px;
 }
-
 </style>
 </head>
 
@@ -126,7 +202,7 @@ ul, li {
 
 	<!-- top bar -->
 	<div class="top-bar">
-		<h1>露營車租借</h1>
+		<h1>營業據點</h1>
 		<p>
 			<a href="#">Travel is the only thing you buy that makes you richer.</a>
 		</p>
@@ -134,22 +210,10 @@ ul, li {
 	<!-- end top bar -->
 
 	<!-- main container -->
-	<div class="book-appointment">
-	<div class="book-agileinfo-form">
-
-			<form class="deviceform">
-<!-- 				background-color:#dbcf83 -->
-				<p style="text-align:center;"><img alt="" src="../img/car/motorhomes-icon2.png" width="100px" ></p>
-				<h3 style="font-size:20px; text-align:center; font-weight:bold;"><img alt="" src="../img/car/success.png" width="15px" >	預約成功</h3><br>
-<!-- 				<img alt="" src="../img/car/moon.png"> -->
-				<p style="text-align:center;color:#56421ebf;">您的預約已經完成，感謝您選擇YURU CAMP露營車，YURU CAMP期待與您的旅程。</p>
-					
-			</form>
-		</div>
-		
-				<div class="clear"></div>
-		</div>
-		
+<!-- 	<input type='button' value='加一個Marker' id='btn' onclick=addMarker() /> -->
+<!-- 	<input type='button' value='加一組Marker' id='btn' onclick=addMarkers() /> -->
+	<div id="googleMap" style="height:600px; width:100%;"></div><br>	
+	
 <!-- 導覽列 -->
            <section class="cal-app_list">
     <div class="cal-container">
@@ -188,13 +252,10 @@ ul, li {
 
         </ul>
     </div>
-    </section>
-	<form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>	
-		
-		<div class="clear"></div>
-		</div>
-	
 
+    </section>
+    <form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
+	
 	<!-- end main container -->
 
 	<!-- footer -->

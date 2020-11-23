@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,11 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- step css -->
+<link href="<c:url value='/css/stepstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
+	type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -27,36 +34,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
-.input-contact {
-	height: 40px;
-	width: 100%;
-	border: solid 0px rgba(0, 0, 0, .1);
-	position: relative;
-	margin-bottom: 30px;
-}
-
-.top-bar {
-	background: -webkit-linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
-	background: linear-gradient(rgba(255, 255, 255, .8),
-		rgba(255, 255, 255, .8)), url(../img/car/car.jpg);
-}
-
-.deviceform {
-	/* border:3px solid #f5f0de;
-            background-color: #f5f0de; */
-	border-radius: 30px;
-	width: 450px;
-	padding: 30px;
-	padding-bottom: 20px;
-/* 	float: left; */
-	box-shadow:1px 1px 7px #8a6d3b73;
- 	margin:auto;
-}
-
-img{
-	margin:auto;
-}
 
 /* guide */
 
@@ -117,6 +94,8 @@ ul, li {
     width: 1200px;
 }
 
+
+
 </style>
 </head>
 
@@ -126,29 +105,103 @@ ul, li {
 
 	<!-- top bar -->
 	<div class="top-bar">
-		<h1>露營車租借</h1>
-		<p>
-			<a href="#">Travel is the only thing you buy that makes you richer.</a>
-		</p>
+		<h1>聯絡我們</h1>
+<!-- 		<p> -->
+<!-- 			<a href="#">Travel is the only thing you buy that makes you richer.</a> -->
+<!-- 		</p> -->
 	</div>
 	<!-- end top bar -->
 
 	<!-- main container -->
-	<div class="book-appointment">
-	<div class="book-agileinfo-form">
+	
+	
+        <div class="about-info fill-info">
+            <div class="fill-form-group">
+                <div class="fill-form" style="padding: 100px;">
+                    <h3 class="box-til">
+                  	      聯絡我們
+                    </h3>
+                    <div class="fill-forms">
+                        <div class="fill-forms-hint">請留下您的資訊，我們將盡快與您聯繫。</div>
+                        <div class="field-container field-container-half" id="divContactName">
+                            <label class="field-container-til">姓名 : *</label>
+                            <input type="text" class="field-container-input" id="ContactName">
+                            <div class="field-container-invaild-txt">
+                        	        請輸入姓名
+                            </div>
+                        </div>
+                        <div class="field-container field-container-half">
+                            <label class="field-container-til">手機號碼 :</label>
+                            <input type="text" class="field-container-input" id="ContactCP">
+                        </div>
+                        <div class="field-container field-container-half">
+                            <label class="field-container-til">市內電話 :</label>
+                            <input type="text" class="field-container-input" id="ContactPhone">
+                        </div>
+                        <div class="field-container field-container-half" id="divContactEmail">
+                            <label class="field-container-til">Email : *</label>
+                            <input type="text" class="field-container-input" id="ContactEmail">
+                            <div class="field-container-invaild-txt">
+                           	    請輸入Email
+                            </div>
+                        </div>
 
-			<form class="deviceform">
-<!-- 				background-color:#dbcf83 -->
-				<p style="text-align:center;"><img alt="" src="../img/car/motorhomes-icon2.png" width="100px" ></p>
-				<h3 style="font-size:20px; text-align:center; font-weight:bold;"><img alt="" src="../img/car/success.png" width="15px" >	預約成功</h3><br>
-<!-- 				<img alt="" src="../img/car/moon.png"> -->
-				<p style="text-align:center;color:#56421ebf;">您的預約已經完成，感謝您選擇YURU CAMP露營車，YURU CAMP期待與您的旅程。</p>
-					
-			</form>
-		</div>
-		
-				<div class="clear"></div>
-		</div>
+                        <div class="field-container field-container-half about-contact-category" id="divContactType">
+                            <label class="field-container-til">留言類別 : *</label>
+                            <select id="ContactType"  onchange="changeType(this);">
+                                <option value="">
+                                  	  請選擇
+                                </option>
+                            </select>
+                            <div class="field-container-invaild-txt">
+                             	   請選擇留言類別
+                            </div>
+                        </div>
+						<div class="field-container field-container-half about-contact-stop" id="divContactStation">
+                            <label class="field-container-til">選擇站點 :</label>
+                            <select id="ContactStation">
+                                <option value="">
+                                	    請選擇
+                                </option> 
+
+                            </select>
+                            <div class="field-container-invaild-txt">
+                            	    請選擇站點
+                            </div>
+                        </div>
+                        <div class="field-container">
+                            <label class="field-container-til">寶貴意見 :</label>
+                            <textarea id="ContactMemo" class="field-container-textarea"></textarea>
+                        </div>
+                        <div class="field-container about-contact-reply" id="divReply">
+                            <div class="about-contact-reply-til">處理方式 :</div>
+                            <div class="about-contact-reply-radio">
+                                <input type="radio" class="fill-forms-radio" name="about_contact_reply" id="need_reply">
+                                <label for="need_reply">需要回覆</label>
+                            </div>
+                            <div class="about-contact-reply-radio">
+                                <input type="radio" class="fill-forms-radio" name="about_contact_reply" id="no_need_reply">
+                                <label for="no_need_reply">不需要回覆</label>
+                            </div>
+                            <div class="field-container-invaild-txt">
+                            	    請選擇處理方式
+                            </div>
+                        </div>
+                        <div class="book-agileinfo-form input">
+                 	  <input type="button" value="送出 "> 
+                    </div>
+                </div>
+            </div>
+
+			<div class="clear"></div>
+            </div>
+
+
+        </div>
+        
+        <div class="clear"></div>
+
+	
 		
 <!-- 導覽列 -->
            <section class="cal-app_list">
@@ -188,14 +241,11 @@ ul, li {
 
         </ul>
     </div>
-    </section>
-	<form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>	
-		
-		<div class="clear"></div>
-		</div>
-	
 
-	<!-- end main container -->
+    </section>
+    <form id="form2" name="form2" action="<c:url value='/Car/Order' />" method="post"></form>
+
+<!-- 	end main container -->
 
 	<!-- footer -->
 	<footer>
@@ -209,6 +259,9 @@ ul, li {
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
 	<!-- end back to top -->
 
+
+
+
 	<!-- jQuery -->
 	<script src="../js/jquery-2.1.1.js"></script>
 	<!--  plugins -->
@@ -216,7 +269,7 @@ ul, li {
 	<script src="../js/menu.js"></script>
 	<script src="../js/animated-headline.js"></script>
 	<script src="../js/isotope.pkgd.min.js"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!--  custom script -->
 	<script src="../js/custom.js"></script>
@@ -237,7 +290,7 @@ ul, li {
 
 		ga('create', 'UA-76796224-1', 'auto');
 		ga('send', 'pageview');
-		
+	
 		function queryContract(){
 			var action = document.getElementById("form2").action;
 			document.getElementById("form2").submit();
