@@ -155,27 +155,36 @@ public class PorductService {
 	public List<ProductBean> queryUnpopularProduct() throws SQLException {
 		return productDao.queryUnpopularProduct();
 	}
-	
-	public List<ProductBean> queryCategoryTents() throws SQLException{
+
+	public List<ProductBean> queryCategoryTents() throws SQLException {
 		return productDao.queryCategoryTents();
 	}
-	public List<ProductBean> queryCategorySleepingBags() throws SQLException{
+
+	public List<ProductBean> queryCategorySleepingBags() throws SQLException {
 		return productDao.queryCategorySleepingBags();
 	}
 
-	public List<ProductBean> queryCategoryStoves() throws SQLException{
+	public List<ProductBean> queryCategoryStoves() throws SQLException {
 		return productDao.queryCategoryStoves();
 	}
 
-	public List<ProductBean> queryCategoryCooking() throws SQLException{
+	public List<ProductBean> queryCategoryCooking() throws SQLException {
 		return productDao.queryCategoryCooking();
 	}
 
-	public List<ProductBean> queryCategoryFurniture() throws SQLException{
+	public List<ProductBean> queryCategoryFurniture() throws SQLException {
 		return productDao.queryCategoryFurniture();
 	}
-	
-	public List<ProductBean> querySearch(String name) throws SQLException{
+
+	public List<ProductBean> querySearch(String name) throws SQLException {
 		return productDao.querySearch(name);
+	}
+
+	public void changeStatusUp(ProductBean productBean) throws SQLException {
+		productDao.changeStatusUp(productBean);
+	}
+
+	public void changeStatusDown(ProductBean productBean) throws SQLException {
+		productDao.changeStatusDown(productBean);
 	}
 }

@@ -35,16 +35,16 @@
 <div>	
 <table class="table table-dark table-striped" border="1" style="background-color:#D8D8EB;color:black">
 <tr style="background-color:#A6A6D2">
-<th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>新增日期<th>修改日期
+<th><th>產品ID<th>產品名稱<th>價格<th>廠牌<th>圖檔<th>瀏覽次數<th>產品敘述<th>庫存量<th>種類<th>商品狀態<th>上下架調整<th>新增日期<th>修改日期
 <c:forEach var="productBean" items="${productBeans}">
 <tr><td>
 <!-- <input type="submit" value="修改" name="update"/>	 -->
 
 <form>
 <br>
-<button type="submit" value="修改" onclick="update('${productBean.id}')" style="border:none;border-radius:200px "><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
+<button type="submit" title="修改資料!!" onclick="update('${productBean.id}')" style="border:none;border-radius:200px "><img src="<c:url value='/img/product/update.png' />" height="25"/></button>
 <br><br>
-<button type="submit" value="刪除" onclick="del('${productBean.id}')" style="border:none;border-radius:200px" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
+<button type="submit" title="刪除資料!!" onclick="del('${productBean.id}')" style="border:none;border-radius:200px" ><img src="<c:url value='/img/product/delete.png' />" height="25"/></button>
 </form>
 </td>
 <td>${productBean.id}</td>
@@ -57,6 +57,16 @@
 <td>${productBean.stock}</td>
 <td>${productBean.category}</td>
 <td>${productBean.status}</td>
+<td>
+<form>
+<br>
+<button type="submit" title="商品上架!!" onclick="up('${productBean.id}')" style="border:none;border-radius:200px ">
+上架</button>
+<br><br>
+<button type="submit" title="商品下架!!" onclick="down('${productBean.id}')" style="border:none;border-radius:200px" >
+下架</button>
+</form>
+</td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.createtime}"/></td>
 <td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm:ss" value="${productBean.updatetime}"/></td></tr>
 
@@ -67,23 +77,35 @@
 </div>
 <script>
 
-function checkName() {
-    let NameObjVal = document.getElementById("idName").value;
-    let spName = document.getElementById("idspName");
-    let NameObjValLen = NameObjVal.length;
-    if (NameObjVal == "") {
-        spName.innerHTML = "內容不可以為空白";
-    }
-    else if (NameObjValLen >= 4) {
-             spName.innerHTML = "<span style=\"font-size:1em\">格式正確</span>";
+// function checkName() {
+//     let NameObjVal = document.getElementById("idName").value;
+//     let spName = document.getElementById("idspName");
+//     let NameObjValLen = NameObjVal.length;
+//     if (NameObjVal == "") {
+//         spName.innerHTML = "內容不可以為空白";
+//     }
+//     else if (NameObjValLen >= 4) {
+//              spName.innerHTML = "<span style=\"font-size:1em\">格式正確</span>";
 //              spName.innerHTML += "<img src=\"images/correct.jpg\" width = 20px height =20px>";           
         
-    } else {
-        spName.innerHTML = "請至少輸入四個數字";
+//     } else {
+//         spName.innerHTML = "請至少輸入四個數字";
 //         spName.innerHTML += "<img src=\"images/error.jpg\" width = 20px height =20px>";
-    }
-}
+//     }
+// }
 
+function up(id){
+	for(var i=0;++i;){
+	document.forms[i].action="<c:url value='/Product/PutOnShelfProduct?id="+id+"'/>" ;
+	document.forms[i].method="post";
+	document.forms[i].submit();
+	}}
+function down(id){
+	for(var i=0;++i;){
+	document.forms[i].action="<c:url value='/Product/OffShelfProduct?id="+id+"'/>" ;
+	document.forms[i].method="post";
+	document.forms[i].submit();
+	}}
 function update(id){
 	for(var i=0;++i;){
 	document.forms[i].action="<c:url value='/Product/UpdateProduct?id="+id+"'/>" ;

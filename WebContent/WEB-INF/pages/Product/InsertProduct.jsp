@@ -72,13 +72,11 @@
 	<script>
 	
 	$("#m2").click(function() {
-		$("#name").val("M002");
-		$("#price").val("M002");
-		$("#description").val("M002");
-		$("#stock").val("M002");
-		$("#category").val("M002");
-		$("#Passwordin").val("M002");
-
+		$("#name").val("白神駒");
+		$("#price").val("6980");
+		$("#description").val("黑膠一房一廳別墅帳 【專用吊掛內帳】 NTG83適用 擴充內帳空間");
+		$("#stock").val("28");
+		$("#category").val("帳篷裝備");
 	});
 	
 	function uploadimg(){

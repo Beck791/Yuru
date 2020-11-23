@@ -77,6 +77,24 @@ public class ProductDaoImp implements ProductDao {
 	}
 	
 	@Override
+	public void changeStatusUp(ProductBean productBean) throws SQLException {
+		ProductBean bean = sessionFactory.getCurrentSession().get(ProductBean.class, productBean.getId());
+		bean.setStatusId(1);
+		sessionFactory.getCurrentSession().update(productBean);
+	}
+	@Override
+	public void changeStatusDown(ProductBean productBean) throws SQLException {
+		ProductBean bean = sessionFactory.getCurrentSession().get(ProductBean.class, productBean.getId());
+		bean.setStatusId(2);
+		sessionFactory.getCurrentSession().update(productBean);
+	}
+	
+	
+	
+	
+	
+	
+	@Override
 	public List<ProductBean> querypage() throws SQLException {
 		Query<ProductBean> query = sessionFactory.getCurrentSession().createQuery("from ProductBean Order by id desc",ProductBean.class);
 		query.setFirstResult(0);

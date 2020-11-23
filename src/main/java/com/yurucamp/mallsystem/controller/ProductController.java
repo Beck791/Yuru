@@ -270,43 +270,31 @@ public class ProductController {
 	}
 	
 	// 後臺上架商品
-//		@PostMapping("/Product/UpdateProductinf")
-		public String PutOnShelfProduct(@RequestParam("id") Integer id, 
-									    @RequestParam("price") Integer price, 
-									    @RequestParam("stock") Integer stock,
-									    @RequestParam("description") String description ,Model model) throws SQLException {
-			ProductBean productBean = new ProductBean();	
-			productBean.setId(id);
-			productBean.setPrice(price);
-			productBean.setStock(stock);
-			productBean.setDescription(description);
-			productService.update(productBean);
-			productBean = productService.queryOne(id);
+		@PostMapping("/Product/PutOnShelfProduct")
+		public String PutOnShelfProduct(@RequestParam("id") Integer id,Model model) throws SQLException {
 
-			
-			model.addAttribute("productBeaninfo", productBean);
+			ProductBean	productBean = productService.queryOne(id);
+			productBean.setStatusId(1);
+			productService.changeStatusUp(productBean);
+//			model.addAttribute("productBeaninfo", productBean);
 
-			return "mallSystemUpdateProduct";
+			List<ProductBean> list = productService.queryAll();
+			model.addAttribute("productBeans", list);
+			return "mallSystemGetAllProduct";
 		}
 		
 		// 後臺下架商品
-//		@PostMapping("/Product/UpdateProductin")
-		public String OffShelfProduct(@RequestParam("id") Integer id, 
-				@RequestParam("price") Integer price, 
-				@RequestParam("stock") Integer stock,
-				@RequestParam("description") String description ,Model model) throws SQLException {
-			ProductBean productBean = new ProductBean();	
-			productBean.setId(id);
-			productBean.setPrice(price);
-			productBean.setStock(stock);
-			productBean.setDescription(description);
-			productService.update(productBean);
-			productBean = productService.queryOne(id);
+		@PostMapping("/Product/OffShelfProduct")
+		public String OffShelfProduct(@RequestParam("id") Integer id,Model model) throws SQLException {
+			ProductBean	productBean = productService.queryOne(id);
+			productBean.setStatusId(2);
+			productService.changeStatusDown(productBean);
 			
+//			model.addAttribute("productBeaninfo", productBean);
 			
-			model.addAttribute("productBeaninfo", productBean);
-			
-			return "mallSystemUpdateProduct";
+			List<ProductBean> list = productService.queryAll();
+			model.addAttribute("productBeans", list);
+			return "mallSystemGetAllProduct";
 		}
 	
 	

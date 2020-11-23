@@ -59,4 +59,8 @@ public interface ProductDao {
 
 	public List<ProductBean> querySearch(String name) throws SQLException;
 
+	public void changeStatusUp(ProductBean productBean) throws SQLException;
+
+	public void changeStatusDown(ProductBean productBean) throws SQLException;
+
 }
