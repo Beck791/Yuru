@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.yurucamp.camp.model.CampInfo;
@@ -26,12 +27,28 @@ public class CampController {
 		return "CampSiteIndex";
 	}
 
+	@GetMapping("/CampSite/index") // FakeIndex
+	public String campindex() {
+		return "CampSiteindex";
+	}
+
 	@PostMapping("/CampSite/Insert") // 新增
 	public String InsertCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
 			throws SQLException {
-		service.saveCamp(ci);
+		service.saveOrUpdate(ci);
 		System.out.println("Already Save Object.id = " + ci.getName());
-		return "QueryOneCamp";
+		return "QueryAllCamp";
+	}
+
+	@PostMapping("/CampSite/UpdateCamp") // 更改
+	public String UpdateCamp(@ModelAttribute("campInfo") CampInfo ci, BindingResult result, Model model)
+			throws SQLException {
+		if (model.getAttribute("campImage") != null)
+			ci.setImage((String) model.getAttribute("campImage"));
+		service.saveOrUpdate(ci);
+		System.out.println("Already update Object.id = " + ci.getName());
+		System.out.println("Already update Object.id = " + ci.getImage());
+		return "UpdateCamp";
 	}
 
 	@GetMapping("/CampSite/PureInsert") // 新增前置作業
@@ -41,20 +58,24 @@ public class CampController {
 		return "InsertCamp";
 	}
 
-	@GetMapping("/CampSite/QueryOne")
-	public String QueryOne(Model model) throws SQLException {
-		CampInfo ci = new CampInfo();
-		int id = 2;
-		ci = service.queryCamp(id);
+	@GetMapping("/CampSite/QueryOne/{id}")
+	public String QueryOne(@PathVariable int id, Model model) throws SQLException {
+		CampInfo ci = service.queryCamp(id);
+		String image = new String();
+		image = ci.getImage();
+		System.out.println("QueryOne = " + image);
+		if (ci.getImage() != null)
+			model.addAttribute("campImage", image);
 		model.addAttribute("campInfo", ci);
-		return "QueryOneCamp";
+		return "UpdateCamp";
 	}
 
-	@GetMapping("/CampSite/DeleteOne")
-	public String DeleteOne(Model model) throws SQLException {
-		int id = 1;
+	@GetMapping("/CampSite/DeleteOne/{id}")
+	public String DeleteOne(@PathVariable int id, Model model) throws SQLException {
 		service.deleteCamp(id);
-		return "CampSiteIndex";
+		List<CampInfo> list = service.queryAllCamp();
+		model.addAttribute("campInfo", list);
+		return "QueryAllCamp";
 	}
 
 	@GetMapping("/CampSite/QueryAllCamp")
@@ -68,12 +89,12 @@ public class CampController {
 	public String Test(Model model) throws SQLException {
 		return "Test";
 	}
-	
+
 	@GetMapping("/CampSite/reCAPTCHA_v2")
 	public String reCAPTCHA_v2(Model model) throws SQLException {
 		return "reCAPTCHA_v2";
 	}
-	
+
 	@GetMapping("/CampSite/reCAPTCHA_v3")
 	public String reCAPTCHA_v3(Model model) throws SQLException {
 		return "reCAPTCHA_v3";
@@ -86,6 +107,7 @@ public class CampController {
 
 	@GetMapping("/CampSite/TestOne")
 	public String Mail() throws SQLException {
+		service.sendRegistEmail();
 		return "TestOne";
 	}
 

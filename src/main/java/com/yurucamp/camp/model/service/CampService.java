@@ -21,7 +21,7 @@ public class CampService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	public CampInfo saveCamp(CampInfo campInfo) throws SQLException {
+	public CampInfo saveOrUpdate(CampInfo campInfo) throws SQLException {
 		return campDao.saveOrUpdate(campInfo);
 	}
 

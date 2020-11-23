@@ -2,16 +2,12 @@ package com.yurucamp.camp.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -53,13 +49,17 @@ public class CampInfo implements Serializable {
 	public CampInfo() {
 	}
 
-	public CampInfo(Integer id, String name, String address, Integer altitude, String owner, String ownerPhone) {
+	public CampInfo(Integer id, String name, String address, Integer altitude, String owner, String ownerPhone,
+			String closed, String image) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.altitude = altitude;
 		this.owner = owner;
 		this.ownerPhone = ownerPhone;
+		this.closed = closed;
+		this.image = image;
 	}
 
 	public Integer getId() {
@@ -109,4 +109,21 @@ public class CampInfo implements Serializable {
 	public void setOwnerPhone(String ownerPhone) {
 		this.ownerPhone = ownerPhone;
 	}
+
+	public String getClosed() {
+		return closed;
+	}
+
+	public void setClosed(String closed) {
+		this.closed = closed;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }

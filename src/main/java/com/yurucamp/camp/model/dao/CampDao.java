@@ -36,11 +36,10 @@ public class CampDao {
 	}
 
 	public List<CampInfo> queryAllCamp() throws SQLException {
-		Query<CampInfo> query = sessionFactory.getCurrentSession().createQuery("FROM CampInfo", CampInfo.class);
-		List<CampInfo> list = query.list();
+		List<CampInfo> list = sessionFactory.getCurrentSession().createQuery("FROM CampInfo", CampInfo.class).getResultList();
 		return list;
 	}
-	
+
 	public void deleteCamp(Integer id) throws SQLException {
 		Session session = sessionFactory.getCurrentSession();
 		CampInfo ci = new CampInfo();
