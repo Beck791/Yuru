@@ -1,6 +1,7 @@
 package com.yurucamp.member.model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -34,6 +35,9 @@ public class MemberCenterService {
 		return mes;
 	}
 	
+	public List<MemberBean> querySearch(String name) throws SQLException { 
+		return memberCenterDao.querySearch(name);
+	}
 	//發送驗證碼確認信件
 	public Integer sendRE(String mail,String name) throws SQLException {
 		SimpleMailMessage message = new SimpleMailMessage();

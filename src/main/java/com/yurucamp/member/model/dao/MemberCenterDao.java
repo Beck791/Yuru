@@ -1,11 +1,13 @@
 package com.yurucamp.member.model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Random;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yurucamp.mallsystem.model.BrandBean;
+import com.yurucamp.mallsystem.model.ProductBean;
 import com.yurucamp.member.model.MemberBean;
 
 @Repository
@@ -115,9 +118,14 @@ public class MemberCenterDao {
 		System.out.println("進到Dao");		
 		System.out.println("memberBean.getPaid()="+memberBean.getPaid());
 		sessionFactory.getCurrentSession().update(memberBean);
-		
-
 
 	}
-
+	
+	public List<MemberBean> querySearch(String name) throws SQLException { //statusId=1 and 
+		String hql ="from MemberBean where name like :name";
+		Query<MemberBean> query = sessionFactory.getCurrentSession().createQuery(hql,MemberBean.class)
+				.setParameter("name", "%"+name+"%");
+		List<MemberBean> list = query.list();
+		return list;
+	}
 }

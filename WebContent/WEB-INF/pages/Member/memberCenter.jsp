@@ -48,19 +48,16 @@ img {
 	max-height: 200px;
 	border-radius: 50%;
 }
-
 .box {
 	border: 1px solid red;
 	width: 300px;
 }
-
 .a, .b {
 	display: inline-block;
 	width: 100px;
 	height: 50px;
 	border: 1px solid red;
 }
-
 .munuinf{
 	width: 50%;
 	margin: 0 auto;
@@ -68,14 +65,15 @@ img {
 	border:2px solid #DDDDDD;
 	border-radius:20px;
 }
-
 </style>
 </head>
 
 <body>
 
 	<jsp:include page="/WEB-INF/pages/include/top.jsp" />
-
+<%-- 	<form action="<c:url value='/Member/search'/>" method="Get">&nbsp;&nbsp; --%>
+<!-- 	    <input name="name" type="search" placeholder="Search..." style="font-size: 25px;margin-top:250px;"/> -->
+<%-- 	</form> --%>
 	<div class="jumbotron jumbotron-fluid"
 		style="width: 90%; margin: 0 auto; margin-top: 110px; height: 200px; background-color: white;">
 		<table style="width: 100%; height: 100%; margin-top: -50px;">
@@ -112,7 +110,7 @@ img {
         <li><a data-toggle="tab" href="#menu1"  style="color:black">個人資料</a></li>
         <li><a data-toggle="tab" href="#menu2" style="color:black">會員升級</a></li>
         <li><a data-toggle="tab" href="#menu3" style="color:black">歷史訂單</a></li>
-        <li><a data-toggle="tab" href="#menu4" style="color:black">歷史發文</a></li>
+        <li><a data-toggle="tab" href="#menu4" style="color:black;margin-left:500px;"><input id="searchname" name="name" type="search" placeholder="Member Search..." ></a></li>
     </ul>
     </div>
         
@@ -122,7 +120,7 @@ img {
       		<p></p>
     	</div>
         <div id="menu1" class="tab-pane fade munuinf" >
-			<h3 style="text-align:center">個人資料</h3><br>
+<!-- 			<h3 style="text-align:center">個人資料</h3><br> -->
 			<table class="table" style="text-align:left">
 			  <tbody>
 			    <tr >
@@ -530,11 +528,31 @@ img {
 <!-- 				  MENU3結束 -->
 				</div>	
 
-        <div id="menu4" class="tab-pane fade munuinf">
-            <h3>Menu 4</h3>
+        <div id="menu4" class="tab-pane fade munuinf" style="border-style:none;">
+<!--             <h3>Menu 4</h3> -->
+            <div id="memsearcgmenu4" style="margin-top:30px">查無資料</div>
+            <div style="margin-top:30px;" id="showfriendlist">
+<!--             		cards開始 -->
+<!--             		<div class="card mb-3" style="max-width: 540px;"> -->
+<!-- 					  <div class="row no-gutters"> -->
+<!-- 					    <div class="col-md-4"> -->
+<!-- 					      <img src="..." class="card-img" alt="..." id="showfriendpic"> -->
+<!-- 					    </div> -->
+<!-- 					    <div class="col-md-8"> -->
+<!-- 					      <div class="card-body"> -->
+<!-- 					        <h5 class="card-title" id="showfriendname"></h5> -->
+<!-- 					        <p class="card-text" id="showfriendmemberId"></p> -->
+<!-- 					        <p class="card-text" id="showfriendgender"></p> -->
+<!-- 							<p class="card-text"><small class="text-muted" id="showfriendpaid"></small></p> -->
+<!-- 					      </div> -->
+<!-- 					    </div> -->
+<!-- 					  </div> -->
+<!-- 					</div> -->
+<!-- 					cards結束             -->
+			</div>
          
     </div>
-    
+    </div>
 
 </body>
 
@@ -551,7 +569,6 @@ img {
 	<br>	
 
 <script>
-
 $("#updatemem").click(function() {
 	var a=0;
 	if ($("#mcname").val()===""){
@@ -598,7 +615,6 @@ $("#updatemem").click(function() {
 		alert(result.r);
 		})
 });
-
 $("#ecpay").click(function() {
 	console.log("綠界");
 	
@@ -621,15 +637,54 @@ $("#ecpay").click(function() {
 		}
 	});
 });
-
 	
 	  $(".listbutton").click(function(){
 		  if( $(".listinfo").css("display") == 'none' ){ 
 		  $(".listinfo").show();
 		  }else{$(".listinfo").hide();}
 	});
-
-
+	  
+	  
+	  $("#searchname").change(function(){
+			$("#memsearcgmenu4").hide();
+			$("#showfriendlist").hide();
+		  var data = new Object();
+			data.name = $("#searchname").val();
+			$.ajax({
+				url : "<c:url value='/Member/search'/>",
+				method : 'POST',
+				dataType : 'json',
+				data : data
+			}).done(function(result) {
+				$("#showfriendlist").html("");
+				if(result.list.length>0){
+					$("#memsearcgmenu4").hide();
+					$("#showfriendlist").show();
+					for (var i=0; i <=result.list.length-1 ; i++){				
+						
+						var resultHtml = 
+							"<div class='card mb-3' style='max-width:450px;height:100px'>"
+		  					+"<div class='row no-gutters' style='overflow:hidden'>"
+		  					+"<div class='col-md-4' style='height:100%'>"
+		  					+"<img src="+result.list[i].image+" style='padding-left:20px;height:100%;width:80%;' class='card-img' alt='...'>"
+		  					+"</div>"
+		  					+"<div class='col-md-8'>"
+		  					+"<div class='card-body'>"
+		  					+"<h5 class='card-title'>"+result.list[i].name+"</h5>"
+		  					+"<p class='card-text'>"+result.list[i].memberId+"</p>"
+		  					+"<p class='card-text'>"+result.list[i].gender+"</p>"
+		  					+"</div></div></div></div>";
+						
+						$("#showfriendlist").append(resultHtml);}										
+				}else{
+					$("#memsearcgmenu4").show();
+					$("#showfriendlist").hide();
+					}
+				})
+				$("#searchname").val("");
+			
+	});  
+	  
 </script>
 
 

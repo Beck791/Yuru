@@ -2,6 +2,7 @@ package com.yurucamp.member.controller;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +88,20 @@ public class MemberCenterController {
 		Map<String, String> mes1 = new HashMap<String, String>();
 		mes1.put("mes", mes); 
 		return mes1;
+	}
+	
+	//關鍵字搜尋
+	@PostMapping("/Member/search")
+	@ResponseBody
+	public Map<String, List<MemberBean>> Membersearch(@RequestParam("name")String name,Model model ) throws SQLException, Throwable {
+		List<MemberBean> list = service.querySearch(name);
+		System.out.println(list);
+		
+		Map<String, List<MemberBean>> list2 = new HashMap<String, List<MemberBean>>();
+		list2.put("list", list); 
+		return list2;
+
+		
 	}
 	
 	//寄送註冊信

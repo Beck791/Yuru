@@ -200,7 +200,7 @@
 						<button type="button" class="btn btn-secondary" id="m1">一般會員</button>
 						<button type="button" class="btn btn-secondary" id="m2">付費會員</button>
 						<button type="button" class="btn btn-secondary" id="m3">管理者</button>
-						<button type="button" class="btn btn-secondary" id="m4">版主</button>
+						<button type="button" class="btn btn-secondary" id="m4">會員</button>
 					</div>
 				</div>
 			</div>
@@ -564,8 +564,8 @@
 
 		$("#m4").click(function() {
 			$("#ermsg").html("");
-			$("#Accountin").val("M004");
-			$("#Passwordin").val("M004");
+			$("#Accountin").val("fst12234");
+			$("#Passwordin").val("fst12234");
 			$("#Accountin").focus();
 			$("#Passwordin").focus();
 		});
