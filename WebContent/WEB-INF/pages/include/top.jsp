@@ -352,7 +352,7 @@
                     	</div>
 					</div>
 
-					<div class="modal-footer" style="clear: both;height:60px;">
+					<div class="modal-footer" style="clear: both;height:150px;">
 					<div>
 						<a href='#' class="mr-auto" data-dismiss="modal" id="forgettologin"
 							data-toggle="modal" data-target="#loginModal"
@@ -362,7 +362,11 @@
 							data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-primary" id="forgetenter"
 							style="background-color: #dbcf83; border-color: #dbcf83; color: black;">確認</button>
+					<hr>
+					<button type="button" class="btn btn-secondary" id="forgotwrite" style="float:left">填寫</button>
+					
 					</div>
+					
 				</div>
 			</div>
 	</div>
@@ -766,6 +770,15 @@
 // 				console.log('User signed out.');
 // 			});
 // 		}
+		
+		$("#forgotwrite").click(function() {
+			$("#ermsg3").html("");
+			$("#forgotname").val("陳花花");
+			$("#forgotaccount").val("fst12234");
+			$("#forgotname").focus();
+			$("#forgotaccount").focus();
+		});
+
 		
 	</script>
 	
