@@ -204,10 +204,10 @@ select {
 <!--               <form> -->
 <!--               </form> -->
 <!--               <form method="post" id="form1"  action=""> -->
-              <form>
 <!--                 <input type="submit" value="加入購物車" class="btn btn-primary" /> -->
 <!--               </form> -->
 <%--               <form method="post"  act9ion="<c:url value='/shoppingcart/addProduct?id=${productBean.id}'/>"> --%>
+              <form>
                 <button onclick="addProduct(${productBean.id})" style="background-color: #dbcf83;border-radius: 5px;float: right;"><img src="../img\product\cart.png" height="30" /></button>
               </form>
               </div>
@@ -268,21 +268,21 @@ select {
 	
 	<script>
 	
-	var isLogin = ${isLogin};
+// 	var isLogin = ${isLogin};
 	
 	function addProduct(id){
 		
-		if(!isLogin){
-			alert("請登入會員");
-		} else {
+// 		if(!isLogin){
+// 			alert("請登入會員");
+// 		} else {
 			alert("加入購物車成功");
 			console.log(id);
 			for(var i=0 ; i<document.forms.length ; i++){
 				document.forms[i].action="<c:url value='/shoppingcart/addProduct?id="+id+"'/>";
 				document.forms[i].method="POST";
 				document.forms[i].submit();		
-			}	
 		}
+// 			}	
 	}
 
 	

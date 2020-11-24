@@ -195,14 +195,19 @@ ul, li {
 		</tr>
    	<c:forEach items="${orderDetailBeans}" var="orderDetailBean" varStatus="step">
 		<tr>
-			<td class="tdtest"><img src="${orderDetailBean.productImage}" height="50"></td>
+			<td class="tdtest"><img src="${orderDetailBean.productImage}" height="50" style="padding-top: 5px"></td>
 			<td>${orderDetailBean.productName}</td> 
 			<td>${orderDetailBean.quantity}</td>
 			<td>$${orderDetailBean.price}</td>
 			<td>$${orderDetailBean.quantity * orderDetailBean.price}</td>
 		</tr>
 	    </c:forEach>
-
+		
+		<tr>
+		<td colspan="5">
+		&nbsp;
+		</td>
+		
 		<tr>
 		<th colspan="4" class="tdtest">運費</th>
 		<th>$60</th>
@@ -222,9 +227,9 @@ ul, li {
 		<tr>
 		<td colspan="5">
 		&nbsp;
-		</td>
-		
+		</td>		
 		</tr>
+		
 		<tr>
 		<td colspan="3" class="tdtest"></td>
 		<td>合計</td>
