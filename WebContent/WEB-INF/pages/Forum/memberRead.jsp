@@ -26,8 +26,6 @@
     
     <link rel="stylesheet" href="<c:url value='/css/article.css'/>" type="text/css">
 
-<!-- main css -->
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet">
 
 <!-- modernizr -->
      <script src="<c:url value='/js/modernizr.js' />"></script>
@@ -36,6 +34,8 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- main css -->
+    <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
 
 
 
@@ -128,18 +128,18 @@
 	
 	
 	
-	
+	<div>&nbsp;</div>
 	 <div id="container">
       <!-- User Column -->
       <div class="user-column">
-        <img src="img/headshot.jpg" height="100" alt="headshot">
+        <img src="${memberBean.image}" height="100" alt="headshot">
         <div class="user-info">
           <a href="#" class="user-account">${PostBean.memberId}</a>
           <p class="user-sequence-first">樓主</p>
           <div class="extra-user-info">
             <dl class="pairs-justified">
-              <dt></dt>
-              <dd></dd>
+              <dt>article : </dt>
+              <dd style="float:left;"><div >  ${PostBean.poId}</div></dd>
             </dl>
             <dl class="pairs-justified">
               <dt>讚:</dt>
@@ -150,11 +150,13 @@
       </div>
       
       <!-- Article Column -->
+      
       <div class="article-column">
         <!-- Article Topic -->
         <div class="article-info">
-          <p class="article-topic">${PostBean.poTitle}
-          <div style="float:right;">${PostBean.poId}</div></p>
+          <p class="article-topic">${PostBean.poTitle}</p>
+          
+          
           <p class="article-act-list">${PostBean.poCreatTime}</p>
           <p class="article-act-list list-divider"></p>  
           <p class="article-act-list">${PostBean.clickNumber} views</p>
@@ -180,13 +182,14 @@
           <p class="article-act-list">${PostBean.poUpDateTime}</p>
           <div style="float:right;">
             <p class="article-act-list">
-              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> [num]</p>
-<!--             <p class="article-act-list list-divider"></p> -->
-<!--             <p class="article-act-list"> -->
-<!--               <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p> -->
-<!--             <p class="article-act-list list-divider"></p> -->
-<!--             <p class="article-act-list"> -->
-<!--               <i class="fa fa-quote-right" aria-hidden="true"></i> 引用</p>             -->
+              <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
+            <p class="article-act-list list-divider"></p>
+            <p class="article-act-list">
+              <a href="<c:url value='/Forum/goReply?poId=${PostBean.poId}'/>">
+            	<i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
+            <p class="article-act-list list-divider"></p>
+            <p class="article-act-list">
+              <i class="fa fa-quote-right" aria-hidden="true"></i> 引用</p>            
           </div>
         </div>
       </div>
@@ -210,15 +213,19 @@
 <c:forEach var="replyBean" items="${replyList}">
  <div id="container">
       <!-- User Column -->
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
       <div class="user-column">
-        <img src="img/headshot.jpg" height="100" alt="headshot">
-        <div class="user-info">
+ 		 <img src="${memberBean.image}" height="100" alt="headshot">
+         <div class="user-info">
           <a href="#" class="user-account">${replyBean.memberId}</a>
           <p class="user-sequence-first">回覆</p>
           <div class="extra-user-info">
             <dl class="pairs-justified">
-              <dt> </dt>
-              <dd></dd>
+              <dt>article : </dt>
+              <dd><div style="float:left;">${PostBean.poId}</div></dd>
             </dl>
             <dl class="pairs-justified">
               <dt>讚:</dt>
@@ -227,6 +234,7 @@
           </div> 
         </div>
       </div>
+ 
       
       <!-- Article Column -->
       <div class="article-column">
@@ -241,8 +249,8 @@
               <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
-            <a href="<c:url value='/Forum/goReply'/>">
-              <i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
+              <a href="<c:url value='/Forum/goReply?poId=${PostBean.poId}'/>">
+            	<i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
               <i class="fa fa-quote-right" aria-hidden="true"></i> 引用</p>            
@@ -261,10 +269,11 @@
           <p class="article-act-list">${replyBean.reUpDateTime}</p>
           <div style="float:right;">
             <p class="article-act-list">
-              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> [num]</p>
+              <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
-              <i class="fa fa-share-alt" aria-hidden="true"></i> 分享</p>
+              <a href="<c:url value='/Forum/goReply?poId=${PostBean.poId}'/>">
+            	<i class="fa fa-reply" aria-hidden="true"></i> 回覆</a></p>
             <p class="article-act-list list-divider"></p>
             <p class="article-act-list">
               <i class="fa fa-quote-right" aria-hidden="true"></i> 引用</p>            
@@ -281,27 +290,30 @@
 
 
 	<!-- footer -->
-	<footer>
-		<div class="container-fluid" style="background-color:#fff;">
-			<p class="copyright">© Yuru Camp 2020</p>
-		</div>
-	</footer>
-	<!-- end footer -->
+    <footer>
+        <div class="container-fluid">
+            <p class="copyright">© Yuru Camp 2020</p>
+        </div>
+    </footer>
+    <!-- end footer -->
 
-	<!-- back to top -->
-	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
-	<!-- end back to top -->
+    <!-- back to top -->
+    <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+    <!-- end back to top -->
 
-
-
-
-	<!-- jQuery -->
+   <!-- jQuery -->
 	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
 	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
 	<script src="<c:url value='/js/menu.js' />"></script>
 	<script src="<c:url value='/js/animated-headline.js' />"></script>
 	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
+
+
+	<!--  custom script -->
+	<script src="<c:url value='/js/custom.js' />"></script>
+
+	<!-- google analytics  -->
 
 
 	<!--  custom script -->

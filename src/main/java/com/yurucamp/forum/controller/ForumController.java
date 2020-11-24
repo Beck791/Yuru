@@ -26,9 +26,11 @@ import com.yurucamp.forum.model.ReplyBean;
 import com.yurucamp.forum.model.service.ArticleService;
 import com.yurucamp.forum.model.service.ForumService;
 import com.yurucamp.general.model.service.GeneralService;
+import com.yurucamp.member.model.MemberBean;
+import com.yurucamp.member.model.service.MemberCenterService;
 
 @Controller
-@SessionAttributes({"memberId"})
+@SessionAttributes({"memberBean","memberId"})
 public class ForumController {
 	
 	@Autowired
@@ -37,10 +39,13 @@ public class ForumController {
 	GeneralService generalService;
 	@Autowired
 	ForumService forumService;
+	@Autowired
+	MemberCenterService memberCenterService;
 
 	@RequestMapping("/Forum/Index")
-	public String ToClassifyPage(Model model, SessionStatus status) {
+	public String ToClassifyPage(Model model, SessionStatus status) throws SQLException {
 		String memberId =(String) model.getAttribute("memberId");
+	
 		if (memberId == null) {
 			status.setComplete();
 			return "indexPage";
@@ -158,12 +163,13 @@ public class ForumController {
 	@GetMapping(value ="/Forum/readArticle/{poId}")
 	public String Read(@PathVariable("poId") Integer poId, Model model) throws SQLException{
 		PostBean postBean = articleService.queryPostId(poId);
+		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 		model.addAttribute("PostBean", postBean);
 		List<ReplyBean> replyList = articleService.queryPoIdAllReply(poId);
 		model.addAttribute("replyList", replyList);
 		System.out.println("potitle=?"+postBean.getPoTitle());
 		System.out.println("replyList=?"+replyList);
-
+		System.out.println("memberBean=?"+memberBean);
 		return "memberReadPage";
 	}
 
@@ -178,7 +184,6 @@ public class ForumController {
 		System.out.println(postBean);
 		model.addAttribute("poId", poId);
 		model.addAttribute("PostBean", postBean);
-		
 		return "memberUpdatePage";
 	}
 	
@@ -215,10 +220,21 @@ public class ForumController {
 	
 	
 	
-	//刪除文章
-	@RequestMapping(value = "/Forum/Delete", method = RequestMethod.GET)
-	public String Delete(@RequestParam("poId") Integer poId, Model model)
+	//刪除發文
+	@RequestMapping(value = "/Forum/DeletePost", method = RequestMethod.GET)
+	public String DeletePost(@RequestParam("poId") Integer poId, Model model)
 			throws SQLException {
+		articleService.deleteOne(poId);
+		List<PostBean> list = articleService.queryPostAll();
+		model.addAttribute("PostBean", list);
+		return "memberArticleListPage";
+	}
+
+	//刪除回文
+	@RequestMapping(value = "/Forum/DeleteReply", method = RequestMethod.GET)
+	public String DeleteReply(@RequestParam("poId") Integer poId, Model model)
+			throws SQLException {
+		
 		articleService.deleteOne(poId);
 		List<PostBean> list = articleService.queryPostAll();
 		model.addAttribute("PostBean", list);

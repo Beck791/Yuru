@@ -115,7 +115,7 @@
 						<!-- 		</div> -->
 
 						<div>
-							<label> <span>選擇圖片</span> <input name="poImage"
+							<label> <span>選擇文章封面圖片</span> <input name="poImage"
 								id="editor" type="file">
 							</label>
 						</div>

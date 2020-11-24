@@ -103,40 +103,12 @@ crossorigin="anonymous"></script>
 	<table class="table" id="memberPostList">
 		
 	</table>
-<%-- 		<c:forEach var="PostBean" items="postList"> --%>
-<!-- 			<tbody> -->
-<!-- 				<tr> -->
-<!-- 					<td>露營休閒討論區</td> -->
-<!-- 					<td>M001</td> -->
-<!-- 					<td>AAAAAAAAA</td> -->
-<%-- 					<td>${PostBean.poTile}</td> --%>
-<!-- 					<td></td> -->
-<!-- 				</tr> -->
-<!-- 			</tbody> -->
-<%-- 		</c:forEach> --%>
+
 
 
 
 	
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 
@@ -176,7 +148,7 @@ function callMemberPost() {
 		                	  				colorx="#dbcf83";
 		                	  			}
 		                	  			var updateArticle = "<c:url value='/Forum/updateArticle' />";
-		                	  			var deleteArticle ="<c:url value='/Forum/Delete'/>";
+		                	  			var deleteArticle ="<c:url value='/Forum/DeletePost'/>";
 		                  	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
 
 		                	  			resultHtml = resultHtml  
@@ -251,7 +223,7 @@ $.ajax({
           	  				colorx="#dbcf83";
           	  			}
           	  			var updateArticle = "<c:url value='/Forum/updateArticle?poId='/>";
-          	  			var deleteArticle ="<c:url value='/Forum/Delete' />";
+          	  			var deleteArticle ="<c:url value='/Forum/DeleteReply' />";
           	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
           	  			console.log(Row);
           	  			resultHtml = resultHtml  
@@ -265,7 +237,7 @@ $.ajax({
         	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + Row.ReplyBean.poId + "' \"  >編輯</button>"   
         	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + Row.PostBean.poId + "' \"   >刪除</button>" 
           	  			             + "</td>"
-          	  			        	 + "<td type='hidden'>" + PostBean.poId + "</td>" 
+          	  			        	 + "<td type='hidden'>" + Row.PostBean.poId + "</td>" 
           	  			             + "</tr>";
           	  			
           	  			console.log(resultHtml);
