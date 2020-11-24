@@ -6,7 +6,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
+	<link rel="icon" href="<c:url value='/img/yuruIcon.png' />"
+	type="image/x-icon">
 	<style>
 	* {font-family: 微軟正黑體;}
 	</style>

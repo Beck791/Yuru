@@ -6,6 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="icon" href="<c:url value='/img/yuruIcon.png' />"
+	type="image/x-icon">
 	<title>營地資料</title>
 </head>
 <body style="background-color:#fdf5e6">
