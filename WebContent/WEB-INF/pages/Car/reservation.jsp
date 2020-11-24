@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>YURU.悠遊租車</title>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -21,6 +21,8 @@
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
 <!-- step css -->
 <link href="<c:url value='/css/stepstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet' type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -190,7 +192,8 @@ ul, li {
 				<div class="main-agile-sectns">
 					<div class="agileits-btm-spc form-text1">
 					<img src="../img/car/calender.png" width="15px">
-						<input type="date" placeholder="取車日期" name="deptDate" class="frm-field required" required
+						<input type="date" placeholder="取車日期" name="deptDate" class="frm-field required" required 
+							style="border:none;width:380px;height:40px; border-bottom: 2px solid #b9af6f;"
 							value="${deptDate}" id="deptDate">
 <!-- 							<input type="text" id="datepicker"> -->
 					</div>
@@ -215,6 +218,7 @@ ul, li {
 					<div class="agileits-btm-spc form-text1">
 					<img src="../img/car/calender.png" width="15px">
 						<input type="date" placeholder="還車日期" name="returnDate" class="frm-field required" required
+							style="border:none;width:380px;height:40px; border-bottom: 2px solid #b9af6f;"
 							value="${returnDate}" id="returnDate">
 					</div>
 					<div class="agileits-btm-spc form-text2">
@@ -265,12 +269,12 @@ ul, li {
                 </li>
                 <li>
                     <div class="step-num step-circle" style="background-color: transparent;">4</div>
-                    <div class="step-name">個人資料</div>
+                    <div class="step-name">完成預約</div>
                 </li>
-                <li>
-                    <div class="step-num step-circle" style="background-color: transparent;">5</div>
-                    <div class="step-name">付款</div>
-                </li>
+<!--                 <li> -->
+<!--                     <div class="step-num step-circle" style="background-color: transparent;">5</div> -->
+<!--                     <div class="step-name">付款</div> -->
+<!--                 </li> -->
             </ol>
         </div>
     </section>
@@ -311,7 +315,7 @@ ul, li {
 				</tr>
 				<tr>
 					<td colspan="3" style="text-align:center">
-						<input type="button" value="選擇這輛" onclick="doNext('${step.index}',);">
+						<input type="button" value="選擇這輛" onclick="doNext('${step.index}');">
 						<input type="hidden" id="carId_${step.index}" value="${data.id} " >
 					</td>
 				</tr>
@@ -377,18 +381,20 @@ ul, li {
 
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="<c:url value='/Car/CarMenu' />"></a>
+	<a class="dot-link" style="bottom: 125px; background-image: url('../img/car/index.png');" href="<c:url value='/Car/Index' />"></a>
 	<!-- end back to top -->
 
 
 
 
 	<!-- jQuery -->
-	<script src="../js/jquery-2.1.1.js"></script>
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/menu.js"></script>
-	<script src="../js/animated-headline.js"></script>
-	<script src="../js/isotope.pkgd.min.js"></script>
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!--  custom script -->

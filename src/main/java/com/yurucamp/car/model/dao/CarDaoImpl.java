@@ -36,7 +36,6 @@ public class CarDaoImpl implements CarDao {
 		List<CarBean> planList = new ArrayList<>();
 		session = factory.getCurrentSession();
 		planList = session.createQuery(sql, CarBean.class).getResultList();
-
 		return planList;
 	}
 

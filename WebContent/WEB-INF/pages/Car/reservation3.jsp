@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>YURU.悠遊租車</title>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -17,6 +17,8 @@
 <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 <!-- form css -->
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet' type='text/css' />
+<!-- ad css -->
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet' type='text/css' />
 <!-- modernizr -->
 <script src="<c:url value='/js/modernizr.js' />"></script>
 
@@ -134,6 +136,33 @@ ul, li {
 	<!-- end top bar -->
 
 	<!-- main container -->
+		<div class="container reserve-car">
+    <section class="reserve-step">
+        <div class="reserve-step-group">
+            <ol>
+                <li class="step-success">
+                    <div class="step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">選擇地點、時間 </div>
+<!--                         <a href="javascript:void(0)" class="step-edit edit_reserve_location">重新選擇<i class="svg"></i></a> -->
+                </li>
+                <li class="step-success">
+                    <div class="step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">選擇車型、數量</div>
+                </li>
+                <li class="step-success">
+                    <div class="step-num step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">加購配件</div>
+                </li>
+                <li class="step-success">
+                    <div class="step-num step-circle"><img src="../img/car/check.png" width=12px;></div>
+                    <div class="step-name">完成預約</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+    </div>
+	
+	
 	<div class="book-appointment">
 	<div class="book-agileinfo-form">
 
@@ -207,6 +236,8 @@ ul, li {
 
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
+	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="<c:url value='/Car/CarMenu' />"></a>
+	<a class="dot-link" style="bottom: 125px; background-image: url('../img/car/index.png');" href="<c:url value='/Car/Index' />"></a>
 	<!-- end back to top -->
 
 	<!-- jQuery -->

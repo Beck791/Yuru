@@ -279,6 +279,8 @@ public class CarController {
 
 			if (memberBean == null) {
 				// 注意事項①参照
+				model.addAttribute("errorMsg","您尚未登入，請登入後再預約");
+				return "CarViewPage";
 			}
 			System.out.println("couponNo：" + couponNo);
 
@@ -333,7 +335,7 @@ public class CarController {
 			//TODO TEST MAIL
 //			carService.sendPlanSuccessEmail("ashley72045@gmail.com", "預約成功信", "歪尼歪");
 //			campService.sendRegistEmail();
-//			new CampService().sendRegistEmail();
+			carService.sendPlanSuccessEmail();
 			
 //			new sendMail().sendMail("ashley72045@gmail.com", "weeee", "預約成功信");
 

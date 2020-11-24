@@ -55,21 +55,23 @@ public class CarService {
 	//預約成功信件
 	public void sendPlanSuccessEmail() {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo("ashley72045@gmail.com");
+	
 		//收信人
+		message.setTo("ashley72045@gmail.com");
 //		message.setTo("ethos0505@gmail.com");
 		
 		//信件標題
-		message.setSubject("YuruCamp會員 驗證信");
+		message.setSubject("YuruCamp 悠遊租車預約成功");
 		
 		//信件內文
-		String authURL ="google.com";
+		
+//		String authURL ="google.com";
 		String content = "Dear " 
-				+ "PP"
-				+ ", \n\n您的驗證碼為：\n\n" 
-				+ "9527"
-				+ "\n\n請輸入驗證碼進行確認 完成註冊 .\n\n" 
-				+ authURL;
+//				+ "PP"
+				+ "\n\n 感謝您選擇YURU CAMP露營車,我們已收到您的預約,\n\n" 
+				+ "並期待與您的旅程。\n\n"
+				+ "" ;
+//				+ authURL;
 		message.setText(content);
 		
 		//發出信件

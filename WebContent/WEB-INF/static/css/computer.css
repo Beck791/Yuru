@@ -1740,13 +1740,14 @@ input:-webkit-autofill {
   position: absolute;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background-size: 100%;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, #cacb65));
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), #cacb65);
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #cacb65);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #cacb65);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, #B3A16E));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), #B3A16E);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #B3A16E);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #B3A16E);
   bottom: 0;
   width: 100%;
-  color: #fff;
+  color: #5d5030e0;
+  font-size:bolder;
   text-align: left;
   -moz-transition: all 0.1s;
   -o-transition: all 0.1s;
@@ -2100,10 +2101,10 @@ input:-webkit-autofill {
 }
 
 .reserve-step {
-  padding: 15px 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+/*   padding: 15px 0; */
+/*   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
+/*   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
+/*   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
 }
 
 .reserve-step-group {
@@ -3644,9 +3645,9 @@ input:-webkit-autofill {
 .how-service-grid ul li .how-service-unlimited .no-svg {
   background: url("../img/icon_grid_unlimited.png") center no-repeat;
 }
-.how-service-grid ul li .how-service-unlimited .svg {
-  background: url("../img/icon_grid_unlimited.svg") center no-repeat;
-}
+/* .how-service-grid ul li .how-service-unlimited .svg { */
+/*   background: url("../img/icon_grid_unlimited.svg") center no-repeat; */
+/* } */
 .how-service-grid ul li .how-service-clock .no-svg {
   background: url("../img/icon_grid_clock.png") center no-repeat;
 }

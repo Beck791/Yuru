@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Box personal portfolio Template</title>
+<title>YURU.悠遊租車</title>
 <link rel="icon" href="../img/yuruIcon.png" type="image/x-icon">
 <!-- Bootstrap -->
 <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
@@ -21,8 +21,7 @@
 <link href="<c:url value='/css/formstyle.css' />" rel='stylesheet'
 	type='text/css' />
 <!-- ad css -->
-<link href="<c:url value='/css/computer.css' />" rel='stylesheet'
-	type='text/css' />
+<link href="<c:url value='/css/computer.css' />" rel='stylesheet' type='text/css' />
 <%-- <link href="<c:url value='/css/computer2.css' />" rel='stylesheet' --%>
 <!-- 	type='text/css' /> -->
 <!-- modernizr -->
@@ -30,9 +29,9 @@
 <!-- datepicker -->
 <!-- 	<link href="/css/bootstrap.css" rel="stylesheet" /> -->
 <!-- 	<link href="/css/bootstrap-datepicker.css" rel="stylesheet" /> -->
-	<script src="/js/datepicker/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="/js/datepicker/bootstrap.js" type="text/javascript"></script>
-	<script src="<c:url value='/js/datepicker/bootstrap-datepicker.js' /> type="text/javascript"></script>
+<!-- 	<script src="/js/datepicker/jquery-1.10.2.js" type="text/javascript"></script> -->
+<!-- 	<script src="/js/datepicker/bootstrap.js" type="text/javascript"></script> -->
+<%-- 	<script src="<c:url value='/js/datepicker/bootstrap-datepicker.js' /> type="text/javascript"></script> --%>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -434,7 +433,7 @@ ul, li {
            	 最新情報
         </h4>
                 <a href="/News/Detail?ID=62" class="main-news-box1">
-                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    <div class="content main-news-box-pic" style="background: url(../img/car/001.jpg) center no-repeat;
                     -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
                         <div class="main-news-box-til">
                             <span>多日租車優惠活動</span>
@@ -449,7 +448,7 @@ ul, li {
                     </div>
                 </a>
                 <a href="/News/Detail?ID=65" class="main-news-box1">
-                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    <div class="content main-news-box-pic" style="background: url(../img/car/002.jpg) center no-repeat;
                     -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
                         <div class="main-news-box-til">
                             <span>秋日舒活．悠遊趣</span>
@@ -464,7 +463,7 @@ ul, li {
                     </div>
                 </a>
                 <a href="/News/Detail?ID=64" class="main-news-box2">
-                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    <div class="content main-news-box-pic" style="background: url(../img/car/003.png) center no-repeat;
                     -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
                         <div class="main-news-box-til">
                             <span>租車優惠券限時大方送</span>
@@ -480,7 +479,7 @@ ul, li {
                     </div>
                 </a>
                 <a href="/News/Detail?ID=63" class="main-news-box2">
-                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    <div class="content main-news-box-pic" style="background: url(../img/car/004-3.png) center no-repeat;
                     -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
                         <div class="main-news-box-til">
                             <span>悠遊租車 x 台新GOGO 卡友優惠</span>
@@ -495,7 +494,7 @@ ul, li {
                     </div>
                 </a>
                 <a href="/News/Detail?ID=66" class="main-news-box2">
-                    <div class="content main-news-box-pic" style="background: url(../img/car/car.jpg) center no-repeat;
+                    <div class="content main-news-box-pic" style="background: url(../img/car/005.png) center no-repeat;
                     -moz-background-size: cover; -o-background-size: cover; -webkit-background-size: cover; background-size: cover;">
                         <div class="main-news-box-til">
                             <span>LINE Pay租車  送LINE POINTS</span>
@@ -663,18 +662,19 @@ ul, li {
 	<!-- back to top -->
 	<a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
 	<a class="dot-link" style="bottom: 65px; background-image: url('../img/car/car-icon.png');" href="<c:url value='/Car/CarMenu' />"></a>
+	<a class="dot-link" style="bottom: 125px; background-image: url('../img/car/index.png');" href="<c:url value='/Car/Index' />"></a>
 	<!-- end back to top -->
 
 
 
 
 	<!-- jQuery -->
-	<script src="../js/jquery-2.1.1.js"></script>
+	<script src="<c:url value='/js/jquery-2.1.1.js' />"></script>
 	<!--  plugins -->
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/menu.js"></script>
-	<script src="../js/animated-headline.js"></script>
-	<script src="../js/isotope.pkgd.min.js"></script>
+	<script src="<c:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/js/menu.js' />"></script>
+	<script src="<c:url value='/js/animated-headline.js' />"></script>
+	<script src="<c:url value='/js/isotope.pkgd.min.js' />"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!--  custom script -->
@@ -728,12 +728,7 @@ ul, li {
 			document.getElementById("returnDate").setAttribute("min", deptd);
 		}
 		
-		 $('.datepicker').datepicker({
-	    	 weekStart:1,
-	    	 color: 'red'
-		 });
-		
-		 
+			 
 		 function queryContract(){
 			var action = document.getElementById("form2").action;
 			document.getElementById("form2").submit();
