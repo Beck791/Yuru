@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${campDiscussion}</title>
- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -55,7 +55,8 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       
       <li class="nav-item"><a class="nav-link" href="<c:url value='/Forum/goInsert' />" class="" >新增文章</a></li>
-      <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/articleList' />">個人文章一覽</a></li>
+      <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/articleList' />">個人文章一覽</a></li> 
+<%--       <li class="nav-item"><a class="nav-link " href="<c:url value='/Forum/imgur' />">imgur test</a></li> --%>
 
     </ul>
    

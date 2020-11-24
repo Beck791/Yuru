@@ -56,13 +56,14 @@
                 <div >
                     <nav class="">
                         <ul >
-                       	  	<li class="" style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營休閒討論區</a></li><br/>
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營帳篷討論區</a></li><br />
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營寢具討論區</a></li><br />
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營爐具桌椅討論區</a></li><br />
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營料理討論區</a></li><br />
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營地點討論區</a></li><br />
-                            <li style="list-style-type:none;"><a href="<c:url value='/Forum/forumIndex' />"  >露營車討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"></li><br/>
+                       	  	<li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營休閒討論區</a></li><br/>
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營帳篷討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營寢具討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營爐具桌椅討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營料理討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營地點討論區</a></li><br />
+                            <li style="list-style-type:none;margin:center;"><a href="<c:url value='/Forum/forumIndex' />"  >露營車討論區</a></li><br />
                         </ul>
                     </nav>
                 </div>

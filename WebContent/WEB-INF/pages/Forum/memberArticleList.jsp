@@ -149,7 +149,6 @@ function callMemberPost() {
 		                	  			}
 		                	  			var updateArticle = "<c:url value='/Forum/updateArticle' />";
 		                	  			var deleteArticle ="<c:url value='/Forum/DeletePost'/>";
-		                  	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
 
 		                	  			resultHtml = resultHtml  
 		                	  			             + "<tr bgcolor ='"+ colorx + "'>"
@@ -224,7 +223,6 @@ $.ajax({
           	  			}
           	  			var updateArticle = "<c:url value='/Forum/updateArticle?poId='/>";
           	  			var deleteArticle ="<c:url value='/Forum/DeleteReply' />";
-          	  			var poId = "<c:url value='/Forum/readArticle/${PostBean.poId}'/>";
           	  			console.log(Row);
           	  			resultHtml = resultHtml  
           	  			             + "<tr bgcolor ='"+ colorx + "'>"

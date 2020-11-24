@@ -64,6 +64,15 @@ public class ForumController {
 //	}
 //	
 
+//	//IMGUR
+//	@RequestMapping(value ="/Forum/imgur", method = RequestMethod.GET)
+//	public String ToimgurPage() {
+//		
+//		return "imgurPage";
+//	}
+//
+//	
+	
 	//文章總覽
 	@RequestMapping("/Forum/forumIndex")
 	public String ToCampDiscussionPage(Model model) throws SQLException{

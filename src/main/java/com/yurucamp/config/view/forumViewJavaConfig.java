@@ -56,9 +56,9 @@ public class forumViewJavaConfig {
 	}
 	
 	@Bean
-	public View guestReadPage() { // 呼叫此方法名稱及導向設定之jsp
+	public View imgurPage() { // 呼叫此方法名稱及導向設定之jsp
 		InternalResourceView view = new InternalResourceView();
-		view.setUrl("/WEB-INF/pages/Forum/guestRead.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
+		view.setUrl("/WEB-INF/pages/Forum/imgur.jsp"); // 此為範例，自己改路徑，或往下加其他路徑
 		return view;
 	}
 	
