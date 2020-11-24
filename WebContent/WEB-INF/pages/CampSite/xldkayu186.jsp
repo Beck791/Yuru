@@ -222,7 +222,7 @@ ul.slides li img {
 			<ul class="clearfix uili">
 				<li class="cal-xs-5 cal-app_item uili">
 					<a data-target="#introduceModal" data-toggle="modal" href="Introduce"> 
-						<img src="<c:url value='/img/car/information.png' />" width="40px">
+						<img src="<c:url value='/img/camp/campImg.png' />" width="40px">
 						<p class="cal-app_name">
 							<span>營地介紹</span>
 						</p>
@@ -230,31 +230,32 @@ ul.slides li img {
 				</li>
 				<li class="cal-xs-5 cal-app_item uili">
 					<a data-target="#precautionsModal" data-toggle="modal" href="Precautions"> 
-						<img src="<c:url value='/img/car/information.png' />" width="40px">
+						<img src="<c:url value='/img/car/information.png' />" width="30px">
 						<p class="cal-app_name">
 							<span>營地須知</span>
 						</p>
 					</a>
 				</li>
-				<li class="cal-xs-5 cal-app_item uili">
-					<a href="https://www.facebook.com/kayucampingsite/"> 
-						<img src="<c:url value='/img/car/information.png' />" width="40px">
-						<p class="cal-app_name">
-							<span>FaceBook</span>
-						</p>
-					</a>
-				</li>
+				
 				<li class="cal-xs-5 cal-app_item uili">
 					<a data-target="#weatherModal" data-toggle="modal" href="Weather">
-						<img src="<c:url value='/img/car/information.png' />" width="40px">
+						<img src="<c:url value='/img/camp/weatherImg.png' />" width="30px">
 						<p class="cal-app_name">
 							<span>氣象資訊</span>
 						</p>
 					</a>
 				</li>
 				<li class="cal-xs-5 cal-app_item uili">
+					<a href="https://www.facebook.com/kayucampingsite/"> 
+						<img src="<c:url value='/img/camp/faceImg.png' />" width="30px">
+						<p class="cal-app_name">
+							<span>FaceBook</span>
+						</p>
+					</a>
+				</li>
+				<li class="cal-xs-5 cal-app_item uili">
 					<a data-target="#mapModal" data-toggle="modal" href="GoogleMap"> 
-						<img src="<c:url value='/img/car/information.png' />" width="40px">
+						<img src="<c:url value='/img/camp/mapImg.png' />" width="30px">
 						<p class="cal-app_name">
 							<span>交通資訊</span>
 						</p>

@@ -107,7 +107,7 @@ public class CampController {
 
 	@GetMapping("/CampSite/TestOne")
 	public String Mail() throws SQLException {
-		service.sendRegistEmail();
+//		service.sendRegistEmail();
 		return "TestOne";
 	}
 
