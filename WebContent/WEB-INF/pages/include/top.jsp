@@ -16,7 +16,12 @@
 <!-- 機器人驗證 -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://www.google.com/recaptcha/api.js?render=explicit&onload=onReCaptchaLoad"></script>
-
+<!-- google登入 -->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id"
+	content="916965697921-kvipep3dqn362pk86etoa1les14pharh.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 	
 	.mempic{
@@ -164,6 +169,7 @@
 					<div id="ermsg" style="color: red; font-weight: bold;"></div>
 				</div>
 				<div class="modal-body">
+
                         <div class="input-contact" style="width:50%">
                             <input type="text" name="Accountin" id="Accountin" autocomplete="off">
                             <span>帳號</span>                 
@@ -177,7 +183,7 @@
 					        <label class="form-check-label" for="dropdownCheck">
 					          Remember me
 					        </label>
-					    </div>
+					    </div>					   
 
 					<div class="modal-footer" style="height:65px;">
 					<div style="width:70%;display:inline;float:left;">
@@ -194,6 +200,12 @@
 						<button type="button" class="btn btn-primary" id="signIn"
 							style="background-color: #dbcf83; border-color:#dbcf83;color: black;">登入</button>
 					</div>
+					</div>
+					<hr>
+						<div>
+							<div class="g-signin2" data-onsuccess="onSignIn" onclick="ClickLogin()"
+								data-theme="dark"></div>
+<!-- 							<a href="#" οnclick="signOut();">Sign out</a> -->
 					</div>
 					<hr>
 					<div>
@@ -707,6 +719,53 @@
 			});
 
 		}
+		
+		//google驗證登入
+		var clicked = false;//Global Variable
+		function ClickLogin() {
+			clicked = true;
+		}
+		function onSignIn(googleUser) {
+			// 客户端如果有需要的话可以通过profile来获取用户信息
+			var profile = googleUser.getBasicProfile();
+			// 传回后台验证，并获取userid
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log(id_token);
+			if (id_token==null){
+// 				alert("google登入失敗");
+				return false;
+			}
+// 				alert("google登入完成");
+				var auth2 = gapi.auth2.getAuthInstance();
+				auth2.signOut().then(function() {
+					console.log('User signed out.');
+				});
+				var data = new Object();
+				data.Account = "M001";
+				data.Password = "M001";
+				console.log(data);
+				$.ajax({
+					url : "/yurucamp/Member/SignIn",
+					method : 'POST',
+					dataType : 'json',
+					data : data
+				}).done(function(result) {
+					if(result.msg== "登入成功!"){ 
+						$("#loginModal").click();
+						window.location.reload();
+					} else {
+						alert("googole登入失敗!")
+					}
+				})
+			
+		};
+
+// 		function signOut() {
+// 			var auth2 = gapi.auth2.getAuthInstance();
+// 			auth2.signOut().then(function() {
+// 				console.log('User signed out.');
+// 			});
+// 		}
 		
 	</script>
 	
