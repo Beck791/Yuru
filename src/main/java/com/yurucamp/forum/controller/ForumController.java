@@ -208,6 +208,7 @@ public class ForumController {
 			System.out.println("Already Save Object.id = " + poContent);
 			PostBean postBean = new PostBean();
 			postBean.setPoId(poId);
+			
 			postBean.setForum("露營休閒討論區");
 			postBean.setMemberId((String) model.getAttribute("memberId"));
 			postBean.setPoTitle(poTitle);
@@ -217,7 +218,7 @@ public class ForumController {
 			}
 			postBean.setPoCreatTime(new Timestamp(System.currentTimeMillis()));
 			postBean.setPoUpDateTime(null);
-			articleService.insertPost(postBean);
+			articleService.updatePost(postBean);
 			System.out.println("Already Save Object.id = " + postBean.getPoId());
 			List<PostBean> postList = articleService.queryPostAll();
 			model.addAttribute("postList", postList);

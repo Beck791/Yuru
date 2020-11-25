@@ -27,6 +27,11 @@ public class ArticleService {
 	public void insertPost(PostBean postBean) throws SQLException {
 		postDao.insertMainPost(postBean);
 	}
+	
+	//編輯文章
+	public void updatePost(PostBean postBean) throws SQLException {
+		postDao.updatePost(postBean);
+	}
 
 	//新增回覆
 	public void insertReply(ReplyBean replyBean) throws SQLException {

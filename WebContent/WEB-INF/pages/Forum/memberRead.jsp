@@ -143,7 +143,7 @@
             </dl>
             <dl class="pairs-justified">
               <dt>讚:</dt>
-              <dd>${PostBean.likeNumber}</dd>
+              <dd style="float:left;">${PostBean.likeNumber}</dd>
             </dl>
           </div> 
         </div>

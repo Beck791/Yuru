@@ -92,32 +92,22 @@
 								name="poTitle" disabled="disabled" value="${postBean.poTitle}" />
 						</div>
 						<div class="">
-							<label class="t1" for="content" path="poContent">主題內容</label>
+							<label class="t1" for="content" path="poContent">主題內容
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="color:#bbb">powered by </span><img alt="" height="50px" src="<c:url value='/img/CKEditor.png' />">
+							</label>
 							<textarea name="contentforckeditor" rows="10" cols="10"
 								placeholder="請輸入主題內容" style=""></textarea>
 						</div>
 
 
-						<!-- 					<div class="form-group"> -->
-						<%-- 						<form:label class="t1" for="potitle" path="forumId">討論區分類</form:label> --%>
-						<!-- 						<br /> -->
-						<%-- 						<form:input type="text" class="form-control" id="forumId" --%>
-						<%-- 							path="forumId" name="forumId" placeholder="討論區代號" --%>
-						<%-- 							value="${PostBean.forumId}" /> --%>
-						<!-- 					</div> -->
-
-						<!--                     <div class="col-sm-10" style="width: 40%"> -->
-						<!--                       <div class="form-group"> -->
-						<!--                         <select class="form-control" id="tab" name="tab"> -->
-						<%--                             <c:forEach items="${forumId}" var="tab"> --%>
-						<%--                             <option value="${Forum.id}">${forumId}</option> --%>
-						<%--                             </c:forEach> --%>
-						<!--                         </select> -->
-						<!-- 			</div> -->
-						<!-- 		</div> -->
+						
 
 						<div>
-							<label> <span>選擇圖片</span> <input name="poImage"
+							<label> <span>選擇圖片
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="color:#bbb">powered by </span><img alt="" height="30px" src="<c:url value='/img/imgur.jpg' />"> 
+							</span> <input name="poImage"
 								id="editor" type="file">
 							</label>
 						</div>
@@ -141,7 +131,7 @@
 		<div class="panel panel-default" id="main" style="">
 			<div style="margin:center;">
 				
-		                 	<img style="margin-left:3%;width:90%;top:96%" src="<c:url value='/img/forum/sidebanner_2.png'/>" alt="First slide">
+		                 	<img style="margin-left:3%;width:90%;top:96%" src="<c:url value='/img/forum/pillow1.jpg'/>" alt="First slide">
 </div>
 		</div>
 				</div>

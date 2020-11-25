@@ -81,7 +81,9 @@ private SessionFactory sessionFactory;
 				.setParameter("memberId", memberId).getResultList();
 		return postList;
 	}
-		
+
+
+	
 	
 	
 	

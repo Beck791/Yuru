@@ -130,7 +130,7 @@ function callMemberPost() {
 								+"<th>MemberID</th>"
 								+"<th>文章標題</th>"
 								+"<th>發文時間</th>"
-								+"<th>最後修改時間</th>"
+								
 								+"<th>管理動作</th>"
 								+"</tr>"
 								+"</thead>"
@@ -157,7 +157,7 @@ function callMemberPost() {
 		                	  			             + "<td>" + PostBean.memberId + "</td>"
 		                  	  			             + "<td>"+"<a href=''>" + PostBean.poTitle + "</a></td>"
 		                	  			             + "<td>" + PostBean.poCreatTime + "</td>"
-		                	  			             + "<td>" + PostBean.poUpdateTime + "</td>" 
+		                	  			             
 		                	  			             + "<td>" 
 		                	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + PostBean.poId + "' \"  >編輯</button>"   
 		                	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + PostBean.poId + "' \"   >刪除</button>" 
@@ -200,11 +200,11 @@ $.ajax({
   	  			var resultHtml =
   	  			"<thead　class='thead-dark'>"
 					+"<tr>"
-					+"<th>論壇分類</th>"
+					+"<th>主文文章</th>"
 					+"<th>MemberID</th>"
 					+"<th>文章標題</th>"
-					+"<th>發文時間</th>"
-					+"<th>最後修改時間</th>"
+// 					+"<th>發文時間</th>"
+					
 					+"<th>管理動作</th>"
 					+"</tr>"
 					+"</thead>"
@@ -226,16 +226,16 @@ $.ajax({
           	  			console.log(Row);
           	  			resultHtml = resultHtml  
           	  			             + "<tr bgcolor ='"+ colorx + "'>"
-          	  				         + "<td>" + "" + "</td>" 
+          	  			        	 + "<td >" + Row.PostBean.poId + "</td>" 
+          	  			             
           	  			             + "<td>" + Row.ReplyBean.memberId + "</td>"
           	  			             + "<td>"+"<a href=''>" + Row.PostBean.poTitle + "</a></td>"
-          	  			             + "<td>" + Row.ReplyBean.reCreatTime + "</td>"
-          	  			             + "<td>" + Row.ReplyBean.reUpdateTime + "</td>" 
+//           	  			             + "<td>" + Row.ReplyBean.reCreatTime + "</td>"
+          	  			             
           	  			             + "<td>" 
         	  			             + "<button type='button' onclick=\"window.location.href = '" + updateArticle + "?poId=" + Row.ReplyBean.poId + "' \"  >編輯</button>"   
         	  			             + "<button type='button' onclick=\"window.location.href = '" + deleteArticle + "?poId=" + Row.PostBean.poId + "' \"   >刪除</button>" 
           	  			             + "</td>"
-          	  			        	 + "<td type='hidden'>" + Row.PostBean.poId + "</td>" 
           	  			             + "</tr>";
           	  			
           	  			console.log(resultHtml);
