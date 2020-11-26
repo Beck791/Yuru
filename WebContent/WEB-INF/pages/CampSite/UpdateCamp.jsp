@@ -20,8 +20,8 @@
 		<table>
 		<thead class="thead-light">
 			<tr>
-				<th scope="col">欲更新商品資料</th>
-				<th scope="col">更新後商品資料</th>
+				<th scope="col">欲更新營地資料</th>
+				<th scope="col">更新後營地資料</th>
 			</tr>
 		</thead>
 		<tr><td>

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Box personal portfolio Template</title>
+
 <script type="text/javascript">
 
 var centerX = 25.033561;

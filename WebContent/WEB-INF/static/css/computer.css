@@ -2100,12 +2100,6 @@ input:-webkit-autofill {
   margin-bottom: 15px;
 }
 
-.reserve-step {
-/*   padding: 15px 0; */
-/*   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
-/*   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
-/*   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; */
-}
 
 .reserve-step-group {
   max-width: 900px;

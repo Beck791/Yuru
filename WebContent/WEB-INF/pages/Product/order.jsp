@@ -197,17 +197,18 @@ ul, li {
 			<td id="couponName">${orderBean.orderAddress}</td>
 			<td></td>
 		</tr>
+		
         <tr>
 			<td class="tabletd">消費金額</td>
-			<td colspan="2">${orderBean.total - orderBean.fee }</td>
+			<td colspan="2">$<fmt:formatNumber type="number" value="${(orderBean.total *10/9) - orderBean.fee }" maxFractionDigits="0"/>NT</td>
 		</tr>
         <tr>
 			<td class="tabletd">運費</td>
-			<td colspan="2">${orderBean.fee}</td>
+			<td colspan="2">$${orderBean.fee}</td>
 		</tr>
 		<tr>
 			<td class="tabletd">合計總金額</td>
-			<td colspan="2">$${orderBean.total}NT</td>
+			<td colspan="2">$<fmt:formatNumber type="number" value="${orderBean.total}" maxFractionDigits="0"/>NT</td>
 		</tr>
 		<form>
 		<tr>

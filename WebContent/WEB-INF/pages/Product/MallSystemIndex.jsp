@@ -110,7 +110,7 @@ select {
 <%-- 							<li><a href="<c:url value='/Product/BackStageIndex'/>" style="font-size: 25px;border-radius:5px;background-color:#D2E9FF" class="list-group-item">商城管理系統</a></li> --%>
 							<li><input type="button" style="font-size: 25px;border-radius:5px;background-color:#D2E9FF;padding:0px 10px" class="list-group-item" readonly value="商城管理系統" ></li>
 					     	<li><a href="<c:url value='/Product/GetAllProduct'/>" class="list-group-item" style="font-size: 25px">管理產品資料</a></li>
-							<li><a href="<c:url value='/Product/InsertProduct'/>" class="list-group-item" style="font-size: 25px">新增產品</a></li>
+<%-- 							<li><a href="<c:url value='/Product/InsertProduct'/>" class="list-group-item" style="font-size: 25px">新增產品</a></li> --%>
 						</ul>
 							</c:when>
 						   </c:choose>
