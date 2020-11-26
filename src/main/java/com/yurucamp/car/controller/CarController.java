@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,7 @@ import com.yurucamp.member.model.MemberBean;
 public class CarController {
 	@Autowired
 	CarService carService;
-	
+
 	@Autowired
 	discountService discountService;
 
@@ -41,14 +40,14 @@ public class CarController {
 	public String carIndex() {
 		return "CarViewPage";
 	}
-	
+
 	@RequestMapping(value = "/Car/Index", method = RequestMethod.POST,
 			params = {})
 	public String carIndex(HttpServletRequest request, Model model) throws SQLException{
 
 		String errorMsg = (String) model.getAttribute("errorMsg");
 		model.addAttribute("errorMsg",errorMsg);
-		
+
 		return "CarViewPage";
 	}
 
@@ -56,7 +55,7 @@ public class CarController {
 	public String carLocation() {
 		return "CarLocationPage";
 	}
-	
+
 	@GetMapping("/Car/Contact")
 	public String carContact() {
 		return "CarContactPage";
@@ -83,11 +82,11 @@ public class CarController {
 	@RequestMapping(value = "/Car/OrderDetail", method = RequestMethod.POST,
 			params = {"id"})
 	public String carOrderDetail(HttpServletRequest request, Model model, int id) throws SQLException{
-		
+
 //		MemberBean memberBean = (MemberBean) model.getAttribute("memberBean");
 
 //		HttpSession session = request.getSession();
-		
+
 //		int memberId = 1;
 //		try {
 //			id = (int)session.getAttribute("id");
@@ -103,7 +102,7 @@ public class CarController {
 //	訂單查詢  end
 
 //	車輛一覽 start
-	
+
 	@RequestMapping(value = "/Car/CarMenu", method = RequestMethod.GET,
 			params = {})
 	public String CarMenu(HttpServletRequest request, Model model) throws SQLException{
@@ -112,7 +111,7 @@ public class CarController {
 		model.addAttribute("planList",planList);
 		return "CarMenuPage";
 	}
-	
+
 	@RequestMapping(value = "/Car/CarMenuByPrice", method = RequestMethod.GET,
 			params = {})
 	public String CarMenuByPrice(HttpServletRequest request, Model model) throws SQLException{
@@ -121,7 +120,7 @@ public class CarController {
 		model.addAttribute("planList",planList);
 		return "CarMenuPage";
 	}
-	
+
 //	車輛一覽 end
 
 	@RequestMapping(value = "/Car/reservation", method = RequestMethod.POST,
@@ -159,7 +158,7 @@ public class CarController {
 
 		// Carからの検索結果List
 		List<CarBean> planList = carService.getCarList(condList, arrCarId);
-		
+
 		model.addAttribute("dept", dept);
 		model.addAttribute("ret", ret);
 		model.addAttribute("deptDate", deptDate);
@@ -298,10 +297,6 @@ public class CarController {
 				// 注意事項②参照
 			}
 
-			HttpSession session = request.getSession();
-			String memberId = (String)session.getAttribute("memberId");
-//			System.out.println("device：" + device);
-
 		    //協定世界時のUTC 1970年1月1日深夜零時との差をミリ秒で取得
 		    long millis = System.currentTimeMillis();
 
@@ -331,12 +326,12 @@ public class CarController {
 //			System.out.println("メンバーＩＤ：" + memberBean.getId());
 
 			carService.insert(rsvBean);
-			
+
 			//TODO TEST MAIL
 //			carService.sendPlanSuccessEmail("ashley72045@gmail.com", "預約成功信", "歪尼歪");
 //			campService.sendRegistEmail();
-			carService.sendPlanSuccessEmail();
-			
+			carService.sendPlanSuccessEmail(rsvBean, memberBean);
+
 //			new sendMail().sendMail("ashley72045@gmail.com", "weeee", "預約成功信");
 
 			return "ReservationPage3";
